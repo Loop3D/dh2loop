@@ -98,7 +98,7 @@ def collar_collarattr_final(collar_file, collarattr_file, rl_maxdepth_dic_file, 
 						if(colar_ele[5][0] == '-'):
 							list_maxdepth.append(Parse_Num(collar_ele[5])*-1)
 						else:
-						list_maxdepth.append(Parse_Num(collar_ele[5]))
+						    list_maxdepth.append(Parse_Num(collar_ele[5]))
 
                         Pre_id =collar_ele[0]
                         Pre_hole_id = collar_ele[1]
