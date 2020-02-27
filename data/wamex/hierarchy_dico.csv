@@ -1,0 +1,759 @@
+Level_3,Level 2,Level 1
+fine-grained_volcanic_normal_crystalline_igneous_rock,fine-grained crystalline,igneous
+coarse-grained_plutonic_crystalline_igneous_rock,coarse-grained crystalline,igneous
+quartz-rich-coarse-grained-crystalline-rock,felsic_coarse-grained crystalline,igneous
+hybrid_igneous_rock_and_intrusive_breccia,felsic_fine-grained crystalline,igneous
+very_low_to_low-grade_metamorphic_rock,low-grade metamorphic rock,metamorphic rock
+fault-related_alkaline_metasomatite,metasomatic,metamorphic rock
+cryptocrystalline-sedimentary-rock,sedimentary rock,sedimentary rock
+glaciofluvial_ice_contact_deposits,glacigenic_deposit,surficial
+fine-crystalline-sedimentary rock,sedimentary rock,sedimentary rock
+interglacial_lacustrine_deposits,lacustrine_deposit,surficial
+exotic_crystalline_igneous_rock,exotic_crystalline,igneous
+normal_crystalline_igneous_rock,igneous rock,igneous
+quartz-alkali-feldspar-trachyte,intermediate_fine-grained crystalline,igneous
+volcaniclastic-sedimentary-rock,volcaniclastic,igneous
+contact_metamorphic_glassy_rock,contact metamorphic,metamorphic rock
+metavolcaniclastic-conglomerate,volcaniclastic,sedimentary rock
+quartz-alkali-feldspar-syenite,intermediate_coarse-grained crystalline,igneous
+coarse-grained-ultramafic-rock,ultramafic_coarse-grained crystalline,igneous
+glaciofluvial_channel_deposits,proglacial deposits,surficial
+non-ultramafic-melilitic-rock,exotic_crystalline,igneous
+gravel-grade-sedimentary rock,sedimentary rock,sedimentary rock
+tuffaceous-silicate-sandstone,volcaniclastic debris,sedimentary rock
+fine-grained_ultramafic-rock,felsic_fine-grained crystalline,igneous
+carbonatite-related_albitite,metasomatic,metamorphic rock
+limestone/silicate-sandstone,hybrid,sedimentary rock
+siliclastic-sedimentary-rock,siliciclastic,sedimentary rock
+metavolcaniclastic-sandstone,volcaniclastic,sedimentary rock
+interglacial_fluvial_deposit,alluvial_deposit,surficial
+interglacial_marine_deposits,coastal_deposit,surficial
+fine-grained_melititic_rock,exotic_crystalline,igneous
+tuffaceous-sedimentary-rock,volcaniclastic,igneous
+volcaniclastic-conglomerate,volcaniclastic,igneous
+volcaniclastic-igneous-rock,volcaniclastic,igneous
+high-grade_metamorphic_rock,high-grade metamorphic rock,metamorphic rock
+ultramafic_metamorphic_rock,high-grade metamorphic rock,metamorphic rock
+metavolcaniclastic-mudstone,volcaniclastic,sedimentary rock
+intermediate_plutonic_rock,intermediate_coarse-grained crystalline,igneous
+intermediate_volcanic_rock,intermediate_fine-grained crystalline,igneous
+pyroxene-hornblende-gabbro,mafic_coarse-grained crystalline,igneous
+mud-grade-sedimentary rock,sedimentary rock,sedimentary rock
+quartz-rich-granitic-rock,felsic,igneous
+ultramafic-melilitic-rock,ultramafic,igneous
+high_p/t_metamorphic_rock,high-grade metamorphic rock,metamorphic rock
+alkali-feldspar-rhyolite,felsic_fine-grained crystalline,igneous
+alkali-feldspar-trachyte,intermediate_fine-grained crystalline,igneous
+ultrabasic_plutonic_rock,ultramafic_coarse-grained crystalline,igneous
+ultrabasic_volcanic_rock,ultramafic_fine-grained crystalline,igneous
+volcaniclastic-sandstone,volcaniclastic,igneous
+volcaniclastic-siltstone,volcaniclastic,igneous
+contact_metamorphic_rock,contact metamorphic,metamorphic rock
+clastic_sedimentary_rock,clastic,sedimentary rock
+glaciolacustrine_deposit,proglacial deposits,surficial
+compactional-shear_bands,breaks,texture_structure
+incohesive_fault-breccia,fault_rock,texture_structure
+aegirine-nepheline-rock,exotic_crystalline,igneous
+alkali-feldspar-granite,felsic_coarse-grained crystalline,igneous
+alkali-feldspar-syenite,intermediate_coarse-grained crystalline,igneous
+basaltic-trachyandesite,intermediate_fine-grained crystalline,igneous
+volcaniclastic-mudstone,volcaniclastic,igneous
+volcaniclastic-sediment,volcaniclastic,igneous
+carbonate-silicate_rock,metacarbonate,metamorphic rock
+hybrid-sedimentary-rock,hybrid,sedimentary rock
+microoncoid-phosphorite,phosphate,sedimentary rock
+coastal_barrier_deposit,coastal_deposit,surficial
+apatite-magnetite-rock,exotic_crystalline,igneous
+quartz-tourmaline-rock,exotic_crystalline,igneous
+silicic_volcanic_glass,felsic_glassy,igneous
+volcaniclastic-breccia,volcaniclastic,igneous
+metamorphic_pyroxenite,high-grade metamorphic rock,metamorphic rock
+siliciclastic-sediment,sediment_clastic,sediment
+cobble-grade limestone,carbonate,sedimentary rock
+gravel-grade limestone,carbonate,sedimentary rock
+pebble-grade limestone,carbonate,sedimentary rock
+quartzose-porcellanite,non-clastic siliceous,sedimentary rock
+sapropelic_coal_series,organic-rich,sedimentary rock
+subfeldspathic-arenite,siliciclastic,sedimentary rock
+domestic/garden_refuse,artificial_man-made_ground,surficial
+manganiferous_deposits,chemical_deposit,surficial
+subaqueous_fan_deposit,proglacial deposits,surficial
+cohesive_fault-breccia,fault_rock,texture_structure
+incohesive_cataclasite,fault_rock,texture_structure
+melilite-bearing_rock,exotic_crystalline,igneous
+olivine-chromite-rock,exotic_crystalline,igneous
+volcaniclastic-gravel,volcaniclastic,igneous
+organic-rich-sediment,sediment_organic,sediment
+microoncoid-limestone,carbonate,sedimentary rock
+ironstone/phosphorite,hybrid,sedimentary rock
+banded_iron_formation,ironstone,sedimentary rock
+microoncoid-ironstone,ironstone,sedimentary rock
+gravel-grade-sediment,sedimentary rock,sedimentary rock
+silicate-conglomerate,siliciclastic,sedimentary rock
+raised_marine_deposit,coastal_deposit,surficial
+tidal_channel_deposit,coastal_deposit,surficial
+glacial_lake_deposits,proglacial deposits,surficial
+incohesive_fault-rock,fault_rock,texture_structure
+clinopyroxene-gabbro,mafic_coarse-grained crystalline,igneous
+orthopyroxene-gabbro,mafic_coarse-grained crystalline,igneous
+pyroclastic_sediment,volcaniclastic,igneous
+chlorite_amphibolite,high-grade metamorphic rock,metamorphic rock
+sponge-spicular-ooze,sediment_ooze,sediment
+lime-pseudosparstone,carbonate,sedimentary rock
+sand-grade limestone,carbonate,sedimentary rock
+opaline-porcellanite,non-clastic siliceous,sedimentary rock
+phosphate-boundstone,phosphate,sedimentary rock
+phosphate-grainstone,phosphate,sedimentary rock
+phosphate-wackestone,phosphate,sedimentary rock
+metasedimentary-rock,sedimentary rock,sedimentary rock
+ferruginous_deposits,chemical_deposit,surficial
+coastal_zone_deposit,coastal_deposit,surficial
+storm_beach_deposits,coastal_deposit,surficial
+gelifluction_deposit,natural_superficial_ground,surficial
+solifluction_deposit,natural_superficial_ground,surficial
+glacimarine_deposits,proglacial deposits,surficial
+glaciomarine_deposit,proglacial deposits,surficial
+pedoplasmation_front,residual_deposit,surficial
+dialtion-shear_bands,breaks,texture_structure
+tephritic-phonolite,feldspathic_fine-grained crystalline,igneous
+phonolitic-basanite,feldspathic_fine-grained crystalline,igneous
+phonolitic-tephrite,feldspathic_fine-grained crystalline,igneous
+comenditic rhyolite,felsic_fine-grained crystalline,igneous
+glassy_igneous_rock,igneous rock,igneous
+quartz-monzodiorite,intermediate_coarse-grained crystalline,igneous
+comenditic trachyte,intermediate_fine-grained crystalline,igneous
+basic_plutonic_rock,mafic_coarse-grained crystalline,igneous
+basic_volcanic_rock,mafic_fine-grained crystalline,igneous
+tuffaceous-sediment,volcaniclastic,igneous
+volcaniclastic-sand,volcaniclastic,igneous
+secondary-quartzite,metasomatic,metamorphic rock
+lime-microsparstone,carbonate,sedimentary rock
+mud-grade limestone,carbonate,sedimentary rock
+phosphate-packstone,phosphate,sedimentary rock
+feldspathic-arenite,siliciclastic,sedimentary rock
+artificial_material,artificial_man-made_ground,surficial
+pulverised_fuel_ash,artificial_man-made_ground,surficial
+salt_marsh_deposits,coastal_deposit,surficial
+tidal_creek_deposit,coastal_deposit,surficial
+translational_slide,natural_superficial_ground,surficial
+glaciofluvial_sheet,proglacial deposits,surficial
+cohesive_fault-rock,fault_rock,texture_structure
+ultrapotassic_rock,exotic_crystalline,igneous
+acid_plutonic_rock,felsic_coarse-grained crystalline,igneous
+acid_volcanic_rock,felsic_fine-grained crystalline,igneous
+quartz-anorthosite,mafic_coarse-grained crystalline,igneous
+quartz-monzogabbro,mafic_coarse-grained crystalline,igneous
+volcaniclastic-mud,volcaniclastic,igneous
+greenschist_facies,greenschist,metamorphic rock
+calc-silicate_rock,metacarbonate,metamorphic rock
+metacarbonate_rock,metacarbonate,metamorphic rock
+carbonate_sediment,sediment_carbonate,sediment
+phosphate-sediment,sediment_phosphate,sediment
+metacarbonate-rock,carbonate,sedimentary rock
+sapropelic lignite,organic-rich,sedimentary rock
+oncoid-phosphorite,phosphate,sedimentary rock
+peloid-phosphorite,phosphate,sedimentary rock
+phosphate-mudstone,phosphate,sedimentary rock
+pisoid-phosphorite,phosphate,sedimentary rock
+mud-grade-sediment,sedimentary rock,sedimentary rock
+silicate-sandstone,siliciclastic,sedimentary rock
+silicate-siltstone,siliciclastic,sedimentary rock
+fluvioaeolian silt,aeolian_deposit,surficial
+biological_deposit,biological_deposit,surficial
+intertidal_deposit,coastal_deposit,surficial
+supratidal_deposit,coastal_deposit,surficial
+glacigenic_deposit,glacigenic_deposit,surficial
+lacustrine_deposit,lacustrine_deposit,surficial
+dry_valley_deposit,natural_superficial_ground,surficial
+shell_bank_deposit,natural_superficial_ground,surficial
+basaltic-andesite,intermediate_fine-grained crystalline,igneous
+hornblende-gabbro,mafic_coarse-grained crystalline,igneous
+block-bomb-tephra,volcaniclastic,igneous
+bomb-block-tephra,volcaniclastic,igneous
+ortho-amphibolite,high-grade metamorphic rock,metamorphic rock
+albitized_granite,metasomatic,metamorphic rock
+dolomite-sediment,sediment_carbonate,sediment
+diatomaceous-ooze,sediment_ooze,sediment
+crinoid-limestone,carbonate,sedimentary rock
+na-carbonate-rock,carbonate,sedimentary rock
+humic_coal_series,organic-rich,sedimentary rock
+organic-rich-rock,organic-rich,sedimentary rock
+feldspathic-wacke,siliciclastic,sedimentary rock
+silicate-mudstone,siliciclastic,sedimentary rock
+sublithic-arenite,siliciclastic,sedimentary rock
+landscaped_ground,artificial_man-made_ground,surficial
+radioactive_waste,artificial_man-made_ground,surficial
+morainic_deposits,glacigenic_deposit,surficial
+glacial_diamicton,natural_superficial_ground,surficial
+shoreface_deposit,natural_superficial_ground,surficial
+subtidal_deposits,proglacial deposits,surficial
+cementation_front,residual_deposit,surficial
+Other,unclassified rock,unclassified_rock
+unclassified rock,unclassified rock,unclassified_rock
+quartz-monzonite,intermediate_coarse-grained crystalline,igneous
+pyroclastic-rock,volcaniclastic,igneous
+volcanic_breccia,volcaniclastic,igneous
+felsic-granulite,high-grade metamorphic rock,metamorphic rock
+para-amphibolite,high-grade metamorphic rock,metamorphic rock
+metamorphic_rock,metamorphic,metamorphic rock
+albitized_gneiss,metasomatic,metamorphic rock
+metasomatic-rock,metasomatic,metamorphic rock
+massive_sulphide,ore,mineralisation
+clastic-sediment,sediment_clastic,sediment
+radiolarian-ooze,sediment_ooze,sediment
+phosphate-gravel,sediment_phosphate,sediment
+dolomicrosparite,carbonate,sedimentary rock
+oncoid-limestone,carbonate,sedimentary rock
+peloid-limestone,carbonate,sedimentary rock
+pisoid-limestone,carbonate,sedimentary rock
+sodium carbonate,carbonate,sedimentary rock
+carnallite-stone,evaporite,sedimentary rock
+colemanite-stone,evaporite,sedimentary rock
+kierserite-stone,evaporite,sedimentary rock
+polyhalite-stone,evaporite,sedimentary rock
+oncoid-ironstone,ironstone,sedimentary rock
+peloid-ironstone,ironstone,sedimentary rock
+pisoid-ironstone,ironstone,sedimentary rock
+ooid-phosphorite,phosphate,sedimentary rock
+sedimentary_rock,sedimentary rock,sedimentary rock
+alluvial_deposit,alluvial_deposit,surficial
+terrace_deposits,alluvial_deposit,surficial
+bonded_aggregate,artificial_man-made_ground,surficial
+disturbed_ground,artificial_man-made_ground,surficial
+industrial_waste,artificial_man-made_ground,surficial
+chemical_deposit,chemical_deposit,surficial
+deltaic_deposits,coastal_deposit,surficial
+blanket_bog_peat,natural_superficial_ground,surficial
+megaripple_field,natural_superficial_ground,surficial
+older_sand_dunes,natural_superficial_ground,surficial
+rotational_slide,natural_superficial_ground,surficial
+outwash_deposits,proglacial deposits,surficial
+sea-bed_deposits,proglacial deposits,surficial
+clay-with-flints,residual_deposit,surficial
+residual_deposit,residual_deposit,surficial
+compaction_bands,breaks,texture_structure
+kalsilitic-rock,exotic_crystalline,igneous
+phonolitic-rock,feldspathic_fine-grained crystalline,igneous
+quartz-trachyte,intermediate_fine-grained crystalline,igneous
+ultramafic-rock,ultramafic,igneous
+ash_and_lapilli,volcaniclastic,igneous
+mafic-granulite,high-grade metamorphic rock,metamorphic rock
+hornblende-rock,metamorphic,metamorphic rock
+hybrid-sediment,sediment,sediment
+bituminous-sand,sediment_organic,sediment
+lime-boundstone,carbonate,sedimentary rock
+lime-framestone,carbonate,sedimentary rock
+lime-grainstone,carbonate,sedimentary rock
+lime-microstone,carbonate,sedimentary rock
+lime-wackestone,carbonate,sedimentary rock
+magnesite-stone,carbonate,sedimentary rock
+pseudosparstone,carbonate,sedimentary rock
+shell-limestone,carbonate,sedimentary rock
+anhydrite-stone,evaporite,sedimentary rock
+glacial_deposit,glacigenic_deposit,sedimentary rock
+iron-boundstone,ironstone,sedimentary rock
+iron-grainstone,ironstone,sedimentary rock
+iron-wackestone,ironstone,sedimentary rock
+quartzose-chert,non-clastic siliceous,sedimentary rock
+bituminous-coal,organic-rich,sedimentary rock
+cannel-mudstone,organic-rich,sedimentary rock
+sapropelic coal,organic-rich,sedimentary rock
+sapropelic-coal,organic-rich,sedimentary rock
+silicate-gravel,siliciclastic,sedimentary rock
+aeolian_deposit,aeolian_deposit,surficial
+fluvial_deposit,alluvial_deposit,surficial
+building_rubble,artificial_man-made_ground,surficial
+cardboard_waste,artificial_man-made_ground,surficial
+ferrite_ceramic,artificial_man-made_ground,surficial
+infilled_ground,artificial_man-made_ground,surficial
+oil_shale_waste,artificial_man-made_ground,surficial
+bioclastic sand,biological_deposit,surficial
+chenier_deposit,coastal_deposit,surficial
+channel_deposit,natural_superficial_ground,surficial
+deltaic_deposit,natural_superficial_ground,surficial
+sand_wave_field,natural_superficial_ground,surficial
+organic_deposit,organic_deposit,surficial
+raised_bog_peat,organic_deposit,surficial
+quartz-diorite,intermediate_coarse-grained crystalline,igneous
+quartz-syenite,intermediate_coarse-grained crystalline,igneous
+trachyandesite,intermediate_fine-grained crystalline,igneous
+trachytic-rock,intermediate_fine-grained crystalline,igneous
+olivine-gabbro,mafic_coarse-grained crystalline,igneous
+basaltic_glass,mafic_glassy,igneous
+lapilli-tephra,volcaniclastic,igneous
+contact-marble,contact metamorphic,metamorphic rock
+mafic-hornfels,granofels,metamorphic rock
+orthogranofels,granofels,metamorphic rock
+amphibole-rock,metamorphic,metamorphic rock
+mineralisation,ore,mineralisation
+siliceous-ooze,sediment_ooze,sediment
+phosphate-sand,sediment_phosphate,sediment
+kaolinite-clay,sediment_silicate,sediment
+lime-packstone,carbonate,sedimentary rock
+lime-sparstone,carbonate,sedimentary rock
+microsparstone,carbonate,sedimentary rock
+ooid-limestone,carbonate,sedimentary rock
+iron-packstone,ironstone,sedimentary rock
+ooid-ironstone,ironstone,sedimentary rock
+lithic-arenite,siliciclastic,sedimentary rock
+quartz-arenite,siliciclastic,sedimentary rock
+siliceous-rock,siliciclastic,sedimentary rock
+chemical_waste,artificial_man-made_ground,surficial
+colliery_waste,artificial_man-made_ground,surficial
+effluent_waste,artificial_man-made_ground,surficial
+landraise_site,artificial_man-made_ground,surficial
+creek_deposits,coastal_deposit,surficial
+merse_deposits,coastal_deposit,surficial
+galcitectonite,glacigenic_deposit,surficial
+glacitectonite,glacigenic_deposit,surficial
+marine_deposit,marine_deposit,surficial
+coombe_deposit,natural_superficial_ground,surficial
+embryonic_dune,natural_superficial_ground,surficial
+moundy_terrain,natural_superficial_ground,surficial
+surficial_peat,organic_deposit,surficial
+beach_deposits,proglacial deposits,surficial
+weathered_rock,residual_deposit,surficial
+dilation_bands,breaks,texture_structure
+granitic-rock,felsic,igneous
+picritic-rock,felsic_fine-grained crystalline,igneous
+quartz-latite,intermediate_fine-grained crystalline,igneous
+leucitic-rock,leucitic,igneous
+anorthositoid,mafic_coarse-grained crystalline,igneous
+quartz-gabbro,mafic_coarse-grained crystalline,igneous
+hyaloclastite,mafic_glassy,igneous
+amphibololite,ultramafic_coarse-grained crystalline,igneous
+paraquartzite,contact metamorphic,metamorphic rock
+paragranofels,granofels,metamorphic rock
+glaucophanite,high-grade metamorphic rock,metamorphic rock
+ophicarbonate,metacarbonate,metamorphic rock
+pyroxene-rock,metamorphic,metamorphic rock
+aluminium_ore,ore,mineralisation
+lime-sediment,sediment_carbonate,sediment
+gypsum-gravel,sediment_evaporite,sediment
+iron-sediment,sediment_iron,sediment
+phosphate-mud,sediment_phosphate,sediment
+smectite-clay,sediment_silicate,sediment
+lime-mudstone,carbonate,sedimentary rock
+ooid-dolomite,carbonate,sedimentary rock
+thermonatrite,carbonate,sedimentary rock
+kainite-stone,evaporite,sedimentary rock
+kernite-stone,evaporite,sedimentary rock
+sylvite-stone,evaporite,sedimentary rock
+ulexite-stone,evaporite,sedimentary rock
+iron-mudstone,ironstone,sedimentary rock
+opaline-chert,non-clastic siliceous,sedimentary rock
+silicate-clay,siliciclastic,sedimentary rock
+silicate-sand,siliciclastic,sedimentary rock
+silicate-silt,siliciclastic,sedimentary rock
+alluvial_cone,alluvial_deposit,surficial
+landfill_site,artificial_man-made_ground,surficial
+mineral_waste,artificial_man-made_ground,surficial
+organic_waste,artificial_man-made_ground,surficial
+sewage_sludge,artificial_man-made_ground,surficial
+worked_ground,artificial_man-made_ground,surficial
+washover_fans,coastal_deposit,surficial
+mass_movement,natural_superficial_ground,surficial
+fault-breccia,fault_rock,texture_structure
+melilitolite,exotic_crystalline,igneous
+dacitic-rock,felsic,igneous
+granodiorite,felsic_coarse-grained crystalline,igneous
+monzogranite,felsic_coarse-grained crystalline,igneous
+syenogranite,felsic_coarse-grained crystalline,igneous
+trondhjemite,felsic_coarse-grained crystalline,igneous
+igneous_rock,igneous rock,igneous
+intermediate,intermediate,igneous
+monzodiorite,intermediate_coarse-grained crystalline,igneous
+trachybasalt,intermediate_fine-grained crystalline,igneous
+trachydacite,intermediate_fine-grained crystalline,igneous
+gabbronorite,mafic_coarse-grained crystalline,igneous
+sideromelane,mafic_glassy,igneous
+hornblendite,ultramafic_coarse-grained crystalline,igneous
+block-tephra,volcaniclastic,igneous
+lapillistone,volcaniclastic,igneous
+lapilli-tuff,volcaniclastic,igneous
+tuff-breccia,volcaniclastic,igneous
+diaphthorite,metamorphic,metamorphic rock
+serpentinite,metamorphic,metamorphic rock
+apojasperoid,metasomatic,metamorphic rock
+chloritolite,metasomatic,metamorphic rock
+chromium_ore,ore,mineralisation
+microsparite,carbonate,sedimentary rock
+conglomerate,clastic,sedimentary rock
+olistostrome,clastic,sedimentary rock
+barite-stone,evaporite,sedimentary rock
+gypsum-stone,evaporite,sedimentary rock
+halite-stone,evaporite,sedimentary rock
+porcellanite,siliceous,sedimentary rock
+lithic-wacke,siliciclastic,sedimentary rock
+quartz-wacke,siliciclastic,sedimentary rock
+silicate-mud,siliciclastic,sedimentary rock
+foundry_sand,artificial_man-made_ground,surficial
+garden_waste,artificial_man-made_ground,surficial
+plasterboard,artificial_man-made_ground,surficial
+quarry_waste,artificial_man-made_ground,surficial
+sand_patches,natural_superficial_ground,surficial
+sand_ribbons,natural_superficial_ground,surficial
+arenose_zone,residual_deposit,surficial
+blanket_head,residual_deposit,surficial
+mottled_zone,residual_deposit,surficial
+plasmic_zone,residual_deposit,surficial
+apatitolite,exotic_crystalline,igneous
+carbonatite,exotic_crystalline,igneous
+dissogenite,exotic_crystalline,igneous
+eudialytite,exotic_crystalline,igneous
+lamprophyre,exotic_crystalline,igneous
+magnetitite,exotic_crystalline,igneous
+phonolitoid,feldspathic_fine-grained crystalline,igneous
+nephelinite,feldspathic_fine-grained crystalline,igneous
+picrobasalt,felsic_fine-grained crystalline,igneous
+anorthosite,mafic_coarse-grained crystalline,igneous
+monzogabbro,mafic_coarse-grained crystalline,igneous
+agglomerate,volcaniclastic,igneous
+ash-breccia,volcaniclastic,igneous
+bomb-tephra,volcaniclastic,igneous
+lapilli-ash,volcaniclastic,igneous
+welded_tuff,volcaniclastic,igneous
+burned-rock,contact metamorphic,metamorphic rock
+orthogneiss,gneiss,metamorphic rock
+beerbachite,granofels,metamorphic rock
+amphibolite,high-grade metamorphic rock,metamorphic rock
+whiteschist,high-grade metamorphic rock,metamorphic rock
+greenschist,low-grade metamorphic rock,metamorphic rock
+argillisite,metasomatic,metamorphic rock
+orthoschist,schist,metamorphic rock
+arsenic_ore,ore,mineralisation
+bismuth_ore,ore,mineralisation
+cadmium_ore,ore,mineralisation
+caesium_ore,ore,mineralisation
+lithium_ore,ore,mineralisation
+mercury_ore,ore,mineralisation
+sulfide_ore,ore,mineralisation
+gypsum-sand,sediment_evaporite,sediment
+iron-gravel,sediment_iron,sediment
+illite-clay,sediment_silicate,sediment
+calcarenite,carbonate,sedimentary rock
+calcilutite,carbonate,sedimentary rock
+calcirudite,carbonate,sedimentary rock
+dolomicrite,carbonate,sedimentary rock
+dolosparite,carbonate,sedimentary rock
+grainstones,carbonate,sedimentary rock
+borax-stone,evaporite,sedimentary rock
+impure-coal,organic-rich,sedimentary rock
+lamalginite,organic-rich,sedimentary rock
+sapropelite,organic-rich,sedimentary rock
+phosphorite,phosphate,sedimentary rock
+radiolarite,siliceous,sedimentary rock
+furnace_ash,artificial_man-made_ground,surficial
+made_ground,artificial_man-made_ground,surficial
+shale_waste,artificial_man-made_ground,surficial
+slate_waste,artificial_man-made_ground,surficial
+toxic_waste,artificial_man-made_ground,surficial
+tidal_river,coastal_deposit,surficial
+mobile_dune,natural_superficial_ground,surficial
+stable_dune,natural_superficial_ground,surficial
+yellow_dune,natural_superficial_ground,surficial
+shear_bands,breaks,texture_structure
+cataclasite,fault_rock,texture_structure
+fault-gouge,fault_rock,texture_structure
+glassy_rock,glassy rock,unclassified_rock
+chromitite,exotic_crystalline,igneous
+diatectite,exotic_crystalline,igneous
+epidiorite,exotic_crystalline,igneous
+ilmenitite,exotic_crystalline,igneous
+kimberlite,exotic_crystalline,igneous
+spinellite,exotic_crystalline,igneous
+tephritoid,feldspathic_fine-grained crystalline,igneous
+adamellite,felsic_coarse-grained crystalline,igneous
+meimechite,felsic_fine-grained crystalline,igneous
+rhyolitoid,felsic_fine-grained crystalline,igneous
+pitchstone,felsic_glassy,igneous
+andesitoid,intermediate_fine-grained crystalline,igneous
+rhyodacite,intermediate_fine-grained crystalline,igneous
+trachytoid,intermediate_fine-grained crystalline,igneous
+troctolite,mafic_coarse-grained crystalline,igneous
+peridotite,ultramafic_coarse-grained crystalline,igneous
+pyroxenite,ultramafic_coarse-grained crystalline,igneous
+paragneiss,gneiss,metamorphic rock
+blueschist,high-grade metamorphic rock,metamorphic rock
+eclogitoid,high-grade metamorphic rock,metamorphic rock
+greenstone,low-grade metamorphic rock,metamorphic rock
+charoitite,metasomatic,metamorphic rock
+listvenite,metasomatic,metamorphic rock
+paraschist,schist,metamorphic rock
+cobalt_ore,ore,mineralisation
+copper_ore,ore,mineralisation
+nickel_ore,ore,mineralisation
+silver_ore,ore,mineralisation
+coorongite,sediment_organic,sediment
+framestone,carbonate,sedimentary rock
+gaylussite,carbonate,sedimentary rock
+microstone,carbonate,sedimentary rock
+travertine,carbonate,sedimentary rock
+turbidites,clastic,sedimentary rock
+lithomarge,hydroxide,sedimentary rock
+anthracite,organic-rich,sedimentary rock
+asphaltite,organic-rich,sedimentary rock
+muddy-peat,organic-rich,sedimentary rock
+sandy-peat,organic-rich,sedimentary rock
+boundstone,siliceous,sedimentary rock
+grainstone,siliceous,sedimentary rock
+diamictite,siliciclastic,sedimentary rock
+wackestone,siliciclastic,sedimentary rock
+blown_sand,aeolian_deposit,surficial
+china_clay,artificial_man-made_ground,surficial
+clay_waste,artificial_man-made_ground,surficial
+coal_shale,artificial_man-made_ground,surficial
+mine_dumps,artificial_man-made_ground,surficial
+mine_stone,artificial_man-made_ground,surficial
+rock_waste,artificial_man-made_ground,surficial
+shell_marl,biological_deposit,surficial
+duricrusts,chemical_deposit,surficial
+redox_zone,chemical_deposit,surficial
+beach_sand,coastal_deposit,surficial
+sand_flats,coastal_deposit,surficial
+tidal_flat,coastal_deposit,surficial
+beach_dune,natural_superficial_ground,surficial
+salt_marsh,natural_superficial_ground,surficial
+sand_banks,natural_superficial_ground,surficial
+blockfield,residual_deposit,surficial
+ferricrete,residual_deposit,surficial
+stylolites,breaks,texture_structure
+shear_zone,breaks,texture_structure
+fault-rock,fault_rock,texture_structure
+lamproite,exotic_crystalline,igneous
+pegmatite,exotic_crystalline,igneous
+phonolite,feldspathic_fine-grained crystalline,igneous
+granitoid,felsic_coarse-grained crystalline,igneous
+komatiite,felsic_fine-grained crystalline,igneous
+dioritoid,intermediate_coarse-grained crystalline,igneous
+monzonite,intermediate_coarse-grained crystalline,igneous
+syenitoid,intermediate_coarse-grained crystalline,igneous
+basaltoid,mafic_fine-grained crystalline,igneous
+tachylite,mafic_glassy,igneous
+granofels,granofels,metamorphic rock
+anatexite,high-grade metamorphic rock,metamorphic rock
+garnetite,high-grade metamorphic rock,metamorphic rock
+granulite,high-grade metamorphic rock,metamorphic rock
+migmatite,high-grade metamorphic rock,metamorphic rock
+zoisitite,high-grade metamorphic rock,metamorphic rock
+quartzite,low-grade metamorphic rock,metamorphic rock
+talc-rock,metamorphic,metamorphic rock
+gumberite,metasomatic,metamorphic rock
+propylite,metasomatic,metamorphic rock
+rodingite,metasomatic,metamorphic rock
+diamicton,sediment_clastic,sediment
+iron-sand,sediment_iron,sediment
+aragonite,carbonate,sedimentary rock
+beachrock,carbonate,sedimentary rock
+carbonate,carbonate,sedimentary rock
+dolostone,carbonate,sedimentary rock
+limestone,carbonate,sedimentary rock
+sparstone,carbonate,sedimentary rock
+sandstone,clastic,sedimentary rock
+evaporite,evaporite,sedimentary rock
+ironstone,ironstone,sedimentary rock
+phosphate,phosphate,sedimentary rock
+diatomite,siliceous,sedimentary rock
+packstone,siliceous,sedimentary rock
+spiculite,siliciclastic,sedimentary rock
+aeolinite,aeolian_deposit,surficial
+herbicide,artificial_man-made_ground,surficial
+pesticide,artificial_man-made_ground,surficial
+mud_flats,coastal_deposit,surficial
+colluvium,natural_superficial_ground,surficial
+gray_dune,natural_superficial_ground,surficial
+peat_flow,organic_deposit,surficial
+duricrust,residual_deposit,surficial
+palaeosol,residual_deposit,surficial
+saprolite,residual_deposit,surficial
+saprolith,residual_deposit,surficial
+dendrites,fillings,texture_structure
+sediments,fillings,texture_structure
+tephrite,feldspathic_fine-grained crystalline,igneous
+basanite,feldspathic_fine-grained crystalline,igneous
+tonalite,felsic_coarse-grained crystalline,igneous
+rhyolite,felsic_fine-grained crystalline,igneous
+obsidian,felsic_glassy,igneous
+aphanite,fine-grained crystalline,igneous
+porphyry,intermediate,igneous
+andesite,intermediate_fine-grained crystalline,igneous
+dacitoid,intermediate_fine-grained crystalline,igneous
+trachyte,intermediate_fine-grained crystalline,igneous
+gabbroid,mafic_coarse-grained crystalline,igneous
+dolerite,mafic_coarse-grained crystalline,igneous
+hornfels,granofels,metamorphic rock
+eclogite,high-grade metamorphic rock,metamorphic rock
+phyllite,low-grade metamorphic rock,metamorphic rock
+beresite,metasomatic,metamorphic rock
+gold_ore,ore,mineralisation
+iron_ore,ore,mineralisation
+lead_ore,ore,mineralisation
+sediment,sediment,sediment
+iron-mud,sediment_iron,sediment
+sapropel,sediment_organic,sediment
+mudstone,clastic,sedimentary rock
+gansiter,siliceous,sedimentary rock
+silcrete,siliceous,sedimentary rock
+alluvium,alluvial_deposit,surficial
+asbestos,artificial_man-made_ground,surficial
+bell_pit,artificial_man-made_ground,surficial
+landfill,artificial_man-made_ground,surficial
+hummocky,glacigenic_deposit,surficial
+foredune,natural_superficial_ground,surficial
+hillwash,natural_superficial_ground,surficial
+landslip,natural_superficial_ground,surficial
+calcrete,residual_deposit,surficial
+iron_pan,residual_deposit,surficial
+laterite,residual_deposit,surficial
+pedolith,residual_deposit,surficial
+pisolite,residual_deposit,surficial
+pisolith,residual_deposit,surficial
+regolith,residual_deposit,surficial
+mylonite,fault_rock,texture_structure
+micaite,exotic_crystalline,igneous
+granite,felsic_coarse-grained crystalline,igneous
+picrite,felsic_fine-grained crystalline,igneous
+diorite,intermediate_coarse-grained crystalline,igneous
+syenite,intermediate_coarse-grained crystalline,igneous
+felsite,mafic,igneous
+tuffite,volcaniclastic,igneous
+adinole,contact metamorphic,metamorphic rock
+spilite,low-grade metamorphic rock,metamorphic rock
+cokeite,metamorphic,metamorphic rock
+greisen,metasomatic,metamorphic rock
+unakite,metasomatic,metamorphic rock
+tin_ore,ore,mineralisation
+micrite,carbonate,sedimentary rock
+sparite,carbonate,sedimentary rock
+lignite,organic-rich,sedimentary rock
+arenite,siliciclastic,sedimentary rock
+lapilli,volcaniclastic debris,sedimentary rock
+asphalt,artificial_man-made_ground,surficial
+ballast,artificial_man-made_ground,surficial
+ceramic,artificial_man-made_ground,surficial
+clinker,artificial_man-made_ground,surficial
+plastic,artificial_man-made_ground,surficial
+sandbar,coastal_deposit,surficial
+complex,natural_superficial_ground,surficial
+caliche,residual_deposit,surficial
+nodules,residual_deposit,surficial
+saprock,residual_deposit,surficial
+breccia,fault_rock,texture_structure
+patches,fillings,texture_structure
+channel,sedimentary_structure,texture_structure
+felsic,felsic,igneous
+aplite,felsic_fine-grained crystalline,igneous
+pumice,felsic_glassy,igneous
+dacite,intermediate_fine-grained crystalline,igneous
+latite,intermediate_fine-grained crystalline,igneous
+mafite,mafic,igneous
+gabbro,mafic_coarse-grained crystalline,igneous
+norite,mafic_coarse-grained crystalline,igneous
+basalt,mafic_fine-grained crystalline,igneous
+scoria,mafic_glassy,igneous
+gneiss,gneiss,metamorphic rock
+marble,metacarbonate,metamorphic rock
+aceite,metasomatic,metamorphic rock
+fenite,metasomatic,metamorphic rock
+schist,schist,metamorphic rock
+gravel,sediment_clastic,sediment
+natron,carbonate,sedimentary rock
+jasper,siliceous,sedimentary rock
+corium,artificial_man-made_ground,surficial
+sinter,chemical_deposit,surficial
+kettle,glacigenic_deposit,surficial
+debris,natural_superficial_ground,surficial
+spread,natural_superficial_ground,surficial
+tephra,natural_superficial_ground,surficial
+topple,natural_superficial_ground,surficial
+veneer,natural_superficial_ground,surficial
+sandar,proglacial deposits,surficial
+sandur,proglacial deposits,surficial
+gossan,residual_deposit,surficial
+cracks,breaks,texture_structure
+crusts,fillings,texture_structure
+layers,fillings,texture_structure
+mafic,mafic,igneous
+slate,low-grade metamorphic rock,metamorphic rock
+skarn,metasomatic,metamorphic rock
+chalk,carbonate,sedimentary rock
+trona,carbonate,sedimentary rock
+agate,non-clastic siliceous,sedimentary rock
+flint,non-clastic siliceous,sedimentary rock
+guano,phosphate,sedimentary rock
+chert,siliceous,sedimentary rock
+wacke,siliciclastic,sedimentary rock
+loess,aeolian_deposit,surficial
+glass,artificial_man-made_ground,surficial
+metal,artificial_man-made_ground,surficial
+paper,artificial_man-made_ground,surficial
+spoil,artificial_man-made_ground,surficial
+waste,artificial_man-made_ground,surficial
+esker,glacigenic_deposit,surficial
+cover,natural_superficial_ground,surficial
+creep,natural_superficial_ground,surficial
+earth,natural_superficial_ground,surficial
+plain,natural_superficial_ground,surficial
+ridge,natural_superficial_ground,surficial
+sheet,natural_superficial_ground,surficial
+shell,natural_superficial_ground,surficial
+slide,natural_superficial_ground,surficial
+talus,natural_superficial_ground,surficial
+swamp,organic_deposit,surficial
+fault,breaks,texture_structure
+spots,fillings,texture_structure
+tuff,volcaniclastic,igneous
+sand,sediment_clastic,sediment
+peat,sediment_organic,sediment
+tufa,carbonate,sedimentary rock
+reef,carbonate,sedimentary rock
+coal,organic-rich,sedimentary rock
+dune,aeolian_deposit,surficial
+bing,artificial_man-made_ground,surficial
+fill,artificial_man-made_ground,surficial
+slag,artificial_man-made_ground,surficial
+void,artificial_man-made_ground,surficial
+kame,glacigenic_deposit,surficial
+till,glacigenic_deposit,surficial
+cone,natural_superficial_ground,surficial
+fall,natural_superficial_ground,surficial
+flow,natural_superficial_ground,surficial
+head,natural_superficial_ground,surficial
+marl,natural_superficial_ground,surficial
+mire,natural_superficial_ground,surficial
+rock,natural_superficial_ground,surficial
+soil,residual_deposit,surficial
+vein,fillings,texture_structure
+ash,volcaniclastic,igneous
+ore,ore,mineralisation
+mud,sediment_clastic,sediment
+tip,artificial_man-made_ground,surficial
+fan,natural_superficial_ground,surficial
+bog,organic_deposit,surficial
+lag,residual_deposit,surficial
+foid-bearing-alkali-feldspar-trachyte,intermediate_fine-grained crystalline,igneous
+foid-bearing-alkali-feldspar-syenite,intermediate_coarse-grained crystalline,igneous
+foid-bearing-monzodiorite,intermediate_coarse-grained crystalline,igneous
+foid-bearing-anorthosite,mafic_coarse-grained crystalline,igneous
+foid-bearing-monzogabbro,mafic_coarse-grained crystalline,igneous
+foid-bearing-monzonite,intermediate_coarse-grained crystalline,igneous
+foid-bearing-trachyte,intermediate_fine-grained crystalline,igneous
+foid-bearing-diorite,intermediate_coarse-grained crystalline,igneous
+foid-bearing-syenite,intermediate_coarse-grained crystalline,igneous
+foid-bearing-latite,intermediate_fine-grained crystalline,igneous
+foid-bearing-gabbro,mafic_coarse-grained crystalline,igneous
+phonolitic-foidite,feldspathic_fine-grained crystalline,igneous
+foid-monzodiorite,feldspathic_coarse-grained crystalline,igneous
+foid-monzosyenite,feldspathic_coarse-grained crystalline,igneous
+tephritic-foidite,feldspathic_fine-grained crystalline,igneous
+basanitic-foidite,feldspathic_fine-grained crystalline,igneous
+foid-monzogabbro,feldspathic_coarse-grained crystalline,igneous
+foid-dioritoid,feldspathic_coarse-grained crystalline,igneous
+foid-syenitoid,feldspathic_coarse-grained crystalline,igneous
+foid-gabbroid,feldspathic_coarse-grained crystalline,igneous
+foid-diorite,feldspathic_coarse-grained crystalline,igneous
+foid-syenite,feldspathic_coarse-grained crystalline,igneous
+foid-gabbro,feldspathic_coarse-grained crystalline,igneous
+foidolite,feldspathic_coarse-grained crystalline,igneous
+foiditoid,feldspathic_fine-grained crystalline,igneous
+foidite,feldspathic_fine-grained crystalline,igneous
