@@ -10,137 +10,136 @@ from fuzzywuzzy import process
 import math 
 from collections import Counter
 
-Attr_col_collar_dic_list=[]
+#Attr_col_collar_dic_list=[]
 
-def collar_colar_attri_Final(collar,collarattr):
-    fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth']
-    out= open("../data/export/DB_Collar_Export.csv", "w",encoding ="utf-8")
-    for ele in fieldnames:
-        out.write('%s,' %ele)
-    out.write('\n')
-    Pre_id = 0
-    Pre_hole_id = ''
-    Pre_Longitude =0.0
-    Pre_latitude = 0.0
+def collar_collarattr_final(collar_file, collarattr_file, rl_maxdepth_dic_file, DB_Collar_Export):
+	
+	collar_attr_col_dic=collar_attr_col_dic(rl_maxdepth_dic_file)
+	
+	fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth']
+	out= open(DB_Collar_Export, "w",encoding ="utf-8")
+	for ele in fieldnames:
+		out.write('%s,' %ele)
+	out.write('\n')
+	Pre_id = 0
+	Pre_hole_id = ''
+	Pre_Longitude =0.0
+	Pre_latitude = 0.0
+	
+	Cur_id = 0
+	Cur_hole_id = ''
+	Cur_Longitude =0.0
+	Cur_latitude = 0.0
    
-    Cur_id = 0
-    Cur_hole_id = ''
-    Cur_Longitude =0.0
-    Cur_latitude = 0.0
-   
-    list_rl= []
-    list_maxdepth =[]
-    RL =''
-    Maxdepth =''
-    write_to_csv = False
+	list_rl= []
+	list_maxdepth =[]
+	RL =''
+	Maxdepth =''
+	write_to_csv = False
     
-    cur = collar.set_index ('id').join(collarattr.set_index('collarid'), rsuffix='2')
-    del cur['anumber']
-    del cur['dataset']
-    del cur['companyholeid']
-    del cur['companyid']
-    del cur['istransformed']
-    del cur['modifieddate']
-    del cur['modifiedby']
-    del cur['mrtfileid']
-    del cur['holetype']
-    del cur['maxdepth']
-    del cur['geom']
-    del cur['id']
-    del cur['modifieddate2']
-    del cur['modifiedby2']
-    del cur['mrtdetailid']
-    cur ['id']=cur.index
-    cols = cur.columns.tolist()
-    cols = cols[-1:] + cols[:-1]
-    cur = cur[cols] 
-    cur.reset_index(level=0, inplace=True)
-    del cur['index']
-    cur=cur.values.tolist()
+	cur = collar.set_index ('id').join(collarattr.set_index('collarid'), rsuffix='2')
+	del cur['anumber']
+	del cur['dataset']
+	del cur['companyholeid']
+	del cur['companyid']
+	del cur['istransformed']
+	del cur['modifieddate']
+	del cur['modifiedby']
+	del cur['mrtfileid']
+	del cur['holetype']
+	del cur['maxdepth']
+	del cur['geom']
+	del cur['id']
+	del cur['modifieddate2']
+	del cur['modifiedby2']
+	del cur['mrtdetailid']
+	cur ['id']=cur.index
+	cols = cur.columns.tolist()
+	cols = cols[-1:] + cols[:-1]
+	cur = cur[cols] 
+	cur.reset_index(level=0, inplace=True)
+	del cur['index']
+	cur=cur.values.tolist()
     
-    collar_collarAttr_Filter = [list(elem) for elem in cur]
-    DicList_collar_collarattr = [list(elem) for elem in Attr_col_collar_dic_list]
-    for colar_ele in collar_collarAttr_Filter:
-        for Dic_ele in DicList_collar_collarattr:
-            if(colar_ele[4] == Dic_ele[0]): 
-                if(Dic_ele[1] == 'rl'):
-                    if(Pre_id== colar_ele[0] or Pre_id ==0 or Cur_id ==colar_ele[0]):
-                        list_rl.append(Parse_Num(colar_ele[5]))
-                        Pre_id =colar_ele[0]
-                        Pre_hole_id = colar_ele[1]
-                        Pre_Longitude =colar_ele[2]
-                        Pre_latitude = colar_ele[3]         
-                    else:
-                        if(len(list_rl)!=0):
-                            RL = maximum(list_rl,'NAN')
-                        else:
-                            RL = maximum(list_rl,'NAN')
-                        if(len(list_maxdepth)!=0):
-                            Maxdepth = maximum(list_maxdepth,'NAN')
-                        else:
-                            Maxdepth = maximum(list_maxdepth,'NAN') 
-                        write_to_csv = True
+	collar_collarAttr_Filter = [list(elem) for elem in cur]
+	DicList_collar_collarattr = [list(elem) for elem in collar_attr_col_dic]
+	for collar_ele in collar_collarAttr_Filter:
+		for Dic_ele in DicList_collar_collarattr:
+			if(collar_ele[4] == Dic_ele[0]):
+				if(Dic_ele[1] == 'rl'):
+					if(Pre_id== collar_ele[0] or Pre_id ==0 or Cur_id ==collar_ele[0]):
+						list_rl.append(Parse_Num(collar_ele[5]))
+						Pre_id =collar_ele[0]
+						Pre_hole_id = collar_ele[1]
+						Pre_Longitude =collar_ele[2]
+						Pre_latitude = collar_ele[3]         
+					else:
+						if(len(list_rl)!=0):
+							RL = maximum(list_rl,'NAN')
+						else:
+							RL = maximum(list_rl,'NAN')
+						if(len(list_maxdepth)!=0):
+							Maxdepth = maximum(list_maxdepth,'NAN')
+						else:
+							Maxdepth = maximum(list_maxdepth,'NAN') 
+						write_to_csv = True
                     
-                        Cur_id =colar_ele[0]
-                        Cur_hole_id = colar_ele[1]
-                        Cur_Longitude =colar_ele[2]
-                        Cur_latitude = colar_ele[3]
+						Cur_id =collar_ele[0]
+						Cur_hole_id = collar_ele[1]
+						Cur_Longitude =collar_ele[2]
+						Cur_latitude = collar_ele[3]
 
-                        list_rl.clear()
-                        list_maxdepth.clear()                 
-                        list_rl.append(Parse_Num(colar_ele[5]))
+						list_rl.clear()
+						list_maxdepth.clear()                 
+						list_rl.append(Parse_Num(collar_ele[5]))
                      
-                elif(Dic_ele[1]=='maxdepth'):
-                    if(Pre_id== colar_ele[0] or Pre_id == 0 or Cur_id ==colar_ele[0] ):
-                        if(colar_ele[5][0] == '-'):
-                            list_maxdepth.append(Parse_Num(colar_ele[5])*-1)
-                        else:
-                            list_maxdepth.append(Parse_Num(colar_ele[5]))
+				elif(Dic_ele[1]=='maxdepth'):
+					if(Pre_id== collar_ele[0] or Pre_id == 0 or Cur_id ==collar_ele[0] ):
+						if(colar_ele[5][0] == '-'):
+							list_maxdepth.append(Parse_Num(collar_ele[5])*-1)
+						else:
+						list_maxdepth.append(Parse_Num(collar_ele[5]))
 
-                        Pre_id =colar_ele[0]
-                        Pre_hole_id = colar_ele[1]
-                        Pre_Longitude =colar_ele[2]
-                        Pre_latitude = colar_ele[3]
-             
-                    else:
-                        if(len(list_rl)!=0):
-                            RL = maximum(list_rl,'NAN')
-                        else:
-                            RL = maximum(list_rl,'NAN')
-                        if(len(list_maxdepth)!=0):
-                            Maxdepth = maximum(list_maxdepth,'NAN')
-                        else:
-                            Maxdepth = maximum(list_maxdepth,'NAN')
-                        
-                        write_to_csv = True  
-
-                        Cur_id =colar_ele[0]
-                        Cur_hole_id = colar_ele[1]
-                        Cur_Longitude =colar_ele[2]
-                        Cur_latitude = colar_ele[3]
+                        Pre_id =collar_ele[0]
+                        Pre_hole_id = collar_ele[1]
+                        Pre_Longitude =collar_ele[2]
+                        Pre_latitude = collar_ele[3]             
+					else:
+						if(len(list_rl)!=0):
+							RL = maximum(list_rl,'NAN')
+						else:
+							RL = maximum(list_rl,'NAN')
+						if(len(list_maxdepth)!=0):
+							Maxdepth = maximum(list_maxdepth,'NAN')
+						else:
+							Maxdepth = maximum(list_maxdepth,'NAN')
+						write_to_csv = True
+						Cur_id =collar_ele[0]
+						Cur_hole_id = collar_ele[1]
+						Cur_Longitude =collar_ele[2]
+						Cur_latitude = collar_ele[3]
     
-                        list_maxdepth.clear()
-                        list_rl.clear()
+						list_maxdepth.clear()
+						list_rl.clear()
                      
-                        list_maxdepth.append(Parse_Num(colar_ele[5]))
-                     
-        if(write_to_csv == True):
-            out.write('%s,' %Pre_id)
-            out.write('%s,' %Pre_hole_id)
-            out.write('%s,' %Pre_Longitude)
-            out.write('%s,' %Pre_latitude)
-            out.write('%s,' %RL)
-            out.write('%s,' %Maxdepth)
-            out.write('\n')
-            write_to_csv =False
-            RL =''
-            Maxdepth =''
-            Pre_id = 0
-            Cur_id = 0          
+						list_maxdepth.append(Parse_Num(colar_ele[5]))
+		if(write_to_csv == True):
+			out.write('%s,' %Pre_id)
+			out.write('%s,' %Pre_hole_id)
+			out.write('%s,' %Pre_Longitude)
+			out.write('%s,' %Pre_latitude)
+			out.write('%s,' %RL)
+			out.write('%s,' %Maxdepth)
+			out.write('\n')
+			write_to_csv =False
+			RL =''
+			Maxdepth =''
+			Pre_id = 0
+			Cur_id = 0          
 
-        else:
-            continue
-    out.close()
+		else:
+			continue
+	out.close()
 
 def Parse_Num(s1):
     s1=s1.lstrip()
@@ -157,19 +156,20 @@ def maximum(iterable, default):
     except ValueError:
         return default
 
-def collar_attr_col_dic():
-    cur=pd.read_csv('../data/wamex/rl_maxdepth_dic.csv',encoding = "ISO-8859-1", dtype='object')
+def collar_attr_col_dic(rl_maxdepth_dic_file):
+    Attr_col_collar_dic_list=[]
+	cur=pd.read_csv(rl_maxdepth_dic,encoding = "ISO-8859-1", dtype='object')
     cur=cur.values.tolist()
     for rec in cur:
-        Attr_col_collar_dic_list.append(rec)  
+        Attr_col_collar_dic_list.append(rec) 
+    return(Attr_col_collar_dic_list)
+			
 
 
 
-Attr_col_survey_dic_list=[]
-
-def Survey_Final(dhsurvey,dhsurveyattr):
+def survey_final(dhsurvey,dhsurveyattr, DB_Survey_Export):
     fieldnames=['CollarID','Depth','Azimuth','Dip']
-    out= open("../data/export/DB_Survey_Export.csv", "w",encoding ="utf-8")
+    out= open(DB_Survey_Export, "w",encoding ="utf-8")
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -252,11 +252,13 @@ def Survey_Final(dhsurvey,dhsurveyattr):
                     back_survey_1 = survey_ele[1]
     out.close()
     
-def Attr_col_dic():
-    cur=pd.read_csv('../data/wamex/survey_dic.csv',encoding = "ISO-8859-1", dtype='object')
+def survey_attr_col_dic(survey_dic):
+	Attr_col_survey_dic_list=[]
+    cur=pd.read_csv(survey_dic,encoding = "ISO-8859-1", dtype='object')
     cur=cur.values.tolist()
     for rec in cur:
          Attr_col_survey_dic_list.append(rec)
+	return(Attr_col_survey_dic_list.append)
 
 First_Filter_list=[]
 Attr_col_list=[]
@@ -266,20 +268,20 @@ Att_col_List_copy_tuple=[]
 Attr_val_Dic=[]
 Attr_val_fuzzy=[]
 
-def Attr_Val_Dic():
-    cur=pd.read_csv('../data/wamex/dic_attr_val_lithology_filter.csv',encoding = "ISO-8859-1", dtype='object')
+def litho_attr_val_dic(dic_attr_val_lithology_filter):
+    cur=pd.read_csv(dic_attr_val_lithology_filter,encoding = "ISO-8859-1", dtype='object')
     cur=cur.values.tolist()  
     for record in cur:
         Attr_val_Dic.append(record)
 
-def Litho_Dico():
-    cur=pd.read_csv('../data/wamex/litho_dic_1.csv',encoding = "ISO-8859-1", dtype='object')
+def litho_dico(litho_dic_1):
+    cur=pd.read_csv(litho_dic_1,encoding = "ISO-8859-1", dtype='object')
     cur=cur.values.tolist() 
     for record in cur:
         Litho_dico.append(record)
 
-def Clean_Up():
-    cur=pd.read_csv('../data/wamex/cleanup_lithology.csv',encoding = "ISO-8859-1", dtype='object')
+def clean_up(cleanup_lithology):
+    cur=pd.read_csv(cleanup_lithology,encoding = "ISO-8859-1", dtype='object')
     cur=cur.values.tolist() 
     for record in cur:
         cleanup_dic_list.append(record)
@@ -316,14 +318,14 @@ def clean_text(text):
         text = text.replace('cleaned_item','')
     return text
 
-def Attr_val_With_fuzzy():
+def litho_attr_val_with_fuzzy(CET_Litho):
     bestmatch=-1
     bestlitho=''
     top=[]
     i=0
     attr_val_sub_list=[]
     fieldnames=['CollarID','Company_LithoCode','Company_Litho','Company_Litho_Cleaned','CET_Litho','Score']
-    out= open("../data/export/CET_Litho.csv", "w",encoding ="utf-8")
+    out= open(CET_Litho, "w",encoding ="utf-8")
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -379,11 +381,11 @@ def Attr_val_With_fuzzy():
             bestmatch=-1
             bestlitho=''
 
-def Final_Lithology():
-    dic_att_col_lithology=pd.read_csv('../data/wamex/dic_att_col_lithology.csv',encoding = "ISO-8859-1", dtype='object')
+def litho_final(dhgeology, dhgeologyattr, DB_Lithology_Export):
+    dic_att_col_lithology=pd.read_csv(dic_att_col_lithology,encoding = "ISO-8859-1", dtype='object')
     keys=list(dic_att_col_lithology.columns.values)
-    dhgeology= pd.read_csv('../data/wamex/dhgeology.csv',encoding = "ISO-8859-1", dtype='object')
-    dhgeologyattr= pd.read_csv('../data/wamex/dhgeologyattr.csv',encoding = "ISO-8859-1", dtype='object')
+    dhgeology= pd.read_csv(dhgeology,encoding = "ISO-8859-1", dtype='object')
+    dhgeologyattr= pd.read_csv(dhgeologyattr,encoding = "ISO-8859-1", dtype='object')
     i1=dhgeologyattr.set_index(keys).index
     i2=dic_att_col_lithology.set_index(keys).index
     dhgeologyattr=dhgeologyattr[i1.isin(i2)]
@@ -425,7 +427,7 @@ def Final_Lithology():
     
     First_Filter_list = [list(elem) for elem in cur]
     fieldnames=['Company_ID','CollarID','FromDepth','ToDepth','Company_LithoCode','Company_Litho','CET_Litho','Score']
-    out= open("../data/export/DB_Lithology_Export.csv", "w",encoding ="utf-8")
+    out= open(DB_Lithology_Export, "w",encoding ="utf-8")
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -442,3 +444,20 @@ def Final_Lithology():
                 out.write('%d,' %int(Attr_val_fuzzy_ele[5]))
                 out.write('\n')
     out.close()
+
+def upscale_litho (DB_Lithology_Export, CET_hierarchy_dico, DH_Lithology_Upscaled):
+	Upscaled_Litho = DB_Lithology_Export.set_index ('CET_Litho').join(CET_hierarchy_dico.set_index('Level_3'), rsuffix='2')
+	Upscaled_Litho.reset_index(level=0, inplace=True)
+	Upscaled_Litho['CET_Litho']=Upscaled_Litho['index']
+	del Upscaled_Litho['index']
+	Upscaled_Litho.to_csv(DH_Lithology_Upscaled)
+	
+def plot_collar (DB_Collar_Export, geology):
+	DB_Collar_Export=pd.read_csv(DB_Collar_Export,encoding = "ISO-8859-1", dtype='object')
+	DB_Collar_Export['Longitude']=DB_Collar_Export['Longitude'].astype('float64')
+	DB_Collar_Export['Latitude']=DB_Collar_Export['Latitude'].astype('float64')
+	DB_Collar_Export=gpd.GeoDataFrame(DB_Collar_Export, geometry=gpd.points_from_xy(DB_Collar_Export.Longitude, DB_Collar_Export.Latitude))
+	geology= gpd.read_file(geology)
+	base=geology.plot(column='CODE',figsize=(7,7),edgecolor='#000000',linewidth=0.2)
+	plot2 = DB_Collar_Export.plot(ax=base, column='CollarID', color='black', markersize=15)       
+	plot2 = plot2.figure; plot2.tight_layout()
