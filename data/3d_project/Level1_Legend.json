@@ -1,0 +1,42 @@
+[
+	{
+		"Annotations" : 
+		[
+			"igneous",
+			"igneous",
+			"metamorphic rock",
+			"metamorphic rock",
+			"mineralisation",
+			"mineralisation",
+			"sedimentary rock",
+			"sedimentary rock",
+			"surficial",
+			"surficial",
+			"texture_structure",
+			"texture_structure"
+		],
+		"IndexedColors" : 
+		[
+			1.0,
+			0.33333333333333331,
+			1.0,
+			0.0,
+			1.0,
+			0.0,
+			1.0,
+			0.0,
+			0.0,
+			1.0,
+			1.0,
+			0.0,
+			1.0,
+			1.0,
+			1.0,
+			0.0,
+			0.0,
+			0.49803921568627452
+		],
+		"Name" : "Preset"
+	}
+]
+

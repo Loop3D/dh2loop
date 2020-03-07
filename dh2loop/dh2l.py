@@ -1034,18 +1034,21 @@ def convert_lithology(DB_Collar_Export, DB_Survey_Export, DB_Lithology_Export ,D
 				out.write('%s,' %zet[jt])
 				out.write('\n')
 	out.close()
+	DB_Lithology_Export_Calculated = pd.read_csv(DB_Lithology_Export_Calc,encoding = "ISO-8859-1")
+	DB_Lithology_Export_Calculated.drop_duplicates(subset =["CollarID","FromDepth"], keep = False, inplace = True)
+	DB_Lithology_Export_Calculated.to_csv(DB_Lithology_Export_Calc)	
 	#seen = set() # set for fast O(1) amortized lookup
 	#for line in fileinput.FileInput(DB_Lithology_Export_Calc, inplace=1):
 	#	if line in seen: continue # skip duplicate
 	#seen.add(line)
 	#print (line) # standard output is now redirected to the file
-	rows = csv.reader(open(DB_Lithology_Export_Calc, "rt"))
-	newrows = []
-	for row in rows:
-		if row not in newrows:
-			newrows.append(row)
-	writer = csv.writer(open(DB_Lithology_Export_Calc, "w"))
-	writer.writerows(newrows)
+	#rows = csv.reader(open(DB_Lithology_Export_Calc, "rt"))
+	#newrows = []
+	#for row in rows:
+		#if row not in newrows:
+			#newrows.append(row)
+	#writer = csv.writer(open(DB_Lithology_Export_Calc, "w"))
+	#writer.writerows(newrows)
 	#modified from pygslib
 	
 def SavePolydata(polydata, path):

@@ -1,0 +1,22 @@
+Metadata-Version: 2.1
+Name: dh2loop
+Version: 0.0.1
+Summary: A package to extract information from drillholes to feed 3D modelling packages
+Home-page: https://github.com/Loop3D/dh2loop
+Author: Ranee Joshi & Kavitha Madaiah
+Author-email: ranee.joshi@research.uwa.edu.au
+License: UNKNOWN
+Description: # dh2loop Package
+        
+        A package to extract information from drillholes to feed 3D modelling packages
+        
+        #### What it does:
+          
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
