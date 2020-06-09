@@ -14,43 +14,46 @@ def draw_interactive_map():
     """
     Draws interactive map to be able to draw/define a region of interest
     """
-	wms_drillholes = WMSLayer(
-		url='http://geo.loop-gis.org/geoserver/loop/wms?',
-		layers='loop:collar_4326',
-		format='image/png',
-		transparent=True,
-		attribution='Drilhole collar from GSWA',
-		name='drillhole collars'
-	)
-	
-	wms_geol = WMSLayer(
-		url='http://geo.loop-gis.org/geoserver/loop/wms?',
-		layers='loop:2_5m_interpgeop15_4326',
-		format='image/png',
-		transparent=True,
-		opacity=0.4,
-		attribution='Geology data from GSWA',
-		name='geology'
-	)
-	m =Map(basemap=basemaps.OpenTopoMap, center=(-29,116.5), zoom=8,scroll_wheel_zoom=True)
+    wms_drillholes = WMSLayer(
+        url='http://geo.loop-gis.org/geoserver/loop/wms?',
+        layers='loop:collar_4326',
+        format='image/png',
+        transparent=True,
+        attribution='Drilhole collar from GSWA',
+        name='drillhole collars'
+    )
+    
+    wms_geol = WMSLayer(
+        url='http://geo.loop-gis.org/geoserver/loop/wms?',
+        layers='loop:2_5m_interpgeop15_4326',
+        format='image/png',
+        transparent=True,
+        opacity=0.4,
+        attribution='Geology data from GSWA',
+        name='geology'
+    )
+    m =Map(basemap=basemaps.OpenTopoMap, center=(-29,116.5), zoom=8,scroll_wheel_zoom=True)
 
-	m.add_layer(wms_geol)
-	m.add_layer(wms_drillholes)
+    m.add_layer(wms_geol)
+    m.add_layer(wms_drillholes)
 
-	m.add_control(LayersControl())
-	dc = DrawControl(rectangle={'shapeOptions': {'color': '#0000FF'}})
-	m.add_control(dc)
-	m
-	
-def define_bounds():
+    m.add_control(LayersControl())
+    dc = DrawControl(rectangle={'shapeOptions': {'color': '#0000FF'}})
+    m.add_control(dc)
+    m
+    
+def define_bounds(bounds):
     """
     Extracts bounds from region drawn/defined
+	Args:
+		`bounds`= json bounds captured
     Returns:
-        `bbox`= bounds of the region defined
+        `bbox`= bounds of the region defined (list)
+		`bbox2`= bounds of the region defined (string)
     """
     
-    new_poly=GeoJSON(data=dc.last_draw)
-    new_poly=str(new_poly)
+    #ew_poly=GeoJSON(data=dc.last_draw)
+    new_poly=str(bounds)
 
     if("'geometry': None" in new_poly):
         raise NameError('Error: No rectangle selected')
@@ -65,10 +68,10 @@ def define_bounds():
     bbox2 = str(minlong)+","+str(minlat)+","+str(maxlong)+","+str(maxlat)
     bbox =(minlong,minlat,maxlong,maxlat)
     #bbox =[minlong,minlat,maxlong,maxlat]
-    print(bbox2)
-    print(bbox)
+    #print(bbox2)
+    print("Bounds:", bbox)
     return bbox, bbox2
-	
+    
 def query_anumbers(bbox,bbox2):
     """
     Queries anumbers of the reports within region defined
@@ -80,7 +83,8 @@ def query_anumbers(bbox,bbox2):
     collars_file='http://geo.loop-gis.org/geoserver/loop/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=loop:collar_4326&bbox='+bbox2+'&srs=EPSG:4326'
     collars = gpd.read_file(collars_file, bbox=bbox)
     anumbers=gpd.GeoDataFrame(collars, columns=["anumber"])
-    print(anumbers)
+    anumbers = pd.DataFrame(anumbers.drop_duplicates(subset=["anumber"]))
+    #print(anumbers)
     anumbers['anumberlength']=anumbers['anumber'].astype(str).map(len)
     anumberscode=[]
     for index, row in anumbers.iterrows():
@@ -103,8 +107,8 @@ def query_anumbers(bbox,bbox2):
             text= str("a"+ str(row[0]))
         anumberscode.append(text)
         anumberscode.append(text2)
+    print("Report Numbers:", anumberscode)
     return anumberscode
-    print(anumberscode)
 
 def get_links(anumberscode):
     """
@@ -121,30 +125,26 @@ def get_links(anumberscode):
     #print(FilteredList)
     #https://gist.github.com/wragge/d6250f0c61196ebe76121cfdc4bdafe2
 
-def download_reports(FilteredList, output_directory):
+def download_reports(FilteredList):
     """
     Downloads reports from CloudStor links
     Args:
         `FilteredList`= list of corresponding links
-        `output_directory`= directory where the fiels will be written
     """
     for url in FilteredList.iteritems():
         url = url[1]
         r = requests.get(url, allow_redirects=True)
         if url.find('%2F'):
             filename=url.rsplit('%2F', 1)[1]
-        open(output_directory + "/" + filename, 'wb').write(r.content)
-		
-def get_reports(output_directory):
+        open('../data/downloaded_reports/' + filename, 'wb').write(r.content)
+        
+def get_reports(bounds):
     """
     Downloads reports from a defined region
-    Args:
-        `output_directory`= directory where the fiels will be written
-    Returns:
-        Files downloaded in `output_directory`
     """
-    bbox, bbox2=define_bounds()
+    bbox, bbox2=define_bounds(bounds)
     anumberscode=query_anumbers(bbox, bbox2)
     FilteredList=get_links(anumberscode)
-    download_reports(FilteredList, output_directory)
-	
+    download_reports(FilteredList)
+    print("Download Completed. Find files at:../data/downloaded_reports")
+    
