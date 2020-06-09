@@ -12,6 +12,9 @@ Description: # dh2loop Package
         
         #### What it does:
           
+        Code development by Kavitha Madaiah (kavitha.madaiah@uwa.edu.au) and Ranee Joshi (ranee.joshi@research.uwa.edu.au), University of Western Australia
+        
+        Notebook provides overview of functionality. Extract of data from GSWA Drillhole Database.
         
         
 Platform: UNKNOWN
