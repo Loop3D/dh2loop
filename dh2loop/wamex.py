@@ -9,6 +9,8 @@ import requests
 import json
 import random
 from shapely.geometry import Polygon
+from datetime import datetime
+import os
 
 def draw_interactive_map():
     """
@@ -131,13 +133,20 @@ def download_reports(FilteredList):
     Args:
         `FilteredList`= list of corresponding links
     """
+    nowtime=datetime.now().isoformat(timespec='minutes')
+    dir=os.getcwd()
+    if(not os.path.isdir('../data/')):
+        os.mkdir('../data/')	
+    directory='../data/downloaded_reports'+'_'+nowtime.replace("-","").replace(":","").replace("T","_")+'/'
+    os.mkdir(directory)
     for url in FilteredList.iteritems():
         url = url[1]
         r = requests.get(url, allow_redirects=True)
         if url.find('%2F'):
             filename=url.rsplit('%2F', 1)[1]
-        open('../data/downloaded_reports/' + filename, 'wb').write(r.content)
-        
+        open(directory + filename, 'wb').write(r.content)
+    return directory
+	
 def get_reports(bounds):
     """
     Downloads reports from a defined region
@@ -145,6 +154,6 @@ def get_reports(bounds):
     bbox, bbox2=define_bounds(bounds)
     anumberscode=query_anumbers(bbox, bbox2)
     FilteredList=get_links(anumberscode)
-    download_reports(FilteredList)
-    print("Download Completed. Find files at:../data/downloaded_reports")
+    directory=download_reports(FilteredList)
+    print("Download Complete. Find files at: "+ directory)
     
