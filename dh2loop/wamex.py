@@ -11,6 +11,8 @@ import random
 from shapely.geometry import Polygon
 from datetime import datetime
 import os
+from urllib.error import HTTPError
+import psycopg2
 
 def draw_interactive_map():
     """
@@ -69,12 +71,13 @@ def define_bounds(bounds):
     maxlat=float(min(lats)) #ignores sign
     bbox2 = str(minlong)+","+str(minlat)+","+str(maxlong)+","+str(maxlat)
     bbox =(minlong,minlat,maxlong,maxlat)
+    bounds2=(minlong,maxlong,minlat,maxlat)
     #bbox =[minlong,minlat,maxlong,maxlat]
     #print(bbox2)
     print("Bounds:", bbox)
-    return bbox, bbox2
+    return bbox, bbox2, bounds2
     
-def query_anumbers(bbox,bbox2):
+def query_anumbers(bbox,bbox2,bounds2):
     """
     Queries anumbers of the reports within region defined
     Args:
@@ -82,10 +85,32 @@ def query_anumbers(bbox,bbox2):
     Returns:
         `anumberscode`=list of anumbers
     """
-    collars_file='http://geo.loop-gis.org/geoserver/loop/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=loop:collar_4326&bbox='+bbox2+'&srs=EPSG:4326'
-    collars = gpd.read_file(collars_file, bbox=bbox)
-    anumbers=gpd.GeoDataFrame(collars, columns=["anumber"])
-    anumbers = pd.DataFrame(anumbers.drop_duplicates(subset=["anumber"]))
+    try:
+        collars_file='http://geo.loop-gis.org/geoserver/loop/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=loop:collar_4326&bbox='+bbox2+'&srs=EPSG:4326'
+        collars = gpd.read_file(collars_file, bbox=bbox)
+        print("Connected to Loop Server")
+        anumbers=gpd.GeoDataFrame(collars, columns=["anumber"])
+        anumbers = pd.DataFrame(anumbers.drop_duplicates(subset=["anumber"]))
+    except HTTPError as err:
+        if err.code == 404 or err.code == 500 or err.code == 503:
+            query="""SELECT DISTINCT (collar.anumber)
+			FROM public.collar
+			WHERE(longitude BETWEEN %s AND %s) AND
+			(latitude BETWEEN %s AND %s)
+			ORDER BY collar.anumber ASC"""
+
+            conn = psycopg2.connect(host="130.95.198.59", port = 5432, 
+			database="gswa_dh", user="postgres", password="loopie123pgpw")
+            cur = conn.cursor()
+            cur.execute(query, bounds2)
+            anumbers=pd.DataFrame(cur, columns=["anumber"])
+            print("Connected to PostgreSQL Server")
+        else:
+            raise
+    #collars_file='http://geo.loop-gis.org/geoserver/loop/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=loop:collar_4326&bbox='+bbox2+'&srs=EPSG:4326'
+    #collars = gpd.read_file(collars_file, bbox=bbox)
+    #anumbers=gpd.GeoDataFrame(collars, columns=["anumber"])
+    #anumbers = pd.DataFrame(anumbers.drop_duplicates(subset=["anumber"]))
     #print(anumbers)
     anumbers['anumberlength']=anumbers['anumber'].astype(str).map(len)
     anumberscode=[]
@@ -120,7 +145,16 @@ def get_links(anumberscode):
     Returns:
         `FilteredList`= list of corresponding links
     """
-    FileDirectory=pd.read_csv('https://geo.loop-gis.org/files/FileDirectory.csv',encoding = "ISO-8859-1", dtype='object')
+    try:
+        FileDirectory=pd.read_csv('https://geo.loop-gis.org/files/FileDirectory.csv',encoding = "ISO-8859-1", dtype='object')
+        print("Connected to Loop Server")		
+    except HTTPError as err:
+        if err.code == 404 or err.code == 500 or err.code == 503:
+            FileDirectory=pd.read_csv('https://docs.google.com/spreadsheets/d/1NJwknGclMQq96N9igVCi67D0cjdoGlggqkpeldtrQ9o/edit?usp=sharing',encoding = "ISO-8859-1", dtype='object')
+            print("Connected to Google Drive Backup")
+        else:
+            raise
+	#FileDirectory=pd.read_csv('https://geo.loop-gis.org/files/FileDirectory.csv',encoding = "ISO-8859-1", dtype='object')
     FilteredList = FileDirectory[FileDirectory.Files.str.contains('|'.join(anumberscode))]
     FilteredList = FilteredList ['Directory']
     return FilteredList
@@ -151,9 +185,12 @@ def get_reports(bounds):
     """
     Downloads reports from a defined region
     """
-    bbox, bbox2=define_bounds(bounds)
-    anumberscode=query_anumbers(bbox, bbox2)
-    FilteredList=get_links(anumberscode)
-    directory=download_reports(FilteredList)
-    print("Download Complete. Find files at: "+ directory)
+    bbox, bbox2, bounds2 =define_bounds(bounds)
+    anumberscode=query_anumbers(bbox, bbox2, bounds2)
+    if not anumberscode:
+        print ("No reports available in this region")
+    else:
+        FilteredList=get_links(anumberscode)
+        directory=download_reports(FilteredList)
+        print("Download Complete. Find files at: "+ directory)
     
