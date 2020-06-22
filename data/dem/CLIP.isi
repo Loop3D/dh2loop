@@ -1,0 +1,40 @@
+MetaData Begin
+	Name	= CLIP.shp
+	Version	= "Intrepid GeoModeller v4.0.5 geomodeller_4_0 for Windows (x64) by PELAGIAN optimised build 6ed7b322e9b4 "
+	_X Begin
+		GroupBy	= no
+		DataType	= IEEE8ByteReal
+		ByteOrder	= LSBFirst
+		Alias	= X
+		Projection	= "MGA50"
+		Datum	= "GDA94"
+	_X End
+	_Y Begin
+		GroupBy	= no
+		DataType	= IEEE8ByteReal
+		ByteOrder	= LSBFirst
+		Alias	= Y
+		Projection	= "MGA50"
+		Datum	= "GDA94"
+	_Y End
+	_PARTS Begin
+		GroupBy	= no
+		DataType	= Signed32BitInteger
+		ByteOrder	= LSBFirst
+	_PARTS End
+	_Z Begin
+		GroupBy	= no
+		DataType	= IEEE8ByteReal
+		ByteOrder	= LSBFirst
+	_Z End
+	_M Begin
+		GroupBy	= no
+		DataType	= IEEE8ByteReal
+		ByteOrder	= LSBFirst
+	_M End
+	Id Begin
+		GroupBy	= yes
+		DataType	= Signed32BitInteger
+		ByteOrder	= LSBFirst
+	Id End
+MetaData End

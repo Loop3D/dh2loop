@@ -29,6 +29,12 @@ from itertools import product
 import gdal
 import ogr
 
+import pyproj
+import osgeo
+from osgeo import gdal
+from osgeo import ogr
+from gdalconst import *
+
 import random
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -215,11 +221,11 @@ def retrieve_predictions(classifier, x):
     Outputs:
         -codes_pred: numpy array containing lithological classes predicted'''
     preds = classifier.predict(x, verbose=0)
-    u=np.unique(x)
-    print(x.shape)
-    print(np.size(x.shape[1]))
-    new_onehot = np.zeros((x.shape[0], 20))
+    #print(preds.shape[1])
+    new_onehot = np.zeros((x.shape[0], preds.shape[1]))
+    #new_onehot = np.zeros((x.shape[0], 21))
     new_onehot[np.arange(len(preds)), preds.argmax(axis=1)] = 1
+    one_enc.fit(new_onehot)
     codes_pred = one_enc.inverse_transform(new_onehot)
     return codes_pred
 
@@ -250,6 +256,79 @@ def save_predictions(DF, classifier, x, output_pred_pkl):
     DF['pred'] = retrieve_predictions(classifier, x).astype(np.int32)
     DF[['xmt', 'ymt', 'FromDepth', 'ToDepth', 'zbt', 'zet',
                'mean', 'predicted_probabilities', 'pred', 'reclass', 'code']].to_pickle('{}.pkl'.format(output_pred_pkl))
+
+def generate_model (DF, reclass, X, Y, X_train, Y_train, X_validation, Y_validation, output_mlp_model, output_pred_pkl):
+    '''Function that saves dataframe predictions as a pickle file
+    Inputs:
+        -DF: pandas dataframe with mean_embeddings
+        -classifier: trained MLP model,
+        -x: numpy array with embeddings,
+        -output_pred_pkl: string name to save dataframe
+    Outputs:
+        -save dataframe'''
+    one_enc = OneHotEncoder()
+    encodes = one_enc.fit_transform(Y_train).toarray()
+    model = Sequential()
+    model.add(Dense(100, input_dim=300, activation='relu'))
+    model.add(Dense(100, activation='relu'))
+    model.add(Dense(100, activation='relu'))
+    model.add(Dense(units=len(DF.code.unique()), activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+	
+    # training MLP model
+    model.fit(X_train, encodes, epochs=30, batch_size=100, verbose=2)
+	
+    # saving MLP model
+    model.save(output_mlp_model)
+
+    # assessment of model performance  
+    preds = model.predict(X_validation, verbose=0)
+    new_onehot = np.zeros((X_validation.shape[0], preds.shape[1]))
+    new_onehot[np.arange(len(preds)), preds.argmax(axis=1)] = 1
+    #one_enc.fit(new_onehot)
+    Y2 = one_enc.inverse_transform(new_onehot)
+    print('f1 score: ', metrics.f1_score(Y_validation, Y2, average='macro'),'accuracy: ', metrics.accuracy_score(Y_validation, Y2),'balanced_accuracy:', metrics.balanced_accuracy_score(Y_validation, Y2))
+    
+    #save predictions
+    preds = model.predict(X, verbose=0)
+    DF['predicted_probabilities'] = preds.tolist()
+    
+    preds2 = model.predict(X, verbose=0)
+    new_onehot2 = np.zeros((X.shape[0], preds2.shape[1]))
+    new_onehot2[np.arange(len(preds2)), preds2.argmax(axis=1)] = 1
+    Y3 = one_enc.inverse_transform(new_onehot2)
+    
+    DF['pred'] = Y3.astype(np.int32)
+    DF[['xmt', 'ymt', 'FromDepth', 'ToDepth', 'zbt', 'zet','mean', 'predicted_probabilities', 'pred', reclass, 'code']].to_pickle('{}.pkl'.format(output_pred_pkl))
+    print("Predictions saved as:", output_pred_pkl)
+
+def classifier_assess(classifier, x, y):
+    '''Function that prints the performance of the classifier
+    Inputs:
+        -classifier: trained MLP classifier
+        -x: numpy array with embeddings
+        -y: numpy array with lithological classes predicted'''
+    Y2 = retrieve_predictions(classifier, x)
+    print('f1 score: ', metrics.f1_score(y, Y2, average='macro'),
+          'accuracy: ', metrics.accuracy_score(y, Y2),
+          'balanced_accuracy:', metrics.balanced_accuracy_score(y, Y2))
+
+
+def save_predictions(Dataframe, classifier, x, name):
+    '''Function that saves dataframe predictions as a pickle file
+    Inputs:
+        -Dataframe: pandas dataframe with mean_embeddings
+        -classifier: trained MLP model,
+        -x: numpy array with embeddings,
+        -name: string name to save dataframe
+    Outputs:
+        -save dataframe'''
+    preds = classifier.predict(x, verbose=0)
+    Dataframe['predicted_probabilities'] = preds.tolist()
+    Dataframe['pred'] = retrieve_predictions(classifier, x).astype(np.int32)
+    Dataframe[['x', 'y', 'FromDepth', 'ToDepth', 'TopElev', 'BottomElev',
+               'mean', 'predicted_probabilities', 'pred', 'reclass', 'code']].to_pickle('{}.pkl'.format(name))
+			   
 
 def geoSurvey(Dataframe, cols_in, cols_out, Imax=0.2):
     # Imax = intervale depth
@@ -375,8 +454,27 @@ def split_dataset(toMap):
     validation = others[~others_grouped.ngroup().isin(train_sampling)]
     return test, training, validation
 
+def get_subset(resampledDF_path, shapefile_path):
+    '''Function that subset Gallerini resampled dataframe based on shapefile
+    Inputs:
+        -resampledDF_path: path to Gallerini resampled dataframe
+        -shapefile_path: path to shapefile
+    Outputs:
+        -subset: subset of the resampled dataset based on shapefile limits'''
+    data = pd.read_pickle(resampledDF_path)
+    encodes = one_enc.fit_transform(data['class'].values.reshape(-1,
+                                                                 1)).toarray()
+    file = ogr.Open(shapefile_path)
+    feature = file.GetLayer(0).GetFeature(0)
+    bounds = np.array(json.loads(feature.ExportToJson())['geometry']['coordinates'][0])
+    xbounds, ybounds = bounds[:, 0], bounds[:, 1]
+    AOI_Ymax, AOI_Ymin = np.max(ybounds), np.min(ybounds)
+    AOI_Xmax, AOI_Xmin = np.max(xbounds), np.min(xbounds)
+    subset = data[(data.xmt >= AOI_Xmin) & (data.xmt <= AOI_Xmax) &
+                  (data.ymt >= AOI_Ymin) & (data.ymt <= AOI_Ymax)]
+    return subset
 
-def get_2D(output_pred_resampled_pkl, dem_path, scale, depth_interval=1):
+def get_2D(output_pred_resampled_pkl, shapefile_path, dem_path, model, scale, depth_interval=1):
     '''Function that generates a numpy array with coordinates and litho classes
     Inputs:
         -output_pred_resampled_pkl: path to Gallerini resampled dataframe
@@ -385,8 +483,22 @@ def get_2D(output_pred_resampled_pkl, dem_path, scale, depth_interval=1):
         -depth_interval: depth interval for mapping
     Outputs:
         -data2: numpy array with coordinates and interpolated litho classes'''
+		
+    data = pd.read_pickle(output_pred_resampled_pkl)
+    #one_enc = OneHotEncoder()
+    encodes = one_enc.fit_transform(data['class'].values.reshape(-1,
+                                                                 1)).toarray()
+    file = ogr.Open(shapefile_path)
+    feature = file.GetLayer(0).GetFeature(0)
+    bounds = np.array(json.loads(feature.ExportToJson())['geometry']['coordinates'][0])
+    xbounds, ybounds = bounds[:, 0], bounds[:, 1]
+    AOI_Ymax, AOI_Ymin = np.max(ybounds), np.min(ybounds)
+    AOI_Xmax, AOI_Xmin = np.max(xbounds), np.min(xbounds)
+    subset = data[(data.xmt >= AOI_Xmin) & (data.xmt <= AOI_Xmax) &
+                  (data.ymt >= AOI_Ymin) & (data.ymt <= AOI_Ymax)]
 
-    subset = data = pd.read_pickle(output_pred_resampled_pkl)
+    columns=len(data['pred'].unique().tolist())
+    
     src = gdal.Open(dem_path)
     geo = src.GetGeoTransform()
     rb = src.GetRasterBand(1)
@@ -401,12 +513,13 @@ def get_2D(output_pred_resampled_pkl, dem_path, scale, depth_interval=1):
     for n in range(60):
         de = depth_interval
         z = np.arange(z_min+n-0.5, z_min+n+0.5, de)
-        points_train = training[(training.zmt > zmt[0]*de) & (training.zmt < (zmt[0]+1)*de)]
+        points_train = training[(training.zmt > z[0]*de) & (training.zmt < (z[0]+1)*de)]
         Ln = interpolate.LinearNDInterpolator(points_train[['ymt', 'xmt']].values,
                                               np.array(points_train['mean'].tolist()))
         Ln_int = Ln(xys_toint)
         Lns = model.predict(Ln_int, verbose=0)
-        onehot_Ln = np.zeros((Lns.shape[0], 18))
+        
+        onehot_Ln = np.zeros((Lns.shape[0], columns))
         onehot_Ln[np.arange(len(Lns)), Lns.argmax(axis=1)] = 1
         codes_Ln = one_enc.inverse_transform(onehot_Ln)
         elev = []
@@ -425,7 +538,6 @@ def get_2D(output_pred_resampled_pkl, dem_path, scale, depth_interval=1):
         data1.append(yxzs)
     data2 = np.vstack(data1)
     return data2
-
 
 def get_3D(geo2D, output_pred_resampled_pkl, scale, depthMask=np.nan, xMask=np.nan, yMask=np.nan):
     '''Function that generates a 3D numpy array with coordinates and litho classes
