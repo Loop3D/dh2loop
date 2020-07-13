@@ -1,0 +1,1519 @@
+Company_ID,CollarID,Fromdepth,Todepth,Comapny_Lithocode,Company_Lithology,CET_Lithology,Score,Level_3,Level_2,Level_1
+141,993857,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,80.0,81.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,91.0,92.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,92.0,93.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,93.0,94.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,94.0,95.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,95.0,96.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993857,113.0,114.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,114.0,115.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,115.0,116.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,116.0,117.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,117.0,118.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,118.0,119.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,119.0,120.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,120.0,121.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,121.0,122.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,122.0,123.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,123.0,124.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,124.0,125.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,125.0,126.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,126.0,127.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,127.0,128.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,128.0,129.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,129.0,130.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,130.0,131.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,131.0,132.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,132.0,133.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,133.0,134.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,134.0,135.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,135.0,136.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,136.0,137.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,137.0,138.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,138.0,139.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,139.0,140.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,140.0,141.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,141.0,142.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,142.0,143.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,143.0,144.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,144.0,145.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,145.0,146.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,146.0,147.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,147.0,148.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,148.0,149.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,149.0,150.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,150.0,151.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,151.0,152.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,152.0,153.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,153.0,154.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,154.0,155.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,155.0,156.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,156.0,157.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,157.0,158.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,158.0,159.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,159.0,160.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,160.0,161.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,161.0,162.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,162.0,163.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,163.0,164.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,164.0,165.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,165.0,166.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,166.0,167.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,167.0,168.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993857,168.0,169.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,169.0,170.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,170.0,171.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,171.0,172.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,172.0,173.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,173.0,174.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,174.0,175.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,175.0,176.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,176.0,177.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,177.0,178.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,178.0,179.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993857,179.0,180.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,20.0,21.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,21.0,22.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,22.0,23.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,23.0,24.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,24.0,25.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,25.0,26.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,26.0,27.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,27.0,28.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,28.0,29.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,29.0,30.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,30.0,31.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,31.0,32.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,32.0,33.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,33.0,34.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,34.0,35.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,35.0,36.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,39.0,40.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,993858,40.0,41.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,993858,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,80.0,81.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993858,91.0,92.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,92.0,93.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,93.0,94.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,94.0,95.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,95.0,96.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,96.0,97.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,97.0,98.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,98.0,99.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,99.0,100.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993858,100.0,101.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,101.0,102.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,102.0,103.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,103.0,104.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,104.0,105.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,105.0,106.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,106.0,107.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,107.0,108.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993858,108.0,109.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,109.0,110.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,110.0,111.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,111.0,112.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,112.0,113.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,113.0,114.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,114.0,115.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,115.0,116.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,116.0,117.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,117.0,118.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,118.0,119.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,119.0,120.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,120.0,121.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,121.0,122.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,122.0,123.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,123.0,124.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,124.0,125.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,125.0,126.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,126.0,127.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,127.0,128.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,128.0,129.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,129.0,130.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,130.0,131.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,131.0,132.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,132.0,133.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,133.0,134.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,134.0,135.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,135.0,136.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,136.0,137.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,137.0,138.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,138.0,139.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,139.0,140.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,140.0,141.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,141.0,142.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,142.0,143.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,143.0,144.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,144.0,145.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,145.0,146.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,146.0,147.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,147.0,148.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,148.0,149.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993858,149.0,150.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,30.0,31.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,31.0,32.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,32.0,33.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,33.0,34.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,34.0,35.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,35.0,36.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,46.0,47.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993859,47.0,48.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993859,48.0,49.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993859,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,80.0,81.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,91.0,92.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,92.0,93.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,93.0,94.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,94.0,95.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,95.0,96.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,96.0,97.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,97.0,98.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,98.0,99.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,99.0,100.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,100.0,101.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,101.0,102.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,102.0,103.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,103.0,104.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,104.0,105.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,105.0,106.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,106.0,107.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,107.0,108.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,108.0,109.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,109.0,110.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,110.0,111.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,111.0,112.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,112.0,113.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,113.0,114.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,114.0,115.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,115.0,116.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,116.0,117.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,117.0,118.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,118.0,119.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993859,119.0,120.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993859,120.0,121.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,993859,121.0,122.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,122.0,123.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,123.0,124.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,124.0,125.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,125.0,126.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,126.0,127.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,127.0,128.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,128.0,129.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,129.0,130.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,130.0,131.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,131.0,132.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,132.0,133.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,133.0,134.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,134.0,135.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,135.0,136.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,136.0,137.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,137.0,138.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,138.0,139.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,139.0,140.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,140.0,141.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,141.0,142.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,142.0,143.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,143.0,144.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,144.0,145.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,145.0,146.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,146.0,147.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,147.0,148.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,148.0,149.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,149.0,150.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,150.0,151.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,151.0,152.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,152.0,153.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,153.0,154.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,154.0,155.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,155.0,156.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993859,156.0,157.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993860,33.0,34.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,993860,34.0,35.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,993860,35.0,36.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,80.0,81.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,91.0,92.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,92.0,93.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,93.0,94.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,94.0,95.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,95.0,96.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993860,96.0,97.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993860,97.0,98.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993860,98.0,99.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,99.0,100.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,100.0,101.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,101.0,102.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,102.0,103.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,103.0,104.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,104.0,105.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,105.0,106.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,106.0,107.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,107.0,108.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,108.0,109.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,109.0,110.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,110.0,111.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,111.0,112.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,112.0,113.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,113.0,114.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,114.0,115.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,115.0,116.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,116.0,117.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,117.0,118.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,118.0,119.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,119.0,120.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,120.0,121.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,121.0,122.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,122.0,123.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,123.0,124.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,124.0,125.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,125.0,126.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,126.0,127.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,127.0,128.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,128.0,129.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,129.0,130.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,130.0,131.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,131.0,132.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,132.0,133.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,133.0,134.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,134.0,135.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,135.0,136.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993860,136.0,137.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,137.0,138.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,138.0,139.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,139.0,140.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,140.0,141.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,141.0,142.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,142.0,143.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,143.0,144.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,144.0,145.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,145.0,146.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,146.0,147.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,147.0,148.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,148.0,149.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,149.0,150.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,150.0,151.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,151.0,152.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,152.0,153.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,153.0,154.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,154.0,155.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,155.0,156.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,156.0,157.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,157.0,158.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,158.0,159.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,159.0,160.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,160.0,161.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,161.0,162.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,162.0,163.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,163.0,164.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,164.0,165.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,165.0,166.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,166.0,167.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,167.0,168.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,168.0,169.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,169.0,170.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,170.0,171.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,171.0,172.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,172.0,173.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,173.0,174.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,174.0,175.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,175.0,176.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,176.0,177.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,177.0,178.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,178.0,179.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,179.0,180.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,180.0,181.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,181.0,182.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,182.0,183.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,183.0,184.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,184.0,185.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,185.0,186.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,186.0,187.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,187.0,188.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,188.0,189.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,189.0,190.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,190.0,191.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993860,191.0,192.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,993861,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,63.0,64.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,64.0,65.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,65.0,66.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,66.0,67.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,67.0,68.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,68.0,69.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,69.0,70.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,70.0,71.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,71.0,72.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,993861,73.0,74.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,74.0,75.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,993861,75.0,76.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,76.0,77.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,77.0,78.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,78.0,79.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,79.0,80.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,80.0,81.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,81.0,82.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,82.0,83.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,83.0,84.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,84.0,85.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,85.0,86.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,86.0,87.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,87.0,88.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,88.0,89.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,89.0,90.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,90.0,91.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,91.0,92.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,92.0,93.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,93.0,94.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,94.0,95.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,95.0,96.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,96.0,97.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,97.0,98.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,98.0,99.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,99.0,100.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,100.0,101.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,101.0,102.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,993861,102.0,103.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+4422,1114576,0.0,3.0,LAT,laterite,laterite,101,laterite,residual_deposit,surficial
+4422,1114576,3.0,5.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114576,5.0,6.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114576,6.0,10.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114576,10.0,14.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114576,14.0,19.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114576,19.0,20.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114576,20.0,22.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114576,22.0,32.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114576,32.0,38.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114576,38.0,42.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114576,42.0,57.0,CL/SIL,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114577,0.0,3.0,SIL/SA,siltstone/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114577,3.0,24.0,SIL/SA,siltstone/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114577,24.0,29.0,CL/SIL,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114577,29.0,37.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,37.0,39.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,39.0,48.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,48.0,51.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,51.0,52.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,52.0,56.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,56.0,59.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,59.0,63.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,63.0,65.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,65.0,71.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,71.0,72.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,72.0,74.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,74.0,76.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,76.0,77.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,77.0,78.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,78.0,80.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,80.0,81.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,81.0,82.0,CL/ironstone,clay/ironstone,ironstone,101,ironstone,ironstone,sedimentary rock
+4422,1114577,82.0,84.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114577,84.0,86.0,CL/ironstone/SIL,clay/ironstone/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114577,86.0,92.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114577,92.0,94.0,SH/SA,shale/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114577,94.0,95.0,SH/SA,shale/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114577,95.0,104.0,SA/SH,sandstone/shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,0.0,2.0,clSI,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,2.0,11.0,clSI,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,11.0,20.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,20.0,28.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,28.0,32.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,32.0,33.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,33.0,35.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,35.0,36.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,36.0,43.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,43.0,44.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,44.0,48.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,48.0,49.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,49.0,50.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,50.0,57.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,57.0,60.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,60.0,64.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114578,64.0,77.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114578,77.0,83.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114578,83.0,91.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,91.0,95.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,95.0,100.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,100.0,103.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,103.0,114.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,114.0,117.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114578,117.0,122.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114578,122.0,136.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,136.0,142.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,142.0,143.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114578,143.0,151.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,151.0,155.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114578,155.0,161.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114578,161.0,166.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,0.0,2.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114579,2.0,4.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,4.0,5.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,5.0,6.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,6.0,7.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,7.0,9.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,9.0,22.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,22.0,25.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,25.0,26.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,26.0,28.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,28.0,30.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114579,30.0,36.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,36.0,37.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,37.0,40.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,40.0,45.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,45.0,46.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,46.0,52.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,52.0,63.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,63.0,64.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,64.0,80.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114579,80.0,82.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114579,82.0,94.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1114579,94.0,100.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,100.0,103.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,103.0,107.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,107.0,110.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,110.0,119.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,119.0,133.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,133.0,136.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,136.0,161.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114579,161.0,167.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114579,167.0,172.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,0.0,3.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,3.0,14.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,14.0,16.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114580,16.0,22.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114580,22.0,28.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114580,28.0,30.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114580,30.0,33.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,33.0,36.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,36.0,37.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,37.0,43.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,43.0,53.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,53.0,56.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,56.0,64.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,64.0,69.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,69.0,71.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,71.0,78.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,78.0,95.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,95.0,98.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114580,98.0,100.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,100.0,108.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,108.0,115.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,115.0,120.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,120.0,122.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,122.0,130.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,130.0,136.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,136.0,151.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,151.0,160.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114580,160.0,172.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114580,172.0,180.0,SI/SC,siltstone/conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114580,180.0,184.0,SC/SI,conglomerate/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,0.0,1.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,1.0,5.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,5.0,10.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,10.0,12.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,12.0,28.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,28.0,32.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,32.0,35.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,35.0,41.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,41.0,60.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,60.0,64.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,64.0,92.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,92.0,98.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,98.0,100.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,100.0,103.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1114585,103.0,136.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,136.0,178.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,178.0,185.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1114585,185.0,188.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1114585,188.0,202.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,80.0,81.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,91.0,92.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,92.0,93.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,93.0,94.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,94.0,95.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,95.0,96.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399612,113.0,114.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,114.0,115.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,115.0,116.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,116.0,117.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,117.0,118.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,118.0,119.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,119.0,120.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,120.0,121.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,121.0,122.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,122.0,123.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,123.0,124.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,124.0,125.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,125.0,126.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,126.0,127.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,127.0,128.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,128.0,129.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,129.0,130.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,130.0,131.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,131.0,132.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,132.0,133.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,133.0,134.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,134.0,135.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,135.0,136.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,136.0,137.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,137.0,138.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,138.0,139.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,139.0,140.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,140.0,141.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,141.0,142.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,142.0,143.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,143.0,144.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,144.0,145.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,145.0,146.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,146.0,147.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,147.0,148.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,148.0,149.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,149.0,150.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,150.0,151.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,151.0,152.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,152.0,153.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,153.0,154.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,154.0,155.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,155.0,156.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,156.0,157.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,157.0,158.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,158.0,159.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,159.0,160.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,160.0,161.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,161.0,162.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,162.0,163.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,163.0,164.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,164.0,165.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,165.0,166.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,166.0,167.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,167.0,168.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399612,168.0,169.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,169.0,170.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,170.0,171.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,171.0,172.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,172.0,173.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,173.0,174.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,174.0,175.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,175.0,176.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,176.0,177.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,177.0,178.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,178.0,179.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399612,179.0,180.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,20.0,21.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,21.0,22.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,22.0,23.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,23.0,24.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,24.0,25.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,25.0,26.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,26.0,27.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,27.0,28.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,28.0,29.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,29.0,30.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,30.0,31.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,31.0,32.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,32.0,33.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,33.0,34.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,34.0,35.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,35.0,36.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,39.0,40.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,1399613,40.0,41.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,1399613,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,80.0,81.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399613,91.0,92.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,92.0,93.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,93.0,94.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,94.0,95.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,95.0,96.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,96.0,97.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,97.0,98.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,98.0,99.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,99.0,100.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399613,100.0,101.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,101.0,102.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,102.0,103.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,103.0,104.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,104.0,105.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,105.0,106.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,106.0,107.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,107.0,108.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399613,108.0,109.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,109.0,110.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,110.0,111.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,111.0,112.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,112.0,113.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,113.0,114.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,114.0,115.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,115.0,116.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,116.0,117.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,117.0,118.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,118.0,119.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,119.0,120.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,120.0,121.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,121.0,122.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,122.0,123.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,123.0,124.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,124.0,125.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,125.0,126.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,126.0,127.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,127.0,128.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,128.0,129.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,129.0,130.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,130.0,131.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,131.0,132.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,132.0,133.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,133.0,134.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,134.0,135.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,135.0,136.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,136.0,137.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,137.0,138.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,138.0,139.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,139.0,140.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,140.0,141.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,141.0,142.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,142.0,143.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,143.0,144.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,144.0,145.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,145.0,146.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,146.0,147.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,147.0,148.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,148.0,149.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399613,149.0,150.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,30.0,31.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,31.0,32.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,32.0,33.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,33.0,34.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,34.0,35.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,35.0,36.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,46.0,47.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399614,47.0,48.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399614,48.0,49.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399614,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,80.0,81.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,91.0,92.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,92.0,93.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,93.0,94.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,94.0,95.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,95.0,96.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,96.0,97.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,97.0,98.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,98.0,99.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,99.0,100.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,100.0,101.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,101.0,102.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,102.0,103.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,103.0,104.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,104.0,105.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,105.0,106.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,106.0,107.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,107.0,108.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,108.0,109.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,109.0,110.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,110.0,111.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,111.0,112.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,112.0,113.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,113.0,114.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,114.0,115.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,115.0,116.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,116.0,117.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,117.0,118.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,118.0,119.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399614,119.0,120.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399614,120.0,121.0,Ssl,Siltstone/Argillite,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399614,121.0,122.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,122.0,123.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,123.0,124.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,124.0,125.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,125.0,126.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,126.0,127.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,127.0,128.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,128.0,129.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,129.0,130.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,130.0,131.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,131.0,132.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,132.0,133.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,133.0,134.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,134.0,135.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,135.0,136.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,136.0,137.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,137.0,138.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,138.0,139.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,139.0,140.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,140.0,141.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,141.0,142.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,142.0,143.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,143.0,144.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,144.0,145.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,145.0,146.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,146.0,147.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,147.0,148.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,148.0,149.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,149.0,150.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,150.0,151.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,151.0,152.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,152.0,153.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,153.0,154.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,154.0,155.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,155.0,156.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399614,156.0,157.0,Sd,Dolomite,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399615,33.0,34.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,1399615,34.0,35.0,S,Unclassified Sediments,sediment,101,sediment,sediment,sediment
+141,1399615,35.0,36.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,63.0,64.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,64.0,65.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,65.0,66.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,66.0,67.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,67.0,68.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,68.0,69.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,69.0,70.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,70.0,71.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,71.0,72.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,73.0,74.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,74.0,75.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,75.0,76.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,76.0,77.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,77.0,78.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,78.0,79.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,79.0,80.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,80.0,81.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,81.0,82.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,82.0,83.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,83.0,84.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,84.0,85.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,85.0,86.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,86.0,87.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,87.0,88.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,88.0,89.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,89.0,90.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,90.0,91.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,91.0,92.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,92.0,93.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,93.0,94.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,94.0,95.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,95.0,96.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399615,96.0,97.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399615,97.0,98.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399615,98.0,99.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,99.0,100.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,100.0,101.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,101.0,102.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,102.0,103.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,103.0,104.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,104.0,105.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,105.0,106.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,106.0,107.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,107.0,108.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,108.0,109.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,109.0,110.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,110.0,111.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,111.0,112.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,112.0,113.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,113.0,114.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,114.0,115.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,115.0,116.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,116.0,117.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,117.0,118.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,118.0,119.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,119.0,120.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,120.0,121.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,121.0,122.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,122.0,123.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,123.0,124.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,124.0,125.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,125.0,126.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,126.0,127.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,127.0,128.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,128.0,129.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,129.0,130.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,130.0,131.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,131.0,132.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,132.0,133.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,133.0,134.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,134.0,135.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,135.0,136.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399615,136.0,137.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,137.0,138.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,138.0,139.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,139.0,140.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,140.0,141.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,141.0,142.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,142.0,143.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,143.0,144.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,144.0,145.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,145.0,146.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,146.0,147.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,147.0,148.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,148.0,149.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,149.0,150.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,150.0,151.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,151.0,152.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,152.0,153.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,153.0,154.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,154.0,155.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,155.0,156.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,156.0,157.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,157.0,158.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,158.0,159.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,159.0,160.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,160.0,161.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,161.0,162.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,162.0,163.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,163.0,164.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,164.0,165.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,165.0,166.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,166.0,167.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,167.0,168.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,168.0,169.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,169.0,170.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,170.0,171.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,171.0,172.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,172.0,173.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,173.0,174.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,174.0,175.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,175.0,176.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,176.0,177.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,177.0,178.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,178.0,179.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,179.0,180.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,180.0,181.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,181.0,182.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,182.0,183.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,183.0,184.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,184.0,185.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,185.0,186.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,186.0,187.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,187.0,188.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,188.0,189.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,189.0,190.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,190.0,191.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399615,191.0,192.0,Shcc,Carbonaceous shale,mudstone,101,mudstone,clastic,sedimentary rock
+141,1399616,36.0,37.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,37.0,38.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,38.0,39.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,39.0,40.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,40.0,41.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,41.0,42.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,42.0,43.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,43.0,44.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,44.0,45.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,45.0,46.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,46.0,47.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,47.0,48.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,48.0,49.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,49.0,50.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,50.0,51.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,51.0,52.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,52.0,53.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,53.0,54.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,54.0,55.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,55.0,56.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,56.0,57.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,57.0,58.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,58.0,59.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,59.0,60.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,60.0,61.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,61.0,62.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,62.0,63.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,63.0,64.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,64.0,65.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,65.0,66.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,66.0,67.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,67.0,68.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,68.0,69.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,69.0,70.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,70.0,71.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,71.0,72.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,72.0,73.0,Ncl,Clay loams and Clay,mud,101,mud,sediment_clastic,sediment
+141,1399616,73.0,74.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,74.0,75.0,Ng,Gravel,gravel,101,gravel,sediment_clastic,sediment
+141,1399616,75.0,76.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,76.0,77.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,77.0,78.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,78.0,79.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,79.0,80.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,80.0,81.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,81.0,82.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,82.0,83.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,83.0,84.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,84.0,85.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,85.0,86.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,86.0,87.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,87.0,88.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,88.0,89.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,89.0,90.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,90.0,91.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,91.0,92.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,92.0,93.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,93.0,94.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,94.0,95.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,95.0,96.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,96.0,97.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,97.0,98.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,98.0,99.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,99.0,100.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,100.0,101.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,101.0,102.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+141,1399616,102.0,103.0,CalcSilDol,Dolomite with calcite silcified,dolostone,100,dolostone,carbonate,sedimentary rock
+4422,1638905,0.0,3.0,LAT,laterite,laterite,101,laterite,residual_deposit,surficial
+4422,1638905,3.0,5.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638905,5.0,6.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638905,6.0,10.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638905,10.0,14.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638905,14.0,19.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638905,19.0,20.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638905,20.0,22.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638905,22.0,32.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638905,32.0,38.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638905,38.0,42.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638905,42.0,57.0,CL/SIL,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638906,0.0,3.0,SIL/SA,siltstone/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638906,3.0,24.0,SIL/SA,siltstone/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638906,24.0,29.0,CL/SIL,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638906,29.0,37.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,37.0,39.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,39.0,48.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,48.0,51.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,51.0,52.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,52.0,56.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,56.0,59.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,59.0,63.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,63.0,65.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,65.0,71.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,71.0,72.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,72.0,74.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,74.0,76.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,76.0,77.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,77.0,78.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,78.0,80.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,80.0,81.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,81.0,82.0,CL/ironstone,clay/ironstone,ironstone,101,ironstone,ironstone,sedimentary rock
+4422,1638906,82.0,84.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638906,84.0,86.0,CL/ironstone/SIL,clay/ironstone/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638906,86.0,92.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638906,92.0,94.0,SH/SA,shale/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638906,94.0,95.0,SH/SA,shale/sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638906,95.0,104.0,SA/SH,sandstone/shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,0.0,2.0,clSI,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,2.0,11.0,clSI,clay/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,11.0,20.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,20.0,28.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,28.0,32.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,32.0,33.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,33.0,35.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,35.0,36.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,36.0,43.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,43.0,44.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,44.0,48.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,48.0,49.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,49.0,50.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,50.0,57.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,57.0,60.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,60.0,64.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638907,64.0,77.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638907,77.0,83.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638907,83.0,91.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,91.0,95.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,95.0,100.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,100.0,103.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,103.0,114.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,114.0,117.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638907,117.0,122.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638907,122.0,136.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,136.0,142.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,142.0,143.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638907,143.0,151.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,151.0,155.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638907,155.0,161.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638907,161.0,166.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,0.0,2.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638908,2.0,4.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,4.0,5.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,5.0,6.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,6.0,7.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,7.0,9.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,9.0,22.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,22.0,25.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,25.0,26.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,26.0,28.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,28.0,30.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638908,30.0,36.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,36.0,37.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,37.0,40.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,40.0,45.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,45.0,46.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,46.0,52.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,52.0,63.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,63.0,64.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,64.0,80.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638908,80.0,82.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638908,82.0,94.0,CL,clay,mud,101,mud,sediment_clastic,sediment
+4422,1638908,94.0,100.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,100.0,103.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,103.0,107.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,107.0,110.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,110.0,119.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,119.0,133.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,133.0,136.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,136.0,161.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638908,161.0,167.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638908,167.0,172.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,0.0,3.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,3.0,14.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,14.0,16.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638909,16.0,22.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638909,22.0,28.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638909,28.0,30.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638909,30.0,33.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,33.0,36.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,36.0,37.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,37.0,43.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,43.0,53.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,53.0,56.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,56.0,64.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,64.0,69.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,69.0,71.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,71.0,78.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,78.0,95.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,95.0,98.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638909,98.0,100.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,100.0,108.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,108.0,115.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,115.0,120.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,120.0,122.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,122.0,130.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,130.0,136.0,SH,shale,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,136.0,151.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,151.0,160.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638909,160.0,172.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638909,172.0,180.0,SI/SC,siltstone/conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638909,180.0,184.0,SC/SI,conglomerate/siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,0.0,1.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,1.0,5.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,5.0,10.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,10.0,12.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,12.0,28.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,28.0,32.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,32.0,35.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,35.0,41.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,41.0,60.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,60.0,64.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,64.0,92.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,92.0,98.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,98.0,100.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,100.0,103.0,SA,sandstone,sandstone,101,sandstone,clastic,sedimentary rock
+4422,1638914,103.0,136.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,136.0,178.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,178.0,185.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
+4422,1638914,185.0,188.0,SC,conglomerate,conglomerate,101,conglomerate,clastic,sedimentary rock
+4422,1638914,188.0,202.0,SI,siltstone,mudstone,101,mudstone,clastic,sedimentary rock
