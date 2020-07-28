@@ -775,7 +775,31 @@ def dsmincurb (len12,azm1,dip1,azm2,dip2):
     de = 0.5*len12*(sin(float(i1))*sin(float(a1))+sin(float(i2))*sin(float(a2)))*rf
     return dz,dn,de
     #modified from pygslib
+	
+def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
+    I1=radians(I1)
+    Az1=radians(Az1)
+    I2=radians(I2)
+    Az2=radians(Az2)
+    
+    MD = Distance2 - Distance1
 
+    Beta = acos(cos(I2 - I1) - (sin(I1)*sin(I2)*(1-cos(Az2-Az1))))
+    if(Beta==0):
+        RF=1
+    else:
+        RF = 2 / Beta * tan(Beta / 2)
+
+    dX = MD/2 * (sin(I1)*sin(Az1) + sin(I2)*sin(Az2))*RF
+    dY = MD/2 * (sin(I1)*cos(Az1) + sin(I2)*cos(Az2))*RF
+    dZ = MD/2 * (cos(I1) + cos(I2))*RF
+
+    X2 = X1 + dX
+    Y2 = Y1 + dY
+    Z2 = Z1 - dZ
+    
+    return(X2,Y2,Z2)
+	
 def interp_ang1D(azm1,dip1,azm2,dip2,len12,d1):
     # convert angles to coordinates
     x1,y1,z1 = ang2cart(azm1,dip1)
@@ -1149,6 +1173,518 @@ def plot_collar (DB_Collar_Export, geology):
     base=geology.plot(column='CODE',figsize=(7,7),edgecolor='#000000',linewidth=0.2)
     plot2 = DB_Collar_Export.plot(ax=base, column='CollarID', color='black', markersize=15)        
     plot2 = plot2.figure; plot2.tight_layout()
+	
+def addtable(table, table_name):
+    """
+    Adds a table and assigns a name.
+
+    """
+
+    table_name=table.copy(deep=True) # we remove external reference
+    
+    table_name['fromdepth'] = table_name['fromdepth'].astype(float)
+    table_name['todepth'] = table_name['todepth'].astype(float)
+    table_name['collarid'] = table_name['collarid'].astype(str)
+
+    table_name.sort_values(by=['collarid', 'fromdepth'], inplace=True)
+    table_name.reset_index(level=None, drop=True, inplace=True, col_level=0, col_fill='')
+    return table_name
+	
+def fillgap1Dhole(in_f,
+            in_t,
+            id,
+            tol=0.01,
+            endhole=-1):
+    """
+    Function to fill gaps in one drillhole.
+    """
+    
+    i=0
+    nint=-1
+    ngap=-1
+    noverlap=-1
+    ndat= len(in_f)
+
+    #make a deep copy of the from to intervals and create a memory view
+    np_f= np.zeros(ndat, dtype=float)
+    np_t= np.zeros(ndat, dtype=float)
+    f = np_f
+    t = np_t
+    
+    for i in range(ndat):
+        f[i]=in_f[i]
+        t[i]=in_t[i]
+
+    #make a long array (reserve memory space)
+    np_nf= np.zeros(ndat*2+4, dtype=float)
+    np_nt= np.zeros(ndat*2+4, dtype=float)
+    np_nID= np.zeros(ndat*2+4, dtype=int)
+    np_gap= np.zeros(ndat*2+4, dtype=int)
+    np_overlap= np.zeros(ndat*2+4, dtype=int)
+
+    nt = np_nt
+    nID = np_nID
+    gap = np_gap
+    nf = np_nf
+    overlap = np_overlap
+
+    # gap first interval
+    if f[0]>tol:
+        nint+=1
+        nf[nint]=0.
+        nt[nint]=f[0]
+        nID[nint]=-999
+        ngap+=1
+        gap[ngap]=id[0]
+        #print("1:", nID[nint])
+
+    for i in range(ndat-1):
+        
+        # there is no gap?
+        if -tol<=f[i+1]-t[i]<=tol:
+            # existing sample
+            nint+=1
+            nf[nint]=f[i]
+            nt[nint]=f[i+1]
+            nID[nint]=id[i]
+            #print("2:", nID[nint])
+            continue
+
+        # there is a gap?
+        if f[i+1]-t[i]>=tol:
+            # existing sample
+            nint+=1
+            nf[nint]=f[i]
+            nt[nint]=t[i]
+            nID[nint]=id[i]
+            #gap
+            nint+=1
+            nf[nint]=t[i]
+            nt[nint]=f[i+1]
+            nID[nint]=-999
+            ngap+=1
+            gap[ngap]=id[i]
+            #print("3:", nID[nint])
+            continue
+
+        # there is overlap?
+        if f[i+1]-t[i]<=-tol:
+            # the overlap is smaller that the actual sample?
+            if f[i+1]>f[i]:
+                # existing sample
+                nint+=1
+                nt[nint]=max(f[i+1],f[i]) # ising max here to avoid negative interval from>to
+                nf[nint]=f[i]
+                nID[nint]=id[i]
+                noverlap+=1
+                overlap[noverlap]=id[i]
+                #print("4:", nID[nint])
+                continue
+            # large overlap?
+            else:
+                #whe discard next interval by making it 0 length interval
+                # this will happen only in unsorted array...
+                noverlap+=1
+                overlap[noverlap]=id[i]
+                # update to keep consistency in next loopondh
+                nint+=1
+                nt[nint]=t[i] # ising max here to avoid negative interval from>to
+                nf[nint]=f[i]
+                nID[nint]=id[i]
+                f[i+1]=t[i+1]
+                #print("5:", nID[nint])
+
+    # there are no problems (like a gap or an overlap)
+    if (-tol<=f[ndat-1]-t[ndat-2]<=tol) and ndat>1:
+        nint+=1
+        nt[nint]=t[ndat-1] # ising max here to avoid negative interval from>to
+        nf[nint]=f[ndat-1]
+        nID[nint]=id[ndat-1]
+        #print("6:", nID[nint])
+    else:
+        # just add the sample (the problem was fixed in the previous sample)
+        nint+=1
+        nt[nint]=t[ndat-1] # ising max here to avoid negative interval from>to
+        nf[nint]=f[ndat-1]
+        nID[nint]=id[ndat-1]
+        #print("7:", nID[nint])
+
+    # add end of hole
+    if endhole>-1:
+        # ranee's adding end interval
+        if (tol<endhole-t[ndat-1]) and (endhole-t[ndat-1]>-tol):
+            try:
+				#gap
+                nint+=1
+                nf[nint]=t[i+1]
+                nt[nint]=endhole
+                nID[nint]=-999
+                ngap+=1
+                gap[ngap]=id[i]
+                #print("100:", nID[nint])
+            except IndexError as error:
+                nt[nint]=endhole
+			
+        # there is an end of hole gap?
+        if (tol>endhole-t[ndat-2]) and ndat>1:
+            #print("1")
+            nint+=1
+            nt[nint]=endhole
+            nf[nint]=t[ndat-1]
+            nID[nint]=-999
+            ngap+=1
+            gap[ngap]=-888  # this is a gap at end of hole
+            #print("8:", nID[nint])
+			
+        # there is an end of hole overlap?
+        if (tol>endhole-t[ndat-2]) and ndat>1:
+            #print("2")
+            nint+=1
+            nt[nint]=endhole
+            nf[nint]=t[ndat-1]
+            nID[nint]=-999
+            noverlap+=1
+            overlap[noverlap]=-888 # this is an overlap at end of hole
+            #print("9:", nID[nint])
+
+        # there is no gap or overlap, good... then fix small differences
+        if (tol<endhole-t[ndat-2]) and (endhole-t[ndat-2]>-tol):
+            #print("3")
+            #print(endhole)
+            #print(t[ndat-2])
+            #print(ndat)
+            nt[nint]=endhole
+            #print(nt[nint])
+            #print("10:", nID[nint])
+
+    # make first interval start at zero, if it is != to zero but close to tolerance
+    if 0<nf[0]<=tol:
+        nf[0]=0
+    #print(np_nf[:nint+1],np_nt[:nint+1],np_nID[:nint+1],np_gap[:ngap+1],np_overlap[:noverlap+1])    
+    return np_nf[:nint+1],np_nt[:nint+1],np_nID[:nint+1],np_gap[:ngap+1],np_overlap[:noverlap+1]
+
+def add_gaps(table_name,
+            new_table_name,
+            tol=0.01,
+            clean=True,
+            endhole=-1):
+
+        """Fills gaps with new FROM-TO intervals."""
+        
+        table_name.sort_values(by=['collarid', 'fromdepth'], inplace=True)
+        table_name.loc[:,'_id0']= np.arange(table_name.shape[0])[:]
+        group=table_name.groupby('collarid')
+
+        #add gaps
+        BHID=group.groups.keys()
+        nnf=[]
+        nnt=[]
+        nnID=[]
+        nnBHID=[]
+        nngap= []
+        nnoverlap = []
+        for i in BHID:
+            nf,nt,nID,gap,overlap=fillgap1Dhole(in_f = group.get_group(i)['fromdepth'].values,
+                                          in_t = group.get_group(i)['todepth'].values,
+                                          id = group.get_group(i)['_id0'].values,
+                                          tol=tol,
+                                          endhole=endhole)
+
+
+            nBHID = np.empty([len(nf)], dtype=object, order='C')
+            nBHID[:]=i
+            nnf+=nf.tolist()
+            nnt+=nt.tolist()
+            nnID+=nID.tolist()
+            nnBHID+=nBHID.tolist()
+            nngap+=gap.tolist()
+            nnoverlap+=overlap.tolist()
+
+
+        #create new table with gaps (only with fields )
+        newtable=pd.DataFrame({'collarid':nnBHID, 'fromdepth':nnf,'todepth':nnt,'_id0':nnID})
+
+        newtable=newtable.join(table_name, on='_id0', rsuffix='__tmp__')
+
+        #clean if necessary
+        if clean:
+            newtable.drop(
+               ['collarid__tmp__', 'fromdepth__tmp__','todepth__tmp__','_id0__tmp__'],
+               axis=1,inplace=True, errors='ignore')
+
+        #add table to the class
+        new_table_name=addtable(newtable,new_table_name)
+        return new_table_name
+        #return nngap,nnoverlap
+		
+def min_int(la,
+            lb,
+            ia,
+            ib,
+            tol=0.01):
+    """
+    Given two complete drillholes A, B (no gaps and up to the end of
+    the drillhole), this function returns the smaller of two
+    intervals la = FromA[ia] lb = FromB[ib] and updates the
+    indices ia and ib. There are three possible outcomes
+
+    - FromA[ia] == FromB[ib]+/- tol. Returns mean of FromA[ia], FromB[ib] and ia+1, ib+1
+    - FromA[ia] <  FromB[ib]. Returns FromA[ia] and ia+1, ib
+    - FromA[ia] >  FromB[ib]. Returns FromB[ia] and ia, ib+1
+    """
+
+    # equal ?  
+    #if (lb-1)<=la<=(lb+1):
+    if la==lb:
+        #print("la", la)
+        #print("lb", lb)
+        #print("1:", (la+lb)/2)
+        #print("ia", ia)
+        #print("ib", ib)
+        #return ia+1, ib+1, (la+lb)/2
+        return ia+1, ib+1, la
+    
+    # la < lb ?
+    if la<lb:
+        #print("la", la)
+        #print("lb", lb)
+        #print("2:",  la)
+        return ia+1, ib, la
+
+    # lb < la ?
+    if lb<la:
+        #print("la", la)
+        #print("lb", lb)
+        #print("3:",  lb)
+        return ia, ib+1, lb
+
+def merge_one_dhole(la,lb,
+              ida,
+              idb,
+              tol=0.01):
+    """
+    Function to merge one drillhole.
+
+    """
+    ia=0
+    ib=0
+    maxia= len (la)
+    maxib= len (lb)
+    maxiab= len (lb) + len (la)
+    inhole = True
+    n=-1
+
+    # prepare output as numpy arrays
+    np_newida= np.zeros(maxiab, dtype=int)
+    np_newidb= np.zeros(maxiab, dtype=int)
+    np_lab= np.zeros(maxiab, dtype=float)
+
+    # get memory view of the numpy arrays
+    newida = np_newida
+    newidb = np_newidb
+    lab = np_lab
+
+    #loop on drillhole
+    while inhole:
+        # get the next l interval and l idex for drillhole a and b
+        ia, ib, l = min_int(la[ia], lb[ib], ia, ib, tol=tol)
+        #print(ia, ib, l)
+        n+=1
+        newida[n]=ida[ia-1]
+        newidb[n]=idb[ib-1]
+        lab[n]=l
+        #print(newida[n])
+        #print(newidb[n])
+        #print(lab[n])
+
+        #this is the end of hole (this fails if maxdepth are not equal)
+        if ia==maxia or ib==maxib:
+            inhole=False
+    #print(n, np_lab[:n+1], np_newida[:n+1], np_newidb[:n+1])
+    return n, np_lab[:n+1], np_newida[:n+1], np_newidb[:n+1]
+
+def get_maxdepth(input_table_A,input_table_B):
+    """Get maximum depth between tables"""
+    #gaps and overlaps
+    maxlist=[]
+    a= input_table_A['todepth'].unique().tolist()
+    maxlist.append(a[-1])
+    b= input_table_B['todepth'].unique().tolist()
+    maxlist.append(b[-1])
+    maxl=float(max(maxlist))
+    return maxl
+
+
+def merge(input_table_A,input_table_B,new_table_name,tol=0.01,clean=True):
+    """Combines two tables by intersecting intervals.
+
+    This function requires drillholes without gaps and overlaps.
+    You may un add_gaps in table_A and table_B before using
+    this function."""
+	
+    #get maxdepth
+    maxl=get_maxdepth(input_table_A,input_table_B)
+    
+    #fill gaps
+    table_A=add_gaps(input_table_A,new_table_name, tol=tol,clean=True, endhole=maxl)
+    table_B=add_gaps(input_table_B,new_table_name, tol=tol,clean=True, endhole=maxl)
+    #print(table_A)
+    #print(table_B)
+    
+    #gaps and overlaps
+    
+    table_A.sort_values(by=['collarid', 'fromdepth'], inplace=True)
+    table_B.sort_values(by=['collarid', 'fromdepth'], inplace=True)
+
+    # add ID to tables
+    table_A.loc[:,'_id0']= np.arange(table_A.shape[0])[:]
+    table_B.loc[:,'_id1']= np.arange(table_B.shape[0])[:]
+
+    # create a groups to easily iterate
+    groupA=table_A.groupby('collarid')
+    #print(groupA)
+    groupB=table_B.groupby('collarid')
+    #print(groupB)
+            
+    # prepare fixed long array to send data
+    #    input
+    np_la=np.empty(table_A.shape[0]+1, dtype = float)
+    np_lb=np.empty(table_B.shape[0]+1, dtype = float)
+    np_ida=np.empty(table_A.shape[0]+1, dtype = int)
+    np_idb=np.empty(table_B.shape[0]+1, dtype = int)
+
+    ll = table_A.shape[0] +  table_B.shape[0] +10
+    nBHID = np.empty(ll, dtype=object, order='C')
+    
+    la = np_la
+    lb = np_lb
+    ida  = np_ida
+    idb  = np_idb
+    
+    #merge
+    tablea= table_A['collarid'].unique().tolist()
+    tableb= table_B['collarid'].unique().tolist()
+    BHID=list(set(tablea) & set(tableb))
+
+    nnf=[]
+    nnt=[]
+    nnIDA=[]
+    nnIDB=[]
+    nnBHID=[]
+
+    keysA= groupA.groups.keys()
+    print(keysA)
+    keysB= groupB.groups.keys()
+    print(keysB)
+
+    for i in BHID:
+        # if we really have to merge
+        if (i in keysA) and (i in keysB):
+            # prepare input data
+            # table A drillhole i
+            nk=groupA.get_group(i).shape[0]
+            for k in range(nk):
+                la[k]=groupA.get_group(i)['fromdepth'].values[k]
+                ida[k]=groupA.get_group(i)['_id0'].values[k]
+
+            la[nk]=groupA.get_group(i)['todepth'].values[nk-1]
+            ida[nk]=groupA.get_group(i)['_id0'].values[nk-1]
+
+            # table B drillhole i
+            nj=groupB.get_group(i).shape[0]
+            for j in range(nj):
+                lb[j]=groupB.get_group(i)['fromdepth'].values[j]
+                idb[j]=groupB.get_group(i)['_id1'].values[j]
+
+            lb[nj]=groupB.get_group(i)['todepth'].values[nj-1]
+            idb[nj]=groupB.get_group(i)['_id1'].values[nj-1]
+
+            # make sure the two drill holes have the same length
+            # by adding a gap at the end of the shortest drillhole
+            if lb[nj] > la[nk]:
+                nk+=1
+                la[nk] = lb[nj]
+                ida[nk] = -999
+                endf = lb[nj]
+
+            elif la[nk] > lb[nj]:
+                nj+=1
+                lb[nj] = la[nk]
+                idb[nj] = -999
+                endf = la[nk]
+
+            # merge drillhole i
+            n, np_lab, np_newida, np_newidb = merge_one_dhole(la[:nk+1],lb[:nj+1], ida[:nk+1], idb[:nj+1], tol=0.01)
+            #print(n, np_lab, np_newida, np_newidb)
+
+            # dhid
+            nBHID[:n]=i
+            nnBHID+=nBHID[:n].tolist()
+            # from
+            nnf+=np_lab[:-1].tolist()
+            # to
+            nnt+=np_lab[1:].tolist()
+            # IDs
+            nnIDA+=np_newida[:-1].tolist()
+            nnIDB+=np_newidb[:-1].tolist()
+            continue
+
+        # it is only on table A?
+        if (i in keysA):
+            n= groupA.get_group(i).shape[0]
+            # in this case we add table A and ignore B
+            # dhid
+            nBHID[:n]=i
+            nnBHID+=nBHID[:n].tolist()
+            # from
+            nnf+=groupA.get_group(i)['fromdepth'].values.tolist()
+            # to
+            nnt+=groupA.get_group(i)['todepth'].values.tolist()
+            # IDs
+            tmp=-999*np.ones(n, dtype='int')
+            nnIDA+=groupA.get_group(i)['_id0'].values.tolist()
+            nnIDB+= tmp.tolist()
+            continue
+
+        # it is only on table B?
+        if (i in keysB):
+
+            n= groupB.get_group(i).shape[0]
+
+            # in this case we add table B and ignore A
+            # dhid
+            nBHID[:n]=i
+            nnBHID+=nBHID[:n].tolist()
+            # from
+            nnf+=groupB.get_group(i)['fromdepth'].values.tolist()
+            # to
+            nnt+=groupB.get_group(i)['todepth'].values.tolist()
+            # IDs
+            tmp=-999*np.ones(n, dtype='int')
+            nnIDA+= tmp.tolist()
+            nnIDB+= groupB.get_group(i)['_id1'].values.tolist()
+            continue
+
+
+    #create new table with intervals and ID
+    newtable=pd.DataFrame({'collarid':nnBHID, 'fromdepth':nnf,'todepth':nnt,'_id0':nnIDA,'_id1':nnIDB})
+    print(newtable)
+	
+    # merge with existing data
+    newtable=newtable.join(table_A, on='_id0', rsuffix='__tmp__')
+    newtable=newtable.join(table_B, on='_id1', rsuffix='__tmp__')
+    print(newtable)
+
+
+    #clean if necessary
+    if clean:
+        newtable.drop(
+            ['collarid__tmp__', 'fromdepth__tmp__','todepth__tmp__','_id0__tmp__','_id1__tmp__'],
+            axis=1,inplace=True, errors='ignore')
+
+    #add table to the class
+    new_table_name=addtable(newtable,new_table_name)
+    new_table_name.to_csv('../data/export/join.csv')
 
 class DrillholeCoordBuilder:
     #a class which calculates the XYZ coords for an entire drillhole
