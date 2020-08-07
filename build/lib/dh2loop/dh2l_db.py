@@ -849,8 +849,8 @@ def clean_text(text):
     text = text.replace(';', ' ')
     text = text.replace('$', ' ')
     text = text.replace('@', ' ')
-    text = text.replace('\'', ' ')
-    text = text.replace('\\', ' ')                        
+    text = text.replace('\'', '')
+    text = text.replace('\\', '')                        
 	
     for cleanup_dic_ele in var.cleanup_dic_list:
         cleaned_item =str(cleanup_dic_ele).replace('(','').replace(')','').replace(',','').replace('\'','')

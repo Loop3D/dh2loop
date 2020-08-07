@@ -1,15 +1,15 @@
 #Extents to query 
 #ranee
-#minlong=115.5
-#maxlong=118
-#minlat=-30.5
-#maxlat=-27.5
+minlong=115.5
+maxlong=118
+minlat=-30.5
+maxlat=-27.5
 
 #fabilea
-minlong=121.2
-maxlong=122.89
-minlat=-21.04
-maxlat=-21.03
+#minlong=121.2
+#maxlong=122.89
+#minlat=-21.04
+#maxlat=-21.03
 
 
 #src_pro,Dst_proj

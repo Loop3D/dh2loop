@@ -849,8 +849,8 @@ def clean_text(text):
     text = text.replace(';', ' ')
     text = text.replace('$', ' ')
     text = text.replace('@', ' ')
-    text = text.replace('\'', ' ')
-    text = text.replace('\\', ' ')                        
+    text = text.replace('\'', '')
+    text = text.replace('\\', '')                        
 	
     for cleanup_dic_ele in var.cleanup_dic_list:
         cleaned_item =str(cleanup_dic_ele).replace('(','').replace(')','').replace(',','').replace('\'','')
@@ -1112,7 +1112,7 @@ def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplic
     Final_Data.Fromdepth = Final_Data.Fromdepth.astype(float)
     Final_Data.Todepth = Final_Data.Todepth.astype(float)
     Final_Data.sort_values(['CollarID', 'Fromdepth','Todepth'], inplace=True)
-    singles = Final_Data.drop_duplicates(subset=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score'],keep='first',inplace =False)
+    singles = Final_Data.drop_duplicates(subset=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode'],keep='first',inplace =False)   #,'Company_Lithology','CET_Lithology','Score'
     singles.to_csv(Upscaled_Litho_NoDuplicates_Export,index=False)
 
 
