@@ -1360,8 +1360,8 @@ def Remove_duplicates_Litho():
     Final_Data.Fromdepth = Final_Data.Fromdepth.astype(float)
     Final_Data.Todepth = Final_Data.Todepth.astype(float)
     Final_Data.sort_values(['CollarID', 'Fromdepth','Todepth'], inplace=True)
-    singles = Final_Data.drop_duplicates(subset=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score'],keep='first',inplace =False)
-    singles.to_csv('Upscaled_Litho_NoDuplicates.csv',index=False)
+    singles = Final_Data.drop_duplicates(subset=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode'],keep='first',inplace =False)   #,'Company_Lithology','CET_Lithology','Score'
+    singles.to_csv(Upscaled_Litho_NoDuplicates_Export,index=False)
 
 
 
