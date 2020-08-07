@@ -18,7 +18,7 @@ dst_csr = 28350
 
 
 #ExportFiles
-export_path='export/'
+export_path='../data/export/'
 DB_Collar_Export=export_path+'DB_Collar_Export.csv'
 DB_Survey_Export=export_path+'DB_Survey_Export.csv'
 DB_Survey_Export_Calc=export_path+'DB_Survey_Export_Calc.csv'
@@ -30,7 +30,7 @@ DB_Lithology_Export_Calc=export_path+'DB_Lithology_Export_Calc.csv'
 DB_Lithology_Export_VTK=export_path+'DB_Lithology_Export.vtp'
 
 print('Default parameters loaded from DH2_LConfig.py:')
-with open('../collar_litho_survey_Notebook/DH2_LConfig.py', 'r') as myfile:
+with open('../notebooks/DH2_LConfig.py', 'r') as myfile:
   data = myfile.read()
   print(data)
   myfile.close()
