@@ -18,7 +18,7 @@ dst_csr = 28350
 
 
 #ExportFiles
-export_path='../data/export/'
+export_path='../data/export_db/'
 DB_Collar_Export=export_path+'DB_Collar_Export.csv'
 DB_Survey_Export=export_path+'DB_Survey_Export.csv'
 DB_Survey_Export_Calc=export_path+'DB_Survey_Export_Calc.csv'
