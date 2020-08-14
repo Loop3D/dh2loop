@@ -20,9 +20,14 @@ import datetime
 import pandas as pd
 import numpy as np
 from math import acos, cos, asin, sin, atan2, tan, radians
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+from nltk.corpus import stopwords
+from dh2loop import Var
 
-
-Attr_col_collar_dic_list=[]
+#Attr_col_collar_dic_list=[]
 
 
 
@@ -77,7 +82,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
       Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
       cur.execute(query,Bounds)
       collar_collarAttr_Filter = [list(elem) for elem in cur]
-      DicList_collar_collarattr = [list(elem) for elem in Attr_col_collar_dic_list]
+      DicList_collar_collarattr = [list(elem) for elem in Var.Attr_col_collar_dic_list]
       for collar_ele in collar_collarAttr_Filter:
          #if (collar_ele[0] == 305574):
             #print("its danger")
@@ -235,7 +240,7 @@ def collar_attr_col_dic():
       cur.execute(query)
 
       for rec in cur:
-         Attr_col_collar_dic_list.append(rec)
+         Var.Attr_col_collar_dic_list.append(rec)
 
    
       #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
@@ -262,18 +267,9 @@ def collar_attr_col_dic():
 
 
 
-import psycopg2
-import csv
-import re
-import time
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process 
-import math
-import datetime
-import pandas as pd
-from math import acos, cos, asin, sin, atan2, tan, radians
 
-Attr_col_survey_dic_list=[]
+
+#Attr_col_survey_dic_list=[]
 
 def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    #print("-----start Final---")
@@ -313,7 +309,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
       Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
       cur.execute(query,Bounds)
       Survey_First_Filter = [list(elem) for elem in cur]
-      Survey_dic_list = [list(elem) for elem in Attr_col_survey_dic_list] 
+      Survey_dic_list = [list(elem) for elem in Var.Attr_col_survey_dic_list] 
       for survey_ele in Survey_First_Filter:
          for attr_col_ele in Survey_dic_list:
             if (survey_ele[2] == attr_col_ele[0])  :  #AZI or DIP
@@ -576,7 +572,7 @@ def Attr_col_dic():
       cur.execute(query)
 
       for rec in cur:
-         Attr_col_survey_dic_list.append(rec)
+         Var.Attr_col_survey_dic_list.append(rec)
 
          
       #Attr_col_survey_dic_list = [list(elem) for elem in temp_list]
@@ -717,33 +713,19 @@ def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
 
 
 
-import psycopg2
-import csv
-import re
-import time
-from fuzzywuzzy import fuzz
-from fuzzywuzzy import process 
-import math
-from collections import Counter
-import datetime
-import pandas as pd
-import numpy as np
-from math import acos, cos, asin, sin, atan2, tan, radians
-import nltk
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-from nltk.corpus import stopwords
 
 
-#First_Filter_list=[['11410',3118047,169.7,169.9,'Lithology','GR'],['11410',3118060,22,23,'Lithology','CL']]
-First_Filter_list=[]
-Attr_col_list=[]
-Litho_dico=[]
-cleanup_dic_list=[]
-Att_col_List_copy_tuple=[]
-Attr_val_Dic=[]
-Attr_val_fuzzy=[]
+
+
+
+
+#First_Filter_list=[]
+#Attr_col_list=[]
+#Litho_dico=[]
+#cleanup_dic_list=[]
+#Att_col_List_copy_tuple=[]
+#Attr_val_Dic=[]
+#Attr_val_fuzzy=[]
 
 
 #print("------------------start Dic_Attr_Col------------")
@@ -754,7 +736,7 @@ def Attr_COl():
     cur.execute(query)
     for record in cur:
         #print(record)
-        Attr_col_list.append(record)
+        Var.Attr_col_list.append(record)
     outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
    
     with open('Dic_attr_col.csv', 'w') as f:
@@ -777,7 +759,7 @@ def Attr_Val_Dic():
     cur.execute(query)
     for record in cur:
         #print(record)
-        Attr_val_Dic.append(record)
+        Var.Attr_val_Dic.append(record)
     outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
    
     with open('Dic_attr_val.csv', 'w') as f:
@@ -803,7 +785,7 @@ def Litho_Dico():
     #print(cur)
     for record in cur:
         #print(record)
-        Litho_dico.append(record)
+        Var.Litho_dico.append(record)
         #print(Litho_dico)
     #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
        
@@ -829,7 +811,7 @@ def Clean_Up():
     cur.execute(query)
     for record in cur:
         #print(record)
-        cleanup_dic_list.append(record)
+        Var.cleanup_dic_list.append(record)
     #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
        
     #with open('cleanup_dic.csv', 'w',encoding="utf-8") as f:
@@ -934,7 +916,7 @@ def clean_text(text):
     text = text.replace('\'', '')
     text = text.replace('\\', '')                        
 	
-    for cleanup_dic_ele in cleanup_dic_list:
+    for cleanup_dic_ele in Var.cleanup_dic_list:
         cleaned_item =str(cleanup_dic_ele).replace('(','').replace(')','').replace(',','').replace('\'','')
         text = text.replace('cleaned_item','')
     return text
@@ -983,7 +965,7 @@ def Final_Lithology_old():
                 words=words.split(" ")
                 last=len(words)-1 #position of last word in phrase
                 
-                for Litho_dico_ele in Litho_dico:              
+                for Litho_dico_ele in Var.Litho_dico:              
                     #litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').split(" ")
                     litho_words=re.split(p, str(Litho_dico_ele))
                     scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
@@ -1110,7 +1092,7 @@ def Attr_val_With_fuzzy():
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
-    Attr_val_Dic_new = [list(elem) for elem in Attr_val_Dic]
+    Attr_val_Dic_new = [list(elem) for elem in Var.Attr_val_Dic]
     for Attr_val_Dic_ele in Attr_val_Dic_new:
         
 
@@ -1132,7 +1114,7 @@ def Attr_val_With_fuzzy():
         words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
         words=words.rstrip('\n\r').split(" ")
         last=len(words)-1 #position of last word in phrase
-        for Litho_dico_ele in Litho_dico:
+        for Litho_dico_ele in Var.Litho_dico:
             #print(Litho_dico)
         #litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').split(" ")
             #litho_words=re.split(" ", str(Litho_dico_ele))
@@ -1200,7 +1182,7 @@ def Attr_val_With_fuzzy():
             #attr_val_sub_list.append(top_new[1])
             #Attr_val_fuzzy.append(attr_val_sub_list)
 
-            Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
+            Var.Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
             
             #attr_val_sub_list.clear()
             
@@ -1229,7 +1211,7 @@ def Attr_val_With_fuzzy():
             #attr_val_sub_list.clear()
 
 
-            Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,'Other',bestmatch])  #top_new[1]])
+            Var.Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,'Other',bestmatch])  #top_new[1]])
             
             out.write('%d,' %int(Attr_val_Dic_ele[0]))
             out.write('%s,' %Attr_val_Dic_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
@@ -1307,9 +1289,9 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
-    #Attr_val_Dic_new = [list(elem) for elem in Attr_val_Dic]
+    #Attr_val_Dic_new = [list(elem) for elem in Var.Attr_val_Dic]
     for First_filter_ele in First_Filter_list:
-        for Attr_val_fuzzy_ele in Attr_val_fuzzy:
+        for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
             if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
                 #print(Attr_val_fuzzy_ele[0],"\t",Attr_val_fuzzy_ele[1])
                 #print(First_filter_ele[0],"\t",First_filter_ele[5])
