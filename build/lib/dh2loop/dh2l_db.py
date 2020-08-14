@@ -24,8 +24,8 @@ Attr_col_collar_dic_list=[]
     
             
             
-def collar_collar_attri_Final():
-   print("-----start Final---")
+def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,minlat,maxlat):
+  # print("-----start Final---")
 
    fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth','X','Y']
    out= open(DB_Collar_Export, "w",encoding ="utf-8")
@@ -191,7 +191,7 @@ def collar_collar_attri_Final():
       if conn is not None:
          conn.close()
 
-   print("-----End Final---")
+   #print("-----End Final---")
 
 
 
@@ -219,7 +219,7 @@ def maximum(iterable, default):
 
 
 def collar_attr_col_dic():
-   print("------ dictionary----start")
+   #print("------ dictionary----start")
    query =""" SELECT  rl_maxdepth_dic.attributecolumn,rl_maxdepth_dic.cet_attributecolumn  FROM rl_maxdepth_dic """
    conn = None
    
@@ -245,7 +245,7 @@ def collar_attr_col_dic():
       if conn is not None:
          conn.close()
 
-   print("------ dictionary----End")
+   #print("------ dictionary----End")
          
 
 
@@ -269,8 +269,8 @@ from math import acos, cos, asin, sin, atan2, tan, radians
 
 Attr_col_survey_dic_list=[]
 
-def Survey_Final():
-   print("-----start Final---")
+def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
+   #print("-----start Final---")
    fieldnames=['CollarID','Depth','Azimuth','Dip']
    out= open(DB_Survey_Export, "w",encoding ="utf-8")
    for ele in fieldnames:
@@ -554,13 +554,13 @@ def Survey_Final():
       if conn is not None:
          conn.close()
 
-   print("-----End Final---")
+   #print("-----End Final---")
 
 
 
 
 def Attr_col_dic():
-   print("------ dictionary----start")
+   #print("------ dictionary----start")
    query =""" SELECT * FROM public.survey_dic """
    conn = None
    temp_list =[]
@@ -594,7 +594,7 @@ def Attr_col_dic():
       if conn is not None:
          conn.close()
 
-   print("------ dictionary----End")
+   #print("------ dictionary----End")
          
 
 
@@ -611,7 +611,7 @@ def count_Digit(n):
     return digits
 
 
-def convert_survey():
+def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
    location=pd.read_csv(DB_Collar_Export)
    survey=pd.read_csv(DB_Survey_Export)
    survey=pd.merge(survey,location, how='left', on='CollarID')
@@ -740,7 +740,7 @@ Attr_val_Dic=[]
 Attr_val_fuzzy=[]
 
 
-print("------------------start Dic_Attr_Col------------")
+#print("------------------start Dic_Attr_Col------------")
 def Attr_COl():
     query = """SELECT * FROM public.dic_att_col_lithology_1"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
@@ -758,12 +758,12 @@ def Attr_COl():
     cur.close()
     conn.close()
 
-    print("------------------end Dic_Attr_Col------------")
+    #print("------------------end Dic_Attr_Col------------")
 
 
 
 
-print("------------------start Dic_Attr_val------------")
+#print("------------------start Dic_Attr_val------------")
 def Attr_Val_Dic():
     query = """SELECT * FROM public.dic_attr_val_lithology_filter"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
@@ -781,7 +781,7 @@ def Attr_Val_Dic():
     cur.close()
     conn.close()
 
-    print("------------------end Dic_Attr_val------------")
+    #print("------------------end Dic_Attr_val------------")
 
 
    
@@ -789,7 +789,7 @@ def Attr_Val_Dic():
 
 
 def Litho_Dico():
-    print("------------------Start Litho_Dico------------")
+    #print("------------------Start Litho_Dico------------")
     query = """SELECT litho_dic_1.clean  FROM litho_dic_1"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -807,14 +807,14 @@ def Litho_Dico():
     #print(Litho_dico)
     cur.close()
     conn.close()
-    print("------------------end Litho_Dico------------")
+    #print("------------------end Litho_Dico------------")
 
 
     
     
 
 def Clean_Up():
-    print("------------------start Clean_Up_Dico------------")
+    #print("------------------start Clean_Up_Dico------------")
 
 
     query = """SELECT cleanup_lithology.clean  FROM cleanup_lithology"""
@@ -833,7 +833,7 @@ def Clean_Up():
     cur.close()
     conn.close()
 
-    print("------------------End Clean_Up_Dico------------")
+    #print("------------------End Clean_Up_Dico------------")
 
   
 
@@ -1092,7 +1092,7 @@ def tokenize_and_lemma(text, min_len=0):
 
 
 def Attr_val_With_fuzzy():
-    print("--------start of Attr_val_fuzzy-----------")
+    #print("--------start of Attr_val_fuzzy-----------")
     bestmatch=-1
     bestlitho=''
     top=[]
@@ -1247,7 +1247,7 @@ def Attr_val_With_fuzzy():
 
 
 
-    print("--------End of Attr_val_fuzzy-----------")
+    #print("--------End of Attr_val_fuzzy-----------")
 
 
 
@@ -1274,8 +1274,8 @@ def Depth_validation(row_2,row_3):
 
 
 
-def Final_Lithology():
-    print("--------start of Final -----------")
+def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
+   # print("--------start of Final -----------")
     query = """select t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn, t1.attributevalue 
 		 from public.dhgeologyattr t1 
 		 inner join public.dhgeology t2 
@@ -1296,7 +1296,7 @@ def Final_Lithology():
     First_Filter_list = [list(elem) for elem in cur]
     print("First Filter ready")
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']
-    out= open("DB_lithology_Final.csv", "w",encoding ="utf-8")
+    out= open(DB_lithology_Export, "w",encoding ="utf-8")
     #out_first_filter= open("DB_lithology_First.csv", "w",encoding ="utf-8")
     for ele in fieldnames:
         out.write('%s,' %ele)
@@ -1327,7 +1327,7 @@ def Final_Lithology():
     print("--------End of Final -----------")
 
 
-def Upscale_lithology():
+def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
     print("--------start of Upsacle -----------")
     Hierarchy_litho_dico_List =[]
     query = """ select * from public.hierarchy_dico """
@@ -1338,12 +1338,12 @@ def Upscale_lithology():
     CET_hierarchy_dico = pd.DataFrame(Hierarchy_litho_dico_List,columns=['Level_3','Level_2','Level_1'])
     #CET_hierarchy_dico.to_csv ('CET_hierarchy_dico.csv', index = False, header=True)
     #print (CET_hierarchy_dico)
-    DB_Lithology= pd.read_csv('DB_Lithology_Final.csv',encoding = "ISO-8859-1", dtype='object')
+    DB_Lithology= pd.read_csv(DB_Lithology_Export,encoding = "ISO-8859-1", dtype='object')
     Upscaled_Litho=pd.merge(DB_Lithology, CET_hierarchy_dico, left_on='CET_Lithology', right_on='Level_3')
     Upscaled_Litho.sort_values("Company_ID", ascending = True, inplace = True)
     #Upscaled_Litho.drop(['Unnamed: 8'], axis=1)
     del Upscaled_Litho['Unnamed: 8']
-    Upscaled_Litho.to_csv ('Upscaled_Litho.csv', index = False, header=True)
+    Upscaled_Litho.to_csv (DB_Lithology_Upscaled, index = False, header=True)
     
     #Upscaled_Litho= Upscaled_Litho.loc[:, ~Upscaled_Litho.columns.str.contains('^Unnamed')]
     #Upscaled_Litho.reset_index(level=0, inplace=True)
@@ -1354,8 +1354,8 @@ def Upscale_lithology():
 
 
 
-def Remove_duplicates_Litho():
-    Final_Data= pd.read_csv('Upscaled_Litho.csv')   
+def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplicates_Export):
+    Final_Data= pd.read_csv(DB_Lithology_Upscaled)   
     Final_Data.CollarID = Final_Data.CollarID.astype(int)
     Final_Data.Fromdepth = Final_Data.Fromdepth.astype(float)
     Final_Data.Todepth = Final_Data.Todepth.astype(float)
