@@ -1282,7 +1282,7 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     cur = conn.cursor()
     cur.execute(query)
     First_Filter_list = [list(elem) for elem in cur]
-    print("First Filter ready")
+    #print("First Filter ready")
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']
     out= open(DB_Lithology_Export, "w",encoding ="utf-8")
     #out_first_filter= open("DB_lithology_First.csv", "w",encoding ="utf-8")
