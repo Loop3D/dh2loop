@@ -27,7 +27,7 @@ nltk.download('wordnet')
 from nltk.corpus import stopwords
 from dh2loop import Var
 
-#Attr_col_collar_dic_list=[]
+
 
 
 
@@ -36,7 +36,16 @@ from dh2loop import Var
             
             
 def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,minlat,maxlat):
-  # print("-----start Final---")
+ '''
+    Function Extracts data from tables collar and collarattr for processing attributes RL and Maxdepth
+    Inputs:
+        - src_csr : Coordinate Reference System of source 4326
+        - dst_csr : Coordinate Reference System of destination 28350 to 28356
+        - minlong,maxlong,minlat,maxlat :  coordinates of region 
+  
+    Output: is a csv file ,the data processed for RL, Maxdepth attribute in required format  
+        
+ '''
 
    fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth','X','Y']
    out= open(DB_Collar_Export, "w",encoding ="utf-8")
@@ -70,7 +79,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
    write_to_csv = False
    x2=0.0
    y2=0.0
-    #create tranformer object
+   #create tranformer object with source and destination read from config file
    transformer = Transformer.from_crs(src_csr, dst_csr)
     
    
@@ -79,17 +88,17 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
    try:
       conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
       cur = conn.cursor()
-      Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+      Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds read from config file
       cur.execute(query,Bounds)
       collar_collarAttr_Filter = [list(elem) for elem in cur]
       DicList_collar_collarattr = [list(elem) for elem in Var.Attr_col_collar_dic_list]
       for collar_ele in collar_collarAttr_Filter:
          #if (collar_ele[0] == 305574):
             #print("its danger")
-         for Dic_ele in DicList_collar_collarattr:
+         for Dic_ele in DicList_collar_collarattr:  # loop through each element of DB extraction
             if(collar_ele[4] == Dic_ele[0]):
                
-               if(Dic_ele[1] == 'rl'):
+               if(Dic_ele[1] == 'rl'):  # check for RL
                   #print("1")
                   if(Pre_id== collar_ele[0] or Pre_id ==0 or Cur_id ==collar_ele[0]):
                      #print("2")
@@ -128,7 +137,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                      list_rl.append(Parse_Num(collar_ele[5]))
                      
              
-               elif(Dic_ele[1]=='maxdepth'):
+               elif(Dic_ele[1]=='maxdepth'):  # check for maxdepth
                   #print("7")
                   if(Pre_id== collar_ele[0] or Pre_id == 0 or Cur_id ==collar_ele[0] ):
                      if(collar_ele[5][0] == '-'):
@@ -173,8 +182,8 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                      
         
          
-         x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt
-         if(write_to_csv == True):
+         x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
+         if(write_to_csv == True):   # write to csv file
             out.write('%d,' %Pre_id)
             out.write('%s,' %Pre_hole_id)
             out.write('%f,' %Pre_Longitude)
@@ -202,7 +211,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
       if conn is not None:
          conn.close()
 
-   #print("-----End Final---")
+   
 
 
 
@@ -230,7 +239,9 @@ def maximum(iterable, default):
 
 
 def collar_attr_col_dic():
-   #print("------ dictionary----start")
+ '''
+    Function to extract rl,maxdepth dictionary from DB, and stored in list
+ '''
    query =""" SELECT  rl_maxdepth_dic.attributecolumn,rl_maxdepth_dic.cet_attributecolumn  FROM rl_maxdepth_dic """
    conn = None
    
@@ -256,23 +267,18 @@ def collar_attr_col_dic():
       if conn is not None:
          conn.close()
 
-   #print("------ dictionary----End")
+   
          
 
-
-
-
-
-
-
-
-
-
-
-#Attr_col_survey_dic_list=[]
-
 def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
-   #print("-----start Final---")
+ '''
+    Function which extracts data from tables dhsurvey,dhsurveyattr and collar  for attributes Depth,Azimuth and Dip
+    Inputs:
+        - minlong,maxlong,minlat,maxlat :  coordinates of region 
+    Output:
+        - DB_Survey_Export : The processed data after extraction is written to this csv file in required format.
+ '''
+   
    fieldnames=['CollarID','Depth','Azimuth','Dip']
    out= open(DB_Survey_Export, "w",encoding ="utf-8")
    for ele in fieldnames:
@@ -310,7 +316,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
       cur.execute(query,Bounds)
       Survey_First_Filter = [list(elem) for elem in cur]
       Survey_dic_list = [list(elem) for elem in Var.Attr_col_survey_dic_list] 
-      for survey_ele in Survey_First_Filter:
+      for survey_ele in Survey_First_Filter:   
          for attr_col_ele in Survey_dic_list:
             if (survey_ele[2] == attr_col_ele[0])  :  #AZI or DIP
                if(Pre_id !=survey_ele[0]  and Pre_id !=0):
@@ -460,7 +466,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
 
 
                      
-               if ('AZI' in attr_col_ele[1] and (Pre_id ==0 or Pre_id ==survey_ele[0])): # and back_survey_1 == survey_ele[1] ):   #AZI
+               if ('AZI' in attr_col_ele[1] and (Pre_id ==0 or Pre_id ==survey_ele[0])): # and back_survey_1 == survey_ele[1] ):   #AZI  processing
                   Pre_id = survey_ele[0]
                   if survey_ele[3].isalpha():
                      continue
@@ -504,7 +510,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                            
                            
 
-               if ('DIP' in attr_col_ele[1] and (Pre_id ==survey_ele[0] or Pre_id ==0)) :   #DIP
+               if ('DIP' in attr_col_ele[1] and (Pre_id ==survey_ele[0] or Pre_id ==0)) :   #DIP  processing
                   Pre_id = survey_ele[0]
                   if survey_ele[3].isalpha():
                      continue
@@ -556,13 +562,16 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
       if conn is not None:
          conn.close()
 
-   #print("-----End Final---")
+   
 
 
 
 
 def Attr_col_dic():
-   #print("------ dictionary----start")
+'''
+    Function extracts survey dictionary for attribute column AZI, Dip from DB and stores in List
+'''
+   
    query =""" SELECT * FROM public.survey_dic """
    conn = None
    temp_list =[]
@@ -581,10 +590,10 @@ def Attr_col_dic():
          #print(ele)
          #Attr_col_survey_dic_list.append(record)
 
-      outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
+      #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
    
-      with open('Dic_attr_col_survey.csv', 'w') as f:
-         cur.copy_expert(outputquery, f)
+      #with open('Dic_attr_col_survey.csv', 'w') as f:
+         #cur.copy_expert(outputquery, f)
       
  
           
@@ -596,7 +605,7 @@ def Attr_col_dic():
       if conn is not None:
          conn.close()
 
-   #print("------ dictionary----End")
+   
          
 
 
@@ -614,6 +623,15 @@ def count_Digit(n):
 
 
 def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
+'''
+    Function takes collar and survey information for particular hole and calculates X,Y,Z
+    Input :
+        - DB_Collar_Export: Data extracted and processed from collar and related tables
+        - DB_Survey_Export: Data extracted and processed from survey and related tables
+    Output:
+        - DB_Survey_Export_Calc :x,y,z calculations for survey data 
+'''
+   
    location=pd.read_csv(DB_Collar_Export)
    survey=pd.read_csv(DB_Survey_Export)
    survey=pd.merge(survey,location, how='left', on='CollarID')
@@ -658,7 +676,7 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
          #Z2=0.0
          #len12 = float(row['Depth']) - last_Depth
          #X2,Y2,Z2=dsmincurb(len12,last_Azi,last_Dip,float(row['Azimuth']),float(row['Dip']))
-         X2,Y2,Z2=dia2xyz(X1,Y1,Z1,last_Dip,last_Azi,last_Depth,float(row['Dip']),float(row['Azimuth']),float(row['Depth']))
+         X2,Y2,Z2=dia2xyz(X1,Y1,Z1,last_Dip,last_Azi,last_Depth,float(row['Dip']),float(row['Azimuth']),float(row['Depth']))  # x,y z calculation by function dis2xyz
          out.write('%s,' %last_CollarID)
          out.write('%f,' %float(row['Depth']))
          out.write('%f,' %float(row['Azimuth']))
@@ -679,6 +697,23 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
 
 
 def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
+    '''
+    Function takes two DIP,AZI,Depth values for X,Y,Z value
+    Inputs:
+           - X1  : x value fron collar extraction for a particular hole
+           - Y1  : y value fron collar extraction for a particular hole
+           - Z1  : RL value fron collar extraction for a particular hole
+           - I1  : DIP_1 value from survey
+           - Az1  : Azi_1 value from survey
+           - Distance1 : Depth_1 value from survey
+           - I2   : DIP_2 value from survey
+           - Az2  : Azi_2 value from survey
+           - Distance2 :  Depth_2 value from survey
+           
+    Output:
+           - X,Y,Z value for Deppth_1 to Depth_2
+        
+    '''
    I1=radians(I1)
    Az1=radians(Az1)
    I2=radians(I2)
@@ -707,52 +742,10 @@ def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-#First_Filter_list=[]
-#Attr_col_list=[]
-#Litho_dico=[]
-#cleanup_dic_list=[]
-#Att_col_List_copy_tuple=[]
-#Attr_val_Dic=[]
-#Attr_val_fuzzy=[]
-
-
-#print("------------------start Dic_Attr_Col------------")
-def Attr_COl():
-    query = """SELECT * FROM public.dic_att_col_lithology_1"""
-    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
-    cur = conn.cursor()
-    cur.execute(query)
-    for record in cur:
-        #print(record)
-        Var.Attr_col_list.append(record)
-    outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
-   
-    with open('Dic_attr_col.csv', 'w') as f:
-        cur.copy_expert(outputquery, f)
-    
-
-    cur.close()
-    conn.close()
-
-    #print("------------------end Dic_Attr_Col------------")
-
-
-
-
-#print("------------------start Dic_Attr_val------------")
 def Attr_Val_Dic():
+'''
+    Funtion extracts Attribute value dictionary table from DB.
+'''
     query = """SELECT * FROM public.dic_attr_val_lithology_filter"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -760,16 +753,16 @@ def Attr_Val_Dic():
     for record in cur:
         #print(record)
         Var.Attr_val_Dic.append(record)
-    outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
+    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
    
-    with open('Dic_attr_val.csv', 'w') as f:
-        cur.copy_expert(outputquery, f)
+    #with open('Dic_attr_val.csv', 'w') as f:
+        #cur.copy_expert(outputquery, f)
     
 
     cur.close()
     conn.close()
 
-    #print("------------------end Dic_Attr_val------------")
+    
 
 
    
@@ -777,7 +770,9 @@ def Attr_Val_Dic():
 
 
 def Litho_Dico():
-    #print("------------------Start Litho_Dico------------")
+ '''
+    Function Extracts Dictionary for lithology from DB.
+ '''
     query = """SELECT litho_dic_1.clean  FROM litho_dic_1"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -795,16 +790,16 @@ def Litho_Dico():
     #print(Litho_dico)
     cur.close()
     conn.close()
-    #print("------------------end Litho_Dico------------")
+    
 
 
     
     
 
 def Clean_Up():
-    #print("------------------start Clean_Up_Dico------------")
-
-
+ '''
+    Function extracts clean up dictionary from DB.
+ '''
     query = """SELECT cleanup_lithology.clean  FROM cleanup_lithology"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -821,73 +816,18 @@ def Clean_Up():
     cur.close()
     conn.close()
 
-    #print("------------------End Clean_Up_Dico------------")
+    
 
   
-
-
-
-def First_Filter():
-    print("------------------start First_Filter------------")
-    start = time.time()
-    #out= open("DB_lithology_First1.csv", "w",encoding ="utf-8")
-    query = """select t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn, t1.attributevalue 
-    from public.dhgeologyattr t1 
-    inner join public.dhgeology t2 
-    on t1.dhgeologyid = t2.id 
-    inner join collar t3 
-    on t3.id = t2.collarid 
-    inner join clbody t4 
-    on t4.companyid = t3.companyid 
-    WHERE(t3.longitude BETWEEN 115.5 AND 118) AND(t3.latitude BETWEEN - 30.5 AND - 27.5) 
-    ORDER BY t3.companyid ASC"""
-
-
-    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
-    cur = conn.cursor()
-    cur.execute(query)
-    a_list = [list(elem) for elem in cur]
-    for row in a_list:
-        att_val=row[4]
-        for att_col_ele in Attr_col_list:
-            dic_att_col=str(att_col_ele).replace('(','').replace(')','').replace(',','').replace('\'','')
-            
-            if att_val == dic_att_col :
-                from_depth = row[2]                
-                to_depth = row[3]
-                if from_depth is not None and to_depth is not None:
-                    if to_depth>from_depth:
-                        First_Filter_list.append(row)
-                        #print(row)
-                    elif from_depth == to_depth:
-                        to_depth = to_depth+0.01
-                        row[3]=to_depth
-                        First_Filter_list.append(row)
-                        #print(row)
-                    elif from_depth >to_depth:   
-                        row[2]=to_depth       
-                        row[3]=from_depth
-                        First_Filter_list.append(row)
-                        #print(row)
-                 
-                    #for column in row:
-                        #out.write('%s,' %column)
-                    #out.write('\n')
-                   
-                    
-   
-
-    cur.close()
-    conn.close()
-    out.close() 
-    end = time.time()
-    print(end - start)
-    print("------------------End First_Filter------------")
-
-
-
-
 def clean_text(text):
+'''
+    Function clean the text by symbols and specified text, uses cleanup dictionary
+    Input: 
+         - Text
+    output: 
+        - Cleaned text
+
+'''
     text=text.lower().replace('unnamed','').replace('meta','').replace('meta-','').replace('undifferentiated ','').replace('unclassified ','')
     text=text.replace('differentiated','').replace('undiff','').replace('undiferentiated','').replace('undifferntiates','')
     text=(re.sub('\(.*\)', '', text)) # removes text in parentheses
@@ -914,7 +854,7 @@ def clean_text(text):
     text = text.replace('$', ' ')
     text = text.replace('@', ' ')
     text = text.replace('\'', '')
-    text = text.replace('\\', '')                        
+    text = text.replace('\\', '')  #replace backslash by space                      
 	
     for cleanup_dic_ele in Var.cleanup_dic_list:
         cleaned_item =str(cleanup_dic_ele).replace('(','').replace(')','').replace(',','').replace('\'','')
@@ -928,106 +868,6 @@ def clean_text(text):
 
 
 
-#Final File
-def Final_Lithology_old():
-    print("--------start of Final -----------")
-    bestmatch=-1
-    bestlitho=''
-    top=[]
-    p = re.compile(r'[- _]')
-    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']
-    out= open("DB_lithology_Final.csv", "w",encoding ="utf-8")
-    for ele in fieldnames:
-        out.write('%s,' %ele)
-    out.write('\n')
-    query = '''SELECT dic_attr_val_lithology_filter.company_id,dic_attr_val_lithology_filter.company_code,replace(dic_attr_val_lithology_filter.comapany_litho, ',' , '_') as comapany_litho  FROM dic_attr_val_lithology_filter'''
-    conn = psycopg2.connect(host='130.95.198.59', port = 5432, database='gswa_dh', user='postgres', password='loopie123pgpw')
-    cur = conn.cursor()
-    cur.execute(query)
-    a_list = [list(elem) for elem in cur]
-    for row in a_list:    
-        for First_filter_ele in First_Filter_list:
-            #ele_0 = str(First_filter_ele[0]).replace('(','').replace(')','').replace(',','').replace('\'','')    
-            #ele_5 = str(First_filter_ele[5]).replace('(','').replace(')','').replace(',','').replace('\'','')
-            
-            company_code = row[1]
-            company_litho = row[2]
-            #print(row[0])
-            #print( First_filter_ele[0])
-            #print(row[1])
-            #print( First_filter_ele[5])
-            if int(row[0]) == First_filter_ele[0] and  row[1] == First_filter_ele[5]:
-                #del First_filter_ele[4]
-                #del First_filter_ele[4]
-                cleaned_text=clean_text(row[2])
-                #print(cleaned_text)
-                words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
-                words=words.split(" ")
-                last=len(words)-1 #position of last word in phrase
-                
-                for Litho_dico_ele in Var.Litho_dico:              
-                    #litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').split(" ")
-                    litho_words=re.split(p, str(Litho_dico_ele))
-                    scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
-                    for sc in scores:                        
-                        if(sc[1]>bestmatch): #better than previous best match
-                            bestmatch =  sc[1]
-                            bestlitho=litho_words[0]
-                            top=sc
-                            if(sc[0]==words[last]): #bonus for being last word in phrase
-                                bestmatch=bestmatch*1.01
-                        elif (sc[1]==bestmatch): #equal to previous best match
-                            if(sc[0]==words[last]): #bonus for being last word in phrase
-                                bestlitho=litho_words[0]
-                                bestmatch=bestmatch*1.01
-                            else:
-                                top=top+sc
-
-                #top = [list(elem) for elem in top]
-                top_new = list(top)
-                if top_new[1] >80:
-                    #del First_filter_ele[4]
-                    #del First_filter_ele[4]
-                    #for column in First_filter_ele:
-                    out.write('%s,' %First_filter_ele[0])
-                    out.write('%s,' %First_filter_ele[1])
-                    out.write('%s,' %(First_filter_ele[2]).replace(',' ,' '))
-                    out.write('%s,' %First_filter_ele[3])
-                    out.write('%s,' %row[1])
-                    out.write('%s,' %row[2])
-                    CET_Litho = str(top_new[0]).replace('(','').replace(')','').replace('\'','').replace(',','')
-                    CET_Litho = CET_Litho.replace(',', ' ')
-                    out.write('%s,' %CET_Litho)
-                    out.write('%d,' %top_new[1])
-                    out.write('\n')
-                    #top.clear()
-                    top_new[:] =[]
-                    CET_Litho=''
-                    bestmatch=-1
-                    bestlitho=''
-                else:
-                    #del First_filter_ele[4]
-                    #del First_filter_ele[4]
-                    #for column in First_filter_ele:
-                    out.write('%s,' %First_filter_ele[0])
-                    out.write('%s,' %First_filter_ele[1])
-                    out.write('%s,' %(First_filter_ele[2]).replace(',' ,' '))
-                    out.write('%s,' %First_filter_ele[3])
-                    out.write('%s,' %row[1])
-                    out.write('%s,' %row[2])
-                    out.write('Other,')
-                    out.write('%d,' %top_new[1])
-                    out.write('\n')
-                    #top.clear()
-                    top_new[:] =[]
-                    CET_Litho=''
-                    bestmatch=-1
-                    bestlitho=''
-
-    cur.close()
-    conn.close()
-    out.close()
-    print("--------End of Final-----------")
 
 
 
@@ -1080,7 +920,11 @@ def tokenize_and_lemma(text, min_len=0):
 
 
 def Attr_val_With_fuzzy():
-    #print("--------start of Attr_val_fuzzy-----------")
+ '''
+ Function gets the fuzzuwuzzy string of the lithology text .The lithology text is cleaned,lemmatised and tokenized.
+    Input: Dictionaries Extracted
+    Output: is a List and csv file of fuzzywuzzy for lithology.
+ '''
     bestmatch=-1
     bestlitho=''
     top=[]
@@ -1096,92 +940,40 @@ def Attr_val_With_fuzzy():
     for Attr_val_Dic_ele in Attr_val_Dic_new:
         
 
-       # Attr_val_Dic_ele[2] = Attr_val_Dic_ele[2].replace('\'','').replace('-','').replace('/','')
-       # cleaned_text_1=tokenize_and_lemma(Attr_val_Dic_ele[2])  #tokenize
-       # print(cleaned_text_1)
-       # cleaned_text_2=" ".join(str(x) for x in cleaned_text_1)  #convert to string from list
-       # print(cleaned_text_2)
-       # cleaned_text=clean_text(cleaned_text_2)   #tokenize
-
+       
         cleaned_text_1=clean_text(Attr_val_Dic_ele[2])
         cleaned_text_1=tokenize_and_lemma(cleaned_text_1)
         cleaned_text=" ".join(str(x) for x in cleaned_text_1)
 
-        #cleaned_text=clean_text(Attr_val_Dic_ele[2])   # for testing purpose
         
-        #if(cleaned_text =='granite'):
-            #print(cleaned_text)
         words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
         words=words.rstrip('\n\r').split(" ")
         last=len(words)-1 #position of last word in phrase
         for Litho_dico_ele in Var.Litho_dico:
-            #print(Litho_dico)
-        #litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').split(" ")
-            #litho_words=re.split(" ", str(Litho_dico_ele))
-            #litho_words=str(Litho_dico_ele).split(" ")
             litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').replace('(','').replace(')','').replace('\'','').replace(',','').split(" ")
-            #print(litho_words)
-            #if(litho_words == "alkali-feldspar-granite"):
-                #print("Alkali-feldspar-granite")
-
-
+            
             scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
             for sc in scores:                        
                 if(sc[1]>bestmatch): #better than previous best match
                     bestmatch =  sc[1]
                     bestlitho=litho_words[0]
-                    #print(bestmatch)
-                    #print(bestlitho)
-                    #top=sc
                     top.append([sc[0],sc[1]])
                     if(sc[0]==words[last]): #bonus for being last word in phrase
                         bestmatch=bestmatch*1.01
-                        #print("inside 1")
-                        #print(sc[0])
-                        #print(words[last])
+                        
                 elif (sc[1]==bestmatch): #equal to previous best match
                     if(sc[0]==words[last]): #bonus for being last word in phrase
                         bestlitho=litho_words[0]
                         bestmatch=bestmatch*1.01
-                        #print(bestlitho)
-                        #print(bestmatch)
-                        #print(words[last])
+                        
                     else:
-                        #top=top+sc
+                        
                         top.append([sc[0],sc[1]])
         
-        #print(top)
-        #top_new = list(top)
-        #top_new=[list(elem) for elem in top]
-        #for i in range(len(top)):
-            
-        #print(top_new)
-        i=0
-        #print(" %s %d " %(top_new[0], top_new[1] ))
-
         
-        #for top_new_ele in top:
-            #if(top_new_ele[0].replace('(','').replace(')','').replace('\'','').replace(',','') == cleaned_text):
-               # bestlitho = cleaned_text
-               # bestmatch = 100
-                
-            
-                
-        
-           
-            
             
         if bestmatch >80:
-            #CET_Litho = str(top_new[0]).replace('(','').replace(')','').replace('\'','').replace(',','')
-            #print(CET_Litho)
             
-            #attr_val_sub_list.append(Attr_val_Dic_ele[0])
-            #attr_val_sub_list.append(Attr_val_Dic_ele[1])
-            #attr_val_sub_list.append(Attr_val_Dic_ele[2])
-            #attr_val_sub_list.append(bestlitho)
-            #attr_val_sub_list.append(top_new[1])
-            #Attr_val_fuzzy.append(attr_val_sub_list)
-
             Var.Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
             
             #attr_val_sub_list.clear()
@@ -1202,15 +994,7 @@ def Attr_val_With_fuzzy():
            
             
         else:
-            #attr_val_sub_list.append(Attr_val_Dic_ele[0])
-            #attr_val_sub_list.append(Attr_val_Dic_ele[1])
-            #attr_val_sub_list.append(Attr_val_Dic_ele[2])
-            #attr_val_sub_list.append('Other')
-            #attr_val_sub_list.append(top_new[1])
-            #Attr_val_fuzzy.append(attr_val_sub_list)
-            #attr_val_sub_list.clear()
-
-
+            
             Var.Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,'Other',bestmatch])  #top_new[1]])
             
             out.write('%d,' %int(Attr_val_Dic_ele[0]))
@@ -1231,15 +1015,15 @@ def Attr_val_With_fuzzy():
 
 
 
-
-
-
-
-    #print("--------End of Attr_val_fuzzy-----------")
-
-
-
 def Depth_validation(row_2,row_3):
+'''
+Funtion validates the from and to depth values according to the requirment
+    Input : 
+        - From Depth
+        - To Depth
+    Output:
+        - From Depth,To Depth : Right Depth values for from and to depth 
+'''
     from_depth = row_2               
     to_depth = row_3
     if (from_depth is not None and to_depth is not None) or  (from_depth is not None or to_depth is not None) :
@@ -1263,7 +1047,14 @@ def Depth_validation(row_2,row_3):
 
 
 def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
-   # print("--------start of Final -----------")
+'''
+    Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
+    For Each row extracted the from and to depth values are validated , fuzzywuzzy values are generated for the lithology along with the score.
+    Input : 
+        -minlong,maxlong,minlat,maxlat : Region of interest.
+    Output:
+        - csv file with the extracted data with fuzzywuzzy and score.
+'''
     query = """select t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn, t1.attributevalue 
 		 from public.dhgeologyattr t1 
 		 inner join public.dhgeology t2 
@@ -1282,14 +1073,14 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     cur = conn.cursor()
     cur.execute(query)
     First_Filter_list = [list(elem) for elem in cur]
-    #print("First Filter ready")
+    
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']
     out= open(DB_Lithology_Export, "w",encoding ="utf-8")
-    #out_first_filter= open("DB_lithology_First.csv", "w",encoding ="utf-8")
+    
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
-    #Attr_val_Dic_new = [list(elem) for elem in Var.Attr_val_Dic]
+    
     for First_filter_ele in First_Filter_list:
         for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
             if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
@@ -1312,11 +1103,18 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
         #out_first_filter.write('\n')
         	
 	
-    #print("--------End of Final -----------")
+    
 
 
 def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
-    #print("--------start of Upsacle -----------")
+'''
+Function upscales the CET_Loithology generated using the CET hierarchy dictionary to level1,level2,level3
+    Input: 
+        - DB_Lithology_Export csv file 
+    Output:
+        - is a csv file DB_Lithology_Upscaled_Export with upscales data 
+'''
+
     Hierarchy_litho_dico_List =[]
     query = """ select * from public.hierarchy_dico """
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
@@ -1333,16 +1131,18 @@ def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
     del Upscaled_Litho['Unnamed: 8']
     Upscaled_Litho.to_csv (DB_Lithology_Upscaled_Export, index = False, header=True)
     
-    #Upscaled_Litho= Upscaled_Litho.loc[:, ~Upscaled_Litho.columns.str.contains('^Unnamed')]
-    #Upscaled_Litho.reset_index(level=0, inplace=True)
-    #Upscaled_Litho['CET_Litho']=Upscaled_Litho['index']
-    #del Upscaled_Litho['index']
-    #Upscaled_Litho.to_csv(DB_Lithology_Upscaled)
-    #print("--------End of Upsacle -----------")
+    
 
 
 
 def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplicates_Export):
+'''
+Function removes the multiple companies logging the same lithology (or duplicate rows)
+    Input:
+        - DB_Lithology_Upscaled_Export csv file
+    Output:
+        - Upscaled_Litho_NoDuplicates_Export csv file.
+'''
     Final_Data= pd.read_csv(DB_Lithology_Upscaled_Export)   
     Final_Data.CollarID = Final_Data.CollarID.astype(int)
     Final_Data.Fromdepth = Final_Data.Fromdepth.astype(float)
@@ -1358,6 +1158,20 @@ def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplic
 
 
 def dsmincurb (len12,azm1,dip1,azm2,dip2):
+'''
+The function implements The Minimum Curvature Method smooths two straight-line segments of the Balanced Tangential Method by using the Ratio Factor (RF).
+    Input:
+        -len12 = Measured Depth between surveys in ft
+        -dip1 = Inclination (angle) of upper survey in degrees
+        -dip2 = Inclination (angle) of lower in degrees
+        -Az1= Azimuth direction of upper survey
+        -Az2 = Azimuth direction of lower survey
+    Output:
+        - North
+        - East
+        -TVD
+    link to refer :http://www.drillingformulas.com/minimum-curvature-method/
+'''
     #DEG2RAD = 3.141592654/180.0
     #i1 = (90 - float(dip1)) * DEG2RAD
     i1 = np.deg2rad(90 - float(dip1))
