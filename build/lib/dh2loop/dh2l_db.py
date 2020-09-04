@@ -36,7 +36,7 @@ from dh2loop import Var
             
             
 def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,minlat,maxlat):
- '''
+    '''
     Function Extracts data from tables collar and collarattr for processing attributes RL and Maxdepth
     Inputs:
         - src_csr : Coordinate Reference System of source 4326
@@ -45,14 +45,14 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
   
     Output: is a csv file ,the data processed for RL, Maxdepth attribute in required format  
         
- '''
+    '''
 
-   fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth','X','Y']
-   out= open(DB_Collar_Export, "w",encoding ="utf-8")
-   for ele in fieldnames:
+    fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth','X','Y']
+    out= open(DB_Collar_Export, "w",encoding ="utf-8")
+    for ele in fieldnames:
         out.write('%s,' %ele)
-   out.write('\n')
-   query =""" SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
+    out.write('\n')
+    query =""" SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
 		  collar.longitude, collar.latitude, collarattr.attributecolumn, collarattr.attributevalue 
 		  FROM public.collar 
 		  INNER JOIN collarattr 
@@ -61,38 +61,38 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 		  ORDER BY collarattr.collarid ASC """
    
  #WHERE(longitude BETWEEN (minlong = COALESCE(%f, minlong)  AND maxlong = COALESCE(%f, maxlong)) AND latitude BETWEEN (minlat = COALESCE(%f, minlat) AND maxlat = COALESCE(%f, maxlat)))
-   conn = None
-   Pre_id = 0
-   Pre_hole_id = ''
-   Pre_Longitude =0.0
-   Pre_latitude = 0.0
+    conn = None
+    Pre_id = 0
+    Pre_hole_id = ''
+    Pre_Longitude =0.0
+    Pre_latitude = 0.0
    
-   Cur_id = 0
-   Cur_hole_id = ''
-   Cur_Longitude =0.0
-   Cur_latitude = 0.0
+    Cur_id = 0
+    Cur_hole_id = ''
+    Cur_Longitude =0.0
+    Cur_latitude = 0.0
    
-   list_rl= []
-   list_maxdepth =[]
-   RL =''
-   Maxdepth =''
-   write_to_csv = False
-   x2=0.0
-   y2=0.0
-   #create tranformer object with source and destination read from config file
-   transformer = Transformer.from_crs(src_csr, dst_csr)
+    list_rl= []
+    list_maxdepth =[]
+    RL =''
+    Maxdepth =''
+    write_to_csv = False
+    x2=0.0
+    y2=0.0
+    #create tranformer object with source and destination read from config file
+    transformer = Transformer.from_crs(src_csr, dst_csr)
     
    
   
    
-   try:
-      conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
-      cur = conn.cursor()
-      Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds read from config file
-      cur.execute(query,Bounds)
-      collar_collarAttr_Filter = [list(elem) for elem in cur]
-      DicList_collar_collarattr = [list(elem) for elem in Var.Attr_col_collar_dic_list]
-      for collar_ele in collar_collarAttr_Filter:
+    try:
+       conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+       cur = conn.cursor()
+       Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds read from config file
+       cur.execute(query,Bounds)
+       collar_collarAttr_Filter = [list(elem) for elem in cur]
+       DicList_collar_collarattr = [list(elem) for elem in Var.Attr_col_collar_dic_list]
+       for collar_ele in collar_collarAttr_Filter:
          #if (collar_ele[0] == 305574):
             #print("its danger")
          for Dic_ele in DicList_collar_collarattr:  # loop through each element of DB extraction
@@ -204,12 +204,12 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
             continue
           
    
-      cur.close()
-   except (Exception, psycopg2.DatabaseError) as error:
-      print(error)
-   finally:
-      if conn is not None:
-         conn.close()
+       cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+       print(error)
+    finally:
+       if conn is not None:
+          conn.close()
 
    
 
@@ -239,9 +239,9 @@ def maximum(iterable, default):
 
 
 def collar_attr_col_dic():
- '''
-    Function to extract rl,maxdepth dictionary from DB, and stored in list
- '''
+   '''
+   Function to extract rl,maxdepth dictionary from DB, and stored in list
+   '''
    query =""" SELECT  rl_maxdepth_dic.attributecolumn,rl_maxdepth_dic.cet_attributecolumn  FROM rl_maxdepth_dic """
    conn = None
    
@@ -271,13 +271,13 @@ def collar_attr_col_dic():
          
 
 def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
- '''
-    Function which extracts data from tables dhsurvey,dhsurveyattr and collar  for attributes Depth,Azimuth and Dip
-    Inputs:
+   '''
+   Function which extracts data from tables dhsurvey,dhsurveyattr and collar  for attributes Depth,Azimuth and Dip
+   Inputs:
         - minlong,maxlong,minlat,maxlat :  coordinates of region 
-    Output:
+   Output:
         - DB_Survey_Export : The processed data after extraction is written to this csv file in required format.
- '''
+   '''
    
    fieldnames=['CollarID','Depth','Azimuth','Dip']
    out= open(DB_Survey_Export, "w",encoding ="utf-8")
@@ -568,9 +568,9 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
 
 
 def Attr_col_dic():
-'''
-    Function extracts survey dictionary for attribute column AZI, Dip from DB and stores in List
-'''
+   '''
+   Function extracts survey dictionary for attribute column AZI, Dip from DB and stores in List
+   '''
    
    query =""" SELECT * FROM public.survey_dic """
    conn = None
@@ -623,14 +623,14 @@ def count_Digit(n):
 
 
 def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
-'''
-    Function takes collar and survey information for particular hole and calculates X,Y,Z
-    Input :
+   '''
+   Function takes collar and survey information for particular hole and calculates X,Y,Z
+   Input :
         - DB_Collar_Export: Data extracted and processed from collar and related tables
         - DB_Survey_Export: Data extracted and processed from survey and related tables
-    Output:
+   Output:
         - DB_Survey_Export_Calc :x,y,z calculations for survey data 
-'''
+   '''
    
    location=pd.read_csv(DB_Collar_Export)
    survey=pd.read_csv(DB_Survey_Export)
@@ -697,9 +697,9 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
 
 
 def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
-    '''
-    Function takes two DIP,AZI,Depth values for X,Y,Z value
-    Inputs:
+   '''
+   Function takes two DIP,AZI,Depth values for X,Y,Z value
+   Inputs:
            - X1  : x value fron collar extraction for a particular hole
            - Y1  : y value fron collar extraction for a particular hole
            - Z1  : RL value fron collar extraction for a particular hole
@@ -710,10 +710,10 @@ def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
            - Az2  : Azi_2 value from survey
            - Distance2 :  Depth_2 value from survey
            
-    Output:
+   Output:
            - X,Y,Z value for Deppth_1 to Depth_2
         
-    '''
+   '''
    I1=radians(I1)
    Az1=radians(Az1)
    I2=radians(I2)
@@ -743,9 +743,9 @@ def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
 
 
 def Attr_Val_Dic():
-'''
+    '''
     Funtion extracts Attribute value dictionary table from DB.
-'''
+    '''
     query = """SELECT * FROM public.dic_attr_val_lithology_filter"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -770,9 +770,9 @@ def Attr_Val_Dic():
 
 
 def Litho_Dico():
- '''
+    '''
     Function Extracts Dictionary for lithology from DB.
- '''
+    '''
     query = """SELECT litho_dic_1.clean  FROM litho_dic_1"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -797,9 +797,9 @@ def Litho_Dico():
     
 
 def Clean_Up():
- '''
+    '''
     Function extracts clean up dictionary from DB.
- '''
+    '''
     query = """SELECT cleanup_lithology.clean  FROM cleanup_lithology"""
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
@@ -820,14 +820,14 @@ def Clean_Up():
 
   
 def clean_text(text):
-'''
+    '''
     Function clean the text by symbols and specified text, uses cleanup dictionary
     Input: 
          - Text
     output: 
         - Cleaned text
 
-'''
+    '''
     text=text.lower().replace('unnamed','').replace('meta','').replace('meta-','').replace('undifferentiated ','').replace('unclassified ','')
     text=text.replace('differentiated','').replace('undiff','').replace('undiferentiated','').replace('undifferntiates','')
     text=(re.sub('\(.*\)', '', text)) # removes text in parentheses
@@ -920,11 +920,11 @@ def tokenize_and_lemma(text, min_len=0):
 
 
 def Attr_val_With_fuzzy():
- '''
- Function gets the fuzzuwuzzy string of the lithology text .The lithology text is cleaned,lemmatised and tokenized.
+    '''
+    Function gets the fuzzuwuzzy string of the lithology text .The lithology text is cleaned,lemmatised and tokenized.
     Input: Dictionaries Extracted
     Output: is a List and csv file of fuzzywuzzy for lithology.
- '''
+    '''
     bestmatch=-1
     bestlitho=''
     top=[]
@@ -1016,14 +1016,14 @@ def Attr_val_With_fuzzy():
 
 
 def Depth_validation(row_2,row_3):
-'''
-Funtion validates the from and to depth values according to the requirment
+    '''
+    Funtion validates the from and to depth values according to the requirment
     Input : 
         - From Depth
         - To Depth
     Output:
         - From Depth,To Depth : Right Depth values for from and to depth 
-'''
+    '''
     from_depth = row_2               
     to_depth = row_3
     if (from_depth is not None and to_depth is not None) or  (from_depth is not None or to_depth is not None) :
@@ -1047,14 +1047,14 @@ Funtion validates the from and to depth values according to the requirment
 
 
 def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
-'''
+    '''
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
     For Each row extracted the from and to depth values are validated , fuzzywuzzy values are generated for the lithology along with the score.
     Input : 
         -minlong,maxlong,minlat,maxlat : Region of interest.
     Output:
         - csv file with the extracted data with fuzzywuzzy and score.
-'''
+    '''
     query = """select t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn, t1.attributevalue 
 		 from public.dhgeologyattr t1 
 		 inner join public.dhgeology t2 
@@ -1107,13 +1107,13 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
 
 
 def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
-'''
-Function upscales the CET_Loithology generated using the CET hierarchy dictionary to level1,level2,level3
+    '''
+    Function upscales the CET_Loithology generated using the CET hierarchy dictionary to level1,level2,level3
     Input: 
         - DB_Lithology_Export csv file 
     Output:
         - is a csv file DB_Lithology_Upscaled_Export with upscales data 
-'''
+    '''
 
     Hierarchy_litho_dico_List =[]
     query = """ select * from public.hierarchy_dico """
@@ -1136,13 +1136,13 @@ Function upscales the CET_Loithology generated using the CET hierarchy dictionar
 
 
 def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplicates_Export):
-'''
-Function removes the multiple companies logging the same lithology (or duplicate rows)
+    '''
+    Function removes the multiple companies logging the same lithology (or duplicate rows)
     Input:
         - DB_Lithology_Upscaled_Export csv file
     Output:
         - Upscaled_Litho_NoDuplicates_Export csv file.
-'''
+    '''
     Final_Data= pd.read_csv(DB_Lithology_Upscaled_Export)   
     Final_Data.CollarID = Final_Data.CollarID.astype(int)
     Final_Data.Fromdepth = Final_Data.Fromdepth.astype(float)
@@ -1158,8 +1158,8 @@ Function removes the multiple companies logging the same lithology (or duplicate
 
 
 def dsmincurb (len12,azm1,dip1,azm2,dip2):
-'''
-The function implements The Minimum Curvature Method smooths two straight-line segments of the Balanced Tangential Method by using the Ratio Factor (RF).
+    '''
+    The function implements The Minimum Curvature Method smooths two straight-line segments of the Balanced Tangential Method by using the Ratio Factor (RF).
     Input:
         -len12 = Measured Depth between surveys in ft
         -dip1 = Inclination (angle) of upper survey in degrees
@@ -1171,7 +1171,7 @@ The function implements The Minimum Curvature Method smooths two straight-line s
         - East
         -TVD
     link to refer :http://www.drillingformulas.com/minimum-curvature-method/
-'''
+    '''
     #DEG2RAD = 3.141592654/180.0
     #i1 = (90 - float(dip1)) * DEG2RAD
     i1 = np.deg2rad(90 - float(dip1))
