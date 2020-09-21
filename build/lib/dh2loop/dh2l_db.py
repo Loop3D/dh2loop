@@ -26,6 +26,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 from nltk.corpus import stopwords
 from dh2loop import Var
+import logging
 
 
 
@@ -52,6 +53,24 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
+    
+    with open('RL.log', 'w'):
+        pass
+        
+    with open('MD.log', 'w'):
+        pass
+    
+    
+    logger1 = logging.getLogger('dev1')
+    logger1.setLevel(logging.INFO)
+    fileHandler1 = logging.FileHandler('RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
+    logger1.addHandler(fileHandler1)
+
+    logger2 = logging.getLogger('dev2')
+    logger2.setLevel(logging.INFO)
+    fileHandler2 = logging.FileHandler('MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
+    logger2.addHandler(fileHandler2)
+    
     query =""" SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
 		  collar.longitude, collar.latitude, collarattr.attributecolumn, collarattr.attributevalue 
 		  FROM public.collar 
@@ -102,7 +121,8 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                   #print("1")
                   if(Pre_id== collar_ele[0] or Pre_id ==0 or Cur_id ==collar_ele[0]):
                      #print("2")
-                     list_rl.append(Parse_Num(collar_ele[5]))
+                     #list_rl.append(Parse_Num(collar_ele[5]))
+                     list_rl.append(Parse_Num_Rl(collar_ele[5],logger1,collar_ele[0]))
                      Pre_id =collar_ele[0]
                      Pre_hole_id = collar_ele[1]
                      Pre_Longitude =collar_ele[2]
@@ -125,6 +145,25 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                          #Maxdepth ="NAN"
                          
                      write_to_csv = True
+                     
+                     x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
+                     if(write_to_csv == True):   # write to csv file
+                        out.write('%d,' %Pre_id)
+                        out.write('%s,' %Pre_hole_id)
+                        out.write('%f,' %Pre_Longitude)
+                        out.write('%f,' %Pre_latitude)
+                        out.write('%s,' %RL)
+                        out.write('%s,' %Maxdepth)
+                        out.write('%f,' %x2)
+                        out.write('%f,' %y2)
+                        out.write('\n')
+                        write_to_csv =False
+                        RL =''
+                        Maxdepth =''
+                        Pre_id = 0
+                        Pre_hole_id = ''
+                        Pre_Longitude =0.0
+                        Pre_latitude = 0.0
  
                      Cur_id =collar_ele[0]
                      Cur_hole_id = collar_ele[1]
@@ -134,19 +173,22 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                      list_rl.clear()
                      list_maxdepth.clear()
                      
-                     list_rl.append(Parse_Num(collar_ele[5]))
+                     #list_rl.append(Parse_Num(collar_ele[5]))
+                     list_rl.append(Parse_Num_Rl(collar_ele[5],logger1,collar_ele[0]))
                      
              
                elif(Dic_ele[1]=='maxdepth'):  # check for maxdepth
                   #print("7")
                   if(Pre_id== collar_ele[0] or Pre_id == 0 or Cur_id ==collar_ele[0] ):
-                     if(collar_ele[5][0] == '-'):
+                     #if(collar_ele[5][0] == '-'):
                         #print("7")
-                        list_maxdepth.append(Parse_Num(collar_ele[5])*-1)
-                     else:
+                        #list_maxdepth.append(Parse_Num(collar_ele[5])*-1)
+                     #else:
                         #print("8")
-                        list_maxdepth.append(Parse_Num(collar_ele[5]))
-
+                        #list_maxdepth.append(Parse_Num(collar_ele[5]))
+                        
+                      
+                     list_maxdepth.append(Parse_Num_Maxdepth(collar_ele[5],logger2,collar_ele[0]))
                      Pre_id =collar_ele[0]
                      Pre_hole_id = collar_ele[1]
                      Pre_Longitude =collar_ele[2]
@@ -168,7 +210,26 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                          #Maxdepth = "NAN"
 
 
-                     write_to_csv = True  
+                     write_to_csv = True
+
+                     x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
+                     if(write_to_csv == True):   # write to csv file
+                        out.write('%d,' %Pre_id)
+                        out.write('%s,' %Pre_hole_id)
+                        out.write('%f,' %Pre_Longitude)
+                        out.write('%f,' %Pre_latitude)
+                        out.write('%s,' %RL)
+                        out.write('%s,' %Maxdepth)
+                        out.write('%f,' %x2)
+                        out.write('%f,' %y2)
+                        out.write('\n')
+                        write_to_csv =False
+                        RL =''
+                        Maxdepth =''
+                        Pre_id = 0
+                        Pre_hole_id = ''
+                        Pre_Longitude =0.0
+                        Pre_latitude = 0.0
         
                      Cur_id =collar_ele[0]
                      Cur_hole_id = collar_ele[1]
@@ -178,30 +239,34 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                      list_maxdepth.clear()
                      list_rl.clear()
                      
-                     list_maxdepth.append(Parse_Num(collar_ele[5]))
+                     #list_maxdepth.append(Parse_Num(collar_ele[5]))
+                     list_maxdepth.append(Parse_Num_Maxdepth(collar_ele[5],logger2,collar_ele[0]))
                      
         
          
-         x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
-         if(write_to_csv == True):   # write to csv file
-            out.write('%d,' %Pre_id)
-            out.write('%s,' %Pre_hole_id)
-            out.write('%f,' %Pre_Longitude)
-            out.write('%f,' %Pre_latitude)
-            out.write('%s,' %RL)
-            out.write('%s,' %Maxdepth)
-            out.write('%f,' %x2)
-            out.write('%f,' %y2)
-            out.write('\n')
-            write_to_csv =False
-            RL =''
-            Maxdepth =''
-            Pre_id = 0
-            Cur_id = 0
+         #x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
+         #if(write_to_csv == True):   # write to csv file
+            #out.write('%d,' %Pre_id)
+            #out.write('%s,' %Pre_hole_id)
+            #out.write('%f,' %Pre_Longitude)
+            #out.write('%f,' %Pre_latitude)
+            #out.write('%s,' %RL)
+            #out.write('%s,' %Maxdepth)
+            #out.write('%f,' %x2)
+            #out.write('%f,' %y2)
+            #out.write('\n')
+            #write_to_csv =False
+            #RL =''
+            #Maxdepth =''
+            #Pre_id = 0
+            #Pre_hole_id = ''
+            #Pre_Longitude =0.0
+            #Pre_latitude = 0.0
+            #Cur_id = 0
           
 
-         else:
-            continue
+         #else:
+            #continue
           
    
        cur.close()
@@ -213,7 +278,80 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 
    
 
+def Parse_Num_Maxdepth(s1,logger2,collarID):
+   #logger1 = logging.getLogger('dev1')
+   #logger1.setLevel(logging.INFO)
+   #fileHandler1 = logging.FileHandler('Maxdepth_Info.log')
+   #logger1.addHandler(fileHandler1)
 
+   #logger1
+   
+   s1=s1.lstrip().rstrip()
+   if s1.isalpha():
+      
+      #print("1")
+      #logger1("alpha in Maxdepth")
+      logger2.info("%d, %s, %s" ,collarID ,s1,"alpha in MaxDepth ,In csv NAN is added")
+      #logger2.info('{}:{}:{}'.format(collarID ,s1,"alpha in MD"))
+      return(None)
+      
+   elif s1 == '-999':
+      #print("-999")
+      #print("1")
+      logger2.info("%d, %s ,%s" ,collarID,s1," MaxDepth is -999,In csv NAN is added")
+      #logger2.info('{}:{}:{}'.format(collarID ,s1,"MD is -999"))
+      return(None)
+   elif re.match("^[-+]?[0-9]+$", s1):
+       if s1[0] == '-' :
+           #print("1")
+           logger2.info("%d, %s, %s" ,collarID,s1," Maxdepth integer -ve,convert to +ve and add to csv file ")
+           #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth integer -ve"))
+           return(int(s1) * -1)
+       else:
+           #print("1")
+           logger2.info("%d ,%s, %s" ,collarID,s1,"Maxdepth integer +ve,in required status to use directly in csv file ")
+           #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth integer +ve"))
+           return(int(s1))
+   elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
+      if s1[0] =='-':
+         logger2.info("%d, %s ,%s" ,collarID,s1," Maxdepth float -ve,convert to +ve and add to csv file ")
+         #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth float -ve,convert to +ve and added to csv file"))
+         return(float(s1) * -1)
+      else :
+         #print("1")
+         logger2.info("%d, %s, %s" ,collarID,s1," Maxdepth float +ve,in required status to use directly in csv file  ")
+         #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth float +ve"))
+         return(float(s1))
+   
+
+
+def Parse_Num_Rl(s1,logger1,collarID):
+    s1=s1.lstrip().rstrip()
+    #logger2 = logging.getLogger('dev2')
+    #logger2.setLevel(logging.INFO)
+    #fileHandler2 = logging.FileHandler('RL_Info.log')
+    #logger2.addHandler(fileHandler2)
+    if s1.isalpha():
+       #print("1")
+       logger1.info("%d, %s ,%s" ,collarID,s1,"alpha in RL,In csv file NAN is added",)
+       return(None)
+    elif re.match("^[-+]?[0-9]+$", s1):
+       #print(" int  ","\t", s1)
+       if int(s1) > 10000 :
+           logger1.info("%d, %s ,%s" ,collarID,s1," integer RL > 10000,In csv file NAN is added")
+           return(None)
+       else :
+           logger1.info("%d, %s, %s" ,collarID,s1," integer RL ,in required state to use directly in csv file")
+           return(int(s1))
+    elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
+       #print(" float ","\t", s1)
+       if float(s1) > 10000.0:
+          logger1.info("%d, %s ,%s" ,collarID,s1," float RL  > 10000,In csv file NAN is added")
+          #print("None")
+          return(None)
+       else :
+          logger1.info("%d, %s ,%s" ,collarID,s1," float RL ,in required state to use directly in csv file")
+          return(float(s1))
 
 
 def Parse_Num(s1):
@@ -228,7 +366,7 @@ def Parse_Num(s1):
 
 
 def maximum(iterable, default):
-  #   '''Like max(), but returns a default value if xs is empty.'''
+  #   '''Like max(), but returns a default value if iterable is empty.'''
     try:
         return str(max(i for i in iterable if i is not None))
     except ValueError:
@@ -624,7 +762,7 @@ def count_Digit(n):
 
 def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
    '''
-   Function takes collar and survey information for particular hole and calculates X,Y,Z
+   Function takes collar and survey extracted information and calculates X,Y,Z
    Input :
         - DB_Collar_Export: Data extracted and processed from collar and related tables
         - DB_Survey_Export: Data extracted and processed from survey and related tables
@@ -832,7 +970,9 @@ def clean_text(text):
     text=text.replace('differentiated','').replace('undiff','').replace('undiferentiated','').replace('undifferntiates','')
     text=(re.sub('\(.*\)', '', text)) # removes text in parentheses
     text=(re.sub('\[.*\]', '', text)) # removes text in parentheses
-    text=text.replace('>','').replace('?','').replace('/',' ') 
+    text=text.replace('>','').replace('?','').replace('/',' ')
+    text=text.lstrip().rstrip()   #strip of left and right spaces
+    text = re.sub('\s+', ' ', text)  # for multiple spaces replace by one space
     text = text.replace('>' , ' ')
     text = text.replace('<', ' ')
     text = text.replace('/', ' ')
@@ -923,7 +1063,7 @@ def Attr_val_With_fuzzy():
     '''
     Function gets the fuzzuwuzzy string of the lithology text .The lithology text is cleaned,lemmatised and tokenized.
     Input: Dictionaries Extracted
-    Output: is a List and csv file of fuzzywuzzy for lithology.
+    Output: is a List and csv file of fuzzywuzzy with score for lithology.
     '''
     bestmatch=-1
     bestlitho=''
@@ -1049,7 +1189,7 @@ def Depth_validation(row_2,row_3):
 def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     '''
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
-    For Each row extracted the from and to depth values are validated , fuzzywuzzy values are generated for the lithology along with the score.
+    For Each row extracted the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed .
     Input : 
         -minlong,maxlong,minlat,maxlat : Region of interest.
     Output:
