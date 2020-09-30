@@ -1,0 +1,758 @@
+clean
+Aeolian_deposit  Aeolian_Deposits
+Aeolinite
+Blown_sand Beach_dune_sand Coversand Niveo-aeolian_sand Beach_Dune_Sand Blown_Sand Coversand Coversands Niveoaeolian_Sand Niveo-Aeolian_Sand Older_Blown_Sand
+Dune
+Fluvioaeolian_Silt Fluvio-Aeolian_Silt
+Loess
+Alluvial_Cone
+Alluvial_deposit Alluvial_Deposit Alluvial_Deposits Alluvial_Fan_Deposit Alluvial_Fan_Deposits
+Alluvium Alluvial Alluvia Sheetwash
+Fluvial_Deposit Fluvial_Deposits
+Interglacial_Fluvial_Deposit
+Terrace_Deposits
+Artificial_material
+Asbestos
+Asphalt Tar
+Ballast
+Bell_Pit
+Bing
+Bonded_aggregate Portland_cement_concrete Tarmac Aggregate
+Building_Rubble
+Cardboard_Waste
+Ceramic Clay_brick Brick_clay Ceramic_waste
+Chemical_Waste
+China_Clay
+Clay_Waste
+Clinker
+Coal_Shale
+Colliery_Waste
+Corium
+Disturbed_Ground
+Domestic/Garden_Refuse
+Effluent_Waste
+Ferrite_ceramic
+Fill Backfill Back_Fill
+Foundry_Sand
+Furnace_Ash
+Garden_Waste
+Glass
+Herbicide
+Industrial_Waste
+Infilled_Ground
+Landfill
+Landfill_Site
+Landraise_Site
+Landscaped_Ground
+Made_Ground
+Metal Weathered_metal
+Mine_Dumps Stockpile
+Mine_Stone
+Mineral_Waste
+Oil_Shale_Waste
+Organic_Waste
+Paper
+Pesticide
+Plasterboard
+Plastic
+Pulverised_Fuel_Ash
+Quarry_Waste
+Radioactive_Waste
+Rock_Waste Tailing Tailings Mullock
+Sewage_Sludge
+Shale_Waste
+Slag Iron_slag Non-ferrous_metallic_slag Weathered_non-ferrous_metallic_slag Glass_slag blast-furnace_slag Foundry_slag
+Slate_Waste
+Spoil
+Tip
+Toxic_Waste
+Void Stope Cavity
+Waste
+Worked_Ground
+Bioclastic Sand
+Biological_deposit Biological_Deposits
+Shell_marl Shell_Bank_Deposits Shell-Rich_Gyttja
+Anticracks
+Compaction_Bands
+Compactional-Shear_Bands
+Cracks
+Dialtion-Shear_Bands
+Dilation_Bands
+Fault Faults
+Shear_Bands
+Shear_Zone
+Aragonite Aragonite-Gravel Aragonite-Limestone Aragonite-Mud Aragonite-Sand
+Beachrock
+Calcarenite
+Calcilutite
+Calcirudite
+Carbonate Carbonate_rock
+Chalk
+Cobble-Grade_Limestone
+Crinoid-limestone Crinoid-Limestone
+Dolomicrite
+Dolomicrosparite
+Dolosparite
+Dolostone Dolomite-mudstone Ankerite-mudstone Dolomite-wackestone Ankerite-wackestone Dolomite-packstone Ankerite-packstone Dolomite-grainstone Ankerite-grainstone Dolomite-boundstone Ankerite-boundstone Dolomite-framestone Ankerite-framestone Dolomite-pseudosparstone Ankerite-pseudosparstone Dolomite-sparstone Ankerite-sparstone Dolomite-microsparstone Ankerite-microsparstone Dolomite-microstone Ankerite-microstone Ooid-dolostone Pisoid-dolostone Oncoid-dolostone Microoncoid-dolostone Peloid-dolostone Ankerite-Gravel Ankerite-Mud Ankerite-Sand Ankeritestone Pisoid-Dolostone Peloid-Dolostone Oncoid-Dolostone Microoncoid-Dolostone Dolomite
+Framestone
+Gaylussite
+Grainstones
+Gravel-Grade_Limestone
+Lime-boundstone Aragonite-boundstone Calcite-boundstone
+Lime-framestone Aragonite-framestone Calcite-framestone
+Lime-grainstone Aragonite-grainstone Calcite-grainstone
+Lime-microsparstone Aragonite-microsparstone Calcite-microsparstone
+Lime-microstone Aragonite-microstone Calcite-microstone
+Lime-mudstone Aragonite-mudstone Calcite-mudstone Marlstone Metalimestone
+Lime-packstone Aragonite-packstone Calcite-packstone
+Lime-pseudosparstone Aragonite-pseudosparstone Calcite-pseudosparstone
+Lime-sparstone Aragonite-sparstone Calcite-sparstone
+Limestone Calcite-Limestone Limestones
+Lime-wackestone Aragonite-wackestone Calcite-wackestone Lime-Wackestone
+Magnesite-Stone Magnesite-Stones
+Metacarbonate-Rock
+Micrite
+Microoncoid-limestone Microoncoid-Limestone
+Microsparite
+Microsparstone
+Microstone
+Mud-Grade_Limestone
+Na-carbonate-rock
+Natron
+Oncoid-limestone Oncoid-Limestone
+Ooid-Dolomite
+Ooid-limestone Ooid-Limestone
+Pebble-Grade_Limestone
+Peloid-limestone Peloid-Limestone
+Pisoid-limestone Pisoid-Limestone
+Pseudosparstone Pseudosparstones
+Sand-Grade_Limestone
+Shell-Limestone Shell-limestone
+Sodium_Carbonate
+Sparite
+Sparstone
+Thermonatrite
+Travertine
+Trona
+Tufa
+Chemical_deposit Chemical_Deposits
+Duricrusts
+Ferruginous_Deposits Ferruginous_Zone
+Manganiferous_Deposits
+Redox_Zone
+Sinter
+Clastic_sedimentary_rock
+Conglomerate Silicate-conglomerate Paraconglomerate Orthoconglomerate Sedimentary_breccia Breccio-conglomerate Rudite
+Mudstone Silicate-mudstone Shale Black_shale Claystone Silicate-claystone Illite-claystone Kaolinite-claystone Siltstone Silicate-siltstone Diamictite Silicate-diamictite Smectite-Claystone Metamudstone Argillite Pelite Semipelite Semi-pelite Shale Varvite
+Olistostrome
+Sandstone Silicate-sandstone Arenite Silicate-arenite Quartz-arenite Subfeldspathic-arenite Feldspathic-arenite Sublithic-arenite Lithic-arenite Wacke Silicate-wacke Quartz-wacke Feldspathic-wacke Lithic-wacke Metasandstone Arkose Psammite
+Coarse-grained_plutonic_crystalline_igneous_rock Plutonic_rock Intrusive_rock
+Beach_sand Beach_Dune_Sand
+Chenier_Deposit Chenier_Deposits
+Coastal_Barrier_Deposit Coastal_Barrier_Deposits
+Coastal_zone_deposit Beach_Deposits Coastal_Zone_Deposit
+Creek_Deposits
+Deltaic_Deposits
+Interglacial_Marine_Deposits
+Intertidal_Deposit Intertidal_Deposits
+Merse_Deposits
+Mud_Flats
+Raised_Marine_Deposit Raised_Marine_Deposits
+Salt_Marsh_Deposits
+Sand_Flats
+Sandbar
+Storm_Beach_Deposits
+Supratidal_Deposit Supratidal_Deposits
+Tidal_Channel_Deposit Tidal_Channel_Deposits
+Tidal_Creek_Deposit
+Tidal_Flat
+Tidal_River
+Washover_Fans
+Adinole
+Burned-rock
+Contact_metamorphic_glassy_rock Buchite
+Contact_metamorphic_rock
+Contact-marble
+Paraquartzite
+Anhydrite-stone Anhydrite-grainstone Anhydrite-packstone Anhydrite-wackestone Anhydrite-mudstone
+Barite-stone
+Borax-stone
+Carnallite-stone
+Colemanite-stone
+Evaporite
+Gypsum-stone Gypsum-grainstone Gypsum-packstone Gypsum-wackestone Gypsum-mudstone Gypsum-Stone Gypsum-Packstone Gypsum-Grainstone Gypsum/Anhydrite-stone
+Halite-Stone Halite-stone Halite-grainstone Halite-packstone Halite-wackestone Halite-mudstone  Salt Lacustrine_Salt
+Kainite-stone
+Kernite-stone
+Kierserite-stone
+Polyhalite-Stone Polyhalite-stone
+Sylvite-stone
+Ulexite-stone
+Aegirine-nepheline-rock
+Apatite-magnetite-rock
+Apatitolite
+Carbonatite Calcite-carbonatite Svite Alvikite Magnesiocarbonatite Dolomite-carbonatite Ferrocarbonatite Natrocarbonatite Silicocarbonatite Calciocarbonatite Ferroan-Carbonatite
+Chromitite
+Diatectite
+Dissogenite
+Epidiorite
+Eudialytite
+Exotic_crystalline_igneous_rock
+Fine-grained_melititic_rock Melilitite Olivine-melilitite Melilitite
+Ilmenitite
+Kalsilitic-rock Kalsilitite Kalsilitolite
+Kimberlite Orangeite
+Lamproite
+Lamprophyre Camptonite Analcime_camptonite Kersantite Minette Monchiquite Sannaite Spessartite Vogesite
+Magnetitite
+Melilite-bearing_rock Melilitic Melilitic-Rock
+Melilitolite Ultramelilitolite Afrikandite Okaite Turjaite Kugdite Uncompahgrite Olivine-Melilitolite Olivine-Pyroxene-Melilitolite Pyroxene-Melilitolite Pyroxene-Olivine-Melilitolite
+Micaite Biotitite
+Olivine-chromite-rock
+Pegmatite
+Quartz-tourmaline-rock
+Spinellite
+Ultrapotassic_rock
+Cataclasite Protocataclasite Cohesive_protocataclasite Incohesive_protocataclasite Ultracataclasite Mesocataclasite Cohesive_ultracataclasite Incohesive_ultracataclasite
+Cohesive_fault-breccia
+Cohesive_fault-rock
+Fault-breccia Fault_Breccias Fault-Breccia Protobreccias
+Fault-gouge Fault_Gouges Fault-Gouge
+Fault-rock Fault-Rocks
+Incohesive_cataclasite
+Incohesive_fault-breccia
+Incohesive_fault-rock
+Mylonite Blastomylonite Mesomylonite Phyllonite Protomylonite Ultramylonite Augen-mylonite Cohesive_cataclasite Pseudotachylite Protomylonitic_Breccias Pseudotachylites
+Foid-diorite Sodalite-diorite Nepheline-diorite Cancrinite-diorite Analcime-diorite
+Foid-dioritoid Foid-Dioritic-Rock
+Foid-gabbro Nepheline-gabbro Sodalite-gabbro
+Foid-gabbroid Foid-Gabbroic-Rock
+Foid-monzodiorite Sodalite-monzodiorite Nepheline-monzodiorite Cancrinite-monzodiorite Analcime-monzodiorite
+Foid-monzogabbro Sodalite-monzogabbro Nepheline-monzogabbro Cancrinite-monzogabbro Analcime-monzogabbro
+Tephritic-phonolite Tephritic-leucite-phonolite Tephri-Phonolite
+Tephritic-foidite Tephritic-leucitite
+Foid-syenite Sodalite-syenite Nepheline-syenite Cancrinite-syenite Analcime-syenite Shonkinite
+Foid-syenitoid Foid-Syenitic-Rock
+Tephrite Leucite-tephrite Analcime-tephrite Nepheline-tephrite
+Phonolitic-foidite Phonolitic-leucitite Phonolitic-hau?ynite
+Phonolite Nepheline-phonolite Leucite-phonolite Hau?yne-phonolite Analcime-phonolite Nosean-phonolite
+Foiditoid Foiditic-Rock
+Leucitic-Rock Leucitic
+Phonolitic-basanite
+Foidolite Sodalitolite Nephelinolite Ijolite Noseanolite Leucitolite Fergusite Foidolitic-Rock
+Phonolitic-tephrite Phono-Tephrite
+Phonolitoid
+Trachytoid
+Banded_iron_formation BIF Banded_Iron_Formation Jasper Jasperite Jasperoid Jaspelite
+Iron-boundstone
+Foid-monzosyenite Sodalite-monzosyenite Nepheline-monzosyenite Cancrinite-monzosyenite Analcime-monzosyenite Leucite-monzosyenite Cancrinite-syenitic-rock Nepheline-syenitic-rock Sodalite-syenitic-rock
+Foidite Leucitite Analcimite Nephelinite Sodalitite Hau?ynite Noseanite
+Basanitic-foidite Basanitic-leucitite Basanitic-analcimite Basanitic-nephelinite Basanitic-hau?ynite
+Tephritoid Tephritic-Rock
+Acid_volcanic_rock
+Alkali-feldspar-granite
+Anorthosite Anorthositic-Rock
+Anorthositoid 
+Foid-bearing-anorthosite Cancrinite-bearing-anorthosite Nepheline-bearing-anorthosite Sodalite-bearing-anorthosite
+Granite Metagranite
+Granitoid Alkali-feldspar-granite
+Granodiorite
+Monzogranite
+Quartz-anorthosite
+Quartz-rich-coarse-grained-crystalline-rock Quartzolite Quartz-rich-granitic-rock
+Syenogranite
+Tonalite
+Acid_volcanic_rock
+Alkali-feldspar-rhyolite
+Fine-grained_ultramafic-rock
+Hybrid_igneous_rock_and_intrusive_breccia
+Komatiite
+Meimechite
+Picrite
+Picritic-rock
+Picrobasalt
+Rhyolite Pantelleritic_rhyolite
+Rhyolitoid Rhyolitic-Rock
+Obsidian
+Pitchstone
+Pumice
+Silicic_volcanic_glass
+Breccia
+Crusts
+Dendrites
+Layers
+Patches
+Sediments
+Spots
+Vein Veins Stockwork Quartz
+Fine-grained_volcanic_normal_crystalline_igneous_rock volcanic_rock
+Glacial_Deposit Glacial_Mud Glacial_Sand Glacial_Gravel Glacial_Clay
+Esker Esker_Deposit Esker_Deposits
+Galcitectonite
+Glacigenic_deposit Glacigenic_Deposit
+Glaciofluvial_Ice_Contact_Deposits Ice-Contact_Glaciofluvial_Deposit Ice-Contact_Glaciofluvial_Deposits
+Glacitectonite
+Hummocky Hummocky_Moraine
+Kame Kame_Deposit Kame_Deposits
+Kettle Kettle_Deposit Kettle_Deposits
+Morainic_Deposits Moraine Moraines Push_Moraine
+Till Squeeze_Flow_Till Shear_Till Flow_Till Lodgement_Till Melt-Out_Till Deformation_Till Tillite
+Gneiss
+Orthogneiss
+Paragneiss
+Beerbachite
+Granofels
+Hornfels
+Mafic-hornfels Beerbachite
+Orthogranofels
+Paragranofels
+Greenschist_facies_andesite
+Greenschist_facies_basaltic-andesite
+Amphibolite
+Anatexite
+Blueschist
+Chlorite_amphibolite
+Eclogite
+Eclogitoid
+Felsic-granulite
+Garnetite
+Glaucophanite
+Granulite
+High_P/T_metamorphic_rock
+High-grade_metamorphic_rock
+Mafic-granulite
+Metamorphic_pyroxenite Jadeitite Kosmochlorite Omphacitite
+Migmatite Metatexite Arterite Venite Phlebite Diatexite Nebulite Agmatite Dictyonite Stromatite
+Ortho-amphibolite
+Para-amphibolite
+Ultramafic_metamorphic_rock
+Whiteschist
+Zoisitite
+Hybrid-Sedimentary-Rock
+Ironstone/Phosphorite
+Limestone/Silicate-Sandstone
+Lithomarge
+Glassy_igneous_rock
+Igneous_rock
+Normal_crystalline_igneous_rock
+Alkali-feldspar-syenite
+Diorite Metadiorite Diorite_Porphyry Microdiorite Intermediate_Intrusive_Diorite
+Dioritoid Dioritic-Rock
+Foid-bearing-alkali-feldspar-syenite Cancrinite-bearing-alkali-feldspar-syenite Nepheline-bearing-alkali-feldspar-syenite Sodalite-bearing-alkali-feldspar-syenite
+Foid-bearing-diorite Cancrinite-bearing-diorite Nepheline-bearing-diorite Sodalite-bearing-diorite Foid_Diorite
+Foid-bearing-monzodiorite Cancrinte-bearing-monzodiorite Nepheline-bearing-monzodiorite Sodalite-bearing-monzodiorite
+Foid-bearing-monzonite Cancrinite-bearing-monzonite Nepheline-bearing-monzodiorite Sodalite-bearing-monzodiorite
+Foid-bearing-syenite Cancrinite-bearing-syenite Nepheline-bearing-syenite Sodalite-bearing-syenite
+Intermediate_plutonic_rock
+Monzodiorite
+Monzonite Mangerite
+Quartz-alkali-feldspar-syenite
+Quartz-diorite
+Quartz-monzodiorite
+Quartz-monzonite
+Quartz-syenite
+Syenite Lucitite
+Syenitoid Quartz-alkali-feldspar-syenite Alkali-feldspar-syenite Syenitic-Rock
+Alkali-feldspar-trachyte
+Andesite Andesite_undifferentiated Andesite_Intrusive Andesite_Porphyry Andesitic_Volcanics Meta-andesite Andesitic_volcanic Andesitic_Porphyry Andesitic_Peperite
+Andesitoid Andesitic-Rock
+Basaltic-andesite Boninite
+Basaltic-trachyandesite Mugearite Shoshonite
+Dacite
+Dacitoid
+Foid-bearing-alkali-feldspar-trachyte
+Foid-bearing-latite
+Foid-bearing-trachyte
+Intermediate_volcanic_rock
+Latite
+Quartz-alkali-feldspar-trachyte
+Quartz-latite Quartz_Latite
+Quartz-trachyte
+Rhyodacite
+Trachyandesite Benmoreite
+Trachybasalt Hawaiite Potassic-trachybasalt
+Trachydacite
+Trachyte
+Iron-grainstone
+Iron-mudstone Goethite-mudstone Siderite-mudstone Limonite-mudstone Hematite-mudstone Blackband_ironstone
+Iron-packstone
+Ironstone Goethite-stone Hematite-stone Limonite-stone Siderite-stone
+Iron-wackestone
+Microoncoid-ironstone
+Oncoid-ironstone
+Ooid-ironstone
+Peloid-ironstone
+Pisoid-ironstone
+Interglacial_Lacustrine_Deposits
+Lacustrine_deposit Lacustrine_Beach_Deposits Lacustrine_Deltaic_Deposits Lacustrine_Deposit Lacustrine_Deposits Lacustrine_Shoreface_Deposits
+Greenschist
+Greenstone
+Phyllite
+Slate
+Spilite
+Very_low_to_low-grade_metamorphic_rock
+Basic_plutonic_rock
+Clinopyroxene-gabbro Analcime-gabbro Cancrinite-gabbro
+Foid-bearing-gabbro Cancrinite-bearing-gabbro Nepheline-bearing-gabbro Sodalite-bearing-gabbro
+Foid-bearing-monzogabbro Cancrinite-bearing-monzogabbro Nepheline-bearing-monzogabbro Sodalite-bearing-monzogabbro
+Gabbro Metagabbro
+Gabbroid Gabbroic-Rock
+Gabbronorite Olivine-gabbronorite Pyroxene-hornblende-gabbronorite
+Hornblende-gabbro
+Monzogabbro
+Norite Clinopyroxene-norite Olivine-clinopyroxene_norite Olivine-norite Pyroxene-hornblende-norite Pyroxene-Hornblende-Cpx-Norite Olivine-Clinopyroxene-Norite
+Olivine-gabbro
+Orthopyroxene-gabbro Olivine-orthopyroxene-gabbro
+Pyroxene-hornblende-gabbro Pyroxene-hornblende-opx-gabbro
+Quartz-gabbro
+Quartz-monzogabbro
+Troctolite
+Basalt Alkali_basalt Subalkali_basalt Metabasalt Tholeiite Basalt_Lava
+Basaltoid Basaltic-Rock
+Basic_volcanic_rock
+Basaltic_glass
+Hyaloclastite
+Scoria
+Sideromelane
+Tachylite
+Marine_Deposit Marine_Deposits
+Calc-silicate_rock Calc_silicate Calcsil Calcisilicate-Rock Calc_Silicate
+Carbonate-silicate_rock
+Marble Pure_marble Impure_marble Brucite-marble
+Metacarbonate_rock
+Ophicarbonate Ophicalcite Ophidolomite Ophimagnesite
+Amphibole-rock
+Cokeite
+Diaphthorite
+Hornblende-rock
+Metamorphic_rock
+Pyroxene-rock
+Serpentinite
+Talc-rock Talc
+Aceite
+Albitized_gneiss
+Albitized_granite
+Apojasperoid
+Argillisite
+Beresite
+Carbonatite-related_albitite
+Charoitite
+Chloritolite
+Fault-related_alkaline_metasomatite
+Fenite
+Greisen
+Gumberite
+Listvenite
+Metasomatic-rock
+Propylite
+Rodingite
+Secondary-quartzite
+Skarn Magnesian-skarn Serpentine_skarn Chondrodite_skarn Manganesian-skarn Calc-skarn
+Unakite
+Beach_Dune Beach_Washover_Deposits
+Blanket_Bog_Peat
+Channel_Deposit
+Colluvium Transported
+Complex Complex_Landship
+Cone
+Coombe_Deposit
+Cover Overburden
+Creep
+Debris Debris_Cone
+Deltaic_Deposit
+Dry_Valley_Deposit
+Earth
+Embryonic_Dune
+Fall Falls
+Fan
+FlowFlows
+Foredune
+Gelifluction_Deposit
+Glacial_Diamicton
+Gray_Dune
+Head
+Hillwash
+Landslip Landslips
+Marl Limey
+Mass_Movement
+Megaripple_Field
+Mire
+Mobile_Dune
+Moundy_Terrain
+Older_Sand_Dunes
+Plain
+Ridge
+Rock
+Rotational_Slide
+Salt_Marsh
+Sand_Banks
+Sand_Patches
+Sand_Ribbons
+Sand_Wave_Field
+Sheet
+Shell
+Shell_Bank_Deposit
+Shoreface_Deposit
+Slide Slides
+Solifluction_Deposit
+Spread
+Stable_Dune
+Talus Talus_Cone Talus_Sheet
+Tephra
+Topple Topples
+Translational_Slide
+Veneer
+Yellow_Dune
+Agate
+Flint
+Opaline-Chert
+Opaline-Porcellanite
+Quartzose-Chert
+Quartzose-Porcellanite
+Aluminium_ore
+Arsenic_ore
+Bismuth_ore
+Cadmium_ore
+Caesium_ore
+Chromium_ore
+Cobalt_ore
+Copper_ore
+Gold_ore
+Iron_ore
+Lead_ore
+Lithium_ore
+Massive_Sulphide Sulphide Sulfide Pyrite
+Mercury_ore
+Mineralisation
+Nickel_ore
+Ore
+Silver_ore
+Sulfide_ore
+Tin_ore
+Bog
+Organic_deposit
+Surficial_Peat Basin_Peat Blanket_Peat Fen_Peat Hill_Peat
+Peat_Flow
+Raised_Bog_Peat
+Swamp
+Anthracite
+Asphaltite
+Bituminous-coal Bright-coal Banded-bright-coal Banded-coal Banded-dull-coal Dull-coal Vitrain Clarain Fusain Durain
+Cannel-Mudstone
+Coal
+Humic_coal_series
+Impure-coal Bone-coal
+Lamalginite
+Lignite Brown-lignite Black-lignite
+Muddy-Peat
+Organic-rich-rock
+Sandy-Peat
+Sapropelic_Coal
+Sapropelic_Lignite
+Sapropelic_coal_series
+Sapropelic-coal Cannel-coal Boghead-cannel-coal Cannel-boghead-coal Boghead-coal
+Sapropelite Telaginite Lamalginite
+Guano
+Microoncoid-phosphorite
+Oncoid-phosphorite
+Ooid-phosphorite
+Peloid-phosphorite
+Phosphate
+Phosphate-Boundstone
+Phosphate-Grainstone
+Phosphate-Mudstone
+Phosphate-packstone
+Phosphate-wackestone
+Phosphorite
+Pisoid-Phosphorite
+Beach_Deposits
+Glacial_Lake_Deposits
+Glacimarine_Deposits
+Glaciofluvial_Channel_Deposits
+Glaciofluvial_Sheet Glaciofluvial_Sheet_Deposits
+Glaciolacustrine_Deposit Glaciolacustrine_Deposits Glacilacustrine_Deposits
+Glaciomarine_Deposit Glaciomarine_Deposits
+Outwash_Deposits
+Sandar
+Sandur
+Sea-Bed_Deposits
+Subaqueous_Fan_Deposit Subaqueous_Fan_Deposits
+Subtidal_Deposits
+Arenose_Zone
+Blanket_Head
+Blockfield Block-Field
+Calcrete Gypcrete
+Caliche
+Cementation_Front
+Clay-with-flints
+Duricrust
+Ferricrete
+Gossan Ironcap
+Iron_Pan
+Lag
+Laterite Bauxite Iron_Laterite Lateritic_Duricrust Lateritic_Gravel Lateritic_Residum
+Mottled_Zone
+Nodules
+Palaeosol Seat-earth
+Pedolith
+Pedoplasmation_Front
+Pisolite
+Pisolith
+Plasmic_Zone
+Regolith
+Residual_deposit
+Saprock
+Saprolite Weathered_Rock_Saprolite
+Saprolith
+Soil Alfisol Andisol Aridisol Entisol Gelisol Histosol Inceptisol Mollisol Oxisol Spodosol Ulitisol Vertisol Residual_Soil
+Weathered_Rock
+Orthoschist
+Paraschist
+Schist Mica_schist
+Hybrid-Sediment
+Sediment
+Carbonate_sediment
+Dolomite-sediment Dolomite-gravel Dolomite-sand Dolomite-mud Ankerite-gravel Ankerite-sand Ankerite-mud
+Lime-sediment Lime-gravel Aragonite-gravel Calcite-gravel Lime-mud Sapropelic_lime-mud Aragonite-mud Calcite-mud Lime-sand Aragonite-sand Calcite-sand Ooid-lime-sand Shell-lime-sediment Crinoid-lime-sediment Lime-Sediments Lime-Gravel Lime-Mud Lime-Sand Shell-Lime-Sediment Lime/Silicate-Sediment Lime-Gravel/Silicate-Sand Lime-Sediment/Phosphate-Sediment Crinioid-Lime-Sediment Ooid-Lime-Sand
+Clastic-sediment
+Diamicton Silicate-diamicton
+Gravel Silicate-gravel Boulders Cobbles Pebbles Granules Muddy_gravel Muddy_sandy_gravel Sandy_gravel
+Mud Silicate-mud Silt Silicate-silt Clay Silicate-clay Illite-clay Kaolinite-clay Smectite-clay Montmorillonite-clay Ooze Gravelly_mud Sandy_mud Clay Clays Ochre
+Sand Silicate-sand Very-coarse-sand Coarse-sand Medium-sand Fine-sand Very-fine-sand Gravelly_muddy_sand Gravelly_sand Muddy_sand
+Siliciclastic-sediment
+Gypsum-Gravel
+Gypsum-Sand
+Iron-gravel Goethite-gravel Siderite-gravel Limonite-gravel Hematite-gravel
+Iron-mud Goethite-mud Siderite-mud Limonite-mud Hematite-mud
+Iron-sand Goethite-sand Siderite-sand Limonite-sand Hematite-sand
+Iron-sediment Goethite-sediment Hematite-sediment Limonite-sediment Siderite-sediment
+Diatomaceous-ooze
+Radiolarian-ooze
+Siliceous-ooze
+Sponge-spicular-ooze
+Bituminous-sand
+Coorongite
+Organic-rich-sediment
+Peat Muddy-peat Sandy-peat
+Sapropel
+Phosphate-Gravel
+Phosphate-Mud
+Phosphate-Sand
+Phosphate-sediment Phosphate-gravel Phosphate-sand Phosphate-mud
+Illite-Clay
+Kaolinite-Clay
+Smectite-Clay
+Cryptocrystalline-Sedimentary-Rock
+Fine-Crystalline-Sedimentary_Rock
+Gravel-Grade-Sediment
+Gravel-Grade-Sedimentary_Rock
+Metasedimentary-Rock
+Mud-Grade-Sediment
+Mud-Grade-Sedimentary_Rock
+Sedimentary_rock
+Boundstone
+Chert Opaline-chert Quartzose-chert Banded_Chert
+Diatomite
+Gansiter
+Grainstone
+Jasper
+Packstone
+Porcellanite Opaline-porcellanite Quartzose-porcellanite
+Radiolarite
+Silcrete
+Arenite Arenites
+Diamictite
+Feldspathic-Arenite
+Feldspathic-Wacke
+Lithic-Arenite
+Lithic-Wacke
+Quartz-Arenite
+Quartz-Wacke
+Silicate-Clay
+Silicate-Conglomerate
+Silicate-Gravel
+Silicate-Mud
+Silicate-Mudstone
+Silicate-Sand
+Silicate-Sandstone Grit
+Silicate-Silt
+Silicate-Siltstone
+Siliceous-rock
+Siliclastic-sedimentary-rock
+Spiculite
+Subfeldspathic-Arenite
+Sublithic-Arenite
+Wacke Wackes
+Wackestone
+Amphibololite
+Coarse-grained-ultramafic-rock
+Hornblendite Olivine-hornblendite Olivine-pyroxene-hornblendite Pyroxene-hornblendite Oivine-hornblende-pyroxenite Hornblende-Pyroxenite
+Peridotite Dunite Hornblende-peridotite Pyroxene-hornblende-peridotite Pyroxene-peridotite Harzburgite Lherzolite Wehrlite
+Pyroxenite Hornblende-pyroxenite Olivine-hornblende-pyroxenite Olivine-pyroxenite Olivine-clinopyroxenite Olivine-orthopyroxenite Olivine-websterite Clinopyroxenite Orthopyroxenite Websterite
+Ultrabasic_plutonic_rock
+Ultrabasic_volcanic_rock
+Unclassified_rock Unknown No_Sample Not_Logged Unknown Lost_core No_core Undifferentiated Nan Null
+Ash
+Tuff
+Volcaniclastic-mudstone
+Agglomerate Pyroclastic-breccia
+Ash-breccia
+Block-bomb-tephra
+Block-tephra
+Bomb-block-tephra
+Bomb-tephra
+Lapilli-ash
+Lapillistone Calciocarbonatite_lapillistone
+Lapilli-tephra
+Lapilli-tuff
+Pyroclastic_sediment
+Pyroclastic-rock
+Tuffaceous-sediment Tuffaceous-gravel Tuffaceous-sand Tuffaceous-mud
+Tuffaceous-sedimentary-rock Tuffaceous-breccia Tuffaceous-conglomerate Tuffaceous-mudstone Tuffaceous-sandstone Tuffaceous-siltstone Tuffaceous-wacke
+Tuff-breccia
+Tuffite
+Volcanic_breccia
+Volcaniclastic-breccia Basaltic-volcaniclastic-breccia Rhyolitic-volcaniclastic-breccia Pillowed-volcaniclastic-breccia Volcaniclastic-megabreccia Volcaniclastic-mesobreccia Pyroclastic-Breccia Metavolcaniclastic-Breccia
+Volcaniclastic-conglomerate
+Volcaniclastic-gravel
+Volcaniclastic-mud
+Volcaniclastic-sand
+Volcaniclastic-sandstone Volcaniclastic-wacke Andesitic-volcaniclastic-sandstone Basaltic-volcaniclastic-sandstone Dacitic-volcaniclastic-sandstone Rhyolitic-volcaniclastic-sandstone
+Volcaniclastic-sediment Pyroclastic-Sediment
+Volcaniclastic-sedimentary-rock
+Volcaniclastic-siltstone
+Welded_tuff
+Metavolcaniclastic-Conglomerate
+Metavolcaniclastic-Mudstone
+Metavolcaniclastic-Sandstone
+Lapilli
+Tuffaceous-Silicate-Sandstone
+Channel Paleochannel
+Quartzite
+Reef
+Turbidites
+Ash_And_Lapilli
+Volcaniclastic-Igneous-Rock
+Non-Ultramafic-Melilitic-Rock
+Ultramafic-Rock Ultrabasic Ultramafic_Rock
+Ultramafic-Melilitic-Rock
+Dolerite Diabase
+Felsite
+Mafite
+Basanite Nepheline-basanite Analcime-basanite Nosean-basanite Leucite-basanite
+Phonolitic-Rock
+Trachytic-Rock
+Nephelinite
+Dacitic-Rock
+Felsic Felsic_Rock Undifferentiated_Felsic Acid Acidic Felsic_Intrusive Felsic_Lava Felsic_Volcanic Meta-felsic Felsic_Dyke
+Granitic-Rock
+Adamellite
+Quartz-Rich-Granitic-Rock
+Trondhjemite
+Aplite
+Comenditic Rhyolite
+Comenditic Trachyte
+Aphanite
+Porphyry
+Intermediate Intermediate_Rocks
+Mafic Mafic_Rock Basic
