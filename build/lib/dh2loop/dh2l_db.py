@@ -1107,7 +1107,8 @@ def Attr_val_With_fuzzy():
         cleaned_text=" ".join(str(x) for x in cleaned_text_1)  #join each word as string with space
 
         #cleaned_text=clean_text(Attr_val_Dic_ele[2])  # for logging
-        cleaned_text =  cleaned_text.replace(' rock ',' rocks')
+        cleaned_text =  cleaned_text.replace(' rock ',' rocks')   # to handle rock and rocks to get proper fuzzywuzzy
+        cleaned_text =  cleaned_text.replace(' rock',' rocks')  
         words=(re.sub('\(.*\)', '', cleaned_text)).strip()
         
         #words =  words.replace(' rock',' rocks')   # for mafic rock to get as mafic in csv , since tokenization removes it.
@@ -1413,10 +1414,11 @@ def Final_Lithology_old():
                 cleaned_text_1=clean_text(row[2])
                 cleaned_text_2=tokenize_and_lemma(cleaned_text_1)
                 cleaned_text=" ".join(str(x) for x in cleaned_text_2)
-                logger1.info("%d, %d, %s, %s ,%s" ,First_filter_ele[0],First_filter_ele[6] ,row[2],cleaned_text_1,cleaned_text)  # logging 
+                #logger1.info("%d, %d, %s, %s ,%s" ,First_filter_ele[0],First_filter_ele[6] ,row[2],cleaned_text_1,cleaned_text)  # logging 
                 
                 
-
+                cleaned_text =  cleaned_text.replace(' rock ',' rocks')   # to handle rock and rocks to get proper fuzzywuzzy
+                cleaned_text =  cleaned_text.replace(' rock',' rocks') 
                 #print(cleaned_text)
                 words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
                 #words=words.split(" ")
@@ -1466,6 +1468,7 @@ def Final_Lithology_old():
                     #out.write('%s,' %CET_Litho)
                     out.write('%d,' %bestmatch)    #top_new[1])
                     out.write('\n')
+                    logger1.info("%d, %d, %s, %s ,%s , %s , %d " ,First_filter_ele[0],First_filter_ele[6] ,row[2],cleaned_text_1,cleaned_text,bestlitho.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''),bestmatch)  # logging 
                     top.clear()
                     #top_new[:] =[]
                     CET_Litho=''
@@ -1485,6 +1488,7 @@ def Final_Lithology_old():
                     out.write('Other,')
                     out.write('%d,' %bestmatch)   #top_new[1])
                     out.write('\n')
+                    logger1.info("%d, %d, %s, %s ,%s ,%s , %d " ,First_filter_ele[0],First_filter_ele[6] ,row[2],cleaned_text_1,cleaned_text,'Other',bestmatch)  # logging 
                     top.clear()
                     #top_new[:] =[]
                     CET_Litho=''
