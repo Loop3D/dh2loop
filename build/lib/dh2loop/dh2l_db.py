@@ -1,4 +1,5 @@
 import psycopg2
+import psycopg2
 import csv
 import re
 import time
@@ -16,7 +17,7 @@ import numpy as np
 from pyproj import Transformer, transform
 import os
 from collections import Counter
-import datetime
+#from datetime import datetime
 import pandas as pd
 import numpy as np
 from math import acos, cos, asin, sin, atan2, tan, radians
@@ -27,6 +28,7 @@ nltk.download('wordnet')
 from nltk.corpus import stopwords
 from dh2loop import Var
 import logging
+
 
 
 
