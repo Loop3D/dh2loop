@@ -17,7 +17,7 @@ import numpy as np
 from pyproj import Transformer, transform
 import os
 from collections import Counter
-#from datetime import datetime
+from datetime import datetime
 import pandas as pd
 import numpy as np
 from math import acos, cos, asin, sin, atan2, tan, radians
@@ -56,21 +56,23 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
         out.write('%s,' %ele)
     out.write('\n')
     
-    with open('RL.log', 'w'):
+    RL_LOG_File_TIME = datetime.now().strftime('RL_%d_%m_%Y_%H_%M_%S_.log')
+    MD_LOG_File_TIME = datetime.now().strftime('MD_%d_%m_%Y_%H_%M_%S_.log')
+    with open(RL_LOG_File_TIME, 'w'):
         pass
         
-    with open('MD.log', 'w'):
+    with open(MD_LOG_File_TIME, 'w'):
         pass
     
     
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler('RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
+    fileHandler1 = logging.FileHandler(RL_LOG_File_TIME)  #'RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
     logger1.addHandler(fileHandler1)
 
     logger2 = logging.getLogger('dev2')
     logger2.setLevel(logging.INFO)
-    fileHandler2 = logging.FileHandler('MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
+    fileHandler2 = logging.FileHandler(MD_LOG_File_TIME)  #'MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
     logger2.addHandler(fileHandler2)
     
     query =""" SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
@@ -418,22 +420,25 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    Output:
         - DB_Survey_Export : The processed data after extraction is written to this csv file in required format.
    '''
+   Dip_LOG_File_TIME = datetime.now().strftime('Dip_%d_%m_%Y_%H_%M_%S_.log')
+   Azi_LOG_File_TIME = datetime.now().strftime('Azi_%d_%m_%Y_%H_%M_%S_.log')
+
    
-   with open('Dip.log', 'w'):   # to clear the log files 
+   with open(Dip_LOG_File_TIME, 'w'):   # to clear the log files 
     pass
         
-   with open('Azi.log', 'w'):
+   with open(Azi_LOG_File_TIME, 'w'):
     pass
    
    logger1 = logging.getLogger('dev1')
    logger1.setLevel(logging.INFO)
-   fileHandler1 = logging.FileHandler('Dip.log')
+   fileHandler1 = logging.FileHandler(Dip_LOG_File_TIME)
    logger1.addHandler(fileHandler1)
 
 
    logger2 = logging.getLogger('dev2')
    logger2.setLevel(logging.INFO)
-   fileHandler2 = logging.FileHandler('Azi.log')
+   fileHandler2 = logging.FileHandler(Azi_LOG_File_TIME)
    logger2.addHandler(fileHandler2)
    
    fieldnames=['CollarID','Depth','Azimuth','Dip']
@@ -1243,21 +1248,24 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
 		 on t4.companyid = t3.companyid
 		 inner join public.dic_att_col_lithology_1 t5
 		 on t1.attributecolumn = t5.att_col
-		 WHERE(t3.longitude BETWEEN 115.5 AND 118) AND(t3.latitude BETWEEN - 30.5 AND - 27.5) 
+		 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
 		 ORDER BY t3.companyid ASC"""
 
-    with open('Litho_Depth.log', 'w'):   # to clear the log files 
+    Litho_Depth_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
+    with open(Litho_Depth_LOG_File_TIME, 'w'):   # to clear the log files 
         pass
         
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler('Litho_Depth.log')
+    fileHandler1 = logging.FileHandler(Litho_Depth_LOG_File_TIME)
     logger1.addHandler(fileHandler1)
     
     
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
-    cur.execute(query)
+    #cur.execute(query)
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
     First_Filter_list = [list(elem) for elem in cur]
     
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Attribute_column','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']  # for looging
@@ -1552,913 +1560,283 @@ def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplic
 
 
 
-
-def dsmincurb (len12,azm1,dip1,azm2,dip2):
-    '''
-    The function implements The Minimum Curvature Method smooths two straight-line segments of the Balanced Tangential Method by using the Ratio Factor (RF).
-    Input:
-        -len12 = Measured Depth between surveys in ft
-        -dip1 = Inclination (angle) of upper survey in degrees
-        -dip2 = Inclination (angle) of lower in degrees
-        -Az1= Azimuth direction of upper survey
-        -Az2 = Azimuth direction of lower survey
-    Output:
-        - North
-        - East
-        -TVD
-    link to refer :http://www.drillingformulas.com/minimum-curvature-method/
-    '''
-    #DEG2RAD = 3.141592654/180.0
-    #i1 = (90 - float(dip1)) * DEG2RAD
-    i1 = np.deg2rad(90 - float(dip1))
-    #a1 = float(azm1) * DEG2RAD
-    a1 = np.deg2rad(float(azm1))
-    #i2 = (90 - float(dip2)) * DEG2RAD
-    i2 = np.deg2rad(90 - float(dip2))
-    #a2 = float(azm2) * DEG2RAD
-    a2 = np.deg2rad(float(azm2))  #DEG2RAD
-	
-    #Beta = acos(cos(I2 - I1) - (sin(I1)*sin(I2)*(1-cos(Az2-Az1))))
-    dl = acos(cos(float(i2)-float(i1))-(sin(float(i1))*sin(float(i2))*(1-cos(float(a2)-float(a1)))))
-    if dl!=0.:
-        rf = 2*tan(dl/2)/dl  # minimum curvature
-    else:
-        rf=1				 # balanced tangential
-    dz = 0.5*len12*(cos(float(i1))+cos(float(i2)))*rf
-    dn = 0.5*len12*(sin(float(i1))*cos(float(a1))+sin(float(i2))*cos(float(a2)))*rf
-    de = 0.5*len12*(sin(float(i1))*sin(float(a1))+sin(float(i2))*sin(float(a2)))*rf
-    return dz,dn,de
-	#modified from pygslib
-
-def interp_ang1D(azm1,dip1,azm2,dip2,len12,d1):
-    # convert angles to coordinates
-    x1,y1,z1 = ang2cart(azm1,dip1)
-    x2,y2,z2 = ang2cart(azm2,dip2)
-
-    # interpolate x,y,z
-    x = x2*d1/len12 + x1*(len12-d1)/len12
-    y = y2*d1/len12 + y1*(len12-d1)/len12
-    z = z2*d1/len12 + z1*(len12-d1)/len12
-
-    # get back the results as angles
-    azm,dip = cart2ang(x,y,z)
-    return azm, dip
-    #modified from pygslib
-	
-def ang2cart(azm, dip):
-    #DEG2RAD=3.141592654/180.0
-    # convert degree to rad and correct sign of dip
-    #razm = float(azm) * float(DEG2RAD)
-    razm =  float(np.deg2rad(float(azm)))
-    #rdip = -(float(dip)) * float(DEG2RAD)
-    rdip =  float(np.deg2rad(-float(dip)))
-
-    # do the conversion
-    x = sin(razm) * cos(rdip)
-    y = cos(razm) * cos(rdip)
-    z = sin(rdip)
-    return x,y,z
-    #modified from pygslib
-	
-def cart2ang(x,y,z):
-    if x>1.: x=1.
-    if x<-1.: x=-1.
-    if y>1.: y=1.
-    if y<-1.: y=-1.
-    if z>1.: z=1.
-    if z<-1.: z=-1.
-    #RAD2DEG=180.0/3.141592654
-    #pi = 3.141592654
-    azm= float(atan2(x,y))
-    if azm<0.:
-        azm= azm + math.pi*2
-    #azm= azm + math.pi*2
-    #azm = float(azm) * float(RAD2DEG)
-    azm =float(np.rad2deg(float(azm)))
-    #dip = -(float(asin(z))) * float(RAD2DEG)
-    dip =-float(np.rad2deg(float(asin(z))))
-    return azm, dip
-    #modified from pygslib
-	
-def angleson1dh(indbs,indes,ats,azs,dips,lpt):
-    for i in range (indbs,indes):
-        a=ats[i]
-        b=ats[i+1]
-        azm1 = azs[i]
-        dip1 = dips[i]
-        azm2 = azs[i+1]
-        dip2 = dips[i+1]
-        len12 = ats[i+1]-ats[i]
-        if lpt>=a and lpt<b:
-            d1= lpt- a
-            azt,dipt = interp_ang1D(azm1,dip1,azm2,dip2,len12,d1)
-            return azt, dipt
-    a=ats[indes]
-    azt = azs[indes]
-    dipt = dips[indes]
-    if float(lpt)>=float(a):
-        return   azt, dipt
-    else:
-        return   np.nan, np.nan
-
-def convert_lithology():
-    print("--------start of convert Lithology -----------")
-    collar= pd.read_csv('DB_Collar_Export.csv',encoding = "ISO-8859-1", dtype='object')
-    survey= pd.read_csv('DB_Survey_Export.csv',encoding = "ISO-8859-1", dtype='object')
-    litho= pd.read_csv('Upscaled_Litho.csv',encoding = "ISO-8859-1", dtype='object')
+def Comments_Dic(minlong,maxlong,minlat,maxlat):
+    #query = """SELECT * FROM public.litho_att_col_comments"""
+    query = """Select DISTINCT ON (t1.attributecolumn, t1.attributevalue)
+    t1.attributecolumn, t1.attributevalue
+		 from public.dhgeologyattr t1 
+		 inner join public.dhgeology t2 
+		 on t1.dhgeologyid = t2.id 
+		 inner join collar t3 
+		 on t3.id = t2.collarid
+		 inner join public.litho_att_col_comment t6
+		 on t1.attributecolumn = t6.att_col_comments
+		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
+    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
     
-    collar.CollarID = collar.CollarID.astype(str)
-    survey.CollarID = survey.CollarID.astype(str)
-    survey.Depth = survey.Depth.astype(float)
-    litho.CollarID = litho.CollarID.astype(str)
-    litho.Fromdepth = litho.Fromdepth.astype(float)
-    litho.Todepth = litho.Todepth.astype(float)
-
-    #collar.sort_values(['CollarID'], inplace=True)
-    #survey.sort_values(['CollarID', 'Depth'], inplace=True)
-    #litho.sort_values(['CollarID', 'Fromdepth'], inplace=True)
-
-
-    global idc
-    global xc
-    global yc
-    global zc
-    global idc
-    global ats
-    global azs
-    global dips
-    global idt
-    global fromt
-    global tot
-    global cetlit
-
-    
-    
-    idc = collar['CollarID'].values
-    xc = collar['X'].values
-    yc = collar['Y'].values
-    zc = collar['RL'].values
-    ids = survey['CollarID'].values
-    ats = survey['Depth'].values
-    azs = survey['Azimuth'].values
-    dips = survey['Dip'].values
-    idt =litho['CollarID'].values
-    fromt = litho['Fromdepth'].values
-    tot = litho['Todepth'].values
-    cetlit=litho['CET_Lithology'].values
-
-    nc= idc.shape[0]
-    ns= ids.shape[0]
-    nt= idt.shape[0]
+    for record in cur:
+        #print(record)
+        Var.Comments_dic.append(record)
+    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
+   
+    #with open('Dic_Comments.csv', 'w') as f:
+        #cur.copy_expert(outputquery, f)
+    cur.close()
+    conn.close()
 
 
-    global azmt
-    global dipmt
-    global xmt
-    global ymt
-    global zmt
-    global azbt
-    global dipbt
-    global xbt
-    global ybt
-    global zbt
-    global azet
-    global dipet
-    global xet
-    global yet
-    global zet
-    
 
-    azmt = np.empty([nt], dtype=float)
-    dipmt = np.empty([nt], dtype=float)
-    xmt = np.empty([nt], dtype=float)
-    ymt = np.empty([nt], dtype=float)
-    zmt = np.empty([nt], dtype=float)
-    azbt = np.empty([nt], dtype=float)
-    dipbt = np.empty([nt], dtype=float)
-    xbt = np.empty([nt], dtype=float)
-    ybt = np.empty([nt], dtype=float)
-    zbt = np.empty([nt], dtype=float)
-    azet = np.empty([nt], dtype=float)
-    dipet = np.empty([nt], dtype=float)
-    xet = np.empty([nt], dtype=float)
-    yet = np.empty([nt], dtype=float)
-    zet = np.empty([nt], dtype=float)
-
-    azmt[:] = np.nan
-    dipmt[:] = np.nan
-    azbt [:]= np.nan
-    dipbt [:]= np.nan
-    azet[:] = np.nan
-    dipet[:] = np.nan
-    xmt[:] = np.nan
-    ymt [:]= np.nan
-    zmt [:]= np.nan
-    xbt[:] = np.nan
-    ybt[:] = np.nan
-    zbt[:] = np.nan
-    xet[:] = np.nan
-    yet[:] = np.nan
-    zet [:]= np.nan
-
-    fieldnames=['CollarID','FromDepth','ToDepth','Lithology','xbt','ybt','zbt','xmt','ymt', 'zmt', 'xet','yet','zet','azbt','dipbt']
-    global out
-    out= open('DB_Lithology_Export_Calc.csv', "w",encoding ="utf-8")
+def Comments_With_fuzzy():
+    bestmatch=-1
+    bestlitho=''
+    top=[]
+    i=0
+    comments_sub_list=[]
+    fieldnames=['Comments_Field','Comment_Attr_val','Comment_cleaned_text','Comment_Fuzzy_wuzzy','Comment_Score']
+    out= open("Comments_fuzzy.csv", "w",encoding ="utf-8")
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
-
-    global indbt 
-    global indet 
-    global inds 
-    global indt
-    global indbs
-    global indes
-    global sub_indbs
-    global sub_indes
-    
-    indbt = 0
-    indet = 0
-    inds = 0
-    indt = 0
-    ii = 0
-    global jc
-    global js
-    global jt
-
-    global from_depth
-    global mid_depth
-    global to_depth
-
-    global begin_f 
-    global mid_f 
-    global end_f
-
-    global prev_dict
-    global survey_sub_cnt
-
-    
-    
-    
-    for jc in range(nc):
-        indbs = -1
-        indes = -1
-        for js in range(inds, ns):
-            if idc[jc]==ids[js]:
-                #print(ids[js])
-                inds = js
-                indbs = js
-                global temp_Survey_df
-                if(idc[jc] == '7777'):
-                    ii =ii + 1
-                #temp_Survey_df = (survey.loc[survey['CollarID'].isin([ids[js]])]).copy()
-                temp_Survey_df = (survey.loc[survey['CollarID']== ids[js]])
-                #start_pos = temp_Survey_df[temp_Survey_df['CollarID']==ids[js]].index.item()
-                #print(start_pos)
-                survey_sub_cnt=temp_Survey_df.shape[0]
-                #print(survey_sub_cnt)
-                #print(temp_Survey_df)
-                break
-        for js in range(inds, ns):
-            if idc[jc]!=ids[js]:
-                break
-            else:
-                inds = js
-                indes = js
+    Comments_Dic_new = [list(elem) for elem in Var.Comments_dic]
+    for Comments_Dic_ele in Comments_Dic_new:
+        cleaned_text=clean_text(Comments_Dic_ele[1])
         
-        if indbs==-1 or indes==-1:
-            continue
-
-        global azm1 
-        global dip1 
-        global at 
-
-        azm1  = azs[indbs]
-        dip1 = dips[indbs]
-        at = 0.
+        words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
+        words=words.rstrip('\n\r').split(" ")
+        last=len(words)-1 #position of last word in phrase
         
-        if indbs==indes:
-            continue
-
-        global x 
-        global y 
-        global z
-
-        begin_f = False 
-        mid_f  = False
-        end_f = False
-
-        global litho_sub_cnt
-            
-        x =  xc[jc]
-        y =  yc[jc]
-        z =  zc[jc]
-
-        sub_indbs = indbs
-        sub_indes = indes
-
-        litho_ind = 0
-        global survey_ind
-        survey_ind = 0
-
-        litho_sub_cnt_flag = True
-        tmp_litho_sub_cnt = 1
-
-        litho_more_ele = False
-        
-
-        prev_dict ={"todepth" : -0.0,
-                            "x": -0.0,
-                            "y": -0.0,
-                            "z": -0.0}
-
-        
-
-        for jt in range(indt, nt):
-            #if(idc[jc]!=idt[jt]):
-                #break
-            if idc[jc]==idt[jt]:
-                #print(idt[jt])
-                global temp_litho_df
-                #temp_litho_df = (litho.loc[litho['CollarID'].isin([idt[jt]])]).copy()
-                if litho_sub_cnt_flag == True :  # to keep track of count till the end of one collarID
-                    temp_litho_df = (litho.loc[litho['CollarID']== idt[jt]])
-                    #filtered_df = df.loc[df['Symbol'] == 'A99']
-                    litho_sub_cnt=temp_litho_df.shape[0]
-                    litho_sub_cnt_flag = False
-
-                    
-                    strt_pos = temp_Survey_df[temp_Survey_df['Depth']== 0].index.item()
-                    #print(start_pos)
-                    #print(temp_Survey_df)
-                    
-
-                else :
-                    tmp_litho_sub_cnt = tmp_litho_sub_cnt + 1
-                    
-                #if(litho_sub_cnt > survey_sub_cnt)
-                    
-                #print(litho_sub_cnt)
-                #print(temp_litho_df)
-                #print(tot)
-                #print(idc[jc])
-
-                if(idc[jc] == '7777'):
-                    ii =ii + 1
-
-                
-                indt = jt
-
-
-                
-                Depth_survey = temp_Survey_df['Depth'].values
-                litho_Todepth = temp_litho_df['Todepth'].values
-
-                from_depth = fromt[jt]
-                mid_depth = float(fromt[jt]) + float((float(tot[jt])-float(fromt[jt]))/2)
-                to_depth = tot[jt]
-
-                
-
-                begin_f = True
-                mid_f = True
-                end_f  = True
-
-                
-
-                print(idt[jt])
-               
-                #print(tot[jt] in temp_Survey_df.Depth.values)
-
-                if(tot[jt] in temp_Survey_df.Depth.values  and tot[jt] > Depth_survey [survey_ind+1]  ):
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                   #loc = np.where(Depth_survey [survey_ind] ==tot[jt])
-                    print(tot[jt])
-                    end_pos = temp_Survey_df[temp_Survey_df['Depth']==tot[jt]].index.item()
-                    #from_depth = fromt[jt]
-                    #to_depth = tot[jt]
-                    #fromt[jt] = Depth_survey [survey_ind]
-                    #print(pos)
-                    print(tot[jt])
-                    while (start_pos < end_pos):
-                        print(survey_ind)
-                        #print(Depth_survey [survey_ind])
-                        fromt[jt] = Depth_survey [survey_ind]
-                        print(fromt[jt])
-                        tot[jt] = Depth_survey [survey_ind + 1]
-                        print(tot[jt])
-                        calculate_x_y_z()
-                        #print_xyz_csv()
-                        survey_ind = survey_ind +1
-                        start_pos= start_pos + 1
-                        #print("calculated")
-
-                    #print_xyz_csv()
-
-                #elif(tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey)  and tmp_litho_sub_cnt <= litho_sub_cnt   and  survey_sub_cnt-1 == survey_ind+1 ) : # survey elements are  over for collarID but litho still has values , Eg collarId 1111
-                    #calculate_x_y_z()
-                    
-                    
-                #elif(tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey)  and tmp_litho_sub_cnt == litho_sub_cnt  and survey_ind != survey_sub_cnt-2 ) :   #litho in last row but servey is not in last row,
-                   # if survey_ind != survey_sub_cnt-2:
-                    #    survey_ind = survey_ind +1
-                     #   calculate_x_y_z()
-                        
-
-                elif(tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey)):  #and tmp_litho_sub_cnt == litho_sub_cnt ) :  litho last row but survey got many intermediates to cover
-                    print("Max of Survey", "\t",max(Depth_survey))
-                    #if survey_sub_cnt-1 == survey_ind+1 and tmp_litho_sub_cnt == litho_sub_cnt :
-                        #litho_more_ele = True
-                        
-                    #if  survey_ind+1 == survey_sub_cnt-1 and tmp_litho_sub_cnt == litho_sub_cnt :
-                        #litho_more_ele = True
-                        
-                    if survey_sub_cnt-1 == survey_ind+1 and tmp_litho_sub_cnt < litho_sub_cnt :
-                        calculate_x_y_z()
-                        if  tmp_litho_sub_cnt < litho_sub_cnt :
-                            litho_more_ele = True
-                        elif tmp_litho_sub_cnt == litho_sub_cnt :
-                            litho_more_ele = False
-                            
-                        continue
-                    if litho_more_ele == True:
-                        calculate_x_y_z()
-                        if  tmp_litho_sub_cnt < litho_sub_cnt :
-                            litho_more_ele = True
-                        elif tmp_litho_sub_cnt == litho_sub_cnt :
-                            litho_more_ele = False
-                        
-                        continue
-                        
-                    if  Depth_survey[survey_ind] <= tot[jt] >= Depth_survey[survey_ind + 1] and tmp_litho_sub_cnt == litho_sub_cnt and survey_ind +1 == survey_sub_cnt-2:    # survey needs increment Eg hole3 
-                        survey_ind = survey_ind +1
-                        calculate_x_y_z()
-                        continue
-                        
-                    
-                        
-                        
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                    #print(tot[jt])
-                    #print(jt)
-                    #print(survey_ind)
-                    #last_Litho_ToDepth = tot[jt]
-                    while(survey_ind <  survey_sub_cnt):
-                       #print(survey_ind)
-                       #last_Litho_ToDepth = tot[jt]
-                       #print(last_Litho_ToDepth)
-                       #fromt[jt] = Depth_survey [survey_ind]
-                       #print(fromt[jt])
-                       #if(survey_ind < survey_sub_cnt-1):
-                       if(survey_ind == survey_sub_cnt-1):
-                           #print("inside")
-                           print(survey_ind)
-                           #print(survey_sub_cnt-2)
-                           #print(last_Litho_ToDepth)
-                           #tot[jt] = last_Litho_ToDepth
-
-                           #if tmp_litho_sub_cnt == litho_sub_cnt :
-                               #fromt[jt] = from_depth
-                               #tot[jt] = to_depth
-                               #calculate_x_y_z()
-                               #break
-
-
-
-                           
-                           fromt[jt] = Depth_survey [survey_ind]
-                           print(fromt[jt])
-                           tot[jt] = to_depth
-                           print(tot[jt])
-                           calculate_x_y_z()
-                           #survey_ind = survey_ind +1
-                           break
-                           #print_xyz_csv()
-                           #survey_ind = survey_ind +1
-                           
-                       else:
-                           print(survey_ind)
-                           fromt[jt] = Depth_survey [survey_ind]
-                           print(fromt[jt])
-                           tot[jt] = Depth_survey [survey_ind + 1]
-                           print(tot[jt])
-                           calculate_x_y_z()
-                           #print_xyz_csv()
-                           survey_ind = survey_ind +1
-                           #print(survey_ind)
-
-                    #print_xyz_csv()   #chk from to interval in csv
-
-
-                elif(tot[jt] < Depth_survey [survey_ind+1] or tot[jt] == Depth_survey [survey_ind+1] ):  #and litho_sub_cnt <=0) :
-                    calculate_x_y_z()
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                    #print(tmp_litho_sub_cnt)
-                    #print_xyz_csv()
-
-                elif(tot[jt] > Depth_survey [survey_ind+1]):
-                    while True:
-                        if Depth_survey [survey_ind] <=  tot[jt]  >= Depth_survey [survey_ind+1]:
-                           survey_ind = survey_ind +1
-                        else:
-                            break
-                        
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                    #survey_ind +1 = survey_ind = survey_ind +2
-                    #fromt[jt] = Depth_survey [survey_ind] 
-                    #tot[jt] = Depth_survey [survey_ind + 1]
-                    calculate_x_y_z()
-                    
-                    
-                    
-
-                
-              
-                   
-                
-    out.close()       
-
-def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
-                #from
-                global azm1
-                global dip1
-                global at
-
-                global xbt 
-                global ybt 
-                global zbt 
-                global xmt 
-                global ymt 
-                global zmt 
-                global xet 
-                global yet 
-                global zet
-
-                global x 
-                global y 
-                global z
-
-                global indbs
-                global indes
-
-                global begin_f 
-                global mid_f 
-                global end_f
-
-                global prev_dict
-                global litho_sub_cnt
-                global survey_sub_cnt
-                global survey_ind
-                
-                
-                azm2,dip2 = angleson1dh(indbs,indes,ats,azs,dips,fromt[jt])
-                print(fromt[jt])
-                azbt[jt] = azm2
-                dipbt[jt] = dip2
-                len12 = float(fromt[jt]) - at
-                dz,dn,de = dsmincurb(len12,azm1,dip1,azm2,dip2)
-                xbt[jt] = de
-                ybt[jt] = dn
-                zbt[jt] = dz
-
-                #xbt[jt] = float(x)+float(xbt[jt])
-                #ybt[jt] = float(y)+float(ybt[jt])
-                #zbt[jt] = float(z)+float(zbt[jt])
-
-                
-                
-
-                
-                
-                #print(xbt[jt],"\t",ybt[jt],"\t",zbt[jt])
-                #if dipbt[jt] > 0 : # if DIP is +ve, growing UP
-                    #zbt[jt] = (dz *-1)
-                #else :
-                    #zbt[jt] = dz
-
-                 #update
-                
-                
-                azm1 = azm2
-                dip1 = dip2
-                at   = float(fromt[jt])
-                #print(azm1,"\t",dip1,"\t",at)
-
-                #midpoint
-                mid = float(fromt[jt]) + float((float(tot[jt])-float(fromt[jt]))/2)
-                print(mid)
-                azm2, dip2 = angleson1dh(indbs,indes,ats,azs,dips,mid)
-                azmt[jt] = azm2
-                dipmt[jt]= dip2
-                len12 = mid - at
-                dz,dn,de = dsmincurb(len12,azm1,dip1,azm2,dip2)
-                xmt[jt] = de + xbt[jt]
-                ymt[jt] = dn + ybt[jt]
-                zmt[jt] = dz + zbt[jt]
-
-                #xmt[jt] = float(x)+float(xmt[jt])
-                #ymt[jt] = float(y)+float(ymt[jt])
-                #zmt[jt] = float(z)+float(zmt[jt])
-
-                
-
-                
-                    
-                    
-                
-                #print(xmt[jt],"\t",ymt[jt],"\t",zmt[jt])
-                #if dipmt[jt] > 0 : # if DIP is +ve, growing UP
-                    #zmt[jt] = (dz * -1)+ zbt[jt]
-                #else:
-                    #zmt[jt] = dz + zbt[jt]
-
-                #update
-                azm1 = azm2
-                dip1 = dip2
-                at   = mid
-                #print(azm1,"\t",dip1,"\t",at)
-
-                #to
-                azm2, dip2 = angleson1dh(indbs,indes,ats,azs,dips,float(tot[jt]))
-                print(tot[jt])
-                azet[jt] = azm2
-                dipet[jt] = dip2
-                len12 = float(tot[jt]) - at
-                dz,dn,de = dsmincurb(len12,azm1,dip1,azm2,dip2)
-                xet[jt] = de + xmt[jt]
-                yet[jt] = dn + ymt[jt]
-                zet[jt] = dz + zmt[jt]
-
-                #xet[jt] = float(x)+float(xet[jt])
-                #yet[jt] = float(y)+float(yet[jt])
-                #zet[jt] = float(z)+float(zet[jt])
-
-                
-                    
-                
-                #print(xet[jt],"\t",yet[jt],"\t",zet[jt])
-                #if dipet[jt] > 0: # if DIP is +ve, growing UP
-                    #zet[jt] = (dz * -1) + zmt[jt]
-                #else:
-                    #zet[jt] = dz + zmt[jt]
-
-                #update
-                azm1 = azm2
-                dip1 = dip2
-                at   = float(tot[jt])
-                #print(azm1,"\t",dip1,"\t",at)
-
-                #calculate coordinates
-                
-                
-                xbt[jt] = float(x)+float(xbt[jt])
-                ybt[jt] = float(y)+float(ybt[jt])
-                zbt[jt] = float(z)+float(zbt[jt])
-                if from_depth == fromt[jt] and begin_f == True :
-                    print_xyz_Begin_csv()
-                    begin_f = False
-
-                print(prev_dict)
-                print(begin_f)
-                    
-                if prev_dict["todepth"] == from_depth and begin_f == True and  survey_ind == survey_sub_cnt-2  :
-                    print(prev_dict)
-                    print(jt)
-                    print(survey_sub_cnt-1)
-                    print(survey_ind)
-                    print_xyz_Begin_Prev_csv()
-                    begin_f = False
-                    
-
-                
-                xmt[jt] = float(x)+float(xmt[jt])
-                ymt[jt] = float(y)+float(ymt[jt])
-                zmt[jt] = float(z)+float(zmt[jt])
-                if mid_depth == mid  and mid_f == True  :
-                    print_xyz_Mid_csv()
-                    mid_f =False
-
-                #if fromt[jt] <= mid_depth <= mid:
-                    #tot[jt] = mid
-                    #calculate_x_y_z()
-                
-                
-                #if  mid <= mid_depth <= tot[jt]:
-                    #fromt[jt] = mid
-                    #calculate_x_y_z()
-
-                
-
-                if prev_dict["todepth"] == from_depth and mid_f == True and  survey_ind == survey_sub_cnt-2  :
-                    print_xyz_Mid_csv()
-                    mid_f =False
-                    
-                xet[jt] = float(x)+float(xet[jt])
-                yet[jt] = float(y)+float(yet[jt])
-                zet[jt] = float(z)+float(zet[jt])
-                if to_depth == tot[jt] and end_f ==True :
-                    print_xyz_End_csv()
-                    tmp_dict=dict(todepth=tot[jt],x=xet[jt],y=yet[jt],z=zet[jt])
-                    prev_dict=tmp_dict
-                    #print(prev_dict)
-                    end_f =False
-
-                if mid_depth == tot[jt] and mid_f == True :
-                    print_xyz_mid_inEnd()
-                    mid_f =False
-
-               
-                    
-
-                
-
-                print(xbt[jt],"\t",ybt[jt],"\t",zbt[jt])
-                print(xmt[jt],"\t",ymt[jt],"\t",zmt[jt])
-                print(xet[jt],"\t",yet[jt],"\t",zet[jt])
-                print("survey Index","\t",survey_ind)
-
-                # update for next interval
-                
-                
-                x = xet[jt]
-                y = yet[jt]
-                z = zet[jt]
-
-
-def print_xyz_Begin_csv(): #out,idt,fromt,tot,cetlit,xbt,ybt,zbt,xmt,ymt,zmt,xet,yet,zet,azbt,dipbt,jt):
-                out.write('%s,' %idt[jt])
-                out.write('%s,' %from_depth)
-                out.write('%s,' %to_depth)
-                out.write('%s,' %cetlit[jt])
-                out.write('%s,' %xbt[jt])
-                out.write('%s,' %ybt[jt])
-                out.write('%s,' %zbt[jt])
-
-def print_xyz_Begin_Prev_csv(): #out,idt,fromt,tot,cetlit,xbt,ybt,zbt,xmt,ymt,zmt,xet,yet,zet,azbt,dipbt,jt):
-                out.write('%s,' %idt[jt])
-                out.write('%s,' %from_depth)
-                out.write('%s,' %to_depth)
-                out.write('%s,' %cetlit[jt])
-                out.write('%s,' %prev_dict["x"])
-                out.write('%s,' %prev_dict["y"])
-                out.write('%s,' %prev_dict["z"])
-
-def print_xyz_Mid_csv():
-                out.write('%s,' %xmt[jt])
-                out.write('%s,' %ymt[jt])
-                out.write('%s,' %zmt[jt])
-                
-
-def print_xyz_End_csv():
-                out.write('%s,' %xet[jt])
-                out.write('%s,' %yet[jt])
-                out.write('%s,' %zet[jt])
-                out.write('%s,' %azbt[jt])
-                out.write('%s,' %dipbt[jt])
-                #out.write('%s,' %azmt[jt])
-                #out.write('%s,' %dipmt[jt])
-                #out.write('%s,' %azet[jt])
-                #out.write('%s,' %dipet[jt])
-                out.write('\n')
-    #out.close()
-
-def print_xyz_mid_inEnd():  # if mid is arbitrary in intermediate value
-    out.write('%s,' %xet[jt])
-    out.write('%s,' %yet[jt])
-    out.write('%s,' %zet[jt])
-
-
-
-    
-
-# Function to find distance 
-def distance(x1, y1, z1, x2, y2, z2):
-    d = math.sqrt(math.pow(x2 - x1, 2) +
-                math.pow(y2 - y1, 2) +
-                math.pow(z2 - z1, 2)* 1.0) 
-    return(d) 
-  
-
-
-
-def Diff_XYZ():
-    Calculated_Data= pd.read_csv('DB_Lithology_Export_Calc.csv',encoding = "ISO-8859-1", dtype='object')
-    Leapfrog_Data= pd.read_csv('DB_Lithology_Export_Leapfrog.csv',encoding = "ISO-8859-1", dtype='object')
-    Calculated_Data.xbt=Calculated_Data['xbt'].astype(float)
-    Calculated_Data.ybt=Calculated_Data['ybt'].astype(float)
-    Calculated_Data.zbt=Calculated_Data['zbt'].astype(float)
-    Leapfrog_Data.start_x=Leapfrog_Data['start_x'].astype(float)
-    Leapfrog_Data.start_y=Leapfrog_Data['start_y'].astype(float)
-    Leapfrog_Data.start_z=Leapfrog_Data['start_z'].astype(float)
-
-    Calculated_Data.xmt=Calculated_Data['xmt'].astype(float)
-    Calculated_Data.ymt=Calculated_Data['ymt'].astype(float)
-    Calculated_Data.zmt=Calculated_Data['zmt'].astype(float)
-    Leapfrog_Data.mid_x=Leapfrog_Data['mid_x'].astype(float)
-    Leapfrog_Data.mid_y=Leapfrog_Data['mid_y'].astype(float)
-    Leapfrog_Data.mid_z=Leapfrog_Data['mid_z'].astype(float)
-
-    Calculated_Data.xet=Calculated_Data['xet'].astype(float)
-    Calculated_Data.yet=Calculated_Data['yet'].astype(float)
-    Calculated_Data.zet=Calculated_Data['zet'].astype(float)
-    Leapfrog_Data.end_x=Leapfrog_Data['end_x'].astype(float)
-    Leapfrog_Data.end_y=Leapfrog_Data['end_y'].astype(float)
-    Leapfrog_Data.end_z=Leapfrog_Data['end_z'].astype(float)
-
-    ######################
-
-    x1=Calculated_Data['xbt'].values
-    y1=Calculated_Data['ybt'].values
-    z1=Calculated_Data['zbt'].values
-    x2=Leapfrog_Data['start_x'].values
-    y2=Leapfrog_Data['start_y'].values
-    z2=Leapfrog_Data['start_z'].values
-
-    x3=Calculated_Data['xmt'].values
-    y3=Calculated_Data['ymt'].values
-    z3=Calculated_Data['zmt'].values
-    x4=Leapfrog_Data['mid_x'].values
-    y4=Leapfrog_Data['mid_y'].values
-    z4=Leapfrog_Data['mid_z'].values
-
-    x5=Calculated_Data['xet'].values
-    y5=Calculated_Data['yet'].values
-    z5=Calculated_Data['zet'].values
-    x6=Leapfrog_Data['end_x'].values
-    y6=Leapfrog_Data['end_y'].values
-    z6=Leapfrog_Data['end_z'].values
-
-
-    x1_count= x1.shape[0]
-    y1_count= y1.shape[0]
-    z1_count= z1.shape[0]
-    x2_count= x2.shape[0]
-    y2_count= y2.shape[0]
-    z2_count= z2.shape[0]
-
-
-    x3_count= x3.shape[0]
-    y3_count= y3.shape[0]
-    z3_count= z3.shape[0]
-    x4_count= x4.shape[0]
-    y4_count= y4.shape[0]
-    z4_count= z4.shape[0]
-
-
-    x5_count= x5.shape[0]
-    y5_count= y5.shape[0]
-    z5_count= z5.shape[0]
-    x6_count= x6.shape[0]
-    y6_count= y6.shape[0]
-    z6_count= z6.shape[0]
-
-    Diff_1=[]
-    Diff_2=[]
-    Diff_3=[]
-
-    if(x1_count == y1_count==z1_count==x2_count==y2_count==z2_count):
-        for c1 in range(x1_count):
-            p1 = distance(x1[c1],y1[c1],z1[c1],x2[c1],y2[c1],z2[c1])
-            #print(p1)
-            Diff_1.append(p1)
-    #print(Diff_1)
-    #print('########')
-
-
-    if(x3_count == y3_count==z3_count==x4_count==y4_count==z4_count):
-        for c2 in range(x3_count):
-            p2 = distance(x3[c2],y3[c2],z3[c2],x4[c2],y4[c2],z4[c2])
-            Diff_2.append(p2)
-    #print(Diff_2)
-    #print('########')
-
-
-    if(x5_count == y5_count==z5_count==x6_count==y6_count==z6_count):
-        for c3 in range(x5_count):
-            p3 = distance(x5[c3],y5[c3],z5[c3],x6[c3],y6[c3],z6[c3])
-            Diff_3.append(p3)
-    #print(Diff_3)
-    #print('########')
-
-    Calculated_Data['Diff_1']=Diff_1
-    #print(Diff_1)
-    Calculated_Data['Diff_2']=Diff_2
-    Calculated_Data['Diff_3']=Diff_3
-    del Calculated_Data['Unnamed: 15']
-    Calculated_Data.to_csv ('Litho_xyz_Diff.csv', index = False, header=True)
-
-
-    
-
-
-
-
-
+        for litho_dico_ele in Var.Litho_dico:
+            litho_words=str(litho_dico_ele).lower().rstrip('\n\r').replace('(','').replace(')','').replace('\'','').replace(',','').split(" ")
+
+            scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
+            for sc in scores:                        
+                if(sc[1]>bestmatch): #better than previous best match
+                    bestmatch =  sc[1]
+                    bestlitho=litho_words[0]
+                    top.append([sc[0],sc[1]])
+                    if(sc[0]==words[last]): #bonus for being last word in phrase
+                        bestmatch=bestmatch*1.01
+                elif (sc[1]==bestmatch): #equal to previous best match
+                    if(sc[0]==words[last]): #bonus for being last word in phrase
+                        bestlitho=litho_words[0]
+                        bestmatch=bestmatch*1.01
+                    else:
+                        top.append([sc[0],sc[1]])
+
+        i=0
+        if bestmatch >80:
+            Var.Comments_fuzzy.append([Comments_Dic_ele[0],Comments_Dic_ele[1],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
+            out.write('%s,' %Comments_Dic_ele[0].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
+            out.write('%s,' %Comments_Dic_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('%s,' %bestlitho.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('%d,' %bestmatch)
+            out.write('\n')
+            top.clear()
+            CET_Litho=''
+            bestmatch=-1
+            bestlitho=''
+        else:
+            Var.Comments_fuzzy.append([Comments_Dic_ele[0],Comments_Dic_ele[1],cleaned_text,'Other',bestmatch])  #top_new[1]])
+            out.write('%s,' %Comments_Dic_ele[0].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
+            out.write('%s,' %Comments_Dic_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
+            out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('Other,')
+            out.write('%d,' %bestmatch)
+            out.write('\n')
+            top.clear()
+            CET_Litho=''
+            bestmatch=-1
+            bestlitho=''
                    
                     
    
 
+def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
+    #query = """SELECT * FROM public.dhlithology_comments_ygsb_distinct_test"""
+    query = ''' SELECT m1.companyid, m1.collarid, m1.fromdepth, m1.todepth, m1.lith_attributecolumn, m1.lith_attributevalue, 
+                m2.comments_attributecolumn, m2.comments_attributevalue 
+                FROM 
+                (select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS lith_attributecolumn, t1.attributevalue AS lith_attributevalue 
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.dic_att_col_lithology t5
+                 on t1.attributecolumn = t5.lithological
+                 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
+                 ORDER BY t3.companyid ASC) m1
+                 FULL JOIN		 
+                (select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS comments_attributecolumn, t1.attributevalue AS comments_attributevalue  
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.litho_att_col_comment t6
+                 on t1.attributecolumn = t6.att_col_comments
+                 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
+                 ORDER BY t3.companyid ASC) m2 
+                 on m1.dhgeologyid = m2.dhgeologyid'''
+                 
+                 
+                 
+    Litho_Depth_With_Comments_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
+    with open(Litho_Depth_With_Comments_LOG_File_TIME, 'w'):   # to clear the log files 
+        pass
+        
+    logger1 = logging.getLogger('dev1')
+    logger1.setLevel(logging.INFO)
+    fileHandler1 = logging.FileHandler(Litho_Depth_With_Comments_LOG_File_TIME)
+    logger1.addHandler(fileHandler1)
+    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
     
+    #print(cur)
+    First_Filter_list = [list(elem) for elem in cur]
+    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','CET_Lithology','Score', 'Comment', 'CET_Comment', 'Comment_Score']
+    out= open(DB_lithology_With_Comments_Final_Export, "w",encoding ="utf-8")
+    for ele in fieldnames:
+        out.write('%s,' %ele)
+    out.write('\n')
+    for First_filter_ele in First_Filter_list:
+        First_filter_ele[2],First_filter_ele[3] =Depth_validation(First_filter_ele[2],First_filter_ele[3],First_filter_ele[1],First_filter_ele[6],logger1) # validate depth
+        CompanyID=First_filter_ele[0]
+        CollarID=First_filter_ele[1]
+        FromDepth=First_filter_ele[2]
+        ToDepth=First_filter_ele[3]
+        Company_Lithocode=""
+        Company_Lithology=""
+        CET_Lithology=""
+        Score=0
+        Comment=""
+        CET_Comment=""
+        Comment_Score=0
+        
+        
+        for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
+            if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
+                Company_Lithocode=Attr_val_fuzzy_ele[1]
+                Company_Lithology=Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Lithology=Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Score=Attr_val_fuzzy_ele[5]
+                
+        for Comments_fuzzy_ele in Var.Comments_fuzzy:
+            if Comments_fuzzy_ele[1] == First_filter_ele[7]:
+                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Comment_Score=Comments_fuzzy_ele[4]
+                
+        #if not(Score==0 and Comment_Score==0):
+        out.write('%d,' %CompanyID)
+        out.write('%d,' %CollarID)
+        out.write('%d,' %FromDepth)
+        out.write('%s,' %ToDepth)
+        out.write('%s,' %Company_Lithocode)
+        out.write('%s,' %Company_Lithology)
+        out.write('%s,' %CET_Lithology)
+        out.write('%d,' %Score)
+        out.write('%s,' %Comment)
+        out.write('%s,' %CET_Comment)
+        out.write('%d,' %Comment_Score)
+        out.write('\n')
+    cur.close()
+    conn.close()
+    out.close()
+
+
+
+def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
+    #query = """SELECT * FROM public.dhlithology_comments_ygsb_distinct_test"""
+    query = '''  select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS comments_attributecolumn, t1.attributevalue AS comments_attributevalue  
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.litho_att_col_comment t6
+                 on t1.attributecolumn = t6.att_col_comments
+                 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
+                 ORDER BY t3.companyid ASC '''
+                 
+                 
+                 
+                 
+    Litho_Depth_With_Only_Comments_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
+    with open(Litho_Depth_With_Only_Comments_LOG_File_TIME, 'w'):   # to clear the log files 
+        pass
+        
+    logger1 = logging.getLogger('dev1')
+    logger1.setLevel(logging.INFO)
+    fileHandler1 = logging.FileHandler(Litho_Depth_With_Only_Comments_LOG_File_TIME)
+    logger1.addHandler(fileHandler1)
+    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
+    
+    #print(cur)
+    First_Filter_list = [list(elem) for elem in cur]
+    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','Comment', 'CET_Comment', 'Comment_Score']
+    out= open(DB_lithology_Only_Comments_Final_Export, "w",encoding ="utf-8")
+    for ele in fieldnames:
+        out.write('%s,' %ele)
+    out.write('\n')
+    for First_filter_ele in First_Filter_list:
+        First_filter_ele[2],First_filter_ele[3] =Depth_validation(First_filter_ele[2],First_filter_ele[3],First_filter_ele[0],First_filter_ele[2],logger1) # validate depth
+        CompanyID=First_filter_ele[0]
+        CollarID=First_filter_ele[1]
+        FromDepth=First_filter_ele[2]
+        ToDepth=First_filter_ele[3]
+        Company_Lithocode=""
+        Company_Lithology=""
+        CET_Lithology=""
+        Score=0
+        Comment=""
+        CET_Comment=""
+        Comment_Score=0
+        
+        
+       
+                
+        for Comments_fuzzy_ele in Var.Comments_fuzzy:
+            if Comments_fuzzy_ele[1] == First_filter_ele[6]:
+                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Comment_Score=Comments_fuzzy_ele[4]
+                
+        #if not(Score==0 and Comment_Score==0):
+        out.write('%d,' %CompanyID)
+        out.write('%d,' %CollarID)
+        out.write('%d,' %FromDepth)
+        out.write('%s,' %ToDepth)
+        out.write('%s,' %Company_Lithocode)
+        out.write('%s,' %Company_Lithology)
+        out.write('%s,' %CET_Lithology)
+        out.write('%d,' %Score)
+        out.write('%s,' %Comment)
+        out.write('%s,' %CET_Comment)
+        out.write('%d,' %Comment_Score)
+        out.write('\n')
+    cur.close()
+    conn.close()
+    out.close()
+ 
     
 
 

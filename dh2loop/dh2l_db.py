@@ -17,7 +17,7 @@ import numpy as np
 from pyproj import Transformer, transform
 import os
 from collections import Counter
-#from datetime import datetime
+from datetime import datetime
 import pandas as pd
 import numpy as np
 from math import acos, cos, asin, sin, atan2, tan, radians
@@ -56,21 +56,23 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
         out.write('%s,' %ele)
     out.write('\n')
     
-    with open('RL.log', 'w'):
+    RL_LOG_File_TIME = datetime.now().strftime('RL_%d_%m_%Y_%H_%M_%S_.log')
+    MD_LOG_File_TIME = datetime.now().strftime('MD_%d_%m_%Y_%H_%M_%S_.log')
+    with open(RL_LOG_File_TIME, 'w'):
         pass
         
-    with open('MD.log', 'w'):
+    with open(MD_LOG_File_TIME, 'w'):
         pass
     
     
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler('RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
+    fileHandler1 = logging.FileHandler(RL_LOG_File_TIME)  #'RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
     logger1.addHandler(fileHandler1)
 
     logger2 = logging.getLogger('dev2')
     logger2.setLevel(logging.INFO)
-    fileHandler2 = logging.FileHandler('MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
+    fileHandler2 = logging.FileHandler(MD_LOG_File_TIME)  #'MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
     logger2.addHandler(fileHandler2)
     
     query =""" SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
@@ -418,22 +420,25 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    Output:
         - DB_Survey_Export : The processed data after extraction is written to this csv file in required format.
    '''
+   Dip_LOG_File_TIME = datetime.now().strftime('Dip_%d_%m_%Y_%H_%M_%S_.log')
+   Azi_LOG_File_TIME = datetime.now().strftime('Azi_%d_%m_%Y_%H_%M_%S_.log')
+
    
-   with open('Dip.log', 'w'):   # to clear the log files 
+   with open(Dip_LOG_File_TIME, 'w'):   # to clear the log files 
     pass
         
-   with open('Azi.log', 'w'):
+   with open(Azi_LOG_File_TIME, 'w'):
     pass
    
    logger1 = logging.getLogger('dev1')
    logger1.setLevel(logging.INFO)
-   fileHandler1 = logging.FileHandler('Dip.log')
+   fileHandler1 = logging.FileHandler(Dip_LOG_File_TIME)
    logger1.addHandler(fileHandler1)
 
 
    logger2 = logging.getLogger('dev2')
    logger2.setLevel(logging.INFO)
-   fileHandler2 = logging.FileHandler('Azi.log')
+   fileHandler2 = logging.FileHandler(Azi_LOG_File_TIME)
    logger2.addHandler(fileHandler2)
    
    fieldnames=['CollarID','Depth','Azimuth','Dip']
@@ -1243,21 +1248,24 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
 		 on t4.companyid = t3.companyid
 		 inner join public.dic_att_col_lithology_1 t5
 		 on t1.attributecolumn = t5.att_col
-		 WHERE(t3.longitude BETWEEN 115.5 AND 118) AND(t3.latitude BETWEEN - 30.5 AND - 27.5) 
+		 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
 		 ORDER BY t3.companyid ASC"""
 
-    with open('Litho_Depth.log', 'w'):   # to clear the log files 
+    Litho_Depth_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
+    with open(Litho_Depth_LOG_File_TIME, 'w'):   # to clear the log files 
         pass
         
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler('Litho_Depth.log')
+    fileHandler1 = logging.FileHandler(Litho_Depth_LOG_File_TIME)
     logger1.addHandler(fileHandler1)
     
     
     conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     cur = conn.cursor()
-    cur.execute(query)
+    #cur.execute(query)
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
     First_Filter_list = [list(elem) for elem in cur]
     
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Attribute_column','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']  # for looging
@@ -1552,16 +1560,283 @@ def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplic
 
 
 
+def Comments_Dic(minlong,maxlong,minlat,maxlat):
+    #query = """SELECT * FROM public.litho_att_col_comments"""
+    query = """Select DISTINCT ON (t1.attributecolumn, t1.attributevalue)
+    t1.attributecolumn, t1.attributevalue
+		 from public.dhgeologyattr t1 
+		 inner join public.dhgeology t2 
+		 on t1.dhgeologyid = t2.id 
+		 inner join collar t3 
+		 on t3.id = t2.collarid
+		 inner join public.litho_att_col_comment t6
+		 on t1.attributecolumn = t6.att_col_comments
+		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
+    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
+    
+    for record in cur:
+        #print(record)
+        Var.Comments_dic.append(record)
+    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
+   
+    #with open('Dic_Comments.csv', 'w') as f:
+        #cur.copy_expert(outputquery, f)
+    cur.close()
+    conn.close()
 
 
 
+def Comments_With_fuzzy():
+    bestmatch=-1
+    bestlitho=''
+    top=[]
+    i=0
+    comments_sub_list=[]
+    fieldnames=['Comments_Field','Comment_Attr_val','Comment_cleaned_text','Comment_Fuzzy_wuzzy','Comment_Score']
+    out= open("Comments_fuzzy.csv", "w",encoding ="utf-8")
+    for ele in fieldnames:
+        out.write('%s,' %ele)
+    out.write('\n')
+    Comments_Dic_new = [list(elem) for elem in Var.Comments_dic]
+    for Comments_Dic_ele in Comments_Dic_new:
+        cleaned_text=clean_text(Comments_Dic_ele[1])
+        
+        words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
+        words=words.rstrip('\n\r').split(" ")
+        last=len(words)-1 #position of last word in phrase
+        
+        for litho_dico_ele in Var.Litho_dico:
+            litho_words=str(litho_dico_ele).lower().rstrip('\n\r').replace('(','').replace(')','').replace('\'','').replace(',','').split(" ")
 
+            scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
+            for sc in scores:                        
+                if(sc[1]>bestmatch): #better than previous best match
+                    bestmatch =  sc[1]
+                    bestlitho=litho_words[0]
+                    top.append([sc[0],sc[1]])
+                    if(sc[0]==words[last]): #bonus for being last word in phrase
+                        bestmatch=bestmatch*1.01
+                elif (sc[1]==bestmatch): #equal to previous best match
+                    if(sc[0]==words[last]): #bonus for being last word in phrase
+                        bestlitho=litho_words[0]
+                        bestmatch=bestmatch*1.01
+                    else:
+                        top.append([sc[0],sc[1]])
 
+        i=0
+        if bestmatch >80:
+            Var.Comments_fuzzy.append([Comments_Dic_ele[0],Comments_Dic_ele[1],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
+            out.write('%s,' %Comments_Dic_ele[0].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
+            out.write('%s,' %Comments_Dic_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('%s,' %bestlitho.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('%d,' %bestmatch)
+            out.write('\n')
+            top.clear()
+            CET_Litho=''
+            bestmatch=-1
+            bestlitho=''
+        else:
+            Var.Comments_fuzzy.append([Comments_Dic_ele[0],Comments_Dic_ele[1],cleaned_text,'Other',bestmatch])  #top_new[1]])
+            out.write('%s,' %Comments_Dic_ele[0].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
+            out.write('%s,' %Comments_Dic_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))
+            out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
+            out.write('Other,')
+            out.write('%d,' %bestmatch)
+            out.write('\n')
+            top.clear()
+            CET_Litho=''
+            bestmatch=-1
+            bestlitho=''
                    
                     
    
 
+def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
+    #query = """SELECT * FROM public.dhlithology_comments_ygsb_distinct_test"""
+    query = ''' SELECT m1.companyid, m1.collarid, m1.fromdepth, m1.todepth, m1.lith_attributecolumn, m1.lith_attributevalue, 
+                m2.comments_attributecolumn, m2.comments_attributevalue 
+                FROM 
+                (select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS lith_attributecolumn, t1.attributevalue AS lith_attributevalue 
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.dic_att_col_lithology t5
+                 on t1.attributecolumn = t5.lithological
+                 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
+                 ORDER BY t3.companyid ASC) m1
+                 FULL JOIN		 
+                (select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS comments_attributecolumn, t1.attributevalue AS comments_attributevalue  
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.litho_att_col_comment t6
+                 on t1.attributecolumn = t6.att_col_comments
+                 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
+                 ORDER BY t3.companyid ASC) m2 
+                 on m1.dhgeologyid = m2.dhgeologyid'''
+                 
+                 
+                 
+    Litho_Depth_With_Comments_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
+    with open(Litho_Depth_With_Comments_LOG_File_TIME, 'w'):   # to clear the log files 
+        pass
+        
+    logger1 = logging.getLogger('dev1')
+    logger1.setLevel(logging.INFO)
+    fileHandler1 = logging.FileHandler(Litho_Depth_With_Comments_LOG_File_TIME)
+    logger1.addHandler(fileHandler1)
+    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
     
+    #print(cur)
+    First_Filter_list = [list(elem) for elem in cur]
+    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','CET_Lithology','Score', 'Comment', 'CET_Comment', 'Comment_Score']
+    out= open(DB_lithology_With_Comments_Final_Export, "w",encoding ="utf-8")
+    for ele in fieldnames:
+        out.write('%s,' %ele)
+    out.write('\n')
+    for First_filter_ele in First_Filter_list:
+        First_filter_ele[2],First_filter_ele[3] =Depth_validation(First_filter_ele[2],First_filter_ele[3],First_filter_ele[1],First_filter_ele[6],logger1) # validate depth
+        CompanyID=First_filter_ele[0]
+        CollarID=First_filter_ele[1]
+        FromDepth=First_filter_ele[2]
+        ToDepth=First_filter_ele[3]
+        Company_Lithocode=""
+        Company_Lithology=""
+        CET_Lithology=""
+        Score=0
+        Comment=""
+        CET_Comment=""
+        Comment_Score=0
+        
+        
+        for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
+            if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
+                Company_Lithocode=Attr_val_fuzzy_ele[1]
+                Company_Lithology=Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Lithology=Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Score=Attr_val_fuzzy_ele[5]
+                
+        for Comments_fuzzy_ele in Var.Comments_fuzzy:
+            if Comments_fuzzy_ele[1] == First_filter_ele[7]:
+                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Comment_Score=Comments_fuzzy_ele[4]
+                
+        #if not(Score==0 and Comment_Score==0):
+        out.write('%d,' %CompanyID)
+        out.write('%d,' %CollarID)
+        out.write('%d,' %FromDepth)
+        out.write('%s,' %ToDepth)
+        out.write('%s,' %Company_Lithocode)
+        out.write('%s,' %Company_Lithology)
+        out.write('%s,' %CET_Lithology)
+        out.write('%d,' %Score)
+        out.write('%s,' %Comment)
+        out.write('%s,' %CET_Comment)
+        out.write('%d,' %Comment_Score)
+        out.write('\n')
+    cur.close()
+    conn.close()
+    out.close()
+
+
+
+def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
+    #query = """SELECT * FROM public.dhlithology_comments_ygsb_distinct_test"""
+    query = '''  select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS comments_attributecolumn, t1.attributevalue AS comments_attributevalue  
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.litho_att_col_comment t6
+                 on t1.attributecolumn = t6.att_col_comments
+                 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
+                 ORDER BY t3.companyid ASC '''
+                 
+                 
+                 
+                 
+    Litho_Depth_With_Only_Comments_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
+    with open(Litho_Depth_With_Only_Comments_LOG_File_TIME, 'w'):   # to clear the log files 
+        pass
+        
+    logger1 = logging.getLogger('dev1')
+    logger1.setLevel(logging.INFO)
+    fileHandler1 = logging.FileHandler(Litho_Depth_With_Only_Comments_LOG_File_TIME)
+    logger1.addHandler(fileHandler1)
+    conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
+    
+    #print(cur)
+    First_Filter_list = [list(elem) for elem in cur]
+    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','Comment', 'CET_Comment', 'Comment_Score']
+    out= open(DB_lithology_Only_Comments_Final_Export, "w",encoding ="utf-8")
+    for ele in fieldnames:
+        out.write('%s,' %ele)
+    out.write('\n')
+    for First_filter_ele in First_Filter_list:
+        First_filter_ele[2],First_filter_ele[3] =Depth_validation(First_filter_ele[2],First_filter_ele[3],First_filter_ele[0],First_filter_ele[2],logger1) # validate depth
+        CompanyID=First_filter_ele[0]
+        CollarID=First_filter_ele[1]
+        FromDepth=First_filter_ele[2]
+        ToDepth=First_filter_ele[3]
+        Company_Lithocode=""
+        Company_Lithology=""
+        CET_Lithology=""
+        Score=0
+        Comment=""
+        CET_Comment=""
+        Comment_Score=0
+        
+        
+       
+                
+        for Comments_fuzzy_ele in Var.Comments_fuzzy:
+            if Comments_fuzzy_ele[1] == First_filter_ele[6]:
+                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Comment_Score=Comments_fuzzy_ele[4]
+                
+        #if not(Score==0 and Comment_Score==0):
+        out.write('%d,' %CompanyID)
+        out.write('%d,' %CollarID)
+        out.write('%d,' %FromDepth)
+        out.write('%s,' %ToDepth)
+        out.write('%s,' %Company_Lithocode)
+        out.write('%s,' %Company_Lithology)
+        out.write('%s,' %CET_Lithology)
+        out.write('%d,' %Score)
+        out.write('%s,' %Comment)
+        out.write('%s,' %CET_Comment)
+        out.write('%d,' %Comment_Score)
+        out.write('\n')
+    cur.close()
+    conn.close()
+    out.close()
+ 
     
 
 

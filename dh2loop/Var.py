@@ -7,5 +7,7 @@ cleanup_dic_list=[]
 Att_col_List_copy_tuple=[]
 Attr_val_Dic=[]
 Attr_val_fuzzy=[]
+Comments_dic=[]
+Comments_fuzzy=[]
 
 
