@@ -28,7 +28,8 @@ nltk.download('wordnet')
 from nltk.corpus import stopwords
 from dh2loop import Var
 import logging
-from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path
+from logging.handlers import TimedRotatingFileHandler
+from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path,DB_Collar_Rl_Log,DB_Collar_Maxdepth_Log,DB_Survey_Azi_Log,DB_Survey_Dip_Log,DB_Litho_Depth_Log,DB_Litho_Att_Val_Log
 import pandas as pd
 
 
@@ -57,23 +58,16 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
         out.write('%s,' %ele)
     out.write('\n')
     
-    RL_LOG_File_TIME = datetime.now().strftime('RL_%d_%m_%Y_%H_%M_%S_.log')
-    MD_LOG_File_TIME = datetime.now().strftime('MD_%d_%m_%Y_%H_%M_%S_.log')
-    with open(RL_LOG_File_TIME, 'w'):
-        pass
-        
-    with open(MD_LOG_File_TIME, 'w'):
-        pass
-    
-    
-    logger1 = logging.getLogger('dev1')
+    logger1 = logging.getLogger('dev1')   #looging data
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler(RL_LOG_File_TIME)  #'RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
+    DB_Collar_Rl_Log_Name = os.path.join(export_path, DB_Collar_Rl_Log)
+    fileHandler1 = logging.FileHandler(DB_Collar_Rl_Log_Name)  #'RL.log')   #DB_Collar_Rl_Log)  #'RL.log')
     logger1.addHandler(fileHandler1)
 
     logger2 = logging.getLogger('dev2')
     logger2.setLevel(logging.INFO)
-    fileHandler2 = logging.FileHandler(MD_LOG_File_TIME)  #'MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
+    DB_Collar_MD_Log_Name = os.path.join(export_path, DB_Collar_Maxdepth_Log)
+    fileHandler2 = logging.FileHandler(DB_Collar_MD_Log_Name)  #'MD.log')    #DB_Collar_Maxdepth_Log)  #'MD.log')
     logger2.addHandler(fileHandler2)
     
     query =""" SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
@@ -84,7 +78,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 		  WHERE(longitude BETWEEN %s  AND %s AND latitude BETWEEN %s AND %s)
 		  ORDER BY collarattr.collarid ASC """
    
- #WHERE(longitude BETWEEN (minlong = COALESCE(%f, minlong)  AND maxlong = COALESCE(%f, maxlong)) AND latitude BETWEEN (minlat = COALESCE(%f, minlat) AND maxlat = COALESCE(%f, maxlat)))
+    #WHERE(longitude BETWEEN (minlong = COALESCE(%f, minlong)  AND maxlong = COALESCE(%f, maxlong)) AND latitude BETWEEN (minlat = COALESCE(%f, minlat) AND maxlat = COALESCE(%f, maxlat)))
     conn = None
     Pre_id = 0
     Pre_hole_id = ''
@@ -110,7 +104,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
   
    
     try:
-       #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+       
        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
        cur = conn.cursor()
        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds read from config file
@@ -285,64 +279,40 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
    
 
 def Parse_Num_Maxdepth(s1,logger2,collarID):
-   #logger1 = logging.getLogger('dev1')
-   #logger1.setLevel(logging.INFO)
-   #fileHandler1 = logging.FileHandler('Maxdepth_Info.log')
-   #logger1.addHandler(fileHandler1)
-
-   #logger1
    
    s1=s1.lstrip().rstrip()
    if s1.isalpha():
-      
-      #print("1")
-      #logger1("alpha in Maxdepth")
       logger2.info("%d, %s, %s" ,collarID ,s1,"alpha in MaxDepth ,In csv NAN is added")
-      #logger2.info('{}:{}:{}'.format(collarID ,s1,"alpha in MD"))
       return(None)
       
    elif s1 == '-999':
-      #print("-999")
-      #print("1")
       logger2.info("%d, %s ,%s" ,collarID,s1," MaxDepth is -999,In csv NAN is added")
-      #logger2.info('{}:{}:{}'.format(collarID ,s1,"MD is -999"))
       return(None)
    elif re.match("^[-+]?[0-9]+$", s1):
        if s1[0] == '-' :
-           #print("1")
            logger2.info("%d, %s, %s" ,collarID,s1," Maxdepth integer -ve,convert to +ve and add to csv file ")
-           #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth integer -ve"))
            return(int(s1) * -1)
        else:
-           #print("1")
            logger2.info("%d ,%s, %s" ,collarID,s1,"Maxdepth integer +ve,in required status to use directly in csv file ")
-           #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth integer +ve"))
            return(int(s1))
    elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
       if s1[0] =='-':
          logger2.info("%d, %s ,%s" ,collarID,s1," Maxdepth float -ve,convert to +ve and add to csv file ")
-         #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth float -ve,convert to +ve and added to csv file"))
          return(float(s1) * -1)
       else :
-         #print("1")
+         
          logger2.info("%d, %s, %s" ,collarID,s1," Maxdepth float +ve,in required status to use directly in csv file  ")
-         #logger2.info('{}:{}:{}'.format(collarID ,s1,"Maxdepth float +ve"))
          return(float(s1))
    
 
 
 def Parse_Num_Rl(s1,logger1,collarID):
     s1=s1.lstrip().rstrip()
-    #logger2 = logging.getLogger('dev2')
-    #logger2.setLevel(logging.INFO)
-    #fileHandler2 = logging.FileHandler('RL_Info.log')
-    #logger2.addHandler(fileHandler2)
+    
     if s1.isalpha():
-       #print("1")
        logger1.info("%d, %s ,%s" ,collarID,s1,"alpha in RL,In csv file NAN is added",)
        return(None)
     elif re.match("^[-+]?[0-9]+$", s1):
-       #print(" int  ","\t", s1)
        if int(s1) > 10000 :
            logger1.info("%d, %s ,%s" ,collarID,s1," integer RL > 10000,In csv file NAN is added")
            return(None)
@@ -350,10 +320,8 @@ def Parse_Num_Rl(s1,logger1,collarID):
            logger1.info("%d, %s, %s" ,collarID,s1," integer RL ,in required state to use directly in csv file")
            return(int(s1))
     elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
-       #print(" float ","\t", s1)
        if float(s1) > 10000.0:
           logger1.info("%d, %s ,%s" ,collarID,s1," float RL  > 10000,In csv file NAN is added")
-          #print("None")
           return(None)
        else :
           logger1.info("%d, %s ,%s" ,collarID,s1," float RL ,in required state to use directly in csv file")
@@ -386,7 +354,7 @@ def collar_attr_col_dic():
    '''
    Function to extract rl,maxdepth dictionary from DB, and stored in list
    '''
-   #query =""" SELECT  rl_maxdepth_dic.attributecolumn,rl_maxdepth_dic.cet_attributecolumn  FROM rl_maxdepth_dic """
+   
    query = '''SELECT  thesaurus_collar_elevation.attributecolumn,thesaurus_collar_elevation.cet_attributecolumn  FROM thesaurus_collar_elevation
               union all 
               SELECT  thesaurus_collar_maxdepth.attributecolumn,thesaurus_collar_maxdepth.cet_attributecolumn  FROM thesaurus_collar_maxdepth'''       
@@ -394,7 +362,7 @@ def collar_attr_col_dic():
    conn = None
    
    try:
-      #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       cur.execute(query)
@@ -403,7 +371,7 @@ def collar_attr_col_dic():
          Var.Attr_col_collar_dic_list.append(rec)
 
    
-      #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
+      #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)   # for testing 
    
       #with open('Dic_attr_col_collar.csv', 'w',encoding="utf-8") as f:
          #cur.copy_expert(outputquery, f)
@@ -427,25 +395,18 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    Output:
         - DB_Survey_Export : The processed data after extraction is written to this csv file in required format.
    '''
-   Dip_LOG_File_TIME = datetime.now().strftime('Dip_%d_%m_%Y_%H_%M_%S_.log')
-   Azi_LOG_File_TIME = datetime.now().strftime('Azi_%d_%m_%Y_%H_%M_%S_.log')
-
-   
-   with open(Dip_LOG_File_TIME, 'w'):   # to clear the log files 
-    pass
-        
-   with open(Azi_LOG_File_TIME, 'w'):
-    pass
-   
+      
    logger1 = logging.getLogger('dev1')
    logger1.setLevel(logging.INFO)
-   fileHandler1 = logging.FileHandler(Dip_LOG_File_TIME)
+   DB_Survey_Dip_Log_Name = os.path.join(export_path, DB_Survey_Dip_Log)
+   fileHandler1 = logging.FileHandler(DB_Survey_Dip_Log_Name)
    logger1.addHandler(fileHandler1)
 
 
    logger2 = logging.getLogger('dev2')
    logger2.setLevel(logging.INFO)
-   fileHandler2 = logging.FileHandler(Azi_LOG_File_TIME)
+   DB_Survey_Azi_Log_Name = os.path.join(export_path, DB_Survey_Azi_Log)
+   fileHandler2 = logging.FileHandler(DB_Survey_Azi_Log_Name)
    logger2.addHandler(fileHandler2)
    
    fieldnames=['CollarID','Depth','Azimuth','Dip']
@@ -479,7 +440,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    
    
    try:
-      #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -746,7 +707,7 @@ def Attr_col_dic():
    Function extracts survey dictionary for attribute column AZI, Dip from DB and stores in List
    '''
    
-   #query =""" SELECT * FROM public.survey_dic """
+   
    query = ''' SELECT  thesaurus_survey_azimuth.attributecolumn,thesaurus_survey_azimuth.cet_attributecolumn  FROM thesaurus_survey_azimuth
                union all 
                SELECT  thesaurus_survey_dip.attributecolumn,thesaurus_survey_dip.cet_attributecolumn  FROM thesaurus_survey_dip   '''
@@ -754,7 +715,7 @@ def Attr_col_dic():
    conn = None
    temp_list =[]
    try:
-      #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       cur.execute(query)
@@ -925,9 +886,9 @@ def Attr_Val_Dic():
     '''
     Funtion extracts Attribute value dictionary table from DB.
     '''
-    #query = """SELECT * FROM public.dic_attr_val_lithology_filter"""
+    
     query = '''select * from thesaurus_geology_lithology_code'''
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -954,9 +915,8 @@ def Litho_Dico():
     '''
     Function Extracts Dictionary for lithology from DB.
     '''
-    #query = """SELECT litho_dic_1.clean  FROM litho_dic_1"""
+    
     query = ''' select thesaurus_geology_hierarchy.fuzzuwuzzy_terms  from thesaurus_geology_hierarchy '''
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -983,9 +943,8 @@ def Clean_Up():
     '''
     Function extracts clean up dictionary from DB.
     '''
-    #query = """SELECT cleanup_lithology.clean  FROM cleanup_lithology"""
+    
     query = ''' select thesaurus_cleanup.cleanup_term  from thesaurus_cleanup '''
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1229,7 +1188,6 @@ def Depth_validation(row_2,row_3,collarid,dhsurveyid,logger1):
     to_depth = row_3
     if (from_depth is not None and to_depth is not None) or  (from_depth is not None or to_depth is not None) :
         if(to_depth == 'NULL' or to_depth == None):
-            
             to_depth = from_depth +0.1
             logger1.info("%d, %d ,%d, %d ,%s " ,collarid,dhsurveyid,from_depth,to_depth,"todepth is NULL/None ,0.1 added to from_depth result is todepth")
             return from_depth,to_depth
@@ -1258,28 +1216,22 @@ def Depth_validation_comments(row_2,row_3) :   #,collarid,dhsurveyid):
     Output:
         - From Depth,To Depth : Right Depth values for from and to depth 
     '''
-   
-    
+      
     from_depth = row_2               
     to_depth = row_3
     if (from_depth is not None and to_depth is not None) or  (from_depth is not None or to_depth is not None) :
         if(to_depth == 'NULL' or to_depth == None):
-            
             to_depth = from_depth +0.1
-            
             return from_depth,to_depth
         elif to_depth>from_depth:
-            
             return row_2,row_3
         elif from_depth == to_depth:
             to_depth = to_depth+0.01
             row_3=to_depth
-            
             return row_2,row_3
         elif from_depth >to_depth:
             row_2=to_depth       
             row_3=from_depth
-            
             return row_2,row_3
 
 
@@ -1305,17 +1257,15 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
 		 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
 		 ORDER BY t3.companyid ASC"""
 
-    Litho_Depth_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
-    with open(Litho_Depth_LOG_File_TIME, 'w'):   # to clear the log files 
-        pass
-        
+    
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler(Litho_Depth_LOG_File_TIME)
+    DB_Litho_Depth_Log_Name = os.path.join(export_path, DB_Litho_Depth_Log)
+    fileHandler1 = logging.FileHandler(DB_Litho_Depth_Log_Name)
     logger1.addHandler(fileHandler1)
     
     
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     #cur.execute(query)
@@ -1376,6 +1326,10 @@ def Attr_COl():
 
     cur.close()
     conn.close()
+    
+    
+    
+    
 def First_Filter():
     print("------------------start First_Filter------------")
     start = time.time()
@@ -1446,12 +1400,13 @@ def Final_Lithology_old():
         out.write('%s,' %ele)
     out.write('\n')
 
-    with open('Att_Val.log', 'w'):   # to clear the log files 
-        pass
+    #with open('Att_Val.log', 'w'):   # to clear the log files 
+    #    pass
 
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler('Att_Val.log')
+    DB_Litho_Att_Val_Log_Name = os.path.join(export_path, DB_Litho_Att_Val_Log)
+    fileHandler1 = logging.FileHandler(DB_Litho_Att_Val_Log_Name)
     logger1.addHandler(fileHandler1)
 
     query = '''SELECT dic_attr_val_lithology_filter.company_id,dic_attr_val_lithology_filter.company_code,replace(dic_attr_val_lithology_filter.comapany_litho, ',' , '_') as comapany_litho  FROM dic_attr_val_lithology_filter'''
@@ -1582,7 +1537,7 @@ def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
     Hierarchy_litho_dico_List =[]
     query = """ select thesaurus_geology_hierarchy.detailed_lithology,thesaurus_geology_hierarchy.lithology_subgroup,thesaurus_geology_hierarchy.lithology_group  
             from thesaurus_geology_hierarchy """
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1623,7 +1578,13 @@ def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplic
 
 
 def Comments_Dic(minlong,maxlong,minlat,maxlat):
-    #query = """SELECT * FROM public.litho_att_col_comments"""
+    '''
+    Function selects the distinct attribute column and attribute value which matches in thesaurus 'thesaurus_geology_comment' with the given region
+    Input : 
+        -minlong,maxlong,minlat,maxlat : Region of interest.
+    Output:
+        - List with extracted data matching attribute column and thesaurus.
+    '''
     query = """Select DISTINCT ON (t1.attributecolumn, t1.attributevalue)
     t1.attributecolumn, t1.attributevalue
 		 from public.dhgeologyattr t1 
@@ -1634,7 +1595,7 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
 		 inner join public.thesaurus_geology_comment t6
 		 on t1.attributecolumn = t6.attributecolumn
 		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -1653,6 +1614,14 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
 
 
 def Comments_With_fuzzy():
+    '''
+    Function find the fuzzywuzzy and score to the comments attribute value 
+    Input : 
+        List with attribute column and attribute value.
+    Output:
+        - List with fuzzywuzzy and score for comments attribute value.
+    '''
+    
     bestmatch=-1
     bestlitho=''
     top=[]
@@ -1719,7 +1688,15 @@ def Comments_With_fuzzy():
    
 
 def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
-    #query = """SELECT * FROM public.dhlithology_comments_ygsb_distinct_test"""
+    '''
+    Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
+    Also joins extraction of Comments attribute column with Comments attribute value .
+    For Each row extracted, the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed .
+    Input : 
+        -minlong,maxlong,minlat,maxlat : Region of interest.
+    Output:
+        - csv file with the extracted data with fuzzywuzzy and score for lithology and comments.
+    '''
     query = ''' SELECT m1.companyid, m1.collarid, m1.fromdepth, m1.todepth, m1.lith_attributecolumn, m1.lith_attributevalue, 
                 m2.comments_attributecolumn, m2.comments_attributevalue 
                 FROM 
@@ -1754,17 +1731,8 @@ def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlon
                  
                  
                  
-    Litho_Depth_With_Comments_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
-    with open(Litho_Depth_With_Comments_LOG_File_TIME, 'w'):   # to clear the log files 
-        pass
         
-    logger1 = logging.getLogger('dev1')
-    logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler(Litho_Depth_With_Comments_LOG_File_TIME)
-    logger1.addHandler(fileHandler1)
     
-    
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -1828,7 +1796,14 @@ def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlon
 
 
 def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
-    #query = """SELECT * FROM public.dhlithology_comments_ygsb_distinct_test"""
+    '''
+    Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and comments attribute column lithology table from DB for the specified region.
+    For Each row extracted the from and to depth values are validated , generated fuzzywuzzy values for the comments lithology along with the score are printed .
+    Input : 
+        -minlong,maxlong,minlat,maxlat : Region of interest.
+    Output:
+        - csv file with the extracted data with fuzzywuzzy and score.
+    '''
     query = '''  select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
                  AS comments_attributecolumn, t1.attributevalue AS comments_attributevalue  
                  from public.dhgeologyattr t1 
@@ -1845,22 +1820,12 @@ def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlon
                  
                  
                  
-                 
-    Litho_Depth_With_Only_Comments_LOG_File_TIME = datetime.now().strftime('Litho_Depth_%d_%m_%Y_%H_%M_%S_.log')
-    with open(Litho_Depth_With_Only_Comments_LOG_File_TIME, 'w'):   # to clear the log files 
-        pass
-        
-    logger1 = logging.getLogger('dev1')
-    logger1.setLevel(logging.INFO)
-    fileHandler1 = logging.FileHandler(Litho_Depth_With_Only_Comments_LOG_File_TIME)
-    logger1.addHandler(fileHandler1)
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
     cur.execute(query,Bounds)
-    
-    #print(cur)
+        
     First_Filter_list = [list(elem) for elem in cur]
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comment', 'CET_Comment', 'Comment_Score']
     out= open(os.path.join(export_path,DB_lithology_Only_Comments_Final_Export), "w",encoding ="utf-8")
@@ -1877,10 +1842,6 @@ def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlon
             CollarID=First_filter_ele[1]
             FromDepth=First_filter_ele[2]
             ToDepth=First_filter_ele[3]
-            #Company_Lithocode=""
-            #Company_Lithology=""
-            #CET_Lithology=""
-            #Score=0
             Comment=""
             CET_Comment=""
             Comment_Score=0
@@ -1899,10 +1860,6 @@ def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlon
         out.write('%d,' %CollarID)
         out.write('%d,' %FromDepth)
         out.write('%s,' %ToDepth)
-        #out.write('%s,' %Company_Lithocode)
-        #out.write('%s,' %Company_Lithology)
-        #out.write('%s,' %CET_Lithology)
-        #out.write('%d,' %Score)
         out.write('%s,' %Comment)
         out.write('%s,' %CET_Comment)
         out.write('%d,' %Comment_Score)
