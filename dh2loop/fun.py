@@ -1,6 +1,0 @@
-
-
-
-def foo():
-    print('hello')
-
