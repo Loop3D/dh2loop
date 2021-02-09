@@ -1,4 +1,4 @@
-## Thesauri
+## dh2loop thesauri
 
 dh2loop 1.0 provides several [thesauri]( https://github.com/Loop3D/dh2loop/blob/master/thesauri/) that can easily be updated (if needed) for the following attributes: 
 1.	[Drill hole collar elevation](https://github.com/Loop3D/dh2loop/blob/master/tThesauri/thesaurus_collar_elevation.csv): 360 synonyms such as “elevation” and “relative level”
