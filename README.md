@@ -23,7 +23,7 @@
 - pyproj (https://github.com/pyproj4/pyproj)  <br>
 `pip install pyproj`  <br>
 
-2. Clone the repository
+2. Clone the repository: <br>
 `$ git clone https://github.com/Loop3D/dh2loop.git`
 
 3. Install from your local drive <br>
