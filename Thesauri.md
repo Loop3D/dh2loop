@@ -8,9 +8,9 @@ dh2loop 1.0 provides several [thesauri]( https://github.com/Loop3D/dh2loop/blob/
 5.	[Drill hole lithology](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_geology_lithology.csv) : 688 synonyms such as “geology”, “Lithology_A”, “Major_Geology_Unit” and “Major_Rock_Type” 
 6.	[Drill hole comments](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_geology_comment.csv): 434 synonyms such as “description”
 
-The thesauri created specifically for further processing lithology and comments information are: <br>
-7.	[Drill hole lithology codes thesaurus](https://github.com/Loop3D/dh2loop/blob/master/Thesauri/thesaurus_geology_lithology_code.csv)  <br>
-8.	[Clean up dictionary](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_cleanup.csv) <br>
-9.	[Lithology hierarchical thesaurus](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_geology_hierarchical.csv) <br>
+The thesauri created specifically for further processing lithology and comments information are:
+1.	[Drill hole lithology codes thesaurus](https://github.com/Loop3D/dh2loop/blob/master/Thesauri/thesaurus_geology_lithology_code.csv)  
+2.	[Clean up dictionary](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_cleanup.csv)
+3.	[Lithology hierarchical thesaurus](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_geology_hierarchical.csv)
 
 
