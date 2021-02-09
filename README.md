@@ -12,11 +12,11 @@ dh2loop is a python library that provides the functionality to extract and stand
 - nltk (https://github.com/nltk/nltk )
 - pyproj (https://github.com/pyproj4/pyproj)
 
-`pip install fuzzywuzzy`
-`pip install pandas`
-`pip install psycopg2`
-`pip install numpy`
-`pip install nltk`
+`pip install fuzzywuzzy` \n
+`pip install pandas` \n
+`pip install psycopg2` \n
+`pip install numpy` \n
+`pip install nltk` \n
 `pip install pyproj`
 
 2. Clone the repository
