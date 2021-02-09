@@ -5,19 +5,18 @@ dh2loop is a python library that provides the functionality to extract and stand
 ## Where to start:
   
 1. Install the dependencies:
-- fuzzywuzzy (https://github.com/seatgeek/fuzzywuzzy)
-- pandas (https://pandas.pydata.org/)
-- psycopg2 (https://pypi.org/project/psycopg2/)
-- numpy (https://github.com/numpy/numpy)
-- nltk (https://github.com/nltk/nltk )
-- pyproj (https://github.com/pyproj4/pyproj)
-
+- fuzzywuzzy (https://github.com/seatgeek/fuzzywuzzy) <br>
 `pip install fuzzywuzzy` <br>
+- pandas (https://pandas.pydata.org/)  <br>
 `pip install pandas` <br>
+- psycopg2 (https://pypi.org/project/psycopg2/)  <br>
 `pip install psycopg2` <br>
+- numpy (https://github.com/numpy/numpy)  <br>
 `pip install numpy` <br>
+- nltk (https://github.com/nltk/nltk )  <br>
 `pip install nltk` <br>
-`pip install pyproj`
+- pyproj (https://github.com/pyproj4/pyproj)  <br>
+`pip install pyproj`  <br>
 
 2. Clone the repository
 `$ git clone https://github.com/Loop3D/dh2loop.git`
