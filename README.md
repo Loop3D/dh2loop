@@ -26,8 +26,8 @@
 2. Clone the repository
 `$ git clone https://github.com/Loop3D/dh2loop.git`
 
-3. Install from your local drive
-`cd \local_drive\`
+3. Install from your local drive <br>
+`cd \local_drive\` <br>
 `python setup.py install --user --force`
 
 4. Try out the demo jupyter notebook:
