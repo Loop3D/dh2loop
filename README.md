@@ -1,6 +1,6 @@
 # *dh2loop*
 
-dh2loop is a python library that provides the functionality to extract and standardize geologic drill hole data and export it into readily importable interval tables (collar, survey, lithology) to feed into 3D modelling packages. **Mark Jessell** contributed the original idea, which was further developed by **Ranee Joshi** (ranee.joshi@research.uwa.edu.au). The code development is lead by **Kavitha Madaiah** (kavitha.madaiah@uwa.edu.au). **Mark Lindsay** and **Guillaume Pirot** have made significant contributions to the direction of the research. 
+***dh2loop*** is a python library that provides the functionality to extract and standardize geologic drill hole data and export it into readily importable interval tables (collar, survey, lithology) to feed into 3D modelling packages. **Mark Jessell** contributed the original idea, which was further developed by **Ranee Joshi** (ranee.joshi@research.uwa.edu.au). The code development is lead by **Kavitha Madaiah** (kavitha.madaiah@uwa.edu.au). **Mark Lindsay** and **Guillaume Pirot** have made significant contributions to the direction of the research. 
 
 ![Upscaling Drillhole Data](images/drillholes2.png)
 *Upscaling Drillhole Data*
