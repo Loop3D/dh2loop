@@ -12,5 +12,6 @@ The thesauri created specifically for further processing lithology and comments 
 1.	[Drill hole lithology codes thesaurus](https://github.com/Loop3D/dh2loop/blob/master/Thesauri/thesaurus_geology_lithology_code.csv)  
 2.	[Clean up dictionary](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_cleanup.csv)
 3.	[Lithology hierarchical thesaurus](https://github.com/Loop3D/dh2loop/blob/master/thesauri/thesaurus_geology_hierarchical.csv)
+![Lithology heirarchical thesaurus](images/fig04.png)
 
 
