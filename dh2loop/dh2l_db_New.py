@@ -1585,7 +1585,8 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
     Output:
         - List with extracted data matching attribute column and thesaurus.
     '''
-    query = """Select DISTINCT ON (t1.attributecolumn, t1.attributevalue)
+    'distict on(attributecol,attributeval) changes to only attributevalue'
+    query = """Select DISTINCT ON (t1.attributevalue)
     t1.attributecolumn, t1.attributevalue
 		 from public.dhgeologyattr t1 
 		 inner join public.dhgeology t2 
