@@ -34,6 +34,8 @@
 4. Try out the demo jupyter notebook:
 https://github.com/Loop3D/dh2loop/blob/master/notebooks/2_Exporting_and_Text_Parsing_of_Drillhole_Data_Demo.ipynb
 
+## More information on the package
+Please refer to the [preprint](https://gmd.copernicus.org/preprints/gmd-2020-391/) currently under review.
 
 ## Problems
 For any bugs/feature requests/comments, please create a new [issue](https://github.com/Loop3D/dh2loop/issues). 
