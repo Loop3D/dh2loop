@@ -36,7 +36,7 @@ https://github.com/Loop3D/dh2loop/blob/master/notebooks/2_Exporting_and_Text_Par
 
 
 ## Problems
-Any bugs/feature requests/comments please create a new [issue](https://github.com/Loop3D/dh2loop/issues). 
+For any bugs/feature requests/comments, please create a new [issue](https://github.com/Loop3D/dh2loop/issues). 
 
 ## Acknowledgements
 *The research was supported while in receipt of Scholarship for International Research Fees (Australian Government Research Training Program Scholarship) and Automated 3D Geology Modelling PhD Scholarship (University Postgraduate Award) at the University of Western Australia. The work has been supported by the Mineral Exploration Cooperative Research Centre (MinEx CRC; https://minexcrc.com.au/) whose activities are funded by the Australian Government's Cooperative Research Centre Program. This work was also done with the Loop Consortium (http://loop3d.org) as part of an international effort to found a new open-source platform to build the next generation of 3D geological modelling tools.*
