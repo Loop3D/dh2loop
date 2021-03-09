@@ -29,7 +29,7 @@ from nltk.corpus import stopwords
 from dh2loop import Var
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path,DB_Collar_Rl_Log,DB_Collar_Maxdepth_Log,DB_Survey_Azi_Log,DB_Survey_Dip_Log,DB_Litho_Depth_Log,DB_Litho_Att_Val_Log
+from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path,DB_Collar_Rl_Log,DB_Collar_Maxdepth_Log,DB_Survey_Azi_Log,DB_Survey_Dip_Log,DB_Litho_Depth_Log,DB_Litho_Att_Val_Log,worker_proc
 import pandas as pd
 from multiprocessing import Process,Manager
 
@@ -2036,7 +2036,8 @@ def Final_Lithology_With_Comments_Split():  #pass the longitude and lattitude di
     cur.execute(query)  #,Bounds)
     First_Filter_list = [list(elem) for elem in cur]
     filename_final = 'final_split_list'
-    Comments_Litho_Dic_split(First_Filter_list,filename_final,Var.Final_split_proc_list)
+    Comments_dic_litho_split(First_Filter_list,filename_final,Var.Final_split_proc_list,worker_proc)
+    
     cur.close()
     conn.close()
 
