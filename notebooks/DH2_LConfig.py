@@ -1,7 +1,7 @@
 from datetime import datetime
 #from striplog import Legend, Lexicon, Interval, Component, Striplog
 import os
-
+import multiprocessing as mp
 
 host_ = '130.95.198.59'
 port_= 5432
@@ -28,6 +28,13 @@ maxlat=-27.5
 #src_pro,Dst_proj
 src_csr = 4326 
 dst_csr = 28350
+
+
+#Number of worker process
+Tot_workers = mp.cpu_count()
+worker_proc = Tot_workers - 1    #Tot_workers is Operating system provided process ,user can modify this to use as many process as required.
+
+
 
 
 #ExportFiles

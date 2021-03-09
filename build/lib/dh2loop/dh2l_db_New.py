@@ -31,7 +31,7 @@ import logging
 from logging.handlers import TimedRotatingFileHandler
 from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path,DB_Collar_Rl_Log,DB_Collar_Maxdepth_Log,DB_Survey_Azi_Log,DB_Survey_Dip_Log,DB_Litho_Depth_Log,DB_Litho_Att_Val_Log
 import pandas as pd
-
+from multiprocessing import Process,Manager
 
 
 
@@ -1585,7 +1585,8 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
     Output:
         - List with extracted data matching attribute column and thesaurus.
     '''
-    query = """Select DISTINCT ON (t1.attributecolumn, t1.attributevalue)
+    'distict on(attributecol,attributeval) changes to only attributevalue'
+    query = """Select DISTINCT ON (t1.attributevalue)
     t1.attributecolumn, t1.attributevalue
 		 from public.dhgeologyattr t1 
 		 inner join public.dhgeology t2 
@@ -1603,7 +1604,8 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
     
     for record in cur:
         #print(record)
-        Var.Comments_dic.append(record)
+        #Var.Comments_dic.append(record)
+        Var.Comments_dic.append(record)     #append to Comments_dic_tmp , since we need to take another variable ,use in split fun.
     #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
    
     #with open('Dic_Comments.csv', 'w') as f:
@@ -1611,6 +1613,189 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
     cur.close()
     conn.close()
 
+def Comments_Dic_Process(minlong,maxlong,minlat,maxlat):
+    '''
+    Function selects the distinct attribute column and attribute value which matches in thesaurus 'thesaurus_geology_comment' with the given region
+    Input : 
+        -minlong,maxlong,minlat,maxlat : Region of interest.
+    Output:
+        - List with extracted data matching attribute column and thesaurus.
+    '''
+    'distict on(attributecol,attributeval) changes to only attributevalue'
+    query = """Select DISTINCT ON (t1.attributevalue)
+    t1.attributecolumn, t1.attributevalue
+		 from public.dhgeologyattr t1 
+		 inner join public.dhgeology t2 
+		 on t1.dhgeologyid = t2.id 
+		 inner join collar t3 
+		 on t3.id = t2.collarid
+		 inner join public.thesaurus_geology_comment t6
+		 on t1.attributecolumn = t6.attributecolumn
+		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
+    
+    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+    cur = conn.cursor()
+    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query,Bounds)
+    
+    for record in cur:
+        #print(record)
+        #Var.Comments_dic.append(record)
+        Var.Comments_dic_tmp.append(record)     #append to Comments_dic_tmp , since we need to take another variable ,use in split fun.
+    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
+   
+    #with open('Dic_Comments.csv', 'w') as f:
+        #cur.copy_expert(outputquery, f)
+    cur.close()
+    conn.close()
+
+
+def listoflist_comments_dic():
+    '''
+        Function gets the listoflist for Comments_dic_tmp , so that it can be used in split function.
+        Input - Comments_dic_tmp.
+        output - Comments_dic.
+    '''
+    Var.Comments_dic = [list(elem) for elem in Var.Comments_dic_tmp]
+    
+ 
+
+
+
+
+def Comments_dic_litho_split(dic_litho_comments,filename,Comm_split_process_list,Num_worker_process):
+    '''
+    Function split listoflist to  the number of logical process considered 
+    Input : 
+         - dic_litho_comments : input  which needs to be split.
+         -filename : Each split is printed to a file for verification.
+         - Process_list : list to hold the split variables name for later use.
+         - Num_worker_process : No worker process decided to select.
+    Output:
+        - Comments Dictionary splits in globals variables and in csv file.
+    '''
+    
+    
+    length_list= len(dic_litho_comments)
+    partition_List = length_list / Num_worker_process   #split total data by process selected to make eaual chunks.
+    actual_part_num = round(partition_List)    # split value with avilable logical process
+    #print(length_list)
+    count=0
+    if length_list > 0:      
+        x=0
+        y=length_list
+        for i in range(x,y,actual_part_num):       
+            x=i
+            count = count + 1
+            if count  == Num_worker_process  :  ## to merge last split with previous one as it is small
+                total_split_val =(round(partition_List) * Num_worker_process)
+                diff = length_list - total_split_val
+
+                if diff > 0 or diff == 0 :
+                    final_split = x+actual_part_num+diff
+                    #print(final_split)
+                    globals()[filename+ '_' + str(i)] = dic_litho_comments[x:final_split] #create global variable for later use
+                    Var.Comm_split_process_list.append(globals()[filename+ '_' + str(i)])  # add to process list 
+                    #print("in final -1")
+                    break           # exit after last split , since we added left out records
+
+                elif diff < 0 :
+                    final_split = x+ actual_part_num+diff 
+                    globals()[filename+ '_' + str(i)] = dic_litho_comments[x:final_split]
+                    Var.Comm_split_process_list.append(globals()[filename+ '_' + str(i)])
+                    #print("in final-2")
+                    break
+               
+            else:
+                globals()[filename+ '_' + str(i)] = dic_litho_comments[x:x+actual_part_num]
+                Var.Comm_split_process_list.append(globals()[filename+ '_' + str(i)])
+                #print(" Not in final")
+            
+
+    #print(count) 
+
+    
+    part_num = actual_part_num
+    partnum1= part_num
+    tot_partnum = part_num
+    for x in range(0, count, 1):  # create csv file for verification.
+        if x > 0 :
+                
+            var_name1 = filename+ '_' + str(tot_partnum)
+            #print(var_name1)
+            my_df1 = pd.DataFrame(globals()[var_name1])  
+            file_name1 = var_name1 + '.csv'
+            my_df1.to_csv(os.path.join(export_path ,file_name1), index=False, header=True)
+            tot_partnum = tot_partnum + part_num
+                
+        elif x == 0:
+            var_name2 = filename + '_' + str(x)
+            #print(var_name2)
+            my_df2 = pd.DataFrame(globals()[var_name2])   
+            file_name2 = var_name2 + '.csv'
+            my_df2.to_csv(os.path.join(export_path ,file_name2), index=False, header=True) 
+   
+
+
+def Comments_With_fuzzy_Process(q,comment_split, Litho_dico,file_name): 
+    '''
+    Function find the fuzzywuzzy and score to the comments attribute value 
+    Input : 
+        q - To fill the fuzzywuzzy results from each process.
+        comments_split - comments split to get fuzzywuzzy.
+        Litho_Dico - pass Litho_Dico to get fuzzywuzzy
+        file_name- print each fuzzywuzzy to a csv file for varification.
+    Output:
+        - List with fuzzywuzzy and score for comments attribute value.
+    '''
+    
+    #print(" B P")
+    bestmatch=-1
+    bestlitho=''
+    top=[]
+    i=0
+    Comments_fuzzy_Sub = []
+    Comments_Dic_new = [list(elem) for elem in comment_split]
+    for Comments_Dic_ele in Comments_Dic_new:
+        cleaned_text=clean_text(Comments_Dic_ele[1])
+        words=(re.sub('\(.*\)', '', cleaned_text)).strip() 
+        words=words.rstrip('\n\r').split(" ")
+        last=len(words)-1 #position of last word in phrase
+        
+        for litho_dico_ele in Litho_dico:
+            litho_words=str(litho_dico_ele).lower().rstrip('\n\r').replace('(','').replace(')','').replace('\'','').replace(',','').split(" ")
+
+            scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
+            for sc in scores:                        
+                if(sc[1]>bestmatch): #better than previous best match
+                    bestmatch =  sc[1]
+                    bestlitho=litho_words[0]
+                    top.append([sc[0],sc[1]])
+                    if(sc[0]==words[last]): #bonus for being last word in phrase
+                        bestmatch=bestmatch*1.01
+                elif (sc[1]==bestmatch): #equal to previous best match
+                    if(sc[0]==words[last]): #bonus for being last word in phrase
+                        bestlitho=litho_words[0]
+                        bestmatch=bestmatch*1.01
+                    else:
+                        top.append([sc[0],sc[1]])
+
+        i=0
+        if bestmatch >80:
+            Comments_fuzzy_Sub.append([Comments_Dic_ele[0],Comments_Dic_ele[1],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
+            #prinnt(" B P")
+        else:
+            Comments_fuzzy_Sub.append([Comments_Dic_ele[0],Comments_Dic_ele[1],cleaned_text,'Other',bestmatch])  #top_new[1]])
+            #print("B P")
+            
+
+
+    #print(Comments_fuzzy_Sub)
+    #print(" broken pipe err")
+    #my_df2 = pd.DataFrame(Comments_fuzzy_Sub , columns = ['Comments_Field','Comment_Attr_val','Comment_cleaned_text','Comment_Fuzzy_wuzzy','Comment_Score'])
+    #my_df2.to_csv(os.path.join(export_path ,file_name), index=False, header=True)
+    q.put(Comments_fuzzy_Sub)
+    #time.sleep(1)   
 
 
 def Comments_With_fuzzy():
@@ -1792,6 +1977,120 @@ def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlon
     cur.close()
     conn.close()
     out.close()
+
+
+
+
+
+
+def Final_Lithology_With_Comments_Split():  #pass the longitude and lattitude directly in the query as its join of two query.
+    '''
+    Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
+    Also joins extraction of Comments attribute column with Comments attribute value.The extracted data is split using split funtion to create processes.
+    
+    Input : 
+        -minlong,maxlong,minlat,maxlat : Region of interest.
+    Output:
+        - split list of dataset in Final_split_proc_list.
+    '''
+    query = ''' SELECT m1.companyid, m1.collarid, m1.fromdepth, m1.todepth, m1.lith_attributecolumn, m1.lith_attributevalue, 
+                m2.comments_attributecolumn, m2.comments_attributevalue 
+                FROM 
+                (select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS lith_attributecolumn, t1.attributevalue AS lith_attributevalue 
+                 from public.dhgeologyattr t1
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.thesaurus_geology_lithology t5
+                 on t1.attributecolumn = t5.attributecolumn
+                 WHERE(t3.longitude BETWEEN 115.5 AND 118) AND(t3.latitude BETWEEN -30.5 AND -27.5) 
+                 ORDER BY t3.companyid ASC) m1
+                 FULL JOIN		 
+                (select t1.dhgeologyid, t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn 
+                 AS comments_attributecolumn, t1.attributevalue AS comments_attributevalue  
+                 from public.dhgeologyattr t1 
+                 inner join public.dhgeology t2 
+                 on t1.dhgeologyid = t2.id 
+                 inner join collar t3 
+                 on t3.id = t2.collarid 
+                 inner join clbody t4 
+                 on t4.companyid = t3.companyid
+                 inner join public.thesaurus_geology_comment t6
+                 on t1.attributecolumn = t6.attributecolumn
+                 WHERE(t3.longitude BETWEEN 115.5 AND 118) AND(t3.latitude BETWEEN -30.5 AND -27.5) 
+                 ORDER BY t3.companyid ASC) m2 
+                 on m1.dhgeologyid = m2.dhgeologyid'''
+                 
+                 
+                 
+        
+    
+    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+    print("connected")
+    cur = conn.cursor()
+    #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+    cur.execute(query)  #,Bounds)
+    First_Filter_list = [list(elem) for elem in cur]
+    filename_final = 'final_split_list'
+    Comments_Litho_Dic_split(First_Filter_list,filename_final,Var.Final_split_proc_list)
+    cur.close()
+    conn.close()
+
+
+
+def Final_comments_with_fuzzy_Process(split_List,Comments_fuzzy,Attr_val_fuzzy,q2,filename):
+    '''
+        For Each row extracted for a region, the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed.
+    Inputs:
+            -split_List : Each split list to get fuzzywuzzy.
+            -Comments_fuzzy : copy of comments fuzzy
+            - Attr_val_fuzzy : copy of att_val fuzzy
+            - q2 : multiprocessing queue to put the fuzzywuzzy resuts .
+            -filename : Print each split output to a csv file.
+    '''
+
+    final_fuzzy_list =[]
+    for First_filter_ele in split_List:
+        if (First_filter_ele[0] == None and First_filter_ele[1]== None  and First_filter_ele[2]== None  and First_filter_ele[3]== None) or  (First_filter_ele[2] == None and First_filter_ele[3] ==None) :   # for empty fields, bug
+            continue
+        else :
+            First_filter_ele[2],First_filter_ele[3] =Depth_validation_comments(First_filter_ele[2],First_filter_ele[3])  #  ,First_filter_ele[1],First_filter_ele[6],logger1) # validate depth
+            CompanyID=First_filter_ele[0]
+            CollarID=First_filter_ele[1]
+            FromDepth=First_filter_ele[2]
+            ToDepth=First_filter_ele[3]
+            Company_Lithocode=""
+            Company_Lithology=""
+            CET_Lithology=""
+            Score=0
+            Comment=""
+            CET_Comment=""
+            Comment_Score=0
+        
+        
+        for Attr_val_fuzzy_ele in Attr_val_fuzzy:
+            if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
+                Company_Lithocode=Attr_val_fuzzy_ele[1]
+                Company_Lithology=Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Lithology=Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Score=Attr_val_fuzzy_ele[5]
+                
+        for Comments_fuzzy_ele in Comments_fuzzy:
+            if Comments_fuzzy_ele[1] == First_filter_ele[7]:
+                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                Comment_Score=Comments_fuzzy_ele[4]
+
+        final_fuzzy_list.append([CompanyID,CollarID,FromDepth,ToDepth,Company_Lithocode,Company_Lithology,CET_Lithology,Score,Comment,CET_Comment,Comment_Score])
+
+    my_df11 = pd.DataFrame(final_fuzzy_list)  #, index=var_name1.keys())
+    my_df11.to_csv(filename, index=False, header=True)
+    q2.put(final_fuzzy_list)
+
 
 
 

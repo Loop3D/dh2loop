@@ -10,4 +10,8 @@ Attr_val_fuzzy=[]
 Comments_dic=[]
 Comments_fuzzy=[]
 
+Comments_dic_tmp =[]
+Comments_dic =[]
+Comm_split_process_list =[]
 
+Final_split_proc_list = []
