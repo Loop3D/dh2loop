@@ -38,37 +38,49 @@ worker_proc = Tot_workers - 1    #Tot_workers is Operating system provided proce
 
 
 #ExportFiles
+#one_time = True
+#if one_time == True:
+ #   nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
+  #  export_path ='../data/export_db/'+ nowtime
+   # one_time = False
+    
+#print(export_path)
 nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
 export_path ='../data/export_db/'+ nowtime
 if not os.path.exists(export_path): 
     os.mkdir(export_path)
 
 
+#nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
+#export_path ='../data/export_db/'+ nowtime
+#os.mkdir(export_path)
+
+
 export_path_1 = '../data/export_db/'
 
 
 #csv , log files with time stamp
-DB_Collar_Rl_Log =  'DB_Collar_Rl_Log_' + nowtime + '.log'
-DB_Collar_Maxdepth_Log =  'DB_Collar_maxdepth_Log_' + nowtime +'.log'
-DB_Collar_Export='DB_Collar_Export_' + nowtime + '.csv'   #.replace("-","/").replace("T"," At ")
-DB_Survey_Azi_Log =  'DB_Survey_Azi_Log_' + nowtime + '.log'
-DB_Survey_Dip_Log =  'DB_Survey_Dip_Log_' + nowtime + '.log'
-DB_Survey_Export='DB_Survey_Export_'+ nowtime +'.csv'
-DB_Survey_Export_Calc='DB_Survey_Export_Calc_'+ nowtime +'.csv'
-CET_Litho='CET_Litho_'+ nowtime +'.csv'
-DB_Litho_Depth_Log =  'DB_Litho_Depth_Log_' + nowtime + '.log'
-DB_Litho_Att_Val_Log =  'DB_Litho_Att_Val_Log_' + nowtime + '.log'
-DB_Lithology_Export='DB_Lithology_Export_'+ nowtime +'.csv'
-DB_lithology_With_Comments_Final_Export =  'DB_lithology_With_Comments_Final_' + nowtime + '.csv'
-DB_lithology_Only_Comments_Final_Export =  'DB_lithology_Only_Comments_Final_' + nowtime + '.csv'
-DB_Lithology_Export_Backup='DB_Lithology_Export_Backup_'+ nowtime +'.csv'
-DB_Lithology_Upscaled_Export='DB_Lithology_Upscaled_Export_'+ nowtime +'.csv'
-Upscaled_Litho_NoDuplicates_Export = 'Upscaled_Litho_NoDuplicates_Export_'+ nowtime +'.csv'
-DB_Lithology_Export_Calc='DB_Lithology_Export_Calc_'+ nowtime +'.csv'
-DB_Lithology_Export_VTK='DB_Lithology_Export_'+ nowtime +'.vtp'
+DB_Collar_Rl_Log = export_path+ 'DB_Collar_Rl_Log_' + nowtime + '.log'
+DB_Collar_Maxdepth_Log = export_path+ 'DB_Collar_maxdepth_Log_' + nowtime +'.log'
+DB_Collar_Export= export_path+'DB_Collar_Export_' + nowtime + '.csv'   #.replace("-","/").replace("T"," At ")
+DB_Survey_Azi_Log = export_path+ 'DB_Survey_Azi_Log_' + nowtime + '.log'
+DB_Survey_Dip_Log = export_path+ 'DB_Survey_Dip_Log_' + nowtime + '.log'
+DB_Survey_Export= export_path+'DB_Survey_Export_'+ nowtime +'.csv'
+DB_Survey_Export_Calc= export_path+'DB_Survey_Export_Calc_'+ nowtime +'.csv'
+CET_Litho= export_path+'CET_Litho_'+ nowtime +'.csv'
+DB_Litho_Depth_Log = export_path+ 'DB_Litho_Depth_Log_' + nowtime + '.log'
+DB_Litho_Att_Val_Log = export_path+ 'DB_Litho_Att_Val_Log_' + nowtime + '.log'
+DB_Lithology_Export= export_path+'DB_Lithology_Export_'+ nowtime +'.csv'
+DB_lithology_With_Comments_Final_Export = export_path+ 'DB_lithology_With_Comments_Final_' + nowtime + '.csv'
+DB_lithology_Only_Comments_Final_Export = export_path+ 'DB_lithology_Only_Comments_Final_' + nowtime + '.csv'
+DB_Lithology_Export_Backup= export_path+'DB_Lithology_Export_Backup_'+ nowtime +'.csv'
+DB_Lithology_Upscaled_Export= export_path+'DB_Lithology_Upscaled_Export_'+ nowtime +'.csv'
+Upscaled_Litho_NoDuplicates_Export = export_path+'Upscaled_Litho_NoDuplicates_Export_'+ nowtime +'.csv'
+DB_Lithology_Export_Calc= export_path+'DB_Lithology_Export_Calc_'+ nowtime +'.csv'
+DB_Lithology_Export_VTK= export_path+'DB_Lithology_Export_'+ nowtime +'.vtp'
 
-DB_Lithology_Export_Calc=export_path_1 + 'DB_Lithology_Export_Calc.csv'
-DB_Lithology_Export_VTK='DB_Lithology_Export.vtp'
+DB_Lithology_Export_Calc=export_path_1+  'DB_Lithology_Export_Calc.csv'
+DB_Lithology_Export_VTK= export_path_1+ 'DB_Lithology_Export.vtp'
 
 
 

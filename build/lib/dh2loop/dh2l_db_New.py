@@ -1663,7 +1663,7 @@ def listoflist_comments_dic():
 
 
 
-def Comments_dic_litho_split(dic_litho_comments,filename,Comm_split_process_list,Num_worker_process):
+def Comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_process_list,Num_worker_process):
     '''
     Function split listoflist to  the number of logical process considered 
     Input : 
@@ -1679,7 +1679,7 @@ def Comments_dic_litho_split(dic_litho_comments,filename,Comm_split_process_list
     length_list= len(dic_litho_comments)
     partition_List = length_list / Num_worker_process   #split total data by process selected to make eaual chunks.
     actual_part_num = round(partition_List)    # split value with avilable logical process
-    #print(length_list)
+    print(length_list)
     count=0
     if length_list > 0:      
         x=0
@@ -1695,20 +1695,20 @@ def Comments_dic_litho_split(dic_litho_comments,filename,Comm_split_process_list
                     final_split = x+actual_part_num+diff
                     #print(final_split)
                     globals()[filename+ '_' + str(i)] = dic_litho_comments[x:final_split] #create global variable for later use
-                    Var.Comm_split_process_list.append(globals()[filename+ '_' + str(i)])  # add to process list 
+                    Comm_final_split_process_list.append(globals()[filename+ '_' + str(i)])  # add to process list 
                     #print("in final -1")
                     break           # exit after last split , since we added left out records
 
                 elif diff < 0 :
                     final_split = x+ actual_part_num+diff 
                     globals()[filename+ '_' + str(i)] = dic_litho_comments[x:final_split]
-                    Var.Comm_split_process_list.append(globals()[filename+ '_' + str(i)])
+                    Comm_final_split_process_list.append(globals()[filename+ '_' + str(i)])
                     #print("in final-2")
                     break
                
             else:
                 globals()[filename+ '_' + str(i)] = dic_litho_comments[x:x+actual_part_num]
-                Var.Comm_split_process_list.append(globals()[filename+ '_' + str(i)])
+                Comm_final_split_process_list.append(globals()[filename+ '_' + str(i)])
                 #print(" Not in final")
             
 
