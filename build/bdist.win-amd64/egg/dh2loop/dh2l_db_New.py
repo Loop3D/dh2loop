@@ -1725,7 +1725,7 @@ def Comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_proces
             #print(var_name1)
             my_df1 = pd.DataFrame(globals()[var_name1])  
             file_name1 = var_name1 + '.csv'
-            my_df1.to_csv(os.path.join(export_path ,file_name1), index=False, header=True)
+            my_df1.to_csv(os.path.join(export_path ,file_name1), index=False, header=True)  # create csv file for verification
             tot_partnum = tot_partnum + part_num
                 
         elif x == 0:
@@ -1733,20 +1733,20 @@ def Comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_proces
             #print(var_name2)
             my_df2 = pd.DataFrame(globals()[var_name2])   
             file_name2 = var_name2 + '.csv'
-            my_df2.to_csv(os.path.join(export_path ,file_name2), index=False, header=True) 
+            my_df2.to_csv(os.path.join(export_path ,file_name2), index=False, header=True) # create csv file for verification
    
 
 
 def Comments_With_fuzzy_Process(q,comment_split, Litho_dico,file_name): 
     '''
-    Function find the fuzzywuzzy and score to the comments attribute value 
+    Function to find the fuzzywuzzy and score for each of the split with comments attribute value.This is the function which is called by Process funtion.
     Input : 
         q - To fill the fuzzywuzzy results from each process.
         comments_split - comments split to get fuzzywuzzy.
-        Litho_Dico - pass Litho_Dico to get fuzzywuzzy
+        Litho_Dico - pass Litho_Dico to get fuzzywuzzy as Process dont share memory.
         file_name- print each fuzzywuzzy to a csv file for varification.
     Output:
-        - List with fuzzywuzzy and score for comments attribute value.
+        - List and csv file with fuzzywuzzy and score for comments attribute value.
     '''
     
     #print(" B P")
@@ -1790,8 +1790,8 @@ def Comments_With_fuzzy_Process(q,comment_split, Litho_dico,file_name):
             
 
 
-    #print(Comments_fuzzy_Sub)
-    #print(" broken pipe err")
+    
+    #print to csv file for verification
     #my_df2 = pd.DataFrame(Comments_fuzzy_Sub , columns = ['Comments_Field','Comment_Attr_val','Comment_cleaned_text','Comment_Fuzzy_wuzzy','Comment_Score'])
     #my_df2.to_csv(os.path.join(export_path ,file_name), index=False, header=True)
     q.put(Comments_fuzzy_Sub)
@@ -2046,6 +2046,7 @@ def Final_Lithology_With_Comments_Split():  #pass the longitude and lattitude di
 def Final_comments_with_fuzzy_Process(split_List,Comments_fuzzy,Attr_val_fuzzy,q2,filename):
     '''
         For Each row extracted for a region, the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed.
+        This is the function which is called by Process funtion.
     Inputs:
             -split_List : Each split list to get fuzzywuzzy.
             -Comments_fuzzy : copy of comments fuzzy
@@ -2088,8 +2089,10 @@ def Final_comments_with_fuzzy_Process(split_List,Comments_fuzzy,Attr_val_fuzzy,q
 
         final_fuzzy_list.append([CompanyID,CollarID,FromDepth,ToDepth,Company_Lithocode,Company_Lithology,CET_Lithology,Score,Comment,CET_Comment,Comment_Score])
 
-    my_df11 = pd.DataFrame(final_fuzzy_list)  #, index=var_name1.keys())
-    my_df11.to_csv(filename, index=False, header=True)
+    ## create csv file for verification
+    #df_final_split = pd.DataFrame(final_fuzzy_list)  #, index=var_name1.keys())
+    #df_final_split.to_csv(os.path.join(export_path ,filename), index=False, header=True) 
+    
     q2.put(final_fuzzy_list)
 
 

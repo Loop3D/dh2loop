@@ -32,7 +32,7 @@ dst_csr = 28350
 
 #Number of worker process
 Tot_workers = mp.cpu_count()
-worker_proc = Tot_workers - 1    #Tot_workers is Operating system provided process ,user can modify this to use as many process as required.
+worker_proc = Tot_workers - 2    #Tot_workers is Operating system provided process ,user can modify this to use as many process as required.
 
 
 
