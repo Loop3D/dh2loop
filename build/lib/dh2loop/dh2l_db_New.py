@@ -1718,22 +1718,21 @@ def Comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_proces
     part_num = actual_part_num
     partnum1= part_num
     tot_partnum = part_num
-    for x in range(0, count, 1):  # create csv file for verification.
+    for x in range(0, count, 1):  # create csv file for verification. uncomment if require files.
         if x > 0 :
                 
             var_name1 = filename+ '_' + str(tot_partnum)
             #print(var_name1)
-            my_df1 = pd.DataFrame(globals()[var_name1])  
-            file_name1 = var_name1 + '.csv'
-            my_df1.to_csv(os.path.join(export_path ,file_name1), index=False, header=True)  # create csv file for verification
-            tot_partnum = tot_partnum + part_num
+            #my_df1 = pd.DataFrame(globals()[var_name1])  
+            #file_name1 = var_name1 + '.csv'
+            #my_df1.to_csv(os.path.join(export_path ,file_name1), index=False, header=True)  # create csv file for verification
+            #tot_partnum = tot_partnum + part_num
                 
         elif x == 0:
             var_name2 = filename + '_' + str(x)
-            #print(var_name2)
-            my_df2 = pd.DataFrame(globals()[var_name2])   
-            file_name2 = var_name2 + '.csv'
-            my_df2.to_csv(os.path.join(export_path ,file_name2), index=False, header=True) # create csv file for verification
+            #my_df2 = pd.DataFrame(globals()[var_name2])   
+            #file_name2 = var_name2 + '.csv'
+            #my_df2.to_csv(os.path.join(export_path ,file_name2), index=False, header=True) # create csv file for verification
    
 
 
