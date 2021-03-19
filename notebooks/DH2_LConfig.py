@@ -2,6 +2,7 @@ from datetime import datetime
 #from striplog import Legend, Lexicon, Interval, Component, Striplog
 import os
 import multiprocessing as mp
+#from itertools import count
 
 host_ = '130.95.198.59'
 port_= 5432
@@ -45,11 +46,19 @@ worker_proc = Tot_workers - 2    #Tot_workers is Operating system provided proce
    # one_time = False
     
 #print(export_path)
+#def only_once():
+    #nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
+    #export_path ='../data/export_db/'+ nowtime
+   # if not os.path.exists(export_path): 
+     #   os.mkdir(export_path)
+        
+    #only_once.func_code = (lambda:None).func_code
+    
+
 nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
 export_path ='../data/export_db/'+ nowtime
 if not os.path.exists(export_path): 
     os.mkdir(export_path)
-
 
 #nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
 #export_path ='../data/export_db/'+ nowtime
@@ -79,8 +88,8 @@ Upscaled_Litho_NoDuplicates_Export = 'Upscaled_Litho_NoDuplicates_Export'+ '.csv
 DB_Lithology_Export_Calc= 'DB_Lithology_Export_Calc'+ '.csv'
 DB_Lithology_Export_VTK= 'DB_Lithology_Export'+ '.vtp'
 
-DB_Lithology_Export_Calc=export_path_1+  'DB_Lithology_Export_Calc.csv'
-DB_Lithology_Export_VTK= export_path_1+ 'DB_Lithology_Export.vtp'
+#DB_Lithology_Export_Calc=export_path_1+  'DB_Lithology_Export_Calc.csv'
+#DB_Lithology_Export_VTK= export_path_1+ 'DB_Lithology_Export.vtp'
 
 
 
