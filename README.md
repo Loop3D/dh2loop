@@ -22,7 +22,11 @@
 - nltk (https://github.com/nltk/nltk )  <br>
 `pip install nltk` <br>
 - pyproj (https://github.com/pyproj4/pyproj)  <br>
-`pip install pyproj`  <br>
+`pip install vtk`  <br>
+- vtk (https://vtk.org/download/)  <br>
+`pip install vtk`  <br>
+- ipyleaflet (https://ipyleaflet.readthedocs.io/en/latest/installation.html)  <br>
+`pip install ipyleaflet`  <br>
 
 2. Clone the repository: <br>
 `$ git clone https://github.com/Loop3D/dh2loop.git`
