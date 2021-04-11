@@ -1,5 +1,4 @@
 import psycopg2
-import psycopg2
 import csv
 import re
 import time
@@ -12,7 +11,6 @@ from pyproj import Proj, transform
 import numpy as np
 import pandas as pd
 #import shapefile
-import pyproj
 import numpy as np
 from pyproj import Transformer, transform
 import os
@@ -29,18 +27,12 @@ from nltk.corpus import stopwords
 from dh2loop import Var
 import logging
 from logging.handlers import TimedRotatingFileHandler
-from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path,DB_Collar_Rl_Log,DB_Collar_Maxdepth_Log,DB_Survey_Azi_Log,DB_Survey_Dip_Log,DB_Litho_Depth_Log,DB_Litho_Att_Val_Log,worker_proc
-import pandas as pd
+from DH2_LConfig import host_,port_,DB_,user_,pwd_,export_path,DB_Collar_Rl_Log,DB_Collar_Maxdepth_Log,DB_Survey_Azi_Log,DB_Survey_Dip_Log,DB_Litho_Depth_Log,DB_Litho_Att_Val_Log,worker_proc,encoding_1,encoding_2
 from multiprocessing import Process,Manager
-import math
-from collections import Counter
-from math import acos, cos, asin, sin, atan2, tan, radians
 
-            
-    
-            
-            
-def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,minlat,maxlat):
+
+           
+def collar_collar_attri_final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,minlat,maxlat):
     '''
     Function Extracts data from tables collar and collarattr for processing attributes RL and Maxdepth
     Inputs:
@@ -53,7 +45,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
     '''
 
     fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth','X','Y']
-    out= open(os.path.join(export_path,DB_Collar_Export), "w",encoding ="utf-8")
+    out= open(os.path.join(export_path,DB_Collar_Export), "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -78,7 +70,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 		  WHERE(longitude BETWEEN %s  AND %s AND latitude BETWEEN %s AND %s)
 		  ORDER BY collarattr.collarid ASC """
    
-    #WHERE(longitude BETWEEN (minlong = COALESCE(%f, minlong)  AND maxlong = COALESCE(%f, maxlong)) AND latitude BETWEEN (minlat = COALESCE(%f, minlat) AND maxlat = COALESCE(%f, maxlat)))
+    
     conn = None
     Pre_id = 0
     Pre_hole_id = ''
@@ -99,12 +91,8 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
     y2=0.0
     #create tranformer object with source and destination read from config file
     transformer = Transformer.from_crs(src_csr, dst_csr)
-    
-   
-  
    
     try:
-       
        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
        cur = conn.cursor()
        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds read from config file
@@ -112,37 +100,27 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
        collar_collarAttr_Filter = [list(elem) for elem in cur]
        DicList_collar_collarattr = [list(elem) for elem in Var.Attr_col_collar_dic_list]
        for collar_ele in collar_collarAttr_Filter:
-         #if (collar_ele[0] == 305574):
-            #print("its danger")
          for Dic_ele in DicList_collar_collarattr:  # loop through each element of DB extraction
             if(collar_ele[4] == Dic_ele[0]):
                
                if(Dic_ele[1] == 'rl'):  # check for RL
-                  #print("1")
                   if(Pre_id== collar_ele[0] or Pre_id ==0 or Cur_id ==collar_ele[0]):
-                     #print("2")
-                     #list_rl.append(Parse_Num(collar_ele[5]))
-                     list_rl.append(Parse_Num_Rl(collar_ele[5],logger1,collar_ele[0]))
+                     list_rl.append(parse_num_rl(collar_ele[5],logger1,collar_ele[0]))
                      Pre_id =collar_ele[0]
                      Pre_hole_id = collar_ele[1]
                      Pre_Longitude =collar_ele[2]
                      Pre_latitude = collar_ele[3]
           
                   else:
-                     #chk large , with empty case, write old rec to file
-                     #print("3")
                      if(len(list_rl)!=0):
-                        #print("4")
                         RL = maximum(list_rl,'NAN')
                      else:
                         RL = maximum(list_rl,'NAN')
-                        #RL = "NAN"
                      if(len(list_maxdepth)!=0):
-                        #print("5")
                         Maxdepth = maximum(list_maxdepth,'NAN')
                      else:
-                         Maxdepth = maximum(list_maxdepth,'NAN')
-                         #Maxdepth ="NAN"
+                        Maxdepth = maximum(list_maxdepth,'NAN')
+                         
                          
                      write_to_csv = True
                      
@@ -172,23 +150,11 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 
                      list_rl.clear()
                      list_maxdepth.clear()
-                     
-                     #list_rl.append(Parse_Num(collar_ele[5]))
-                     list_rl.append(Parse_Num_Rl(collar_ele[5],logger1,collar_ele[0]))
-                     
-             
+                     list_rl.append(parse_num_rl(collar_ele[5],logger1,collar_ele[0]))
+              
                elif(Dic_ele[1]=='maxdepth'):  # check for maxdepth
-                  #print("7")
                   if(Pre_id== collar_ele[0] or Pre_id == 0 or Cur_id ==collar_ele[0] ):
-                     #if(collar_ele[5][0] == '-'):
-                        #print("7")
-                        #list_maxdepth.append(Parse_Num(collar_ele[5])*-1)
-                     #else:
-                        #print("8")
-                        #list_maxdepth.append(Parse_Num(collar_ele[5]))
-                        
-                      
-                     list_maxdepth.append(Parse_Num_Maxdepth(collar_ele[5],logger2,collar_ele[0]))
+                     list_maxdepth.append(parse_num_maxdepth(collar_ele[5],logger2,collar_ele[0]))
                      Pre_id =collar_ele[0]
                      Pre_hole_id = collar_ele[1]
                      Pre_Longitude =collar_ele[2]
@@ -197,19 +163,15 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                
                   else:
                      if(len(list_rl)!=0):
-                        #print("4")
                         RL = maximum(list_rl,'NAN')
                      else:
                         RL = maximum(list_rl,'NAN')
-                        #RL ="NAN"
+                        
                      if(len(list_maxdepth)!=0):
-                        #print("5")
                         Maxdepth = maximum(list_maxdepth,'NAN')
                      else:
-                         Maxdepth = maximum(list_maxdepth,'NAN')
-                         #Maxdepth = "NAN"
-
-
+                        Maxdepth = maximum(list_maxdepth,'NAN')
+                    
                      write_to_csv = True
 
                      x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
@@ -235,39 +197,9 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                      Cur_hole_id = collar_ele[1]
                      Cur_Longitude =collar_ele[2]
                      Cur_latitude = collar_ele[3]
-
                      list_maxdepth.clear()
                      list_rl.clear()
-                     
-                     #list_maxdepth.append(Parse_Num(collar_ele[5]))
-                     list_maxdepth.append(Parse_Num_Maxdepth(collar_ele[5],logger2,collar_ele[0]))
-                     
-        
-         
-         #x2,y2=transformer.transform(Pre_latitude,Pre_Longitude) # tranform long,latt for x y calculation
-         #if(write_to_csv == True):   # write to csv file
-            #out.write('%d,' %Pre_id)
-            #out.write('%s,' %Pre_hole_id)
-            #out.write('%f,' %Pre_Longitude)
-            #out.write('%f,' %Pre_latitude)
-            #out.write('%s,' %RL)
-            #out.write('%s,' %Maxdepth)
-            #out.write('%f,' %x2)
-            #out.write('%f,' %y2)
-            #out.write('\n')
-            #write_to_csv =False
-            #RL =''
-            #Maxdepth =''
-            #Pre_id = 0
-            #Pre_hole_id = ''
-            #Pre_Longitude =0.0
-            #Pre_latitude = 0.0
-            #Cur_id = 0
-          
-
-         #else:
-            #continue
-          
+                     list_maxdepth.append(parse_num_maxdepth(collar_ele[5],logger2,collar_ele[0]))
    
        cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
@@ -278,8 +210,16 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 
    
 
-def Parse_Num_Maxdepth(s1,logger2,collarID):
+def parse_num_maxdepth(s1,logger2,collarID):
    
+   '''
+   Function evaluates the Maxdepth values according to the requirements.
+   Inputs:
+        - S1: maxdepth as string 
+        - logger2: looger object to log data
+        -collarID:collarID of hole.
+   
+   '''
    s1=s1.lstrip().rstrip()
    if s1.isalpha():
       logger2.info("%d, %s, %s" ,collarID ,s1,"alpha in MaxDepth ,In csv NAN is added")
@@ -306,7 +246,14 @@ def Parse_Num_Maxdepth(s1,logger2,collarID):
    
 
 
-def Parse_Num_Rl(s1,logger1,collarID):
+def parse_num_rl(s1,logger1,collarID):
+    '''
+    Function evaluates the Rl values according to the requirements.
+    Inputs:
+        - S1: Rl as string 
+        - logger2: looger object to log data
+        -collarID:collarID of hole.
+    '''
     s1=s1.lstrip().rstrip()
     
     if s1.isalpha():
@@ -329,18 +276,25 @@ def Parse_Num_Rl(s1,logger1,collarID):
 
 
 def Parse_Num(s1):
-   s1=s1.lstrip()
-   if re.match("^[-+]?[0-9]+$", s1):
-      return(int(s1))
-   elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
-      return(float(s1))
-   elif s1.isalpha():
-      return(None)
+    '''
+    Function parse the number 
+    Input : 
+        -s1: string value.
+    '''
+    s1=s1.lstrip()
+    if re.match("^[-+]?[0-9]+$", s1):
+       return(int(s1))
+    elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
+       return(float(s1))
+    elif s1.isalpha():
+       return(None)
 
 
 
 def maximum(iterable, default):
-  #   '''Like max(), but returns a default value if iterable is empty.'''
+    '''
+    Like max(), but returns a default value if iterable is empty.
+    '''
     try:
         return str(max(i for i in iterable if i is not None))
     except ValueError:
@@ -362,7 +316,6 @@ def collar_attr_col_dic():
    conn = None
    
    try:
-      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       cur.execute(query)
@@ -370,12 +323,10 @@ def collar_attr_col_dic():
       for rec in cur:
          Var.Attr_col_collar_dic_list.append(rec)
 
-   
       #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)   # for testing 
    
       #with open('Dic_attr_col_collar.csv', 'w',encoding="utf-8") as f:
          #cur.copy_expert(outputquery, f)
-      
  
       cur.close()
    except (Exception, psycopg2.DatabaseError) as error:
@@ -384,12 +335,13 @@ def collar_attr_col_dic():
       if conn is not None:
          conn.close()
 
-   
-         
 
-def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
+
+   
+
+def survey_final_incl(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    '''
-   Function which extracts data from tables dhsurvey,dhsurveyattr and collar  for attributes Depth,Azimuth and Dip
+   Function which extracts data from tables dhsurvey,dhsurveyattr and collar  for attributes Depth,Azimuth and Inclination
    Inputs:
         - minlong,maxlong,minlat,maxlat :  coordinates of region 
    Output:
@@ -409,8 +361,8 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    fileHandler2 = logging.FileHandler(DB_Survey_Azi_Log_Name)
    logger2.addHandler(fileHandler2)
    
-   fieldnames=['CollarID','Depth','Azimuth','Dip']
-   out= open(os.path.join(export_path,DB_Survey_Export), "w",encoding ="utf-8")
+   fieldnames=['CollarID','Depth','Azimuth','Inclination']
+   out= open(os.path.join(export_path,DB_Survey_Export), "w",encoding =encoding_1)
    for ele in fieldnames:
         out.write('%s,' %ele)
    out.write('\n')
@@ -426,21 +378,20 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    AZI = 0.0
    AZI_list =0.0
    AZI_sub_list=[]
-   AZI_DIP_LIST =[]
+   AZI_INCLI_LIST =[]
    AZI_ele = 0.0
-   DIP = -90 #default Dip to -90
+   Inclination = -90 #default Inclination to -90
    Pre_id =0
    b_AZI =False
-   b_DIP =False
+   #b_DIP =False
    b_DEPTH =False
    back_survey_0 =0
    back_survey_1 = -1.1
-   One_DIP=False
+   #One_DIP=False
    One_AZI =False
    
    
    try:
-      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -449,35 +400,35 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
       Survey_dic_list = [list(elem) for elem in Var.Attr_col_survey_dic_list] 
       for survey_ele in Survey_First_Filter:   
          for attr_col_ele in Survey_dic_list:
-            if (survey_ele[2] == attr_col_ele[0])  :  #AZI or DIP
+            if (survey_ele[2] == attr_col_ele[0])  :  #AZI or Inclination
                if(Pre_id !=survey_ele[0]  and Pre_id !=0):
-                  if(len(AZI_DIP_LIST)!=0):
-                     AZI_DIP_Print=[]
-                     list_AZI =[]
-                     list_DIP =[]
+                  if(len(AZI_INCLI_LIST)!=0):
+                     AZI_INCLI_Print=[]
+                     #list_AZI =[]
+                     #list_DIP =[]
                      if AZI_sub_list:
                         AZI_ele=max(AZI_sub_list)
                      if float(survey_ele[1]) < 0 :
                         survey_ele[1] = abs(survey_ele[1])
 
-                     AZI_DIP_LIST.append([back_survey_1,AZI_ele,DIP])
+                     AZI_INCLI_LIST.append([back_survey_1,AZI_ele,Inclination])
                         
                      #if Pre_id == 125476 :
                         #print("125476")
-                        #print(AZI_DIP_LIST)
+                        #print(AZI_INCLI_LIST)
 
 
                      AZI_1 =0.0
                      AZI_2 =0.0
-                     DIP_1 =0.0
-                     DIP_2 =0.0
-                     for loop1_ele in AZI_DIP_LIST:
-                        for loop2_ele in AZI_DIP_LIST:
+                     INCLI_1 =0.0
+                     INCLI_2 =0.0
+                     for loop1_ele in AZI_INCLI_LIST:
+                        for loop2_ele in AZI_INCLI_LIST:
                            if(loop1_ele[0] == loop2_ele[0]):
 
                                  if abs(loop1_ele[1]) == abs(loop2_ele[1]) and abs(loop1_ele[2]) == abs(loop2_ele[2]):
                                     AZI_1=loop1_ele[1]
-                                    DIP_1 = loop1_ele[2]
+                                    INCLI_1 = loop1_ele[2]
                                     
                                  elif abs(loop1_ele[1]) != abs(loop2_ele[1]) and abs(loop1_ele[2]) != abs(loop2_ele[2]):
                                     if abs(loop1_ele[1]) > abs(loop2_ele[1]):
@@ -488,21 +439,21 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                                      
                                     
                                     if abs(loop1_ele[2]) > abs(loop2_ele[2]):
-                                       if(abs(loop1_ele[2]) ==90):  #default DIP bug solved
-                                          DIP_2 = loop2_ele[2]
+                                       if(abs(loop1_ele[2]) ==90):  #default Inclination bug solved
+                                          INCLI_2 = loop2_ele[2]
                                        else:
-                                          DIP_2 = loop1_ele[2]
+                                          INCLI_2 = loop1_ele[2]
                                       
                                     else:
-                                       if(abs(loop2_ele[2]) ==90): #default DIP bug solved
-                                          DIP_2 = loop1_ele[2]
+                                       if(abs(loop2_ele[2]) ==90): #default Inclination bug solved
+                                          INCLI_2 = loop1_ele[2]
                                        else:
-                                          DIP_2 = loop2_ele[2]
+                                          INCLI_2 = loop2_ele[2]
 
                                     #if(abs(loop1_ele[2]) ) == 90 :
-                                       #DIP_2 = loop2_ele[2]
+                                       #INCLI_2 = loop2_ele[2]
                                     #elif(abs(loop2_ele[2]) ) == 90 :
-                                       #DIP_2 = loop1_ele[2] 
+                                       #INCLI_2 = loop1_ele[2] 
                                    
 
                                    
@@ -511,32 +462,32 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                         else:
                             AZI_ = AZI_2
 
-                        if abs(DIP_1) > abs(DIP_2):
-                           if(abs(DIP_1 ) ==90): #default DIP bug solved
-                              DIP_ = DIP_2
+                        if abs(INCLI_1) > abs(INCLI_2):
+                           if(abs(INCLI_1 ) ==90): #default Inclination bug solved
+                              INCLI_ = INCLI_2
                            else:
-                              DIP_ = DIP_1
+                              INCLI_ = INCLI_1
                         else:
-                           if(abs(DIP_2) ==90): #default DIP bug solved
-                              DIP_ = DIP_1
+                           if(abs(INCLI_2) ==90): #default Inclination bug solved
+                              INCLI_ = INCLI_1
                            else :
-                              DIP_ = DIP_2
+                              INCLI_ = INCLI_2
 
                             
                         
-                        AZI_DIP_Print.append([loop1_ele[0],AZI_,DIP_])
+                        AZI_INCLI_Print.append([loop1_ele[0],AZI_,INCLI_])
                         AZI_1 =0.0
                         AZI_2 =0.0
-                        DIP_1 =0.0
-                        DIP_2 =0.0
+                        INCLI_1 =0.0
+                        INCLI_2 =0.0
                         AZI_= 0.0
-                        DIP_ = 0.0
+                        INCLI_ = 0.0
                            
    
                      #if Pre_id ==125476  :   #1914687
-                        #print(AZI_DIP_Print)
+                        #print(AZI_INCLI_Print)
                      
-                     b_set = set(tuple(x) for x in AZI_DIP_Print)
+                     b_set = set(tuple(x) for x in AZI_INCLI_Print)
                      AZI_DIP_Print_Filter = [ list(x) for x in b_set ]
 
                      #if Pre_id == 125476 :
@@ -554,7 +505,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                         #print(AZI_DIP_Print_Filter_ele[2])
                         #print(One_AZI)
                      #print(AZI_DIP_Print_Filter)
-                     df = pd.DataFrame(AZI_DIP_Print_Filter,columns=['Depth','Azimuth','Dip'])
+                     df = pd.DataFrame(AZI_DIP_Print_Filter,columns=['Depth','Azimuth','Inclination'])
                      df.sort_values("Depth", axis = 0, ascending = True, inplace = True)
                      AZI_DIP_Print_Filter = df.values.tolist()
                      if(len(AZI_DIP_Print_Filter)!=0):
@@ -573,19 +524,19 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                               #print(AZI_DIP_Print_Filter_ele[2])
                              # print(One_AZI)
                      
-                     AZI_DIP_Print.clear()
+                     AZI_INCLI_Print.clear()
                      
                       
-                  AZI_DIP_LIST.clear()
+                  AZI_INCLI_LIST.clear()
                   
                   if(One_AZI==True):
                      out.write('%d,' %back_survey_0)
                      out.write('%d,' %back_survey_1)
                      out.write('%f,' %AZI)
-                     out.write('%f,' %DIP)
+                     out.write('%f,' %Inclination)
                      out.write('\n')
                   AZI =0.0
-                  DIP =-90  #default Dip to -90
+                  Inclination =-90  #default Inclination to -90
                   #One_DIP =False
                   One_AZI =False
                   AZI_sub_list.clear()
@@ -627,12 +578,12 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                           
                            if float(survey_ele[1]) < 0:
                               survey_ele[1] = abs(survey_ele[1])
-                           AZI_DIP_LIST.append([back_survey_1,AZI_ele,DIP])
+                           AZI_INCLI_LIST.append([back_survey_1,AZI_ele,Inclination])
                      
                            AZI_sub_list.clear()
                            AZI_ele =0.0
                            AZI=0.0
-                           DIP=-90 #default Dip to -90
+                           Inclination=-90 #default Inclination to -90
                            AZI = float((survey_ele[3]).replace('\'','').strip().rstrip('\n\r'))
                            AZI_sub_list.append(AZI)
                            back_survey_0 =survey_ele[0]
@@ -642,19 +593,19 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                            
                            
 
-               if ('DIP' in attr_col_ele[1] and (Pre_id ==survey_ele[0] or Pre_id ==0)) :   #DIP  processing
+               if ('INCLINATION' in attr_col_ele[1] and (Pre_id ==survey_ele[0] or Pre_id ==0)) :   #Inclination  processing
                   Pre_id = survey_ele[0]
                   if survey_ele[3].isalpha():
-                     logger1.info("%d, %d ,%s" ,survey_ele[4],survey_ele[0]," Dip is Alpha , It is not considered")
+                     logger1.info("%d, %d ,%s" ,survey_ele[4],survey_ele[0]," Inclination is Alpha , It is not considered")
                      continue
                   elif survey_ele[3].replace('.','',1).lstrip('-').isdigit():
                      if float((survey_ele[3]).replace('\'','').replace('<','').strip())  > 90:  # combine al skip cases
-                        logger1.info("%d, %d ,%s" ,survey_ele[4],survey_ele[0]," Dip is > 90 , It is not considered")
+                        logger1.info("%d, %d ,%s" ,survey_ele[4],survey_ele[0]," Inclination is > 90 , It is not considered")
                         continue
                      elif float((survey_ele[3]).replace('\'','').replace('<','').strip()) < 0 or float((survey_ele[3]).replace('\'','').replace('<','').strip()) == 0 :
-                        logger1.info("%d, %d ,%s" ,survey_ele[4],survey_ele[0]," Dip is <= 0 , It is considered")
+                        logger1.info("%d, %d ,%s" ,survey_ele[4],survey_ele[0]," Inclination is <= 0 , It is considered")
                         if (back_survey_1 == survey_ele[1] or  back_survey_1==-1.1):
-                           DIP= float((survey_ele[3]).replace('\'','').replace('<','').replace('>','').strip())
+                           Inclination= float((survey_ele[3]).replace('\'','').replace('<','').replace('>','').strip())
                     
                            back_survey_0 =survey_ele[0]
                            back_survey_1 = survey_ele[1]
@@ -665,29 +616,18 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
                               AZI_ele=max(AZI_sub_list)
                            if float(survey_ele[1]) < 0 :
                               survey_ele[1] = abs(survey_ele[1])
-                           AZI_DIP_LIST.append([back_survey_1,AZI_ele,DIP])
+                           AZI_INCLI_LIST.append([back_survey_1,AZI_ele,Inclination])
                     
                            AZI_sub_list.clear()
                            AZI_ele =0.0
-                           DIP=-90  #default Dip to -90
+                           Inclination=-90  #default Inclination to -90
                            AZI=0.0
-                           DIP= float((survey_ele[3]).replace('\'','').replace('<','').replace('>','').strip())
+                           Inclination= float((survey_ele[3]).replace('\'','').replace('<','').replace('>','').strip())
                     
                            back_survey_0 =survey_ele[0]
                            back_survey_1 = survey_ele[1]
         
-                           
-                        
-                 
-                        
-               #if (Pre_id ==survey_ele[0] or Pre_id ==0):  # depth # chk all corrections
-                  #Pre_id = survey_ele[0]
-                  #if float(survey_ele[1])
-                    # survey_ele[1] = abs(survey_ele[1])
-                  #b_DEPTH =True
-                 # back_survey_0 =survey_ele[0]
-                 # back_survey_1 = survey_ele[1]
-                  
+      
                   
    
       cur.close()
@@ -697,20 +637,17 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
       if conn is not None:
          conn.close()
 
-   
 
 
-
-
-def Attr_col_dic():
+def attr_col_dic():
    '''
-   Function extracts survey dictionary for attribute column AZI, Dip from DB and stores in List
+   Function extracts survey dictionary for attribute column AZI, Inclination from DB and stores in List
    '''
    
    
    query = ''' SELECT  thesaurus_survey_azimuth.attributecolumn,thesaurus_survey_azimuth.cet_attributecolumn  FROM thesaurus_survey_azimuth
                union all 
-               SELECT  thesaurus_survey_dip.attributecolumn,thesaurus_survey_dip.cet_attributecolumn  FROM thesaurus_survey_dip   '''
+               SELECT  thesaurus_survey_Inclination.attributecolumn,thesaurus_survey_Inclination.cet_attributecolumn  FROM thesaurus_survey_Inclination   '''
 
    conn = None
    temp_list =[]
@@ -722,21 +659,10 @@ def Attr_col_dic():
 
       for rec in cur:
          Var.Attr_col_survey_dic_list.append(rec)
-
-         
-      #Attr_col_survey_dic_list = [list(elem) for elem in temp_list]
-
-      #for ele in Attr_col_survey_dic_list:
-         #print(ele)
-         #Attr_col_survey_dic_list.append(record)
-
+      #uncomment if need to print file for verification.  
       #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
-   
       #with open('Dic_attr_col_survey.csv', 'w') as f:
          #cur.copy_expert(outputquery, f)
-      
- 
-          
  
       cur.close()
    except (Exception, psycopg2.DatabaseError) as error:
@@ -751,15 +677,7 @@ def Attr_col_dic():
 
 
 
-def count_Digit(n):
-    if n > 0:
-        digits = int(math.log10(n))+1
-    elif n == 0:
-        digits = 1
-    else:
-        digits = int(math.log10(-n))+1 # +1 if you don't count the '-'
-  
-    return digits
+
 
 
 def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
@@ -776,8 +694,8 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
    survey=pd.read_csv(export_path +'/' +DB_Survey_Export)
    survey=pd.merge(survey,location, how='left', on='CollarID')
 
-   fieldnames=['CollarID','Depth','Azimuth','Dip','X','Y','Z']
-   out= open(os.path.join(export_path,DB_Survey_Export_Calc), "w",encoding ="utf-8")
+   fieldnames=['CollarID','Depth','Azimuth','Inclination','X','Y','Z']
+   out= open(os.path.join(export_path,DB_Survey_Export_Calc), "w",encoding =encoding_1)
    for ele in fieldnames:
       out.write('%s,' %ele)
    out.write('\n')
@@ -792,7 +710,7 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
          last_Azi =0.0
          last_Depth =0.0
          last_CollarID =0.0
-         last_Dip=float(row['Dip'])
+         last_Dip=float(row['Inclination'])
          last_Azi=float(row['Azimuth'])
          last_Depth=float(row['Depth'])
          last_CollarID=(row['CollarID'])
@@ -811,16 +729,11 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
          out.write('\n')
          
       else:
-         #X2=0.0
-         #Y2=0.0
-         #Z2=0.0
-         #len12 = float(row['Depth']) - last_Depth
-         #X2,Y2,Z2=dsmincurb(len12,last_Azi,last_Dip,float(row['Azimuth']),float(row['Dip']))
-         X2,Y2,Z2=dia2xyz(X1,Y1,Z1,last_Dip,last_Azi,last_Depth,float(row['Dip']),float(row['Azimuth']),float(row['Depth']))  # x,y z calculation by function dis2xyz
+         X2,Y2,Z2=dia2xyz(X1,Y1,Z1,last_Dip,last_Azi,last_Depth,float(row['Inclination']),float(row['Azimuth']),float(row['Depth']))  # x,y z calculation by function dis2xyz
          out.write('%s,' %last_CollarID)
          out.write('%f,' %float(row['Depth']))
          out.write('%f,' %float(row['Azimuth']))
-         out.write('%f,' %float(row['Dip']))
+         out.write('%f,' %float(row['Inclination']))
          out.write('%f,' %X2)
          out.write('%f,' %Y2)
          out.write('%f,' %Z2)
@@ -828,7 +741,7 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
          X1=X2
          Y1=Y2
          Z1=Z2
-         last_Dip=float(row['Dip'])
+         last_Dip=float(row['Inclination'])
          last_Azi=float(row['Azimuth'])
          last_Depth=float(row['Depth'])
    out.close()
@@ -838,17 +751,17 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
 
 def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
    '''
-   Function takes two DIP,AZI,Depth values for X,Y,Z value
+   Function takes two Inclination,AZI,Depth values for X,Y,Z value
    Inputs:
-           - X1  : x value fron collar extraction for a particular hole
-           - Y1  : y value fron collar extraction for a particular hole
-           - Z1  : RL value fron collar extraction for a particular hole
-           - I1  : DIP_1 value from survey
-           - Az1  : Azi_1 value from survey
-           - Distance1 : Depth_1 value from survey
-           - I2   : DIP_2 value from survey
-           - Az2  : Azi_2 value from survey
-           - Distance2 :  Depth_2 value from survey
+           - X1(float)  : x value from collar extraction for a particular hole
+           - Y1(float)  : y value from collar extraction for a particular hole
+           - Z1(float)  : RL value from collar extraction for a particular hole
+           - I1(float)  : INCLI_1 value from survey
+           - Az1(float)  : Azi_1 value from survey
+           - Distance1(float) : Depth_1 value from survey
+           - I2(float)   : INCLI_2 value from survey
+           - Az2(float)  : Azi_2 value from survey
+           - Distance2(float) :  Depth_2 value from survey
            
    Output:
            - X,Y,Z value for Deppth_1 to Depth_2
@@ -882,83 +795,83 @@ def dia2xyz(X1,Y1,Z1,I1,Az1,Distance1,I2,Az2,Distance2):
 
 
 
-def Attr_Val_Dic():
+def attr_val_dic():
     '''
     Funtion extracts Attribute value dictionary table from DB.
     '''
-    
+    conn = None
     query = '''select * from thesaurus_geology_lithology_code'''
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        cur.execute(query)
+        for record in cur:
+            #print(record)
+            Var.Attr_val_Dic.append(record)
+        #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
+        #with open('Dic_attr_val.csv', 'w') as f:
+            #cur.copy_expert(outputquery, f)
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+      print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
     
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    cur.execute(query)
-    for record in cur:
-        #print(record)
-        Var.Attr_val_Dic.append(record)
-    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
-   
-    #with open('Dic_attr_val.csv', 'w') as f:
-        #cur.copy_expert(outputquery, f)
-    
 
-    cur.close()
-    conn.close()
-
-    
-
-
-   
-
-
-
-def Litho_Dico():
+def litho_dico():
     '''
     Function Extracts Dictionary for lithology from DB.
     '''
-    
     query = ''' select thesaurus_geology_hierarchy.fuzzuwuzzy_terms  from thesaurus_geology_hierarchy '''
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    cur.execute(query)
-    #print(cur)
-    for record in cur:
-        #print(record)
-        Var.Litho_dico.append(record)
-        #print(Litho_dico)
-    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
-       
-    #with open('Dic_litho.csv', 'w') as f:
-        #cur.copy_expert(outputquery, f)
+    conn = None
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        cur.execute(query)
+        for record in cur:
+            Var.Litho_dico.append(record)
+            
+        #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
+        #with open('Dic_litho.csv', 'w') as f:
+            #cur.copy_expert(outputquery, f)
         
-    #print(Litho_dico)
-    cur.close()
-    conn.close()
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
     
 
 
     
     
 
-def Clean_Up():
+def clean_up():
     '''
     Function extracts clean up dictionary from DB.
     '''
-    
+    conn = None
     query = ''' select thesaurus_cleanup.cleanup_term  from thesaurus_cleanup '''
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    cur.execute(query)
-    for record in cur:
-        #print(record)
-        Var.cleanup_dic_list.append(record)
-    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        cur.execute(query)
+        for record in cur:
+            Var.cleanup_dic_list.append(record)
+        #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
        
-    #with open('cleanup_dic.csv', 'w',encoding="utf-8") as f:
-        #cur.copy_expert(outputquery, f)
+        #with open('cleanup_dic.csv', 'w',encoding="utf-8") as f:
+            #cur.copy_expert(outputquery, f)
         
-
-    cur.close()
-    conn.close()
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
 
     
 
@@ -1010,17 +923,7 @@ def clean_text(text):
 
 
 
-
-
-
-
-
-
-
-#labelEncoder = LabelEncoder()
-#one_enc = OneHotEncoder()
 lemma = nltk.WordNetLemmatizer()
-
 extra_stopwords = [
     'also',
 ]
@@ -1060,12 +963,7 @@ def tokenize_and_lemma(text, min_len=0):
 
 
 
-
-    
-
-
-
-def Attr_val_With_fuzzy():
+def attr_val_with_fuzzy():
     '''
     Function gets the fuzzuwuzzy string of the lithology text .The lithology text is cleaned,lemmatised and tokenized.
     Input: Dictionaries Extracted
@@ -1076,9 +974,8 @@ def Attr_val_With_fuzzy():
     top=[]
     i=0
     attr_val_sub_list=[]
-    #p = re.compile(r'[' ']')
     fieldnames=['CollarID','code','Attr_val','cleaned_text','Fuzzy_wuzzy','Score']
-    out= open(os.path.join(export_path,"Attr_val_fuzzy.csv"), "w",encoding ="utf-8")
+    out= open(os.path.join(export_path,"Attr_val_fuzzy.csv"), "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -1133,18 +1030,13 @@ def Attr_val_With_fuzzy():
         if bestmatch >80:
             
             Var.Attr_val_fuzzy.append([Attr_val_Dic_ele[0],Attr_val_Dic_ele[1],Attr_val_Dic_ele[2],cleaned_text,bestlitho,bestmatch]) #top_new[1]])  or top[0][1]
-            
-            #attr_val_sub_list.clear()
-            
             out.write('%d,' %int(Attr_val_Dic_ele[0]))
             out.write('%s,' %Attr_val_Dic_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
             out.write('%s,' %Attr_val_Dic_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))     #.replace(',' , '').replace('\n' , ''))
             out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
             out.write('%s,' %bestlitho.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
-            #out.write('%d,' %top_new[1])
             out.write('%d,' %bestmatch)
             out.write('\n')
-            #top_new[:] =[]
             top.clear()
             CET_Litho=''
             bestmatch=-1
@@ -1160,10 +1052,8 @@ def Attr_val_With_fuzzy():
             out.write('%s,' %Attr_val_Dic_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','').replace(',' , '').replace('\n',''))     #.replace(',' , '').replace('\n' , ''))
             out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
             out.write('Other,')
-            #out.write('%d,' %top_new[1])
             out.write('%d,' %bestmatch)
             out.write('\n')
-            #top_new[:] =[]
             top.clear()
             CET_Litho=''
             bestmatch=-1
@@ -1177,8 +1067,8 @@ def Depth_validation(row_2,row_3,collarid,dhsurveyid,logger1):
     '''
     Funtion validates the from and to depth values according to the requirment
     Input : 
-        - From Depth
-        - To Depth
+        - row_2(float)(From Depth)
+        - row_3(float)(To Depth)
     Output:
         - From Depth,To Depth : Right Depth values for from and to depth 
     '''
@@ -1211,8 +1101,8 @@ def Depth_validation_comments(row_2,row_3) :   #,collarid,dhsurveyid):
     '''
     Funtion validates the from and to depth values according to the requirment
     Input : 
-        - From Depth
-        - To Depth
+        - row_2(float)(From Depth)
+        - row_3(float)(To Depth)
     Output:
         - From Depth,To Depth : Right Depth values for from and to depth 
     '''
@@ -1235,7 +1125,7 @@ def Depth_validation_comments(row_2,row_3) :   #,collarid,dhsurveyid):
             return row_2,row_3
 
 
-def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
+def final_lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     '''
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
     For Each row extracted the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed .
@@ -1257,7 +1147,7 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
 		 WHERE(t3.longitude BETWEEN %s AND %s) AND(t3.latitude BETWEEN %s AND %s) 
 		 ORDER BY t3.companyid ASC"""
 
-    
+    conn = None
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
     DB_Litho_Depth_Log_Name = os.path.join(export_path, DB_Litho_Depth_Log)
@@ -1265,50 +1155,48 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     logger1.addHandler(fileHandler1)
     
     
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+        cur.execute(query,Bounds)
+        First_Filter_list = [list(elem) for elem in cur]
     
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    #cur.execute(query)
-    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
-    cur.execute(query,Bounds)
-    First_Filter_list = [list(elem) for elem in cur]
+        fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Attribute_column','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']  # for looging
+        out= open(os.path.join(export_path,DB_Lithology_Export), "w",encoding =encoding_1)
     
-    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Attribute_column','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']  # for looging
-    #fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']
-    out= open(os.path.join(export_path,DB_Lithology_Export), "w",encoding ="utf-8")
+        for ele in fieldnames:
+            out.write('%s,' %ele)
+        out.write('\n')
     
-    for ele in fieldnames:
-        out.write('%s,' %ele)
-    out.write('\n')
-    
-    for First_filter_ele in First_Filter_list:
-        for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
-            if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
-                #print(Attr_val_fuzzy_ele[0],"\t",Attr_val_fuzzy_ele[1])
-                #print(First_filter_ele[0],"\t",First_filter_ele[5])
-                First_filter_ele[2],First_filter_ele[3] =Depth_validation(First_filter_ele[2],First_filter_ele[3],First_filter_ele[1],First_filter_ele[6],logger1)
-                out.write('%d,' %First_filter_ele[0])
-                out.write('%d,' %First_filter_ele[1])
-                out.write('%d,' %First_filter_ele[2])
-                out.write('%s,' %First_filter_ele[3])
-                out.write('%s,' %First_filter_ele[4])  # for logging 
-                out.write('%s,' %Attr_val_fuzzy_ele[1])
-                out.write('%s,' %Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',',''))
-                out.write('%s,' %Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',',''))   #.replace(',' , ''))
-                out.write('%d,' %int(Attr_val_fuzzy_ele[5]))
-                out.write('\n')
+        for First_filter_ele in First_Filter_list:
+            for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
+                if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
+                    First_filter_ele[2],First_filter_ele[3] =Depth_validation(First_filter_ele[2],First_filter_ele[3],First_filter_ele[1],First_filter_ele[6],logger1)
+                    out.write('%d,' %First_filter_ele[0])
+                    out.write('%d,' %First_filter_ele[1])
+                    out.write('%d,' %First_filter_ele[2])
+                    out.write('%s,' %First_filter_ele[3])
+                    out.write('%s,' %First_filter_ele[4])  # for logging 
+                    out.write('%s,' %Attr_val_fuzzy_ele[1])
+                    out.write('%s,' %Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',',''))
+                    out.write('%s,' %Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',',''))   #.replace(',' , ''))
+                    out.write('%d,' %int(Attr_val_fuzzy_ele[5]))
+                    out.write('\n')
 
-    
-        #for column in First_filter_ele:
-            #out_first_filter.write('%s,' %column)
-        #out_first_filter.write('\n')
-        	
-Attr_col_list =[]	
-First_Filter_list =[]
-Litho_dico=[]
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+
 
 
 def Attr_COl():
+    '''
+    Function Extracts Attrcolumn dictionary from DB.
+    '''
     #query = """SELECT * FROM public.dic_att_col_lithology"""
     query = """SELECT * FROM public.dic_att_col_lithology_1"""  # logging
     #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
@@ -1316,7 +1204,6 @@ def Attr_COl():
     cur = conn.cursor()
     cur.execute(query)
     for record in cur:
-        #print(record)
         Attr_col_list.append(record)
     outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
    
@@ -1331,6 +1218,11 @@ def Attr_COl():
     
     
 def First_Filter():
+    '''
+    Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
+    For Each row extracted the from and to depth values are validated .
+    '''
+    
     print("------------------start First_Filter------------")
     start = time.time()
     #out= open("DB_lithology_First1.csv", "w",encoding ="utf-8")
@@ -1346,7 +1238,7 @@ def First_Filter():
     ORDER BY t3.companyid ASC"""
 
 
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1374,35 +1266,32 @@ def First_Filter():
                         First_Filter_list.append(row)
                         #print(row)
                  
-                    #for column in row:
-                        #out.write('%s,' %column)
-                    #out.write('\n')
+                    
                    
                     
    
 
     cur.close()
     conn.close()
-    #out.close() 
     end = time.time()
-    #print(end - start)
+    
     
     
 def Final_Lithology_old():
+    '''The lithology data extracted from DB,fuzzywuzzy values for the lithology along with the score are generated to a csv file.
+    '''
+    
     print("--------start of Final -----------")
     bestmatch=-1
     bestlitho=''
     top=[]
-    #p = re.compile(r'[- _]')
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','cleaned_text','CET_Lithology','Score']
-    out= open("DB_lithology_Final_old.csv", "w",encoding ="utf-8")
+    out= open("DB_lithology_Final_old.csv", "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
 
-    #with open('Att_Val.log', 'w'):   # to clear the log files 
-    #    pass
-
+    
     logger1 = logging.getLogger('dev1')
     logger1.setLevel(logging.INFO)
     DB_Litho_Att_Val_Log_Name = os.path.join(export_path, DB_Litho_Att_Val_Log)
@@ -1410,37 +1299,21 @@ def Final_Lithology_old():
     logger1.addHandler(fileHandler1)
 
     query = '''SELECT dic_attr_val_lithology_filter.company_id,dic_attr_val_lithology_filter.company_code,replace(dic_attr_val_lithology_filter.comapany_litho, ',' , '_') as comapany_litho  FROM dic_attr_val_lithology_filter'''
-    #conn = psycopg2.connect(host='130.95.198.59', port = 5432, database='gswa_dh', user='postgres', password='loopie123pgpw')
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
     a_list = [list(elem) for elem in cur]
     for row in a_list:    
         for First_filter_ele in First_Filter_list:
-            #ele_0 = str(First_filter_ele[0]).replace('(','').replace(')','').replace(',','').replace('\'','')    
-            #ele_5 = str(First_filter_ele[5]).replace('(','').replace(')','').replace(',','').replace('\'','')
-            
+                    
             company_code = row[1]
             company_litho = row[2]
-            #print(row[0])
-            #print( First_filter_ele[0])
-            #print(row[1])
-            #print( First_filter_ele[5])
+            
             if int(row[0]) == First_filter_ele[0] and  row[1] == First_filter_ele[5]:
-                #del First_filter_ele[4]
-                #del First_filter_ele[4]
-
-
-
-                #cleaned_text=clean_text(row[2])   # without tokenization
-
-                # for logging with tokenization
-                
+                               
                 cleaned_text_1=clean_text(row[2])
                 cleaned_text_2=tokenize_and_lemma(cleaned_text_1)
                 cleaned_text=" ".join(str(x) for x in cleaned_text_2)
-                #logger1.info("%d, %d, %s, %s ,%s" ,First_filter_ele[0],First_filter_ele[6] ,row[2],cleaned_text_1,cleaned_text)  # logging 
-                
                 
                 cleaned_text =  cleaned_text.replace(' rock ',' rocks')   # to handle rock and rocks to get proper fuzzywuzzy
                 cleaned_text =  cleaned_text.replace(' rock',' rocks') 
@@ -1450,11 +1323,8 @@ def Final_Lithology_old():
                 words=words.rstrip('\n\r').split(" ")
                 last=len(words)-1 #position of last word in phrase
 
-                
-                
                 for Litho_dico_ele in Litho_dico:              
-                    #litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').split(" ")
-                    #litho_words=re.split(p, str(Litho_dico_ele))
+                    
                     litho_words=str(Litho_dico_ele).lower().rstrip('\n\r').replace('(','').replace(')','').replace('\'','').replace(',','').split(" ")
                     scores=process.extract(cleaned_text, litho_words, scorer=fuzz.token_set_ratio)
                     for sc in scores:                        
@@ -1473,13 +1343,9 @@ def Final_Lithology_old():
                                 #top=top+sc
                                 top.append([sc[0],sc[1]])
 
-                #top = [list(elem) for elem in top]
-                #top_new = list(top)
-                #if top_new[1] >80:
+                
                 if bestmatch >80:
-                    #del First_filter_ele[4]
-                    #del First_filter_ele[4]
-                    #for column in First_filter_ele:
+                    
                     out.write('%s,' %First_filter_ele[0])
                     out.write('%s,' %First_filter_ele[1])
                     out.write('%s,' %(First_filter_ele[2]))   #.replace(',' ,' '))
@@ -1488,9 +1354,7 @@ def Final_Lithology_old():
                     out.write('%s,' %row[2])
                     out.write('%s,' %cleaned_text)   #.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
                     out.write('%s,' %bestlitho.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''))
-                    #CET_Litho = str(top_new[0]).replace('(','').replace(')','').replace('\'','').replace(',','')
-                    #CET_Litho = CET_Litho.replace(',', ' ')
-                    #out.write('%s,' %CET_Litho)
+                    
                     out.write('%d,' %bestmatch)    #top_new[1])
                     out.write('\n')
                     logger1.info("%d, %d, %s, %s ,%s , %s , %d " ,First_filter_ele[0],First_filter_ele[6] ,row[2],cleaned_text_1,cleaned_text,bestlitho.replace('(','').replace(')','').replace('\'','').replace(',','').replace('\n',''),bestmatch)  # logging 
@@ -1500,9 +1364,7 @@ def Final_Lithology_old():
                     bestmatch=-1
                     bestlitho=''
                 else:
-                    #del First_filter_ele[4]
-                    #del First_filter_ele[4]
-                    #for column in First_filter_ele:
+                    
                     out.write('%s,' %First_filter_ele[0])
                     out.write('%s,' %First_filter_ele[1])
                     out.write('%s,' %(First_filter_ele[2]))   #.replace(',' ,' '))
@@ -1525,7 +1387,7 @@ def Final_Lithology_old():
     out.close()
 
 
-def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
+def upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
     '''
     Function upscales the CET_Loithology generated using the CET hierarchy dictionary to level1,level2,level3
     Input: 
@@ -1543,12 +1405,9 @@ def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
     cur.execute(query)
     Hierarchy_litho_dico_List  = [list(elem) for elem in cur]
     CET_hierarchy_dico = pd.DataFrame(Hierarchy_litho_dico_List,columns=['detailed_lithology','lithology_subgroup','lithology_group'])
-    #CET_hierarchy_dico.to_csv ('CET_hierarchy_dico.csv', index = False, header=True)
-    #print (CET_hierarchy_dico)
-    DB_Lithology= pd.read_csv(export_path +'/'+ DB_Lithology_Export,encoding = "ISO-8859-1", dtype='object')
+    DB_Lithology= pd.read_csv(export_path +'/'+ DB_Lithology_Export,encoding = encoding_2, dtype='object')
     Upscaled_Litho=pd.merge(DB_Lithology, CET_hierarchy_dico, left_on='CET_Lithology', right_on='detailed_lithology')
     Upscaled_Litho.sort_values("Company_ID", ascending = True, inplace = True)
-    #Upscaled_Litho.drop(['Unnamed: 8'], axis=1)
     del Upscaled_Litho['Unnamed: 9']
     Upscaled_Litho.to_csv (export_path +'/'+ DB_Lithology_Upscaled_Export, index = False, header=True)
     
@@ -1556,7 +1415,7 @@ def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
 
 
 
-def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplicates_Export):
+def remove_duplicates_litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplicates_Export):
     '''
     Function removes the multiple companies logging the same lithology (or duplicate rows)
     Input:
@@ -1577,17 +1436,21 @@ def Remove_duplicates_Litho(DB_Lithology_Upscaled_Export,Upscaled_Litho_NoDuplic
 
 
 def dsmincurb (len12,azm1,dip1,azm2,dip2):
-    #DEG2RAD = 3.141592654/180.0
-    #i1 = (90 - float(dip1)) * DEG2RAD
+    '''
+    Function calculates dz,dn,de  Balanced Tangential Method by using the Ratio Factor (RF).
+    Inputs:
+        - len12(float) : length as specified in function calculate_x_y_z()
+        - azm1(float) : azimuth1 float value .
+        - azm2(float) : azimuth2 float value .
+        - dip1(float) : dip1 float value.
+        - dip2(float) : dip2 float value.
+        
+    '''
+    
     i1 = np.deg2rad(90 - float(dip1))
-    #a1 = float(azm1) * DEG2RAD
     a1 = np.deg2rad(float(azm1))
-    #i2 = (90 - float(dip2)) * DEG2RAD
     i2 = np.deg2rad(90 - float(dip2))
-    #a2 = float(azm2) * DEG2RAD
     a2 = np.deg2rad(float(azm2))  #DEG2RAD
-	
-    #Beta = acos(cos(I2 - I1) - (sin(I1)*sin(I2)*(1-cos(Az2-Az1))))
     dl = acos(cos(float(i2)-float(i1))-(sin(float(i1))*sin(float(i2))*(1-cos(float(a2)-float(a1)))))
     if dl!=0.:
         rf = 2*tan(dl/2)/dl  # minimum curvature
@@ -1597,10 +1460,20 @@ def dsmincurb (len12,azm1,dip1,azm2,dip2):
     dn = 0.5*len12*(sin(float(i1))*cos(float(a1))+sin(float(i2))*cos(float(a2)))*rf
     de = 0.5*len12*(sin(float(i1))*sin(float(a1))+sin(float(i2))*sin(float(a2)))*rf
     return dz,dn,de
-	#modified from pygslib
+	
 
 def interp_ang1D(azm1,dip1,azm2,dip2,len12,d1):
-    # convert angles to coordinates
+    '''
+     convert angles to coordinates
+     Inputs :
+        - len12(float) : length as specified in function calculate_x_y_z()
+        - azm1(float) : azimuth1 float value .
+        - azm2(float) : azimuth2 float value .
+        - dip1(float) : dip1 float value.
+        - dip2(float) : dip2 float value.
+        - d1(float): distance as specified .
+     
+    '''
     x1,y1,z1 = ang2cart(azm1,dip1)
     x2,y2,z2 = ang2cart(azm2,dip2)
 
@@ -1615,41 +1488,54 @@ def interp_ang1D(azm1,dip1,azm2,dip2,len12,d1):
     #modified from pygslib
 	
 def ang2cart(azm, dip):
-    #DEG2RAD=3.141592654/180.0
-    # convert degree to rad and correct sign of dip
-    #razm = float(azm) * float(DEG2RAD)
+    '''
+    Function converts angle to coordinates x,y,z.
+    Inputs : 
+         -azimuth2 float value .
+         - dip1 : dip1 float value.
+    
+    '''
+    
     razm =  float(np.deg2rad(float(azm)))
-    #rdip = -(float(dip)) * float(DEG2RAD)
     rdip =  float(np.deg2rad(-float(dip)))
-
     # do the conversion
     x = sin(razm) * cos(rdip)
     y = cos(razm) * cos(rdip)
     z = sin(rdip)
     return x,y,z
-    #modified from pygslib
+    
 	
 def cart2ang(x,y,z):
+    '''
+    Function converts coordinates   x,y,z to azi,dip.
+    Inputs : 
+         -x,y,z .
+   
+    '''
     if x>1.: x=1.
     if x<-1.: x=-1.
     if y>1.: y=1.
     if y<-1.: y=-1.
     if z>1.: z=1.
     if z<-1.: z=-1.
-    #RAD2DEG=180.0/3.141592654
-    #pi = 3.141592654
+    
     azm= float(atan2(x,y))
     if azm<0.:
         azm= azm + math.pi*2
-    #azm= azm + math.pi*2
-    #azm = float(azm) * float(RAD2DEG)
+    
     azm =float(np.rad2deg(float(azm)))
-    #dip = -(float(asin(z))) * float(RAD2DEG)
     dip =-float(np.rad2deg(float(asin(z))))
     return azm, dip
-    #modified from pygslib
+    
 	
 def angleson1dh(indbs,indes,ats,azs,dips,lpt):
+    '''
+    Function calls dependedant function 
+    Inputs :
+     -indbs(int) :start of index
+     -indes(int):end of index.
+        
+    '''
     for i in range (indbs,indes):
         a=ats[i]
         b=ats[i+1]
@@ -1670,13 +1556,16 @@ def angleson1dh(indbs,indes,ats,azs,dips,lpt):
     else:
         return   np.nan, np.nan
 
-def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDuplicates_Export, DB_Lithology_Export_Calc):
-    print("--------start of convert Lithology -----------")
-    
-    #collar= pd.read_csv('DB_Collar_Export.csv',encoding = "ISO-8859-1", dtype='object')
-    #survey= pd.read_csv('DB_Survey_Export.csv',encoding = "ISO-8859-1", dtype='object')
-    #litho= pd.read_csv('Upscaled_Litho_NoDuplicates_Export.csv',encoding = "ISO-8859-1", dtype='object')
-    
+def convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDuplicates_Export, DB_Lithology_Export_Calc):
+    '''
+    Function calculates x,y,z 
+    Inputs:
+        - DB_Collar_Export: collar table exported data with X,Y calculations.
+        - DB_Survey_Export :collar table exported data with X,Y calculations
+        -Upscaled_Litho_NoDuplicates_Export : lithology data extraction.
+    Output:
+        -DB_Lithology_Export_Calc :X,Y,Z of lithology.
+    '''
         
     collar= pd.read_csv(export_path +'/' + DB_Collar_Export )  
     survey= pd.read_csv(export_path +'/' + DB_Survey_Export ) 
@@ -1688,11 +1577,6 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
     litho.CollarID = litho.CollarID.astype(str)
     litho.Fromdepth = litho.Fromdepth.astype(float)
     litho.Todepth = litho.Todepth.astype(float)
-
-    #collar.sort_values(['CollarID'], inplace=True)
-    #survey.sort_values(['CollarID', 'Depth'], inplace=True)
-    #litho.sort_values(['CollarID', 'Fromdepth'], inplace=True)
-
 
     global idc
     global xc
@@ -1706,9 +1590,13 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
     global fromt
     global tot
     global cetlit
-
-    
-    
+    global company_lithocode
+    global company_Lithology
+    global score
+    global detailed_lithology
+    global lithology_subgroup
+    global lithology_group
+   
     idc = collar['CollarID'].values
     xc = collar['X'].values
     yc = collar['Y'].values
@@ -1716,11 +1604,17 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
     ids = survey['CollarID'].values
     ats = survey['Depth'].values
     azs = survey['Azimuth'].values
-    dips = survey['Dip'].values
+    dips = survey['Inclination'].values
     idt =litho['CollarID'].values
     fromt = litho['Fromdepth'].values
     tot = litho['Todepth'].values
+    company_lithocode = litho['Comapny_Lithocode'].values
+    company_Lithology = litho['Company_Lithology'].values
     cetlit=litho['CET_Lithology'].values
+    score = litho['Score'].values
+    detailed_lithology = litho['detailed_lithology'].values
+    lithology_subgroup = litho['lithology_subgroup'].values
+    lithology_group = litho['lithology_group'].values
 
     nc= idc.shape[0]
     ns= ids.shape[0]
@@ -1776,9 +1670,9 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
     yet[:] = np.nan
     zet [:]= np.nan
 
-    fieldnames=['CollarID','FromDepth','ToDepth','Lithology','xbt','ybt','zbt','xmt','ymt', 'zmt', 'xet','yet','zet','azbt','dipbt']
+    fieldnames=['CollarID','FromDepth','ToDepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score','Detailed_lithology','Lithology_subgroup','Lithology_group','xbt','ybt','zbt','xmt','ymt', 'zmt', 'xet','yet','zet','azbt','dipbt']
     global out
-    out= open(os.path.join(export_path,DB_Lithology_Export_Calc), "w",encoding ="utf-8")
+    out= open(os.path.join(export_path,DB_Lithology_Export_Calc), "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -1811,9 +1705,7 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
 
     global prev_dict
     global survey_sub_cnt
-
-    
-    
+   
     
     for jc in range(nc):
         indbs = -1
@@ -1826,13 +1718,8 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
                 global temp_Survey_df
                 if(idc[jc] == '150942'):
                     ii =ii + 1
-                #temp_Survey_df = (survey.loc[survey['CollarID'].isin([ids[js]])]).copy()
                 temp_Survey_df = (survey.loc[survey['CollarID']== ids[js]])
-                #start_pos = temp_Survey_df[temp_Survey_df['CollarID']==ids[js]].index.item()
-                #print(start_pos)
                 survey_sub_cnt=temp_Survey_df.shape[0]
-                #print(survey_sub_cnt)
-                #print(temp_Survey_df)
                 break
         for js in range(inds, ns):
             if idc[jc]!=ids[js]:
@@ -1890,122 +1777,49 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
         
 
         for jt in range(indt, nt):
-            #if(idc[jc]!=idt[jt]):
-                #break
             if idc[jc]==idt[jt]:
-                #print(idt[jt])
-                #print(idc[jc])
                 global temp_litho_df
-                #temp_litho_df = (litho.loc[litho['CollarID'].isin([idt[jt]])]).copy()
                 if litho_sub_cnt_flag == True :  # to keep track of count till the end of one collarID
                     temp_litho_df = (litho.loc[litho['CollarID']== idt[jt]])
-                    #filtered_df = df.loc[df['Symbol'] == 'A99']
                     litho_sub_cnt=temp_litho_df.shape[0]
                     litho_sub_cnt_flag = False
-
-                    #print(temp_Survey_df)
-                    #start_pos = temp_Survey_df[temp_Survey_df['Depth']== 0].index.item()
-                    
                     start_pos_list = temp_Survey_df[temp_Survey_df['CollarID']== idt[jt]].index.tolist() # fetch start index of survey sub datafframe #.item()
                     start_pos = start_pos_list[0]  # fetch only the first element index
-                    #print(start_pos)
-                    #print(temp_Survey_df)
                     
-
                 else :
                     tmp_litho_sub_cnt = tmp_litho_sub_cnt + 1
                     
-                #if(litho_sub_cnt > survey_sub_cnt)
-                    
-                #print(litho_sub_cnt)
-                #print(temp_litho_df)
-                #print(tot)
-                #print(idc[jc])
-
                 if(idc[jc] == '125471'):
                     ii =ii + 1
 
-                
                 indt = jt
 
-
-                
                 Depth_survey = temp_Survey_df['Depth'].values
                 litho_Todepth = temp_litho_df['Todepth'].values
-
-                print(Depth_survey)
-                print(litho_Todepth)
                 
 
                 from_depth = fromt[jt]
                 mid_depth = float(fromt[jt]) + float((float(tot[jt])-float(fromt[jt]))/2)
                 to_depth = tot[jt]
 
-                #end_pos = temp_Survey_df[temp_Survey_df['Depth']==tot[jt]].index.item()
-                
-
                 begin_f = True
                 mid_f = True
                 end_f  = True
+        
 
-                
-
-                #print(idt[jt])
-               
-                #print(tot[jt] in temp_Survey_df.Depth.values)
-
-                if(tot[jt] in temp_Survey_df.Depth.values  and tot[jt] > Depth_survey [survey_ind+1]  ):
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                   #loc = np.where(Depth_survey [survey_ind] ==tot[jt])
-                    #print(tot[jt])
-
+                if(tot[jt] in temp_Survey_df.Depth.values  and tot[jt] > Depth_survey [survey_ind+1]):
                     end_pos = temp_Survey_df[temp_Survey_df['Depth']==tot[jt]].index.item()
-
-                    #from_depth = fromt[jt]
-                    #to_depth = tot[jt]
-                    #fromt[jt] = Depth_survey [survey_ind]
-                    #print(pos)
-                    #print(tot[jt])
                     while (start_pos < end_pos):
-                        #print(survey_ind)
-                        #print(Depth_survey [survey_ind])
                         fromt[jt] = Depth_survey [survey_ind]
-                        #print(fromt[jt])
                         tot[jt] = Depth_survey [survey_ind + 1]
-                        #print(tot[jt])
                         calculate_x_y_z()
-                        #print_xyz_csv()
                         survey_ind = survey_ind +1
                         start_pos= start_pos + 1
-                        #print("calculated")
-
-                    #print_xyz_csv()
-
-                #elif(tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey)  and tmp_litho_sub_cnt <= litho_sub_cnt   and  survey_sub_cnt-1 == survey_ind+1 ) : # survey elements are  over for collarID but litho still has values , Eg collarId 1111
-                    #calculate_x_y_z()
-                    
-                    
-                #elif(tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey)  and tmp_litho_sub_cnt == litho_sub_cnt  and survey_ind != survey_sub_cnt-2 ) :   #litho in last row but servey is not in last row,
-                   # if survey_ind != survey_sub_cnt-2:
-                    #    survey_ind = survey_ind +1
-                     #   calculate_x_y_z()
                         
+                      
 
                 elif(tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey)):  #and tmp_litho_sub_cnt == litho_sub_cnt ) :  litho last row but survey got many intermediates to cover
-                    #print("Max of Survey", "\t",max(Depth_survey))
-                    #if survey_sub_cnt-1 == survey_ind+1 and tmp_litho_sub_cnt == litho_sub_cnt :
-                        #litho_more_ele = True
-                        
-                    #if  survey_ind+1 == survey_sub_cnt-1 and tmp_litho_sub_cnt == litho_sub_cnt :
-                        #litho_more_ele = True
-
-                    #if(tot[jt] > Depth_survey [survey_ind+1]  and  survey_ind <= survey_sub_cnt-2):
-                        #while True:
-                            #if Depth_survey [survey_ind] <=  tot[jt]  >= Depth_survey [survey_ind+1] : #and survey_ind <= survey_sub_cnt -2:
-                               #survey_ind = survey_ind +1
-                            #else:
-                                #litho_more_ele == True
-                                #break
+                    
                     if survey_sub_cnt-1 == survey_ind and tmp_litho_sub_cnt == litho_sub_cnt :   #survey_sub_cnt-1 == survey_ind+1 and tmp_litho_sub_cnt < litho_sub_cnt :
                         calculate_x_y_z()
                         continue
@@ -2038,80 +1852,45 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
                         calculate_x_y_z()
                         continue
                         
-                    
-                        
-                        
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                    #print(tot[jt])
-                    #print(jt)
-                    #print(survey_ind)
-                    #last_Litho_ToDepth = tot[jt]
+            
                     while(survey_ind <  survey_sub_cnt):
-                       #print(survey_ind)
-                       #last_Litho_ToDepth = tot[jt]
-                       #print(last_Litho_ToDepth)
-                       #fromt[jt] = Depth_survey [survey_ind]
-                       #print(fromt[jt])
-                       #if(survey_ind < survey_sub_cnt-1):
+                       
                        if(survey_ind == survey_sub_cnt-1):
-                           #print("inside")
-                           #print(survey_ind)
-                           #print(survey_sub_cnt-2)
-                           #print(last_Litho_ToDepth)
-                           #tot[jt] = last_Litho_ToDepth
-
                            if litho_sub_cnt == 1 :   # for holeid = 132171, 1/9/20
                                fromt[jt] = from_depth
                                tot[jt] = to_depth
                                calculate_x_y_z()
                                break
 
-
-
-                           
+                   
                            fromt[jt] = Depth_survey [survey_ind]
-                           #print(fromt[jt])
                            tot[jt] = to_depth
-                           #print(tot[jt])
                            calculate_x_y_z()
-                           #survey_ind = survey_ind +1
                            break
-                           #print_xyz_csv()
-                           #survey_ind = survey_ind +1
                            
                        else:
-                           #print(survey_ind)
+                           
                            fromt[jt] = Depth_survey [survey_ind]
-                           #print(fromt[jt])
                            tot[jt] = Depth_survey [survey_ind + 1]
-                           #print(tot[jt])
                            calculate_x_y_z()
-                           #print_xyz_csv()
                            survey_ind = survey_ind +1
-                           #print(survey_ind)
+                           
 
-                    #print_xyz_csv()   #chk from to interval in csv
+                    
 
 
                 elif(tot[jt] < Depth_survey [survey_ind+1] or tot[jt] == Depth_survey [survey_ind+1] ):  #and litho_sub_cnt <=0) :
                     calculate_x_y_z()
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                    #print(tmp_litho_sub_cnt)
-                    #print_xyz_csv()
-
+                    
 
                 elif tot[jt] not in temp_Survey_df.Depth.values and tot[jt] > max(Depth_survey) and  tmp_litho_sub_cnt == litho_sub_cnt and end_pos > litho_sub_cnt:   # bug,for holeid 132170
                     end_pos = temp_Survey_df[temp_Survey_df['Depth']==tot[jt]].index.item()
                     while (start_pos < end_pos):
-                        #print(survey_ind)
-                        #print(Depth_survey [survey_ind])
+                        
                         if Depth_survey [survey_ind] <=  tot[jt]  >= Depth_survey [survey_ind+1]:
                             fromt[jt] = Depth_survey [survey_ind]
-                            #print(fromt[jt])
                             tot[jt] = Depth_survey [survey_ind + 1]
-                            #print(tot[jt])
                             calculate_x_y_z()
-                            #print_xyz_csv()
                             survey_ind = survey_ind +1
                             start_pos= start_pos + 1
                         elif Depth_survey [survey_ind] <=  tot[jt]  <= Depth_survey [survey_ind+1]:
@@ -2132,19 +1911,10 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
                         else:
                             break
                         
-                    #tmp_litho_sub_cnt = litho_sub_cnt -1
-                    #survey_ind +1 = survey_ind = survey_ind +2
-                    #fromt[jt] = Depth_survey [survey_ind] 
-                    #tot[jt] = Depth_survey [survey_ind + 1]
+                    
                     calculate_x_y_z()
                     
-                    
-                    
-
-                
-              
-                   
-                
+           
     out.close()
 
 
@@ -2152,6 +1922,9 @@ def Convert_lithology(DB_Collar_Export, DB_Survey_Export, Upscaled_Litho_NoDupli
     
 
 def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
+                '''
+                Function calcultaes X,Y,Z begin,mid and end values.
+                '''
                 #from
                 global azm1
                 global dip1
@@ -2195,7 +1968,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                     azm2,dip2 = angleson1dh(indbs,indes,ats,azs,dips,fromt[jt])
                     
                 
-                print(fromt[jt])
+                #print(fromt[jt])
                 azbt[jt] = azm2
                 dipbt[jt] = dip2
                 len12 = float(fromt[jt]) - at
@@ -2204,22 +1977,6 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                 ybt[jt] = dn
                 zbt[jt] = dz
 
-                #xbt[jt] = float(x)+float(xbt[jt])
-                #ybt[jt] = float(y)+float(ybt[jt])
-                #zbt[jt] = float(z)+float(zbt[jt])
-
-                
-                
-
-                
-                
-                #print(xbt[jt],"\t",ybt[jt],"\t",zbt[jt])
-                #if dipbt[jt] > 0 : # if DIP is +ve, growing UP
-                    #zbt[jt] = (dz *-1)
-                #else :
-                    #zbt[jt] = dz
-
-                 #update
                 
                 
                 azm1 = azm2
@@ -2238,7 +1995,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                     azm2, dip2 = angleson1dh(indbs,indes,ats,azs,dips,mid)
                     
                 
-                print(mid)
+                #print(mid)
                 azmt[jt] = azm2
                 dipmt[jt]= dip2
                 len12 = mid - at
@@ -2247,22 +2004,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                 ymt[jt] = dn + ybt[jt]
                 zmt[jt] = dz + zbt[jt]
 
-                #xmt[jt] = float(x)+float(xmt[jt])
-                #ymt[jt] = float(y)+float(ymt[jt])
-                #zmt[jt] = float(z)+float(zmt[jt])
-
-                
-
-                
-                    
-                    
-                
-                #print(xmt[jt],"\t",ymt[jt],"\t",zmt[jt])
-                #if dipmt[jt] > 0 : # if DIP is +ve, growing UP
-                    #zmt[jt] = (dz * -1)+ zbt[jt]
-                #else:
-                    #zmt[jt] = dz + zbt[jt]
-
+         
                 #update
                 azm1 = azm2
                 dip1 = dip2
@@ -2271,7 +2013,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
 
                 #to
                 azm2, dip2 = angleson1dh(indbs,indes,ats,azs,dips,float(tot[jt]))
-                print(tot[jt])
+                #print(tot[jt])
                 azet[jt] = azm2
                 dipet[jt] = dip2
                 len12 = float(tot[jt]) - at
@@ -2280,18 +2022,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                 yet[jt] = dn + ymt[jt]
                 zet[jt] = dz + zmt[jt]
 
-                #xet[jt] = float(x)+float(xet[jt])
-                #yet[jt] = float(y)+float(yet[jt])
-                #zet[jt] = float(z)+float(zet[jt])
-
-                
-                    
-                
-                #print(xet[jt],"\t",yet[jt],"\t",zet[jt])
-                #if dipet[jt] > 0: # if DIP is +ve, growing UP
-                    #zet[jt] = (dz * -1) + zmt[jt]
-                #else:
-                    #zet[jt] = dz + zmt[jt]
+      
 
                 #update
                 azm1 = azm2
@@ -2310,14 +2041,9 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                     print_xyz_Begin_csv()
                     begin_f = False
 
-                #print(prev_dict)
-                #print(begin_f)
+              
                     
                 if prev_dict["todepth"] == from_depth and begin_f == True and  survey_ind == survey_sub_cnt-2  :
-                    #print(prev_dict)
-                    #print(jt)
-                    #print(survey_sub_cnt-1)
-                    #print(survey_ind)
                     print_xyz_Begin_Prev_csv()
                     begin_f = False
 
@@ -2335,24 +2061,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                     print_xyz_Mid_csv()
                     mid_f =False
 
-                #if fromt[jt] <= mid_depth <= mid:
-                    #tot[jt] = mid
-                    #calculate_x_y_z()
                 
-                
-                #if  mid <= mid_depth <= tot[jt]:
-                    #fromt[jt] = mid
-                    #calculate_x_y_z()
-
-                
-
-                #if prev_dict["todepth"] == from_depth and mid_f == True and  survey_ind == survey_sub_cnt-2  :
-                    #print_xyz_Mid_csv()
-                    #mid_f =False
-
-                #if prev_dict["todepth"] == from_depth and mid_f == True and   fromt[jt] <= mid_depth <= mid:     # for last depth who's mid != mid_depth  #survey_ind == survey_sub_cnt-2  :
-                    #print_xyz_Mid_csv()
-                    #mid_f =False
                     
                     
                 xet[jt] = float(x)+float(xet[jt])
@@ -2360,11 +2069,6 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                 zet[jt] = float(z)+float(zet[jt])
 
 
-                #if prev_dict["todepth"] == from_depth and mid_f == True and   mid <= mid_depth <= tot[jt]:     # for last depth who's mid != mid_depth  #survey_ind == survey_sub_cnt-2  :
-                    #print_xyz_End_csv()
-                    #mid_f =False
-
-                
                 if to_depth == tot[jt] and end_f ==True :
                     print_xyz_End_csv()
                     tmp_dict=dict(todepth=tot[jt],x=xet[jt],y=yet[jt],z=zet[jt])
@@ -2376,15 +2080,7 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                     print_xyz_mid_inEnd()
                     mid_f =False
 
-               
-                    
-
-                
-
-                print(xbt[jt],"\t",ybt[jt],"\t",zbt[jt])
-                print(xmt[jt],"\t",ymt[jt],"\t",zmt[jt])
-                print(xet[jt],"\t",yet[jt],"\t",zet[jt])
-                #print("survey Index","\t",survey_ind)
+  
 
                 # update for next interval
                 
@@ -2394,54 +2090,80 @@ def calculate_x_y_z(): #indbs,indes,ats,azs,dips,fromt,tot,jt):
                 z = zet[jt]
 
 
+
+
+
 def print_xyz_Begin_csv(): #out,idt,fromt,tot,cetlit,xbt,ybt,zbt,xmt,ymt,zmt,xet,yet,zet,azbt,dipbt,jt):
-                out.write('%s,' %idt[jt])
-                out.write('%s,' %from_depth)
-                out.write('%s,' %to_depth)
-                out.write('%s,' %cetlit[jt])
-                out.write('%s,' %xbt[jt])
-                out.write('%s,' %ybt[jt])
-                out.write('%s,' %zbt[jt])
+    '''
+    Function print begining information in csv file like id, depth,till x,y,z begin values.
+    '''
+    out.write('%s,' %idt[jt])
+    out.write('%s,' %from_depth)
+    out.write('%s,' %to_depth)
+    out.write('%s,' %company_lithocode[jt])
+    out.write('%s,' %company_Lithology[jt])
+    out.write('%s,' %cetlit[jt])
+    out.write('%s,' %score[jt])
+    out.write('%s,' %detailed_lithology[jt])
+    out.write('%s,' %lithology_subgroup[jt])
+    out.write('%s,' %lithology_group[jt])
+    out.write('%s,' %xbt[jt])
+    out.write('%s,' %ybt[jt])
+    out.write('%s,' %zbt[jt])
 
 def print_xyz_Begin_Prev_csv(): #out,idt,fromt,tot,cetlit,xbt,ybt,zbt,xmt,ymt,zmt,xet,yet,zet,azbt,dipbt,jt):
-                out.write('%s,' %idt[jt])
-                out.write('%s,' %from_depth)
-                out.write('%s,' %to_depth)
-                out.write('%s,' %cetlit[jt])
-                out.write('%s,' %prev_dict["x"])
-                out.write('%s,' %prev_dict["y"])
-                out.write('%s,' %prev_dict["z"])
+    '''
+    Function print begining information in csv file on specific condition , like id, depth,till x,y,z begin values.
+    '''
+    out.write('%s,' %idt[jt])
+    out.write('%s,' %from_depth)
+    out.write('%s,' %to_depth)
+    out.write('%s,' %company_lithocode[jt])
+    out.write('%s,' %company_Lithology[jt])
+    out.write('%s,' %cetlit[jt])
+    out.write('%s,' %score[jt])
+    out.write('%s,' %detailed_lithology[jt])
+    out.write('%s,' %lithology_subgroup[jt])
+    out.write('%s,' %lithology_group[jt])
+    out.write('%s,' %prev_dict["x"])
+    out.write('%s,' %prev_dict["y"])
+    out.write('%s,' %prev_dict["z"])
 
 def print_xyz_Mid_csv():
-                out.write('%s,' %xmt[jt])
-                out.write('%s,' %ymt[jt])
-                out.write('%s,' %zmt[jt])
+    '''
+    Function print mid x,y,z values.
+    '''
+    out.write('%s,' %xmt[jt])
+    out.write('%s,' %ymt[jt])
+    out.write('%s,' %zmt[jt])
                 
 
 def print_xyz_End_csv():
-                out.write('%s,' %xet[jt])
-                out.write('%s,' %yet[jt])
-                out.write('%s,' %zet[jt])
-                out.write('%s,' %azbt[jt])
-                out.write('%s,' %dipbt[jt])
-                #out.write('%s,' %azmt[jt])
-                #out.write('%s,' %dipmt[jt])
-                #out.write('%s,' %azet[jt])
-                #out.write('%s,' %dipet[jt])
-                out.write('\n')
-    #out.close()
+    '''
+    Function print end x,y,z values.
+    '''
+    out.write('%s,' %xet[jt])
+    out.write('%s,' %yet[jt])
+    out.write('%s,' %zet[jt])
+    out.write('%s,' %azbt[jt])
+    out.write('%s,' %dipbt[jt])
+    out.write('\n')
+    
 
 def print_xyz_mid_inEnd():  # if mid is arbitrary in intermediate value
+    '''
+    Function print mid x,y,z values as end x,y,z on a condition.
+    '''
     out.write('%s,' %xet[jt])
     out.write('%s,' %yet[jt])
     out.write('%s,' %zet[jt])
 
 
 
-    
-
-# Function to find distance 
 def distance(x1, y1, z1, x2, y2, z2):
+    '''
+    Function to find distance given coordinates x,y,z
+    '''
     d = math.sqrt(math.pow(x2 - x1, 2) +
                 math.pow(y2 - y1, 2) +
                 math.pow(z2 - z1, 2)* 1.0) 
@@ -2451,8 +2173,11 @@ def distance(x1, y1, z1, x2, y2, z2):
 
 #to verify the x,y,z of lithology with lepfrog data.
 def Diff_XYZ():
-    Calculated_Data= pd.read_csv('DB_Lithology_Export_Calc.csv',encoding = "ISO-8859-1", dtype='object')
-    Leapfrog_Data= pd.read_csv('DB_Lithology_Export_Leapfrog.csv',encoding = "ISO-8859-1", dtype='object')
+    '''
+    Function verifies lithology x,xy,z values are correct by getting difference with leapfrog file x,y,z.This function used for testing.
+    '''
+    Calculated_Data= pd.read_csv('DB_Lithology_Export_Calc.csv',encoding = encoding_2, dtype='object')
+    Leapfrog_Data= pd.read_csv('DB_Lithology_Export_Leapfrog.csv',encoding = encoding_2, dtype='object')
     Calculated_Data.xbt=Calculated_Data['xbt'].astype(float)
     Calculated_Data.ybt=Calculated_Data['ybt'].astype(float)
     Calculated_Data.zbt=Calculated_Data['zbt'].astype(float)
@@ -2530,27 +2255,23 @@ def Diff_XYZ():
             p1 = distance(x1[c1],y1[c1],z1[c1],x2[c1],y2[c1],z2[c1])
             #print(p1)
             Diff_1.append(p1)
-    #print(Diff_1)
-    #print('########')
+    
 
 
     if(x3_count == y3_count==z3_count==x4_count==y4_count==z4_count):
         for c2 in range(x3_count):
             p2 = distance(x3[c2],y3[c2],z3[c2],x4[c2],y4[c2],z4[c2])
             Diff_2.append(p2)
-    #print(Diff_2)
-    #print('########')
+    
 
 
     if(x5_count == y5_count==z5_count==x6_count==y6_count==z6_count):
         for c3 in range(x5_count):
             p3 = distance(x5[c3],y5[c3],z5[c3],x6[c3],y6[c3],z6[c3])
             Diff_3.append(p3)
-    #print(Diff_3)
-    #print('########')
+    
 
     Calculated_Data['Diff_1']=Diff_1
-    #print(Diff_1)
     Calculated_Data['Diff_2']=Diff_2
     Calculated_Data['Diff_3']=Diff_3
     del Calculated_Data['Unnamed: 15']
@@ -2582,24 +2303,31 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
 		 inner join public.thesaurus_geology_comment t6
 		 on t1.attributecolumn = t6.attributecolumn
 		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
+    conn = None
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+        cur.execute(query,Bounds)
     
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
-    cur.execute(query,Bounds)
-    
-    for record in cur:
-        #print(record)
-        #Var.Comments_dic.append(record)
-        Var.Comments_dic.append(record)     #append to Comments_dic_tmp , since we need to take another variable ,use in split fun.
-    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
+        for record in cur:
+            #print(record)
+            #Var.Comments_dic.append(record)
+            Var.Comments_dic.append(record)     #append to Comments_dic_tmp , since we need to take another variable ,use in split fun.
+        #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
    
-    #with open('Dic_Comments.csv', 'w') as f:
-        #cur.copy_expert(outputquery, f)
-    cur.close()
-    conn.close()
+        #with open('Dic_Comments.csv', 'w') as f:
+            #cur.copy_expert(outputquery, f)
+            
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+    
 
-def Comments_Dic_Process(minlong,maxlong,minlat,maxlat):
+def comments_dic_process(minlong,maxlong,minlat,maxlat):
     '''
     Function selects the distinct attribute column and attribute value which matches in thesaurus 'thesaurus_geology_comment' with the given region
     Input : 
@@ -2608,6 +2336,7 @@ def Comments_Dic_Process(minlong,maxlong,minlat,maxlat):
         - List with extracted data matching attribute column and thesaurus.
     '''
     'distict on(attributecol,attributeval) changes to only attributevalue'
+    conn = None
     query = """Select DISTINCT ON (t1.attributevalue)
     t1.attributecolumn, t1.attributevalue
 		 from public.dhgeologyattr t1 
@@ -2618,29 +2347,33 @@ def Comments_Dic_Process(minlong,maxlong,minlat,maxlat):
 		 inner join public.thesaurus_geology_comment t6
 		 on t1.attributecolumn = t6.attributecolumn
 		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+        cur.execute(query,Bounds)
     
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
-    cur.execute(query,Bounds)
-    
-    for record in cur:
-        #print(record)
-        #Var.Comments_dic.append(record)
-        Var.Comments_dic_tmp.append(record)     #append to Comments_dic_tmp , since we need to take another variable ,use in split fun.
-    #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
+        for record in cur:
+            #print(record)
+            #Var.Comments_dic.append(record)
+            Var.Comments_dic_tmp.append(record)     #append to Comments_dic_tmp , since we need to take another variable ,use in split fun.
+            #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query, bounds)
    
-    #with open('Dic_Comments.csv', 'w') as f:
-        #cur.copy_expert(outputquery, f)
-    cur.close()
-    conn.close()
+        #with open('Dic_Comments.csv', 'w') as f:
+            #cur.copy_expert(outputquery, f)
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
 
 
 def listoflist_comments_dic():
     '''
-        Function gets the listoflist for Comments_dic_tmp , so that it can be used in split function.
-        Input - Comments_dic_tmp.
-        output - Comments_dic.
+    Function gets the listoflist for Comments_dic_tmp , so that it can be used in split function.
+    Input - Comments_dic_tmp.
+    output - Comments_dic.
     '''
     Var.Comments_dic = [list(elem) for elem in Var.Comments_dic_tmp]
     
@@ -2649,7 +2382,7 @@ def listoflist_comments_dic():
 
 
 
-def Comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_process_list,Num_worker_process):
+def comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_process_list,Num_worker_process):
     '''
     Function split listoflist to  the number of logical process considered 
     Input : 
@@ -2722,7 +2455,7 @@ def Comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_proces
    
 
 
-def Comments_With_fuzzy_Process(q,comment_split, Litho_dico,file_name): 
+def comments_with_fuzzy_process(q,comment_split, Litho_dico):    #,file_name): #uncomment if need split files
     '''
     Function to find the fuzzywuzzy and score for each of the split with comments attribute value.This is the function which is called by Process funtion.
     Input : 
@@ -2783,7 +2516,7 @@ def Comments_With_fuzzy_Process(q,comment_split, Litho_dico,file_name):
     #time.sleep(1)   
 
 
-def Comments_With_fuzzy():
+def comments_With_fuzzy():
     '''
     Function find the fuzzywuzzy and score to the comments attribute value 
     Input : 
@@ -2798,7 +2531,7 @@ def Comments_With_fuzzy():
     i=0
     comments_sub_list=[]
     fieldnames=['Comments_Field','Comment_Attr_val','Comment_cleaned_text','Comment_Fuzzy_wuzzy','Comment_Score']
-    out= open(os.path.join(export_path,"Comments_fuzzy.csv"), "w",encoding ="utf-8")
+    out= open(os.path.join(export_path,"Comments_fuzzy.csv"), "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -2857,7 +2590,7 @@ def Comments_With_fuzzy():
                     
    
 
-def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
+def final_lithology_with_comments(DB_lithology_With_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
     '''
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
     Also joins extraction of Comments attribute column with Comments attribute value .
@@ -2902,73 +2635,79 @@ def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlon
                  
                  
         
+    conn = None
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+        cur.execute(query)  #,Bounds)
     
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
-    cur.execute(query)  #,Bounds)
-    
-    #print(cur)
-    First_Filter_list = [list(elem) for elem in cur]
-    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','CET_Lithology','Score', 'Comment', 'CET_Comment', 'Comment_Score']
-    out= open(os.path.join(export_path,DB_lithology_With_Comments_Final_Export), "w",encoding ="utf-8")
-    for ele in fieldnames:
-        out.write('%s,' %ele)
-    out.write('\n')
-    for First_filter_ele in First_Filter_list:
-        if (First_filter_ele[0] == None and First_filter_ele[1]== None  and First_filter_ele[2]== None  and First_filter_ele[3]== None) or  (First_filter_ele[2] == None and First_filter_ele[3] ==None) :   # for empty fields, bug
-            continue
-        else :
-            First_filter_ele[2],First_filter_ele[3] =Depth_validation_comments(First_filter_ele[2],First_filter_ele[3])  #  ,First_filter_ele[1],First_filter_ele[6],logger1) # validate depth
-            CompanyID=First_filter_ele[0]
-            CollarID=First_filter_ele[1]
-            FromDepth=First_filter_ele[2]
-            ToDepth=First_filter_ele[3]
-            Company_Lithocode=""
-            Company_Lithology=""
-            CET_Lithology=""
-            Score=0
-            Comment=""
-            CET_Comment=""
-            Comment_Score=0
-        
-        
-        for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
-            if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
-                Company_Lithocode=Attr_val_fuzzy_ele[1]
-                Company_Lithology=Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','')
-                CET_Lithology=Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
-                Score=Attr_val_fuzzy_ele[5]
-                
-        for Comments_fuzzy_ele in Var.Comments_fuzzy:
-            if Comments_fuzzy_ele[1] == First_filter_ele[7]:
-                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
-                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
-                Comment_Score=Comments_fuzzy_ele[4]
-                
-        #if not(Score==0 and Comment_Score==0):
-        out.write('%d,' %CompanyID)
-        out.write('%d,' %CollarID)
-        out.write('%d,' %FromDepth)
-        out.write('%s,' %ToDepth)
-        out.write('%s,' %Company_Lithocode)
-        out.write('%s,' %Company_Lithology)
-        out.write('%s,' %CET_Lithology)
-        out.write('%d,' %Score)
-        out.write('%s,' %Comment)
-        out.write('%s,' %CET_Comment)
-        out.write('%d,' %Comment_Score)
+        #print(cur)
+        First_Filter_list = [list(elem) for elem in cur]
+        fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','CET_Lithology','Score', 'Comment', 'CET_Comment', 'Comment_Score']
+        out= open(os.path.join(export_path,DB_lithology_With_Comments_Final_Export), "w",encoding =encoding_1)
+        for ele in fieldnames:
+            out.write('%s,' %ele)
         out.write('\n')
-    cur.close()
-    conn.close()
-    out.close()
+        for First_filter_ele in First_Filter_list:
+            if (First_filter_ele[0] == None and First_filter_ele[1]== None  and First_filter_ele[2]== None  and First_filter_ele[3]== None) or  (First_filter_ele[2] == None and First_filter_ele[3] ==None) :   # for empty fields, bug
+                continue
+            else :
+                First_filter_ele[2],First_filter_ele[3] =Depth_validation_comments(First_filter_ele[2],First_filter_ele[3])  #  ,First_filter_ele[1],First_filter_ele[6],logger1) # validate depth
+                CompanyID=First_filter_ele[0]
+                CollarID=First_filter_ele[1]
+                FromDepth=First_filter_ele[2]
+                ToDepth=First_filter_ele[3]
+                Company_Lithocode=""
+                Company_Lithology=""
+                CET_Lithology=""
+                Score=0
+                Comment=""
+                CET_Comment=""
+                Comment_Score=0
+        
+        
+            for Attr_val_fuzzy_ele in Var.Attr_val_fuzzy:
+                if int(Attr_val_fuzzy_ele[0].replace('\'' , '')) == First_filter_ele[0] and  Attr_val_fuzzy_ele[1].replace('\'' , '') == First_filter_ele[5]:
+                    Company_Lithocode=Attr_val_fuzzy_ele[1]
+                    Company_Lithology=Attr_val_fuzzy_ele[2].replace('(','').replace(')','').replace('\'','').replace(',','')
+                    CET_Lithology=Attr_val_fuzzy_ele[4].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                    Score=Attr_val_fuzzy_ele[5]
+                
+            for Comments_fuzzy_ele in Var.Comments_fuzzy:
+                if Comments_fuzzy_ele[1] == First_filter_ele[7]:
+                    Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                    CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                    Comment_Score=Comments_fuzzy_ele[4]
+                
+            #if not(Score==0 and Comment_Score==0):
+            out.write('%d,' %CompanyID)
+            out.write('%d,' %CollarID)
+            out.write('%d,' %FromDepth)
+            out.write('%s,' %ToDepth)
+            out.write('%s,' %Company_Lithocode)
+            out.write('%s,' %Company_Lithology)
+            out.write('%s,' %CET_Lithology)
+            out.write('%d,' %Score)
+            out.write('%s,' %Comment)
+            out.write('%s,' %CET_Comment)
+            out.write('%d,' %Comment_Score)
+            out.write('\n')
+        cur.close()
+    
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
+   
 
 
 
 
 
 
-def Final_Lithology_With_Comments_Split():  #pass the longitude and lattitude directly in the query as its join of two query.
+def final_lithology_with_comments_split():  #pass the longitude and lattitude directly in the query as its join of two query.
     '''
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
     Also joins extraction of Comments attribute column with Comments attribute value.The extracted data is split using split funtion to create processes.
@@ -2978,6 +2717,7 @@ def Final_Lithology_With_Comments_Split():  #pass the longitude and lattitude di
     Output:
         - split list of dataset in Final_split_proc_list.
     '''
+    conn = None
     query = ''' SELECT m1.companyid, m1.collarid, m1.fromdepth, m1.todepth, m1.lith_attributecolumn, m1.lith_attributevalue, 
                 m2.comments_attributecolumn, m2.comments_attributevalue 
                 FROM 
@@ -3013,31 +2753,35 @@ def Final_Lithology_With_Comments_Split():  #pass the longitude and lattitude di
                  
                  
         
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        print("connected")
+        cur = conn.cursor()
+        #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+        cur.execute(query)  #,Bounds)
+        First_Filter_list = [list(elem) for elem in cur]
+        filename_final = 'final_split_list'
+        comments_dic_litho_split(First_Filter_list,filename_final,Var.Final_split_proc_list,worker_proc)
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
     
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    print("connected")
-    cur = conn.cursor()
-    #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
-    cur.execute(query)  #,Bounds)
-    First_Filter_list = [list(elem) for elem in cur]
-    filename_final = 'final_split_list'
-    Comments_dic_litho_split(First_Filter_list,filename_final,Var.Final_split_proc_list,worker_proc)
-    
-    cur.close()
-    conn.close()
 
 
 
-def Final_comments_with_fuzzy_Process(split_List,Comments_fuzzy,Attr_val_fuzzy,q2,filename):
+def final_comments_with_fuzzy_process(split_List,Comments_fuzzy,Attr_val_fuzzy,q2):      #,filename):uncomment if need files
     '''
-        For Each row extracted for a region, the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed.
+    For Each row extracted for a region, the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed.
         This is the function which is called by Process funtion.
     Inputs:
             -split_List : Each split list to get fuzzywuzzy.
             -Comments_fuzzy : copy of comments fuzzy
             - Attr_val_fuzzy : copy of att_val fuzzy
             - q2 : multiprocessing queue to put the fuzzywuzzy resuts .
-            -filename : Print each split output to a csv file.
+            
     '''
 
     final_fuzzy_list =[]
@@ -3075,15 +2819,15 @@ def Final_comments_with_fuzzy_Process(split_List,Comments_fuzzy,Attr_val_fuzzy,q
         final_fuzzy_list.append([CompanyID,CollarID,FromDepth,ToDepth,Company_Lithocode,Company_Lithology,CET_Lithology,Score,Comment,CET_Comment,Comment_Score])
 
     ## create csv file for verification
-    df_final_split = pd.DataFrame(final_fuzzy_list)  #, index=var_name1.keys())
-    df_final_split.to_csv(os.path.join(export_path ,filename), index=False, header=True) 
+    #df_final_split = pd.DataFrame(final_fuzzy_list)  #, index=var_name1.keys())
+    #df_final_split.to_csv(os.path.join(export_path ,filename), index=False, header=True) 
     
     q2.put(final_fuzzy_list)
 
 
 
 
-def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
+def final_lithology_only_comments(DB_lithology_Only_Comments_Final_Export,minlong,maxlong,minlat,maxlat):
     '''
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and comments attribute column lithology table from DB for the specified region.
     For Each row extracted the from and to depth values are validated , generated fuzzywuzzy values for the comments lithology along with the score are printed .
@@ -3108,53 +2852,57 @@ def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlon
                  
                  
                  
-    
-    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
-    cur = conn.cursor()
-    Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
-    cur.execute(query,Bounds)
+    conn = None
+    try:
+        conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+        cur = conn.cursor()
+        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
+        cur.execute(query,Bounds)
         
-    First_Filter_list = [list(elem) for elem in cur]
-    fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comment', 'CET_Comment', 'Comment_Score']
-    out= open(os.path.join(export_path,DB_lithology_Only_Comments_Final_Export), "w",encoding ="utf-8")
-    for ele in fieldnames:
-        out.write('%s,' %ele)
-    out.write('\n')
-    for First_filter_ele in First_Filter_list:
-        if (First_filter_ele[0] == None and First_filter_ele[1]== None  and First_filter_ele[2]== None  and First_filter_ele[3]== None) or  (First_filter_ele[2] == None and First_filter_ele[3] ==None) :   # for empty fields
-            continue
+        First_Filter_list = [list(elem) for elem in cur]
+        fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comment', 'CET_Comment', 'Comment_Score']
+        out= open(os.path.join(export_path,DB_lithology_Only_Comments_Final_Export), "w",encoding =encoding_1)
+        for ele in fieldnames:
+            out.write('%s,' %ele)
+        out.write('\n')
+        for First_filter_ele in First_Filter_list:
+            if (First_filter_ele[0] == None and First_filter_ele[1]== None  and First_filter_ele[2]== None  and First_filter_ele[3]== None) or  (First_filter_ele[2] == None and First_filter_ele[3] ==None) :   # for empty fields
+                continue
             
-        else:    
-            First_filter_ele[2],First_filter_ele[3] =Depth_validation_comments(First_filter_ele[2],First_filter_ele[3])  #,First_filter_ele[0],First_filter_ele[2],logger1) # validate depth
-            CompanyID=First_filter_ele[0]
-            CollarID=First_filter_ele[1]
-            FromDepth=First_filter_ele[2]
-            ToDepth=First_filter_ele[3]
-            Comment=""
-            CET_Comment=""
-            Comment_Score=0
+            else:    
+                First_filter_ele[2],First_filter_ele[3] =Depth_validation_comments(First_filter_ele[2],First_filter_ele[3])  #,First_filter_ele[0],First_filter_ele[2],logger1) # validate depth
+                CompanyID=First_filter_ele[0]
+                CollarID=First_filter_ele[1]
+                FromDepth=First_filter_ele[2]
+                ToDepth=First_filter_ele[3]
+                Comment=""
+                CET_Comment=""
+                Comment_Score=0
         
         
        
                 
-        for Comments_fuzzy_ele in Var.Comments_fuzzy:
-            if Comments_fuzzy_ele[1] == First_filter_ele[6]:
-                Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
-                CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
-                Comment_Score=Comments_fuzzy_ele[4]
+            for Comments_fuzzy_ele in Var.Comments_fuzzy:
+                if Comments_fuzzy_ele[1] == First_filter_ele[6]:
+                    Comment=Comments_fuzzy_ele[1].replace('(','').replace(')','').replace('\'','').replace(',','')
+                    CET_Comment=Comments_fuzzy_ele[3].replace('(','').replace(')','').replace('\'','').replace(',','')  #.replace(',' , ''))
+                    Comment_Score=Comments_fuzzy_ele[4]
                 
-        #if not(Score==0 and Comment_Score==0):
-        out.write('%d,' %CompanyID)
-        out.write('%d,' %CollarID)
-        out.write('%d,' %FromDepth)
-        out.write('%s,' %ToDepth)
-        out.write('%s,' %Comment)
-        out.write('%s,' %CET_Comment)
-        out.write('%d,' %Comment_Score)
-        out.write('\n')
-    cur.close()
-    conn.close()
-    out.close()
+            #if not(Score==0 and Comment_Score==0):
+            out.write('%d,' %CompanyID)
+            out.write('%d,' %CollarID)
+            out.write('%d,' %FromDepth)
+            out.write('%s,' %ToDepth)
+            out.write('%s,' %Comment)
+            out.write('%s,' %CET_Comment)
+            out.write('%d,' %Comment_Score)
+            out.write('\n')
+        cur.close()
+    except (Exception, psycopg2.DatabaseError) as error:
+        print(error)
+    finally:
+        if conn is not None:
+            conn.close()
  
     
 
@@ -3174,11 +2922,7 @@ def addtable(table, table_name):
     table_name.reset_index(level=None, drop=True, inplace=True, col_level=0, col_fill='')
     return table_name
 	
-def fillgap1Dhole(in_f,
-            in_t,
-            id,
-            tol=0.01,
-            endhole=-1):
+def fillgap1Dhole(in_f,in_t,id,tol=0.01,endhole=-1):
     """
     Function to fill gaps in one drillhole.
     """
@@ -3347,11 +3091,7 @@ def fillgap1Dhole(in_f,
     #print(np_nf[:nint+1],np_nt[:nint+1],np_nID[:nint+1],np_gap[:ngap+1],np_overlap[:noverlap+1])    
     return np_nf[:nint+1],np_nt[:nint+1],np_nID[:nint+1],np_gap[:ngap+1],np_overlap[:noverlap+1]
 
-def add_gaps(table_name,
-            new_table_name,
-            tol=0.01,
-            clean=True,
-            endhole=-1):
+def add_gaps(table_name,new_table_name,tol=0.01,clean=True,endhole=-1):
 
         """Fills gaps with new FROM-TO intervals."""
         
@@ -3401,11 +3141,7 @@ def add_gaps(table_name,
         return new_table_name
         #return nngap,nnoverlap
 		
-def min_int(la,
-            lb,
-            ia,
-            ib,
-            tol=0.01):
+def min_int(la,lb,ia,ib,tol=0.01):
     """
     Given two complete drillholes A, B (no gaps and up to the end of
     the drillhole), this function returns the smaller of two
@@ -3417,35 +3153,19 @@ def min_int(la,
     - FromA[ia] >  FromB[ib]. Returns FromB[ia] and ia, ib+1
     """
 
-    # equal ?  
-    #if (lb-1)<=la<=(lb+1):
+    
     if la==lb:
-        #print("la", la)
-        #print("lb", lb)
-        #print("1:", (la+lb)/2)
-        #print("ia", ia)
-        #print("ib", ib)
-        #return ia+1, ib+1, (la+lb)/2
         return ia+1, ib+1, la
     
-    # la < lb ?
+    
     if la<lb:
-        #print("la", la)
-        #print("lb", lb)
-        #print("2:",  la)
         return ia+1, ib, la
 
     # lb < la ?
     if lb<la:
-        #print("la", la)
-        #print("lb", lb)
-        #print("3:",  lb)
         return ia, ib+1, lb
 
-def merge_one_dhole(la,lb,
-              ida,
-              idb,
-              tol=0.01):
+def merge_one_dhole(la,lb,ida,idb,tol=0.01):
     """
     Function to merge one drillhole.
 
@@ -3477,9 +3197,7 @@ def merge_one_dhole(la,lb,
         newida[n]=ida[ia-1]
         newidb[n]=idb[ib-1]
         lab[n]=l
-        #print(newida[n])
-        #print(newidb[n])
-        #print(lab[n])
+        
 
         #this is the end of hole (this fails if maxdepth are not equal)
         if ia==maxia or ib==maxib:

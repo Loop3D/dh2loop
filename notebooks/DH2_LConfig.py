@@ -12,12 +12,18 @@ pwd_ = 'loopie123pgpw'
 #export_path = ''
 
 
+#File encoding type
+encoding_1 ="utf-8"
+encoding_2 = "ISO-8859-1"
+
 #Extents to query , bounds for lithology+comments needs to be provided in query as it has two query with join.
 #ranee
 minlong=115.5
 maxlong=118
 minlat=-30.5
 maxlat=-27.5
+
+
 
 #fabilea
 #minlong=121.2
@@ -37,22 +43,6 @@ worker_proc = Tot_workers - 2    #Tot_workers is Operating system provided proce
 
 
 
-
-#ExportFiles
-#one_time = True
-#if one_time == True:
- #   nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
-  #  export_path ='../data/export_db/'+ nowtime
-   # one_time = False
-    
-#print(export_path)
-#def only_once():
-    #nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
-    #export_path ='../data/export_db/'+ nowtime
-   # if not os.path.exists(export_path): 
-     #   os.mkdir(export_path)
-        
-    #only_once.func_code = (lambda:None).func_code
     
 
 nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
@@ -60,9 +50,6 @@ export_path ='../data/export_db/'+ nowtime
 if not os.path.exists(export_path): 
     os.mkdir(export_path)
 
-#nowtime=datetime.now().strftime("%d_%m_%Y_%H_%M_%S_%p")   #.isoformat(timespec='minutes')
-#export_path ='../data/export_db/'+ nowtime
-#os.mkdir(export_path)
 
 
 export_path_1 = '../data/export_db/'
