@@ -36,7 +36,7 @@
 `python setup.py install --user --force`
 
 4.Run the file Lithology_With_Comments_IDLE.py in IDLE environment , if lithology with comments need to be generated efficiently in less time.
-start->search->IDLE->open the file Lithology_With_Comments_IDLE.py -> run ->check csv file.
+start->search->IDLE->open the file Lithology_With_Comments_IDLE.py -> run ->check csv file having lithology with comments along with score.
 
 5. Try out the demo jupyter notebook:
 https://github.com/Loop3D/dh2loop/blob/master/notebooks/2_Exporting_and_Text_Parsing_of_Drillhole_Data_Demo.ipynb
