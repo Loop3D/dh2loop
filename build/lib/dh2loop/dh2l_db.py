@@ -28,8 +28,7 @@ nltk.download('wordnet')
 from nltk.corpus import stopwords
 from dh2loop import Var
 import logging
-from DH2_LConfig import host_,port_,DB_,user_,pwd_
-    
+from dh2l_config import host_,port_,DB_,user_,pwd_,encoding_1,encoding_2 
             
 def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,minlat,maxlat):
     '''
@@ -44,7 +43,7 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
     '''
 
     fieldnames=['CollarID','HoleId','Longitude','Latitude','RL','MaxDepth','X','Y']
-    out= open(DB_Collar_Export, "w",encoding ="utf-8")
+    out= open(DB_Collar_Export, "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -102,8 +101,8 @@ def collar_collar_attri_Final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
   
    
     try:
-       conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
-       #conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+       
+       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
        cur = conn.cursor()
        Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds read from config file
        cur.execute(query,Bounds)
@@ -382,7 +381,7 @@ def collar_attr_col_dic():
    conn = None
    
    try:
-      #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       cur.execute(query)
@@ -393,7 +392,7 @@ def collar_attr_col_dic():
    
       #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
    
-      #with open('Dic_attr_col_collar.csv', 'w',encoding="utf-8") as f:
+      #with open('Dic_attr_col_collar.csv', 'w',encoding=encoding_1) as f:
          #cur.copy_expert(outputquery, f)
       
  
@@ -437,7 +436,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    logger2.addHandler(fileHandler2)
    
    fieldnames=['CollarID','Depth','Azimuth','Dip']
-   out= open(DB_Survey_Export, "w",encoding ="utf-8")
+   out= open(DB_Survey_Export, "w",encoding =encoding_1)
    for ele in fieldnames:
         out.write('%s,' %ele)
    out.write('\n')
@@ -467,7 +466,7 @@ def Survey_Final(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    
    
    try:
-      #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -738,7 +737,7 @@ def Attr_col_dic():
    conn = None
    temp_list =[]
    try:
-      #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+      
       conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
       cur = conn.cursor()
       cur.execute(query)
@@ -800,7 +799,7 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
    survey=pd.merge(survey,location, how='left', on='CollarID')
 
    fieldnames=['CollarID','Depth','Azimuth','Dip','X','Y','Z']
-   out= open(DB_Survey_Export_Calc, "w",encoding ="utf-8")
+   out= open(DB_Survey_Export_Calc, "w",encoding =encoding_1)
    for ele in fieldnames:
       out.write('%s,' %ele)
    out.write('\n')
@@ -910,7 +909,7 @@ def Attr_Val_Dic():
     Funtion extracts Attribute value dictionary table from DB.
     '''
     query = """SELECT * FROM public.dic_attr_val_lithology_filter"""
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -938,7 +937,7 @@ def Litho_Dico():
     Function Extracts Dictionary for lithology from DB.
     '''
     query = """SELECT litho_dic_1.clean  FROM litho_dic_1"""
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -966,7 +965,7 @@ def Clean_Up():
     Function extracts clean up dictionary from DB.
     '''
     query = """SELECT cleanup_lithology.clean  FROM cleanup_lithology"""
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -975,7 +974,7 @@ def Clean_Up():
         Var.cleanup_dic_list.append(record)
     #outputquery = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(query)
        
-    #with open('cleanup_dic.csv', 'w',encoding="utf-8") as f:
+    #with open('cleanup_dic.csv', 'w',encoding=encoding_1) as f:
         #cur.copy_expert(outputquery, f)
         
 
@@ -1100,7 +1099,7 @@ def Attr_val_With_fuzzy():
     attr_val_sub_list=[]
     #p = re.compile(r'[' ']')
     fieldnames=['CollarID','code','Attr_val','cleaned_text','Fuzzy_wuzzy','Score']
-    out= open("Attr_val_fuzzy.csv", "w",encoding ="utf-8")
+    out= open("Attr_val_fuzzy.csv", "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -1297,7 +1296,7 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     logger1.addHandler(fileHandler1)
     
     
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     #cur.execute(query)
@@ -1307,7 +1306,7 @@ def Final_Lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Attribute_column','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']  # for looging
     #fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','CET_Lithology','Score']
-    out= open(DB_Lithology_Export, "w",encoding ="utf-8")
+    out= open(DB_Lithology_Export, "w",encoding =encoding_1)
     
     for ele in fieldnames:
         out.write('%s,' %ele)
@@ -1341,7 +1340,7 @@ Litho_dico=[]
 def Attr_COl():
     #query = """SELECT * FROM public.dic_att_col_lithology"""
     query = """SELECT * FROM public.dic_att_col_lithology_1"""  # logging
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1359,7 +1358,7 @@ def Attr_COl():
 def First_Filter():
     print("------------------start First_Filter------------")
     start = time.time()
-    #out= open("DB_lithology_First1.csv", "w",encoding ="utf-8")
+    #out= open("DB_lithology_First1.csv", "w",encoding =encoding_1)
     query = """select t3.companyid, t2.collarid, t2.fromdepth, t2.todepth, t1.attributecolumn, t1.attributevalue ,t1.dhgeologyid 
     from public.dhgeologyattr t1 
     inner join public.dhgeology t2 
@@ -1372,7 +1371,7 @@ def First_Filter():
     ORDER BY t3.companyid ASC"""
 
 
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1421,7 +1420,7 @@ def Final_Lithology_old():
     top=[]
     #p = re.compile(r'[- _]')
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comapny_Lithocode','Company_Lithology','cleaned_text','CET_Lithology','Score']
-    out= open("DB_lithology_Final_old.csv", "w",encoding ="utf-8")
+    out= open("DB_lithology_Final_old.csv", "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -1435,7 +1434,7 @@ def Final_Lithology_old():
     logger1.addHandler(fileHandler1)
 
     query = '''SELECT dic_attr_val_lithology_filter.company_id,dic_attr_val_lithology_filter.company_code,replace(dic_attr_val_lithology_filter.comapany_litho, ',' , '_') as comapany_litho  FROM dic_attr_val_lithology_filter'''
-    #conn = psycopg2.connect(host='130.95.198.59', port = 5432, database='gswa_dh', user='postgres', password='loopie123pgpw')
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1561,7 +1560,7 @@ def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
 
     Hierarchy_litho_dico_List =[]
     query = """ select * from public.hierarchy_dico """
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     cur.execute(query)
@@ -1569,7 +1568,7 @@ def Upscale_lithology(DB_Lithology_Export,DB_Lithology_Upscaled_Export):
     CET_hierarchy_dico = pd.DataFrame(Hierarchy_litho_dico_List,columns=['Level_3','Level_2','Level_1'])
     #CET_hierarchy_dico.to_csv ('CET_hierarchy_dico.csv', index = False, header=True)
     #print (CET_hierarchy_dico)
-    DB_Lithology= pd.read_csv(DB_Lithology_Export,encoding = "ISO-8859-1", dtype='object')
+    DB_Lithology= pd.read_csv(DB_Lithology_Export,encoding = encoding_2, dtype='object')
     Upscaled_Litho=pd.merge(DB_Lithology, CET_hierarchy_dico, left_on='CET_Lithology', right_on='Level_3')
     Upscaled_Litho.sort_values("Company_ID", ascending = True, inplace = True)
     #Upscaled_Litho.drop(['Unnamed: 8'], axis=1)
@@ -1613,7 +1612,7 @@ def Comments_Dic(minlong,maxlong,minlat,maxlat):
 		 inner join public.litho_att_col_comment t6
 		 on t1.attributecolumn = t6.att_col_comments
 		 WHERE(t3.longitude BETWEEN %s AND %s) AND (t3.latitude BETWEEN %s AND %s)"""
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -1638,7 +1637,7 @@ def Comments_With_fuzzy():
     i=0
     comments_sub_list=[]
     fieldnames=['Comments_Field','Comment_Attr_val','Comment_cleaned_text','Comment_Fuzzy_wuzzy','Comment_Score']
-    out= open("Comments_fuzzy.csv", "w",encoding ="utf-8")
+    out= open("Comments_fuzzy.csv", "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -1743,7 +1742,7 @@ def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlon
     #logger1.addHandler(fileHandler1)
     
     
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     #Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -1752,7 +1751,7 @@ def Final_Lithology_With_Comments(DB_lithology_With_Comments_Final_Export,minlon
     #print(cur)
     First_Filter_list = [list(elem) for elem in cur]
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Company_Lithocode','Company_Lithology','CET_Lithology','Score', 'Comment', 'CET_Comment', 'Comment_Score']
-    out= open(DB_lithology_With_Comments_Final_Export, "w",encoding ="utf-8")
+    out= open(DB_lithology_With_Comments_Final_Export, "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')
@@ -1836,7 +1835,7 @@ def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlon
     #logger1.setLevel(logging.INFO)
     #fileHandler1 = logging.FileHandler(Litho_Depth_With_Only_Comments_LOG_File_TIME)
     #logger1.addHandler(fileHandler1)
-    #conn = psycopg2.connect(host="130.95.198.59", port = 5432, database="gswa_dh", user="postgres", password="loopie123pgpw")
+    
     conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
     cur = conn.cursor()
     Bounds=(minlong,maxlong,minlat,maxlat)  #query bounds 
@@ -1845,7 +1844,7 @@ def Final_lithology_Only_Comments(DB_lithology_Only_Comments_Final_Export,minlon
     #print(cur)
     First_Filter_list = [list(elem) for elem in cur]
     fieldnames=['Company_ID','CollarID','Fromdepth','Todepth','Comment', 'CET_Comment', 'Comment_Score']
-    out= open(DB_lithology_Only_Comments_Final_Export, "w",encoding ="utf-8")
+    out= open(DB_lithology_Only_Comments_Final_Export, "w",encoding =encoding_1)
     for ele in fieldnames:
         out.write('%s,' %ele)
     out.write('\n')

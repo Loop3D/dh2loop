@@ -1,3 +1,17 @@
+
+
+host_ = '130.95.198.59'
+port_= 5432
+DB_='gswa_dh'
+user_ = 'postgres'
+pwd_ = 'loopie123pgpw'
+#export_path = ''
+
+
+#File encoding type
+encoding_1 ="utf-8"
+encoding_2 = "ISO-8859-1"
+
 #Database Files
 data_path='../data/'
 wamex_path='../data/wamex/'
