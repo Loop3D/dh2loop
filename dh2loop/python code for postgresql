@@ -21899,7 +21899,37 @@ def merge(input_table_A,input_table_B,new_table_name,tol=0.01,clean=True):
 
 --------------------------------------
 --------------------
+SELECT collar.id, replace(replace(collar.holeid, '\"', '_'), ',', '_') as holeid, 
+		  collar.longitude, collar.latitude, collarattr.attributecolumn, collarattr.attributevalue 
+		  FROM public.collar 
+		  INNER JOIN collarattr 
+		  ON collar.id = collarattr.collarid 
+		  WHERE(longitude BETWEEN 115.5  AND 115.6 AND latitude BETWEEN -30.5 AND -27.5)
+		  ORDER BY collarattr.collarid ASC
+		  
+		  
+		  
+SELECT todepth FROM Dhalteration WHERE 	collarid = 315252
 
+
+SELECT todepth FROM Dhdrilldetail WHERE 	collarid = 315252
+SELECT todepth FROM Dhevent  WHERE 	collarid = 315252
+SELECT todepth FROM Dhgeochemistry WHERE 	collarid = 315252
+SELECT todepth FROM Dhgeology WHERE 	collarid = 315252
+SELECT todepth FROM dhgeophysics WHERE 	collarid = 315252
+SELECT todepth FROM dhgeotech WHERE 	collarid = 315252
+SELECT todepth FROM dhhyperspectral WHERE 	collarid = 315252
+SELECT todepth FROM dhmagsus WHERE 	collarid = 315252
+SELECT todepth FROM dhmineralogy WHERE 	collarid = 315252
+SELECT todepth FROM dhrecovery WHERE 	collarid = 315252
+SELECT todepth FROM dhregolith WHERE 	collarid = 315252
+SELECT todepth FROM dhspecgrav WHERE 	collarid = 315252
+SELECT todepth FROM dhstructure WHERE 	collarid = 315252
+SELECT todepth FROM dhveining WHERE 	collarid = 315252
+SELECT todepth FROM dhwater WHERE 	collarid = 315252
+SELECT todepth FROM dhweathering WHERE 	collarid = 315252
+	
+-----not in anynof the above table -----	
 
 
 
