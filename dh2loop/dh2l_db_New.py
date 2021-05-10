@@ -36,9 +36,9 @@ def collar_collar_attri_final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
     '''
     Function Extracts data from tables collar and collarattr for processing attributes RL and Maxdepth
     Inputs:
-        - src_csr : Coordinate Reference System of source 4326
-        - dst_csr : Coordinate Reference System of destination 28350 to 28356
-        - minlong,maxlong,minlat,maxlat :  coordinates of region 
+        - src_csr : : An integer coordinate Reference System of source 4326
+        - dst_csr : : An integer  coordinate Reference System of destination 28350 to 28356
+        - minlong,maxlong,minlat,maxlat :  coordinates of region of type float
   
     Output: is a csv file ,the data processed for RL, Maxdepth attribute in required format  
         
@@ -217,7 +217,7 @@ def parse_num_maxdepth(s1,logger2,collarID):
    Inputs:
         - S1: maxdepth as string 
         - logger2: looger object to log data
-        -collarID:collarID of hole.
+        -collarID:integer collarID of hole.
    
    '''
    s1=s1.lstrip().rstrip()
@@ -252,7 +252,7 @@ def parse_num_rl(s1,logger1,collarID):
     Inputs:
         - S1: Rl as string 
         - logger2: looger object to log data
-        -collarID:collarID of hole.
+        -collarID: integer collarID of hole.
     '''
     s1=s1.lstrip().rstrip()
     
@@ -343,7 +343,7 @@ def survey_final_incl(DB_Survey_Export,minlong,maxlong,minlat,maxlat):
    '''
    Function which extracts data from tables dhsurvey,dhsurveyattr and collar  for attributes Depth,Azimuth and Inclination
    Inputs:
-        - minlong,maxlong,minlat,maxlat :  coordinates of region 
+        - minlong,maxlong,minlat,maxlat :  coordinates of region of type float. 
    Output:
         - DB_Survey_Export : The processed data after extraction is written to this csv file in required format.
    '''
@@ -687,7 +687,7 @@ def convert_survey(DB_Collar_Export,DB_Survey_Export,DB_Survey_Export_Calc):
         - DB_Collar_Export: Data extracted and processed from collar and related tables
         - DB_Survey_Export: Data extracted and processed from survey and related tables
    Output:
-        - DB_Survey_Export_Calc :x,y,z calculations for survey data 
+        - DB_Survey_Export_Calc :float type x,y,z calculations for survey data 
    '''
    
    location=pd.read_csv(export_path +'/' +DB_Collar_Export)
@@ -822,7 +822,7 @@ def attr_val_dic():
 
 def litho_dico():
     '''
-    Function Extracts Dictionary for lithology from DB.
+    Function Extracts thesaurus for lithology from DB.
     '''
     query = ''' select thesaurus_geology_hierarchy.fuzzuwuzzy_terms  from thesaurus_geology_hierarchy '''
     conn = None
@@ -880,9 +880,9 @@ def clean_text(text):
     '''
     Function clean the text by symbols and specified text, uses cleanup dictionary
     Input: 
-         - Text
+         - string type Text
     output: 
-        - Cleaned text
+        - string type Cleaned text
 
     '''
     text=text.lower().replace('unnamed','').replace('meta','').replace('meta-','').replace('undifferentiated ','').replace('unclassified ','').replace(' undifferentiated ','')
@@ -933,8 +933,8 @@ stop = stopwords.words('english') + extra_stopwords
 def tokenize(text, min_len=1):
     '''Function that tokenize a set of strings
     Input:
-        -text: set of strings
-        -min_len: tokens length
+        -text: set of strings of type string 
+        -min_len: tokens length of integer type
     Output:
         -list containing set of tokens'''
 
@@ -952,8 +952,8 @@ def tokenize(text, min_len=1):
 def tokenize_and_lemma(text, min_len=0):
     '''Function that retrieves lemmatised tokens
     Inputs:
-        -text: set of strings
-        -min_len: length of text
+        -text: set of strings of type string 
+        -min_len: length of text of integer type
     Outputs:
         -list containing lemmatised tokens'''
     filtered_tokens = tokenize(text, min_len=min_len)
@@ -1067,10 +1067,13 @@ def Depth_validation(row_2,row_3,collarid,dhsurveyid,logger1):
     '''
     Funtion validates the from and to depth values according to the requirment
     Input : 
-        - row_2(float)(From Depth)
-        - row_3(float)(To Depth)
+        - float type row_2(From Depth)
+        - float type row_3(To Depth)
+        - collarid intereger type collar id 
+        - dhsurveyid intereger type survey id 
+        - logger1 object to log data to log file .
     Output:
-        - From Depth,To Depth : Right Depth values for from and to depth 
+        - From Depth,To Depth : real type Right Depth values for from and to depth 
     '''
    
     
@@ -1130,7 +1133,7 @@ def final_lithology(DB_Lithology_Export,minlong,maxlong,minlat,maxlat):
     Function Extracts data from tables dhgeologyattr,dhgeology,collar,clbody and attribute column lithology table from DB for the specified region.
     For Each row extracted the from and to depth values are validated , generated fuzzywuzzy values for the lithology along with the score are printed .
     Input : 
-        -minlong,maxlong,minlat,maxlat : Region of interest.
+        -minlong,maxlong,minlat,maxlat : float type Region of interest.
     Output:
         - csv file with the extracted data with fuzzywuzzy and score.
     '''
@@ -2391,7 +2394,7 @@ def comments_dic_litho_split(dic_litho_comments,filename,Comm_final_split_proces
          - Process_list : list to hold the split variables name for later use.
          - Num_worker_process : No worker process decided to select.
     Output:
-        - Comments Dictionary splits in globals variables and in csv file.
+        - Comments thesaurus splits in globals variables and in csv file.
     '''
     
     
@@ -2925,6 +2928,11 @@ def addtable(table, table_name):
 def fillgap1Dhole(in_f,in_t,id,tol=0.01,endhole=-1):
     """
     Function to fill gaps in one drillhole.
+    -	in_f: integer from
+    -	in_t: integer to
+    -	tol: float type tolerance
+    -	endhole: integer type 
+
     """
     
     i=0
@@ -3168,6 +3176,12 @@ def min_int(la,lb,ia,ib,tol=0.01):
 def merge_one_dhole(la,lb,ida,idb,tol=0.01):
     """
     Function to merge one drillhole.
+    la  :integer type interval a.
+	lb: integer type interval a.
+	ida: integer type index a.
+	idb: integer type index a.
+	tol: flat type tolerance.
+
 
     """
     ia=0
@@ -3222,7 +3236,16 @@ def merge(input_table_A,input_table_B,new_table_name,tol=0.01,clean=True):
 
     This function requires drillholes without gaps and overlaps.
     You may un add_gaps in table_A and table_B before using
-    this function."""
+    this function.
+       Inputs: 
+        -	input_table_A: geology table , which is the DB_Lithology_Export_Calc.csv
+        -	input_table_B: geochemistry table which is filtered with required attribute.
+        -	tol : tollerance float value 0.01 
+        -	clean: boolean  value to clean table
+    output: 
+        -	join.csv file which merges both table without gap or overlap.
+
+    """
 	
     #get maxdepth
     maxl=get_maxdepth(input_table_A,input_table_B)
