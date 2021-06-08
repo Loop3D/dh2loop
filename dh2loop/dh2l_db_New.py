@@ -105,7 +105,7 @@ def collar_collar_attri_final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
                
                if(Dic_ele[1] == 'rl'):  # check for RL
                   if(Pre_id== collar_ele[0] or Pre_id ==0 or Cur_id ==collar_ele[0]):
-                     list_rl.append(parse_num_rl(collar_ele[5],logger1,collar_ele[0]))
+                     list_rl.append(parse_num_rl(collar_ele[5],logger1,collar_ele[0],collar_ele[2],collar_ele[3]))
                      Pre_id =collar_ele[0]
                      Pre_hole_id = collar_ele[1]
                      Pre_Longitude =collar_ele[2]
@@ -150,7 +150,7 @@ def collar_collar_attri_final(DB_Collar_Export,src_csr,dst_csr,minlong,maxlong,m
 
                      list_rl.clear()
                      list_maxdepth.clear()
-                     list_rl.append(parse_num_rl(collar_ele[5],logger1,collar_ele[0]))
+                     list_rl.append(parse_num_rl(collar_ele[5],logger1,collar_ele[0],collar_ele[2],collar_ele[3]))
               
                elif(Dic_ele[1]=='maxdepth'):  # check for maxdepth
                   if(Pre_id== collar_ele[0] or Pre_id == 0 or Cur_id ==collar_ele[0] ):
@@ -222,12 +222,20 @@ def parse_num_maxdepth(s1,logger2,collarID):
    '''
    s1=s1.lstrip().rstrip()
    if s1.isalpha():
-      logger2.info("%d, %s, %s" ,collarID ,s1,"alpha in MaxDepth ,In csv NAN is added")
-      return(None)
+      logger2.info("%d, %s, %s" ,collarID ,s1,"alphabet in MaxDepth ,Fetch from all dh tables")
+      maxdepth = fetch_Maxdepth_from_all_dhtables(collarID) # get maxdepth from al dh tables
+      if maxdepth == 'None':
+          return ("None")
+      else :
+          return(float(maxdepth))
       
    elif s1 == '-999':
-      logger2.info("%d, %s ,%s" ,collarID,s1," MaxDepth is -999,In csv NAN is added")
-      return(None)
+      logger2.info("%d, %s ,%s" ,collarID,s1," MaxDepth is -999,Fetch from all dh tables")
+      maxdepth= fetch_Maxdepth_from_all_dhtables(collarID)
+      if maxdepth == 'None':
+          return ("None")
+      else :
+          return(float(maxdepth))
    elif re.match("^[-+]?[0-9]+$", s1):
        if s1[0] == '-' :
            logger2.info("%d, %s, %s" ,collarID,s1," Maxdepth integer -ve,convert to +ve and add to csv file ")
@@ -246,7 +254,7 @@ def parse_num_maxdepth(s1,logger2,collarID):
    
 
 
-def parse_num_rl(s1,logger1,collarID):
+def parse_num_rl(s1,logger1,collarID,longitude,lattitude):
     '''
     Function evaluates the Rl values according to the requirements.
     Inputs:
@@ -257,23 +265,90 @@ def parse_num_rl(s1,logger1,collarID):
     s1=s1.lstrip().rstrip()
     
     if s1.isalpha():
-       logger1.info("%d, %s ,%s" ,collarID,s1,"alpha in RL,In csv file NAN is added",)
-       return(None)
+       logger1.info("%d, %s ,%s" ,collarID,s1,"alphabet in RL,Fetch rl from url",)
+       rl=fetch_rl_from_url(longitude,lattitude)
+       return(float(rl))
     elif re.match("^[-+]?[0-9]+$", s1):
        if int(s1) > 10000 :
-           logger1.info("%d, %s ,%s" ,collarID,s1," integer RL > 10000,In csv file NAN is added")
-           return(None)
+           logger1.info("%d, %s ,%s" ,collarID,s1," integer RL > 10000,Fetch rl from url")
+           rl=fetch_rl_from_url(longitude,lattitude)# get rl from url
+           return(float(rl))
+           
        else :
            logger1.info("%d, %s, %s" ,collarID,s1," integer RL ,in required state to use directly in csv file")
            return(int(s1))
     elif re.match("[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?", s1):
        if float(s1) > 10000.0:
-          logger1.info("%d, %s ,%s" ,collarID,s1," float RL  > 10000,In csv file NAN is added")
-          return(None)
+          logger1.info("%d, %s ,%s" ,collarID,s1," float RL  > 10000,Fetch rl from url")
+          rl=fetch_rl_from_url(longitude,lattitude)
+          return(float(rl))
        else :
           logger1.info("%d, %s ,%s" ,collarID,s1," float RL ,in required state to use directly in csv file")
           return(float(s1))
 
+def fetch_rl_from_url(longitude,lattitude):
+    '''
+    Function fetch rl from url and returns rl.
+    Inputs:
+        -longitude : longitude of the hole 
+        -lattitude : lattitude of the hole 
+        
+    '''
+    val1 = lattitude
+    val2 = longitude
+    payload = {'pt_lat': val1, 'pt_long': val2}
+    response = requests.get('https://elevation.fsdf.org.au/elevation?',params=payload)
+    #print(response.url)
+    data = response.json()
+    #print(data)
+    RL =(data["HEIGHT AT LOCATION"])
+    #print(RL)
+    return RL
+
+def fetch_Maxdepth_from_all_dhtables(collarID):
+    '''
+    Function fethes maxdepth from all tables which name start from dh, and returns maxdepth.
+    Input:
+        collarID: collarID of the hole.
+    '''
+    query =""" CREATE OR REPLACE FUNCTION fx1(total int)
+    RETURNS SETOF real AS $$
+    BEGIN
+        return query (SELECT MAX(todepth) FROM Dhalteration WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM Dhdrilldetail WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM Dhevent  WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM Dhgeochemistry WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM Dhgeology WHERE 	collarid = total   union all     -- (val present)
+	    SELECT MAX(todepth) FROM dhgeophysics WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhgeotech WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhhyperspectral WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhmagsus WHERE 	collarid = total union all 
+	    SELECT MAX(todepth) FROM dhmineralogy WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhrecovery WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhregolith WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhspecgrav WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhstructure WHERE 	collarid = total  union all 
+	    SELECT MAX(todepth) FROM dhveining WHERE 	collarid = total  union all
+	    SELECT MAX(todepth) FROM dhwater WHERE 	collarid = total   union all
+	    SELECT MAX(todepth) FROM dhweathering WHERE 	collarid = total);  
+    END;
+    $$ LANGUAGE plpgsql;"""
+
+    #select fx1(collarID); """
+    #315252
+
+    
+    conn = psycopg2.connect(host = host_,port = port_,database = DB_,user = user_,password = pwd_)
+    cur = conn.cursor()
+    #cur.execute(query)
+    cur.callproc('fx1', (collarID,))
+    maxdepth_list = [list(elem) for elem in cur]
+    flat_list = [item for sublist in maxdepth_list for item in sublist]
+    maxdepth = [i for i in flat_list if i is not None]
+    #print(a)
+    Maxdepth = maximum(maxdepth,'NAN')
+    return(Maxdepth)
+    
 
 def Parse_Num(s1):
     '''
