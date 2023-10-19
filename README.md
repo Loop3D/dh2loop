@@ -35,7 +35,7 @@
 `cd \local_drive\` <br>
 `python setup.py install --user --force`
 
-4.Run the file Lithology_With_Comments_IDLE.py in IDLE environment , if lithology with comments need to be generated efficiently in less time.
+4.Run the file notebooks/Lithology_With_Comments_IDLE.py in IDLE environment , if lithology with comments need to be generated efficiently in less time.
 start->search->IDLE->open the file Lithology_With_Comments_IDLE.py -> run ->check csv file having lithology with comments along with score.
 
 5. Try out the demo jupyter notebook:
