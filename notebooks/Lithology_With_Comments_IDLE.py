@@ -893,7 +893,7 @@ def f(x):
 if __name__ == '__main__':
       
     Start_Time = datetime.now()
-    print("Stared")
+    print("Started")
     Attr_Val_Dic()
     Litho_Dico()
     Clean_Up()
